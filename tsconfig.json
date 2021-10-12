@@ -25,6 +25,7 @@
     },
     "types": [
       "@nuxt/types",
+      "@nuxtjs/sanity",
       "@types/node"
     ]
   },

@@ -44,6 +44,15 @@ export default {
     },
   },
 
+  privateRuntimeConfig: {
+    sanity: {
+      token: process.env.SANITY_TOKEN,
+    },
+  },
+  sanity: {
+    projectId: 'arpi7c2c',
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 

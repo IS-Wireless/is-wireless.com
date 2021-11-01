@@ -1,9 +1,7 @@
 <template>
-  <div class="container">
     <div>
-      <Logo />
+      <Banner />
     </div>
-  </div>
 </template>
 
 <script lang="ts">

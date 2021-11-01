@@ -53,6 +53,10 @@ export default {
     projectId: 'arpi7c2c',
   },
 
+  plugins: [
+    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
+],
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 

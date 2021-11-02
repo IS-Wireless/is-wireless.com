@@ -6,8 +6,8 @@
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container w-full h-full overflow-hidden"
     >
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
+      <div class="swiper-wrapper bg-gray-default">
+        <div class="swiper-slide" data-hash="slide1">
           <img
             class="object-cover object-top min-h-full w-full"
             src="https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg"
@@ -16,18 +16,18 @@
           />
         </div>
 
-        <div class="swiper-slide">
+        <div class="swiper-slide" data-hash="slide2">
           <img
-            class="object-cover object-top min-h-full w-full"
-            src="https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-IS-Wireless.jpg"
+            class="swiper-lazy object-cover object-top min-h-full w-full"
+            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-IS-Wireless.jpg"
             alt="slide2"
           />
         </div>
 
-        <div class="swiper-slide">
+        <div class="swiper-slide" data-hash="slide3">
           <img
-            class="object-cover object-top min-h-full w-full"
-            src="https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg"
+            class="swiper-lazy object-cover object-top min-h-full w-full"
+            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg"
             alt="slide3"
           />
         </div>
@@ -46,10 +46,10 @@
           bg-black bg-opacity-40
           z-10
           top-0
-          pointer-events-none
         "
       >
         <img
+        ref="content1"
           class="
             opacity-0
             duration-300
@@ -64,6 +64,7 @@
           alt="5G logo"
         />
         <p
+        ref="content2"
           class="
             opacity-0
             duration-300
@@ -78,6 +79,7 @@
           4G and 5G Mobile Networks of the Future
         </p>
         <div
+        ref="content3"
           class="
             opacity-0
             duration-300
@@ -126,7 +128,6 @@
       <div
         tabindex="0"
         class="
-          swiper-button-prev
           absolute
           top-1/2
           left-0
@@ -136,6 +137,8 @@
           bg-black bg-opacity-30
           z-20
         "
+        data-slide-prev
+
         role="button"
       >
         <svg
@@ -155,7 +158,6 @@
       <div
         tabindex="0"
         class="
-          swiper-button-next
           absolute
           top-1/2
           right-0
@@ -165,6 +167,9 @@
           bg-black bg-opacity-30
           z-20
         "
+
+        data-slide-next
+
         role="button"
       >
         <svg
@@ -203,21 +208,31 @@ export default {
           crossFade: false
         },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: '[data-slide-next]',
+          prevEl: '[data-slide-prev]',
         },
         speed: 300,
         loop: true,
-        loopAdditionalSlides: 3,
-        loopedSlides: 3,
+
+        preloadImages: false,
+        lazy: {
+          loadPrevNext: true,
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false,
+        },
+        hashNavigation: {
+          replaceState: true,
+        },
+
       },
     }
   },
 
   mounted() {
-    const content = document.querySelectorAll(
-      '.swiper .swiper-wrapper > div > *'
-    )
+    const content = [this.$refs.content1, this.$refs.content2, this.$refs.content3];
+    
     Show(content.length)
 
     function Show(i) {
@@ -227,14 +242,12 @@ export default {
           i--
           Show(i)
         }
-      }, 700)
+      }, 600)
     }
   },
 }
 </script>
 
 <style>
-.swiper-slide {
-  transition: opacity 150ms;
-}
+
 </style>

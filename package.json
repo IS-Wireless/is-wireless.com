@@ -22,6 +22,7 @@
     "vue-awesome-swiper": "file:package/vue-awesome-swiper"
   },
   "devDependencies": {
+    "@nuxt/image": "^0.6.0",
     "@nuxt/types": "^2.15.3",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.0",

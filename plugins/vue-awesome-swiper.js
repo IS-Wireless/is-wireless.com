@@ -6,4 +6,5 @@ SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay,EffectFade])
 Vue.use(getAwesomeSwiper(SwiperClass))
 
 // import style
-import 'swiper/swiper.min.css'
+// import 'swiper/swiper.min.css'
+import 'swiper/swiper-bundle.css'

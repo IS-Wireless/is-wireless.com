@@ -194,21 +194,20 @@ export default {
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
+        preventClicksPropagation: false,
         slidesperview: 1,
         spaceBetween: 0,
         direction: 'horizontal',
         effect: 'fade',
-        FadeEffects: {
-          crossFade: true,
+        fadeEffect: {
+          crossFade: false
         },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
         speed: 300,
-        observer: true,
-        observeParents: true,
-        parallax:true,
+        loop: true,
         loopAdditionalSlides: 3,
         loopedSlides: 3,
       },

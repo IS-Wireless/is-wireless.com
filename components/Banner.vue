@@ -62,15 +62,11 @@ export default {
           spaceBetween: 0,
           direction: 'horizontal',
           effect: "fade",
-          // fadeEffect: {
-          //     crossFade: true,
-          // },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
             },
           loop: true,
-          // speed: 200,
           
         },
       };
@@ -83,7 +79,6 @@ mounted(){
   
   function Show(i){
     setTimeout(() => {
-      console.log(content.length-i);
       content[content.length-i].style.opacity = 1;
     if (i > 1) {
       i--;
@@ -91,8 +86,7 @@ mounted(){
     }
     }, 700);
   }
-
-
+  
 }
 
 }

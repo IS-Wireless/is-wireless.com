@@ -1,6 +1,7 @@
 <template>
     <div>
       <Banner />
+      <Organisations/>
     </div>
 </template>
 

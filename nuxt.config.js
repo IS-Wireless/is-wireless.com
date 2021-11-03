@@ -14,7 +14,9 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@/assets/nuxt-picture.css',
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -29,8 +31,11 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    
+    '@nuxt/image',
   ],
-
+  
+  
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
@@ -63,4 +68,8 @@ export default {
   generate: {
     dir: 'public',
   },
+
+  image: {
+    domains: ['https://www.is-wireless.com/']
+  }
 }

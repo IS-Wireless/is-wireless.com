@@ -46,12 +46,15 @@ module.exports = {
         },
         gray:{
           default: '#BFBFBF',
+          light: '#F1F2F3',
         },
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      saturate: ['hover'],
+    },
   },
   plugins: [],
 }

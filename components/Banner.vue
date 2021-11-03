@@ -4,32 +4,19 @@
   >
     <div
       v-swiper="swiperOptionsObject"
-      class="swiper swiper-container w-full h-full overflow-hidden"
+      class="swiper swiper-container w-full h-full bg-gray-default overflow-hidden"
     >
-      <div class="swiper-wrapper bg-gray-default">
+      <div class="swiper-wrapper">
         <div class="swiper-slide" data-hash="slide1">
-          <img
-            class="object-cover object-top min-h-full w-full"
-            src="https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg"
-            alt="slide1"
-            loading="eager"
-          />
+          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg" />
         </div>
 
         <div class="swiper-slide" data-hash="slide2">
-          <img
-            class="swiper-lazy object-cover object-top min-h-full w-full"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-IS-Wireless.jpg"
-            alt="slide2"
-          />
+          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-IS-Wireless.jpg" />
         </div>
 
         <div class="swiper-slide" data-hash="slide3">
-          <img
-            class="swiper-lazy object-cover object-top min-h-full w-full"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg"
-            alt="slide3"
-          />
+          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg" />
         </div>
       </div>
 
@@ -46,6 +33,7 @@
           bg-black bg-opacity-40
           z-10
           top-0
+          select-none
         "
       >
         <img
@@ -214,13 +202,9 @@ export default {
         speed: 300,
         loop: true,
 
-        preloadImages: false,
-        lazy: {
-          loadPrevNext: true,
-        },
         keyboard: {
           enabled: true,
-          onlyInViewport: false,
+          onlyInViewport: true,
         },
         hashNavigation: {
           replaceState: true,

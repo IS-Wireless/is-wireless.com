@@ -235,7 +235,7 @@ export default {
 <style>
 
 .swiper .swiper-slide picture img{
-  @apply w-full min-h-full object-cover
+  @apply min-w-full h-full object-cover
 }
 
 </style>

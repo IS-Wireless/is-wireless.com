@@ -1,6 +1,6 @@
 <template>
   <section
-    class="w-full h-phonewide phone-wide:h-tabletsmall tablet-wide:h-tablet"
+    class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]"
   >
     <div
       v-swiper="swiperOptionsObject"
@@ -233,5 +233,9 @@ export default {
 </script>
 
 <style>
+
+.swiper .swiper-slide picture img{
+  @apply w-full min-h-full object-cover
+}
 
 </style>

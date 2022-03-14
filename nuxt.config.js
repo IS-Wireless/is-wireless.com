@@ -75,6 +75,6 @@ export default {
   },
 
   image: {
-    domains: ['https://www.is-wireless.com/']
+    domains: ['https://www.is-wireless.com/','https://e7.pngegg.com']
   }
 }

@@ -4,7 +4,7 @@
   >
     <div
       v-swiper="swiperOptionsObject"
-      class="swiper swiper-container w-full h-full bg-gray-default overflow-hidden"
+      class="swiper swiper-container w-full h-full bg-black/5 overflow-hidden"
     >
       <div class="swiper-wrapper">
         <div class="swiper-slide" data-hash="slide1">
@@ -85,7 +85,7 @@
               px-10
               py-2
               rounded-full
-              bg-blue-default
+              bg-blue-main
               mx-auto
               hover:bg-white hover:text-black
               duration-300
@@ -102,7 +102,7 @@
               px-10
               py-2
               rounded-full
-              bg-blue-default
+              bg-blue-main
               mx-auto
               hover:bg-white hover:text-black
               duration-300
@@ -122,7 +122,9 @@
           px-6
           py-4
           text-white
-          bg-black bg-opacity-30
+          bg-black bg-opacity-30          
+          hover:bg-opacity-40
+          transition
           z-20
         "
         data-slide-prev
@@ -153,6 +155,8 @@
           py-4
           text-white
           bg-black bg-opacity-30
+          hover:bg-opacity-40
+          transition
           z-20
         "
 

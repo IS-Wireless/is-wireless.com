@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+    h1,h2{
+        @apply text-4xl leading-[50px] tablet:text-[50px] tablet:leading-[60px] text-gray-main
+    }
+
+    p{
+        @apply text-sm tablet:text-base text-gray-light
+    }
+}

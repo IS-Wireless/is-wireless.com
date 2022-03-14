@@ -21,11 +21,12 @@ module.exports = {
     extend: {
       colors:{
         blue:{
-          default: '#00A2DF',
+          main: '#00A2DF',
+          dark: '#027FAE'
         },
         gray:{
-          default: '#BFBFBF',
-          light: '#F1F2F3',
+          main: '#616A7D',
+          light: '#768894',
         },
       }
     },

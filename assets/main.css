@@ -4,10 +4,18 @@
 
 @layer base{
     h1,h2{
-        @apply text-4xl leading-[50px] tablet:text-[50px] tablet:leading-[60px] text-gray-main
+        @apply  text-[50px] leading-[60px] text-gray-main;
     }
 
     p{
-        @apply text-sm tablet:text-base text-gray-light
+        @apply text-base text-gray-light;
     }
+
+    li p {
+        @apply text-gray-main
+    }
+
+    .parallax-img img{
+        @apply  min-w-full h-full max-w-none object-cover object-center
+      }
 }

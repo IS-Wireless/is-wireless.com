@@ -19,6 +19,6 @@
     }
 
     .parallax-img img{
-        @apply  min-w-full h-full max-w-none object-cover object-center
+        @apply  min-w-full max-w-none object-cover object-center
       }
 }

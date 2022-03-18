@@ -1,18 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base{
     h1,h2{
-        @apply  text-[50px] leading-[60px] text-gray-main;
+        @apply  text-[50px] leading-[60px] text-gray-main font-lato;
     }
 
     p{
-        @apply text-base text-gray-light;
+        @apply text-base text-gray-light font-lato;
     }
 
     li p {
-        @apply text-gray-main
+        @apply text-gray-main font-lato; 
     }
 
     .parallax-img img{

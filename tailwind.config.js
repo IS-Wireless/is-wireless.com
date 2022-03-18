@@ -27,7 +27,10 @@ module.exports = {
         gray:{
           main: '#616A7D',
           light: '#768894',
-        },
+        }
+      },
+      fontFamily:{
+        'lato': ['Lato','ui-serif']
       }
     },
   },

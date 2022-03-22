@@ -3,8 +3,8 @@ require('dotenv').config()
 export default {
   env: {
     CONTEXT: process.env.CONTEXT,
-    API_URL: API_URL,
-    API_AFFIX: API_AFFIX,
+    API_URL: process.env.API_URL,
+    API_AFFIX: process.env.API_AFFIX,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -46,6 +46,17 @@ export default {
       src: '@nuxtjs/dotenv',
       options: {
         only: ['API_URL', 'API_AFFIX', 'CONTEXT'],
+      },
+    },
+    {
+      src: '@nuxtjs/axios',
+      // options: {}
+    },
+    {
+      src: 'wp-nuxt',
+      options: {
+        discover: true,
+        endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
       },
     },
   ],

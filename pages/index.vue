@@ -111,7 +111,11 @@ export default Vue.extend({
         store.commit('homepage/save', data)
       })
   },
-
+  computed: {
+    frontPageData() {
+      return this.$store.getters['homepage/getData']
+    },
+  },
   data() {
     return {
       testList: [

@@ -47,6 +47,16 @@ export const actions = {
               resolve()
             })
         }),
+        new Promise((resolve) => {
+          wp.namespace('menus/v1')
+            .menus('main_navigation')
+            .then(function (data) {
+              filterData(data)
+              dispatch('general/init', data)
+              resolve()
+            })
+        }),
+
       ])
     })
   },

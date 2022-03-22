@@ -12,7 +12,12 @@ import Navbar from '@/components/navbar.vue'
 export default {
   components:{
     Navbar
-  }
+  },
+  computed: {
+      generalData() {
+      return this.$store.getters['general/getData']
+      },
+  },
 }
 
 </script>

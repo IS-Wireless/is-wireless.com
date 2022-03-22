@@ -1,5 +1,3 @@
-var WPAPI = require('wpapi')
-
 import { isEmpty as _isEmpty } from 'lodash'
 
 const filterWords = ['yoast_head', 'meta', '{}']
@@ -35,29 +33,29 @@ export const mutations = {}
 export const getters = {}
 
 export const actions = {
-  async nuxtServerInit({ dispatch }, { env }) {
-    await WPAPI.discover(`${env.API_URL}${env.API_AFFIX}`).then(function (wp) {
-      return Promise.all([
-        new Promise((resolve) => {
-          wp.namespace('acf/v2')
-            .options()
-            .then(function (data) {
-              filterData(data)
-              dispatch('general/init', data.acf)
-              resolve()
-            })
-        }),
-        new Promise((resolve) => {
-          wp.namespace('menus/v1')
-            .menus('main_navigation')
-            .then(function (data) {
-              filterData(data)
-              dispatch('general/init', data)
-              resolve()
-            })
-        }),
-
-      ])
-    })
+  async nuxtServerInit({ dispatch }, { app, env }) {
+    return Promise.all([
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('acf/v2')
+          .options()
+          .then(function (data) {
+            filterData(data)
+            dispatch('general/init', data.acf)
+            resolve()
+          })
+      }),
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('wuxt')
+          .v1()
+          .menu('main_navigation')
+          .then(function (data) {
+            filterData(data)
+            dispatch('general/init', { menu: data })
+            resolve()
+          })
+      }),
+    ])
   },
 }

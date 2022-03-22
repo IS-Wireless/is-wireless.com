@@ -52,8 +52,7 @@ export const actions = {
           .menu('main_navigation')
           .then(function (data) {
             filterData(data)
-            var menu = { data }
-            dispatch('general/init', menu)
+            dispatch('general/init', { menu: data })
             resolve()
           })
       }),

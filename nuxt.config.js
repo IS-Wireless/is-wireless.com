@@ -57,6 +57,7 @@ export default {
       options: {
         discover: true,
         endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
+        extensions: true,
       },
     },
   ],
@@ -68,7 +69,10 @@ export default {
     },
   },
 
-  plugins: [{ src: '~/plugins/vue-awesome-swiper.js', mode: 'client' }],
+  plugins: [
+    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
+    { src: '~/plugins/wpapi-extend.js' },
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

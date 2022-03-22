@@ -1,4 +1,12 @@
+require('dotenv').config()
+
 export default {
+  env: {
+    CONTEXT: process.env.CONTEXT,
+    API_URL: process.env.API_URL,
+    API_AFFIX: process.env.API_AFFIX,
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -14,9 +22,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/main.css'
-  ],
+  css: ['@/assets/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -26,18 +32,33 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/sanity/module',
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    
+
     '@nuxt/image',
   ],
-  
-  
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    {
+      src: '@nuxtjs/dotenv',
+      options: {
+        only: ['API_URL', 'API_AFFIX', 'CONTEXT'],
+      },
+    },
+    {
+      src: '@nuxtjs/axios',
+      // options: {}
+    },
+    {
+      src: 'wp-nuxt',
+      options: {
+        discover: true,
+        endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
+      },
+    },
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -47,18 +68,7 @@ export default {
     },
   },
 
-  privateRuntimeConfig: {
-    sanity: {
-      token: process.env.SANITY_TOKEN,
-    },
-  },
-  sanity: {
-    projectId: 'arpi7c2c',
-  },
-
-  plugins: [
-    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
-],
+  plugins: [{ src: '~/plugins/vue-awesome-swiper.js', mode: 'client' }],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -75,6 +85,6 @@ export default {
   },
 
   image: {
-    domains: ['https://www.is-wireless.com/','https://e7.pngegg.com']
-  }
+    domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],
+  },
 }

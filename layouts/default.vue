@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar :menu="generalData.menu" />
     <Nuxt />
   </div>
 </template>

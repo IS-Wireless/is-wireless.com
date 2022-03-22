@@ -10,7 +10,7 @@
         @apply  text-[50px] leading-[60px] text-gray-main font-lato;
     }
 
-    p{
+    p,a{
         @apply text-base text-gray-light font-lato;
     }
 

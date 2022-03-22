@@ -1,4 +1,12 @@
+require('dotenv').config()
+
 export default {
+  env: {
+    CONTEXT: process.env.CONTEXT,
+    API_URL: API_URL,
+    API_AFFIX: API_AFFIX,
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -34,6 +42,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    {
+      src: '@nuxtjs/dotenv',
+      options: {
+        only: ['API_URL', 'API_AFFIX', 'CONTEXT'],
+      },
+    },
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

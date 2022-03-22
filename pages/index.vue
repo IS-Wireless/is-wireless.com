@@ -21,7 +21,7 @@
 
       <template v-slot:right>
         <SectionImage
-          :imageUrl="'https://www.is-wireless.com/wp-content/uploads/2021/02/crowd.jpg'"
+          :imageUrl="frontPageData.acf.baner_slide[0].baner_image"
         />
       </template>
     </ContentSection>

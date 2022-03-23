@@ -47,9 +47,8 @@ export const actions = {
       }),
       new Promise((resolve) => {
         app.$wp
-          .namespace('wuxt')
-          .v1()
-          .menu('main_navigation')
+          .namespace('wp/v2')
+          ['menu-locations']()
           .then(function (data) {
             filterData(data)
             dispatch('general/init', { menu: data })

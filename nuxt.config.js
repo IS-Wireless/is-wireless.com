@@ -1,10 +1,11 @@
 require('dotenv').config()
-
 export default {
   env: {
     CONTEXT: process.env.CONTEXT,
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
+    WP_USER: process.env.WP_USER,
+    WP_PASSWORD: process.env.WP_PASSWORD,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -58,6 +59,9 @@ export default {
         discover: true,
         endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
         extensions: true,
+        username: `${process.env.WP_USER}`,
+        password: `${process.env.WP_PASSWORD}`,
+        auth: true,
       },
     },
   ],

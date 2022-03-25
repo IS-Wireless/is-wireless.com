@@ -24,14 +24,14 @@
                         </svg>
                     </li>
                 </ul>
-                <div class="absolute top-0 right-0 w-full h-full pl-10 overflow-hidden" :class="{'pointer-events-none':!this.mainSearch}">
+                <div class="absolute top-0 right-0 w-full h-full pl-10 hidden tablet-wide:block overflow-hidden" :class="{'pointer-events-none':!this.mainSearch}">
                     <form class="flex flex-row h-full bg-[#111] transition w-full duration-500" :class="{'translate-x-full':!this.mainSearch}">
                             <button type="submit" class="px-5 flex justify-center items-center text-white hover:text-blue-main">
                                 <svg class="fill-current transition" width="16" height="16" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M24.8564 24.8563C25.0479 24.6647 25.0479 24.3545 24.8563 24.163L17.6572 16.9639L17.6867 16.9311C19.3076 15.1315 20.3038 12.7588 20.3038 10.1518C20.3037 4.55414 15.7496 0 10.1519 0C4.55414 0 0 4.55414 0 10.1519C0 15.7496 4.55414 20.3038 10.1519 20.3038C12.7588 20.3038 15.1315 19.3076 16.9312 17.6867L16.9639 17.6573L24.163 24.8563C24.2587 24.9521 24.3843 25 24.5097 25C24.6351 25 24.7606 24.9521 24.8564 24.8563ZM10.1519 19.323C5.09531 19.323 0.980748 15.209 0.980748 10.1519C0.980748 5.09482 5.09531 0.980687 10.1519 0.980687C15.2085 0.980687 19.323 5.09476 19.323 10.1519C19.323 15.209 15.2085 19.323 10.1519 19.323Z"/>
                                 </svg>
                             </button>
-                            <input type="text" class="w-full px-5 bg-[#111] text-base text-white focus-visible:outline-none">
+                            <input type="text" placeholder="Search here..." class="w-full px-5 bg-[#111] text-base text-white focus-visible:outline-none">
                             <div class="px-5 h-full flex justify-center items-center cursor-pointer text-white hover:text-white/70" @click="toggleMainSearch">
                                 <svg class="text-inherit fill-current transition" width="30" height="30" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="17.0625" y="15.0002" width="28.1956" height="2.91678" rx="1" transform="rotate(45 17.0625 15.0002)" />

@@ -21,7 +21,7 @@
     "swiper": "^6.8.4",
     "typescript": "^4.4.4",
     "vue-awesome-swiper": "file:package/vue-awesome-swiper",
-    "wp-nuxt": "^1.0.28",
+    "wp-nuxt": "github:Triloworld/wp-nuxt#patch-3",
     "wpapi": "^1.2.2",
     "wpapi-extensions": "^1.0.12"
   },

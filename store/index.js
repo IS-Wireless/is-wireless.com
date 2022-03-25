@@ -48,10 +48,30 @@ export const actions = {
       new Promise((resolve) => {
         app.$wp
           .namespace('wp/v2')
-          ['menu-locations']()
+          .menus()
           .then(function (data) {
             filterData(data)
             dispatch('general/init', { menu: data })
+            resolve()
+          })
+      }),
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('wp/v2')
+          ['menu-locations']()
+          .then(function (data) {
+            filterData(data)
+            dispatch('general/init', { menu_locations: data })
+            resolve()
+          })
+      }),
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('wp/v2')
+          ['menu-items']()
+          .then(function (data) {
+            filterData(data)
+            dispatch('general/init', { menu_items: data })
             resolve()
           })
       }),

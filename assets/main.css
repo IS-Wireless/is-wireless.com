@@ -10,7 +10,7 @@
         @apply  text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-main font-lato;
     }
 
-    p,a{
+    p,a,select,option{
         @apply text-base text-gray-light font-lato;
     }
 

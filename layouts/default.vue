@@ -2,16 +2,19 @@
   <div>
     <Navbar :mainMenu="mainMenuData.menu" :sideMenu="sideMenuData.menu" />
     <Nuxt />
+    <Footer :imageUrl="footerData.image" :copyright="footerData.copyright" :menu="footerData.menu" :socials="footerData.socials" :languages="footerData.language" />
   </div>
 </template>
 
 <script>
 
 import Navbar from '@/components/navbar.vue'
+import Footer from '@/components/footer.vue'
 
 export default {
   components:{
-    Navbar
+    Navbar,
+    Footer
   },
   computed: {
       mainMenuData() {
@@ -61,6 +64,49 @@ export default {
               title: 'Contact',
               desktop: true
             }
+          }
+        }
+      },
+
+      footerData(){
+        return{
+          image:'https://www.is-wireless.com/wp-content/uploads/2016/04/logo-500px.png',
+          copyright: '©2022 IS-Wireless and/or its affiliated companies.',
+          menu:{
+            menu_left:{
+              0:{
+                title: 'About us',
+                url: '/'
+              },
+              1:{
+                title: 'Careers',
+                url: '/'
+              },
+              2:{
+                title: 'Contact',
+                url: '/'
+              }
+            },
+            menu_right:{
+              0:{
+                title: 'Privacy Policy',
+                url: '/'
+              }
+            },
+          },
+          socials:{
+            twitter:{
+              url: 'https://twitter.com/is_wireless',
+            },
+            linkedin:{
+              url: 'https://linkedin.com/company/is-wireless',
+            },
+            youtube:{
+              url: null,
+            }
+          },
+          language:{
+            title: 'English'
           }
         }
       }

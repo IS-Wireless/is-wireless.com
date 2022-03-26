@@ -105,9 +105,9 @@ export default {
               url: null,
             }
           },
-          language:{
-            title: 'English'
-          }
+          language:[
+            'English'
+          ]
         }
       }
   },

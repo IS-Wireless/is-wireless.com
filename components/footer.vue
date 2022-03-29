@@ -7,7 +7,8 @@
           flex flex-row flex-wrap flex-auto
           border-b-0 border-r-0 border-l-0
           pt-8
-          border-t-0
+          border-t
+          border-gray-200
         "
       >
         <div

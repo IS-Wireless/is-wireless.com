@@ -24,6 +24,18 @@
           title: null,
         }]"
       />
+      <LinkTiles :link="
+      [{
+          title:'Software',    
+          url:'networks/software'
+      },{
+          title:'Hardware',    
+          url:'networks/hardware'
+      },{
+          title:'Services',    
+          url:'networks/services'
+      }]
+      "/>
 
     </div>
   </div>
@@ -35,13 +47,15 @@ import Vue from 'vue'
 import StaticBanner from '~/components/static-banner.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 import ContentStatic from '~/components/content-static.vue'
+import LinkTiles from '~/components/link-tiles.vue'
 
 export default Vue.extend({
   components: {
     StaticBanner,
     Breadcrumb,
     ContentStatic,
-  },
+    LinkTiles
+},
   computed: {
     networkPageData() {
       return this.$store.getters['networks/getData']

@@ -2,14 +2,14 @@
     <div class="w-full">
         <div class="w-4/5 mx-auto">
             <ul class="flex flex-row my-4">
-                <li>
-                    <nuxt-link class="breadcrumb-item" to='/'>Home</nuxt-link>
+                <li class="breadcrumb-item">
+                    <nuxt-link to='/'>Home</nuxt-link>
                 </li>
-                <li v-for="(route,index) in routesNames" :key="index">
-                    <nuxt-link class="breadcrumb-item" :to="routesComputed[index]">{{route}}</nuxt-link>
+                <li class="breadcrumb-item" v-for="(route,index) in routesNames" :key="index">
+                    <nuxt-link :to="routesComputed[index]">{{route}}</nuxt-link>
                 </li>
                 <li class="text-base text-gray-main">
-                    {{currentRouteName}}
+                    <p> {{currentRouteName}} </p>
                 </li>
             </ul>
         </div>
@@ -47,13 +47,17 @@ export default {
 
 <style lang="postcss">
     .breadcrumb-item{
+        @apply mr-2
+    }
+
+    .breadcrumb-item a{
         @apply text-base capitalize flex items-center text-blue-main hover:text-blue-dark transition
     }
-    .breadcrumb-item::after{
+    .breadcrumb-item a::after{
         content: '';
         display: block;
         height: 15px;
         width: 1px;
-        @apply bg-gray-main mx-2
+        @apply bg-gray-main ml-2
     }
 </style>

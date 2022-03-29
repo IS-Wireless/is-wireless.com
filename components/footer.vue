@@ -25,7 +25,7 @@
           "
         >
           <nuxt-picture
-            class="block h-auto w-full max-w-14 desktop:max-w-200px"
+            class="block h-auto w-full max-w-[200px]"
             :src="imageUrl"
           ></nuxt-picture>
         </div>

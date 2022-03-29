@@ -2,10 +2,13 @@
     <div class="w-full">
         <div class="w-4/5 mx-auto">
             <ul class="flex flex-row my-4">
-                <!-- <li v-for="item in routes" :key="item.name">
-                    <nuxt-link class="breadcrumb-item" :to="item.url">{{item.name}}</nuxt-link>
-                </li> -->
-                <li class="text-base text-gray-main capitalize">
+                <li>
+                    <nuxt-link class="breadcrumb-item" to='/'>Home</nuxt-link>
+                </li>
+                <li v-for="(route,index) in routesNames" :key="index">
+                    <nuxt-link class="breadcrumb-item" :to="routesComputed[index]">{{route}}</nuxt-link>
+                </li>
+                <li class="text-base text-gray-main">
                     {{currentRouteName}}
                 </li>
             </ul>
@@ -17,14 +20,26 @@
 <script>
 export default {
     name:"Breadcrumb",
-    data(){
-        return{
-            routes:this.$route
-        }
-    },
     computed:{
+        routesComputed(){
+            let routes = [];
+            let routesSplitted = this.$route.fullPath.split('/')
+                    routes[0] = '/' + routesSplitted[1]
+            for(let i = 1 ; i < routesSplitted.length - 2 ; i++){
+                    routes[i] = routes[i-1] + '/' + routesSplitted[i+1] 
+            }
+            return routes
+        },
+
+        routesNames(){
+            let routesNames = this.$route.fullPath.split('/');
+            routesNames.shift();
+            routesNames.pop();
+            return routesNames
+        },
+
         currentRouteName() {
-            return this.$route.name;
+            return this.$route.fullPath.split('/').slice(-1)[0];
         }
     }
 }

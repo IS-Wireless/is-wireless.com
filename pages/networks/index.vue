@@ -1,7 +1,7 @@
 <template>
     <div>
         <StaticBanner :title="networkPageData.acf.banner.title" :backgroundUrl="networkPageData.acf.banner.bgUrl"/>
-        <Breadcrumb :crumbs="crumbs" />
+        <Breadcrumb />
     </div>
 </template>
 
@@ -16,21 +16,11 @@ export default Vue.extend({
         StaticBanner,
         Breadcrumb
     },
-    data(){
-        return{
-            crumbs:{
-                0:{
-                    name:'Home',
-                    url:'/'
-                },
-            }
-        }
-    },
     computed:{
         networkPageData() {
             return this.$store.getters['networks/getData']
-        }
-    }
+        },
+    },
 
 
 })

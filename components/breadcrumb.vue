@@ -2,9 +2,9 @@
     <div class="w-full">
         <div class="w-4/5 mx-auto">
             <ul class="flex flex-row my-4">
-                <li v-for="crumb in crumbs" :key="crumb.name">
-                    <nuxt-link class="breadcrumb-item" :to="crumb.url">{{crumb.name}}</nuxt-link>
-                </li>
+                <!-- <li v-for="item in routes" :key="item.name">
+                    <nuxt-link class="breadcrumb-item" :to="item.url">{{item.name}}</nuxt-link>
+                </li> -->
                 <li class="text-base text-gray-main capitalize">
                     {{currentRouteName}}
                 </li>
@@ -17,10 +17,9 @@
 <script>
 export default {
     name:"Breadcrumb",
-    props:{
-        crumbs:{
-            type: Object,
-            required: true
+    data(){
+        return{
+            routes:this.$route
         }
     },
     computed:{

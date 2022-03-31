@@ -24,7 +24,7 @@
           title: null,
         }]"
       />
-      <LinkTiles :link="
+      <OfferTiles :links="
       [{
           title:'Software',    
           url:'networks/software'
@@ -47,14 +47,14 @@ import Vue from 'vue'
 import StaticBanner from '~/components/static-banner.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 import ContentStatic from '~/components/content-static.vue'
-import LinkTiles from '~/components/link-tiles.vue'
+import OfferTiles from '~/components/offer-tiles.vue'
 
 export default Vue.extend({
   components: {
     StaticBanner,
     Breadcrumb,
     ContentStatic,
-    LinkTiles
+    OfferTiles
 },
   computed: {
     networkPageData() {

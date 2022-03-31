@@ -13,6 +13,9 @@
             'Since its inception in 2006, IS-Wireless is very active on various fora, both in Poland and internationally. Here you can find a set of items we authored, co-authored or in any other way contributed to',
         ]"
         />
+
+      <Filters :filters="resourcesPageData.acf.filters" />
+      
     </div>
   </div>
 </template>
@@ -22,11 +25,13 @@ import Vue from 'vue'
 
 import StaticBanner from '~/components/static-banner.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
+import Filters from '~/components/filters.vue'
 
 export default Vue.extend({
   components: {
     StaticBanner,
     Breadcrumb,
+    Filters
   },
   computed: {
     resourcesPageData() {

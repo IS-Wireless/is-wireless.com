@@ -10,7 +10,7 @@
         @apply  text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-main font-lato;
     }
 
-    p,a,select,option{
+    p,a,select,option,span{
         @apply text-base text-gray-light font-lato;
     }
 
@@ -20,5 +20,23 @@
 
     .parallax-img img{
         @apply  min-w-full max-w-none object-cover object-center
-      }
+    }
+
+    .custom-scrollbar{
+        scrollbar-width: 16px;
+        scrollbar-color: rgb(118 136 148) transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        @apply w-[6px]
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply rounded-full border-4 border-transparent box-border border-solid bg-gray-200
+    }
+
 }

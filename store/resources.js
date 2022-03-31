@@ -11,23 +11,23 @@ export const state = () => ({
         filters:{
             0:{
                 category: 'Books',
-                iconUrl: 'https://i.ibb.co/xh6hL9q/images-removebg-preview.png'
+                iconUrl: '../static/test-icon.png'
             },
             1:{
                 category: 'Videos',
-                iconUrl: 'https://i.ibb.co/xh6hL9q/images-removebg-preview.png'
+                iconUrl: '../static/test-icon.png'
             },
             2:{
                 category: 'Slidesets',
-                iconUrl: 'https://i.ibb.co/xh6hL9q/images-removebg-preview.png'
+                iconUrl: '../static/test-icon.png'
             },
             3:{
                 category: 'Papers',
-                iconUrl: 'https://i.ibb.co/xh6hL9q/images-removebg-preview.png'
+                iconUrl: '../static/test-icon.png'
             },
             4:{
                 category: 'Reports',
-                iconUrl: 'https://i.ibb.co/xh6hL9q/images-removebg-preview.png'
+                iconUrl: '../static/test-icon.png'
             }
         }
     }

@@ -6,7 +6,6 @@
             <nuxt-picture fit="contain" class="mb-5" :src="item.url" :title="item.title" ></nuxt-picture>
             <p class="grow-0 italic text-center mb-5" v-if="item.title">{{item.title}}</p>
         </div>
-    <div class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12"></div>
     </div>
 </template>
 

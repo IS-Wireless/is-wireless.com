@@ -17,6 +17,9 @@
           title: null,
         }]"
       />
+
+      <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12">
+
         <ContentStatic
         :text="['At the heart of our network solutions lies Network Software reflecting all important telecom functionalities. Network Software runs on Network Hardware, which includes COTS (Commercial off-the-shelf) servers and connected Radio Units. The offering is complemented with Installation Service, as shown in Figure below.']"
         :image="[{
@@ -24,6 +27,9 @@
           title: null,
         }]"
       />
+
+      <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12">
+
       <OfferTiles :links="
       [{
           title:'Software',    

@@ -14,9 +14,11 @@
         ]"
         />
 
-      <Filters :filters="resourcesPageData.acf.filters" />
       
     </div>
+
+    <Filters :filters="resourcesPageData.acf.filters" :posts="resourcesPageData.acf.tiles" />
+  
   </div>
 </template>
 

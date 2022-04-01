@@ -4,9 +4,9 @@
         <nuxt-link class="group rounded-md border border-solid border-[#EDEDED] flex h-full overflow-hidden hover:border-blue-main transition" to="/" >
             <div class="m-[30px] flex flex-col">
                 <nuxt-picture class="mb-2.5 w-10" :src="item.catIconUrl" :title="item.category"></nuxt-picture>
-                <h2 class=" text-2xl transform transition block my-[30px]">{{item.title}}</h2>
-                <span class="inline-block mb-2.5 w-[75px] h-1 align-middle rounded-full bg-blue-main "></span>
-                <p class="mt-[30px]">{{item.description}}</p>
+                <h2 class=" text-lg tablet:text-2xl transform transition block my-[30px]">{{item.title}}</h2>
+                <span class="inline-block mb-2.5 w-10 tablet:w-[75px] h-0.5 tablet:h-1 align-middle rounded-full bg-blue-main "></span>
+                <p class="mt-[30px] text-sm tablet:text-base">{{item.description}}</p>
             </div>
         </nuxt-link>
       </div>
@@ -18,15 +18,14 @@ export default {
     name: 'FilterableTiles',
     props:{
         tiles:{
-            type: Object,
+            type: Array,
             required: true
         },
         filterBy:{
             type:String,
             required:false
         }
-    },
-    
+    }
 }
 </script>
 

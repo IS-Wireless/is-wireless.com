@@ -1,5 +1,6 @@
 <template>
-  <div class="w-full relative px-[10%] tablet:w-96 tablet:pr-0 tablet-wide:pr-[10%] tablet-wide:w-full mt-10 flex items-center justify-between tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start">
+<div class="w-full">
+  <div class="w-full relative px-[10%] tablet:w-96 tablet:pr-0 tablet-wide:pr-[10%] tablet-wide:w-full mt-10 flex flex-wrap items-center justify-between tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start">
     <span class="inline-block text-gray-main mb-2">Filter by:</span>
     <div class="
           h-[70px]
@@ -75,7 +76,7 @@
             
             cursor-pointer
             "
-            @click="setFilter('All'),switchMobileExpand()"
+            @click="filterItems('All'),switchMobileExpand()"
 
         >
             <span
@@ -113,7 +114,7 @@
             v-for="(item, index) in filters"
             :key="index"
 
-            @click="setFilter(item.category),switchMobileExpand()"
+            @click="filterItems(item.category),switchMobileExpand()"
         >
             <nuxt-picture
             class="w-12 mx-2"
@@ -135,10 +136,28 @@
             >
         </li>
     </ul>
-    <div class="w-full mt-14">
-      <FilterableTiles :tiles="posts" :filterBy="selectedFilter" />
+  </div>
+  <div class="w-4/5 mx-auto mt-14">
+    <FilterableTiles :tiles="filteredItems" :filterBy="selectedFilter" />
+
+    <div class="text-center my-10" v-if="filteredItems.length>9">
+        <button href="https://www.is-wireless.com/networks/" class="
+                text-lg text-white
+                uppercase
+                px-10
+                py-2
+                rounded-full
+                bg-blue-main
+                mx-auto
+                hover:bg-blue-dark
+                duration-300
+                tablet:mb-0
+                mb-6
+            " >Load More</button>
+
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -156,14 +175,15 @@ export default {
       required: true,
     },
     posts: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
   data(){
       return{
         mobileExpanded: false,
-        selectedFilter: 'All'
+        selectedFilter: 'All',
+        filteredItems: this.posts
       }
   },
   methods:{
@@ -172,8 +192,21 @@ export default {
             this.mobileExpanded = !this.mobileExpanded
       },
 
-      setFilter(category){
-          this.selectedFilter = category;
+      filterItems(filter){
+          this.selectedFilter = filter;
+          if(filter !== 'All'){
+            let filteredTiles = [];
+            this.posts.filter((item) => {
+              if (item.category.includes(filter)){
+                  filteredTiles.push(item)
+                  console.log(item);
+                }
+              })
+              this.filteredItems = filteredTiles
+            }
+            else
+              this.filteredItems = this.posts
+        
       }
 
   }

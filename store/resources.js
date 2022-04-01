@@ -30,44 +30,82 @@ export const state = () => ({
                 iconUrl: '../static/test-icon.png'
             }
         },
-        tiles:{
-          0:{
+        tiles:[
+
+          {
             category:'Papers',
             catIconUrl:'../static/test-icon.png',
             title: 'Machine Learning Techniques for Detecting Attackers During Quantum Key Distribution in IoT Networks With Application to Railway Scenarios',
             description: 'IEEE Xplore, Publication Date: 04.10.2021'
           },
-          1:{
+          {
             category:'Papers',
             catIconUrl:'../static/test-icon.png',
             title: 'Design and Experimental Validation of Radio Access Network Controller Prototype for Multi-RAT Technologies With Scheduler Strategies',
             description: 'IEEE 32nd Annual International Symposium on Personal, Indoor and Mobile Radio Communications (PIMRC’21), 13-16.09.2021'
           },
-          2:{
+          {
             category:'Videos',
             catIconUrl:'../static/test-icon.png',
             title: 'Open RAN: otwarta architektura sieci 5G (open 5G network architecture)',
             description: 'PLNOG23 Conference Kraków, 24.09.2019'
           },
-          3:{
+          {
             category:'Books',
             catIconUrl:'../static/test-icon.png',
             title: 'Towards 5G, Applications, Requirements & Candidate Technologies',
             description: 'R. Vannithamby, S. Talwar; Wiley, 2016'
           },
-          4:{
+          {
             category:'Reports',
             catIconUrl:'../static/test-icon.png',
             title: 'Precoding Optimization for Cell-free mMIMO in 5G and Beyond Networks: A Machine Learning Approach,',
             description: 'R. Vannithamby, S. Talwar; Wiley, 2016'
           },
-          5:{
+          {
             category:'Slidesets',
             catIconUrl:'../static/test-icon.png',
             title: 'Lessons learned from hands-on development of multi-RAT virtual-RAN',
             description: 'Pietrzyk S., part of Industry Program, IEEE Globecom 2019, Waikoloa, HI, USA'
           },
-        }
+          {
+            category:'Papers',
+            catIconUrl:'../static/test-icon.png',
+            title: 'Machine Learning Techniques for Detecting Attackers During Quantum Key Distribution in IoT Networks With Application to Railway Scenarios',
+            description: 'IEEE Xplore, Publication Date: 04.10.2021'
+          },
+          {
+            category:'Papers',
+            catIconUrl:'../static/test-icon.png',
+            title: 'Design and Experimental Validation of Radio Access Network Controller Prototype for Multi-RAT Technologies With Scheduler Strategies',
+            description: 'IEEE 32nd Annual International Symposium on Personal, Indoor and Mobile Radio Communications (PIMRC’21), 13-16.09.2021'
+          },
+          {
+            category:'Videos',
+            catIconUrl:'../static/test-icon.png',
+            title: 'Open RAN: otwarta architektura sieci 5G (open 5G network architecture)',
+            description: 'PLNOG23 Conference Kraków, 24.09.2019'
+          },
+          {
+            category:'Books',
+            catIconUrl:'../static/test-icon.png',
+            title: 'Towards 5G, Applications, Requirements & Candidate Technologies',
+            description: 'R. Vannithamby, S. Talwar; Wiley, 2016'
+          },
+          {
+            category:'Reports',
+            catIconUrl:'../static/test-icon.png',
+            title: 'Precoding Optimization for Cell-free mMIMO in 5G and Beyond Networks: A Machine Learning Approach,',
+            description: 'R. Vannithamby, S. Talwar; Wiley, 2016'
+          },
+          {
+            category:'Slidesets',
+            catIconUrl:'../static/test-icon.png',
+            title: 'Lessons learned from hands-on development of multi-RAT virtual-RAN',
+            description: 'Pietrzyk S., part of Industry Program, IEEE Globecom 2019, Waikoloa, HI, USA'
+          }
+        ]
+        
     }
 })
 

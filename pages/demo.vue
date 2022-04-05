@@ -52,7 +52,7 @@ export default {
           name: 'Sławomir Pietrzyk',
           description:'<p>President and CEO</p>',
           imgUrl: 'https://www.is-wireless.com/wp-content/uploads/2021/02/Slawomir-Pietrzyk-1.jpg'
-      }
+      },
 
     }
   },

@@ -3,11 +3,11 @@
     <ul class="flex flex-col">
       <li class="mb-4 group" v-for="(item, index) in data" :key="index">
         <nuxt-link
-          class="p-7 bg-[#F1F2F3] flex justify-between items-center rounded-md"
+          class="p-7 bg-gray-light flex justify-between items-center rounded-md"
           :to="item.url"
         >
           <p
-            class="text-gray-main group-hover:text-blue-main transition text-xl"
+            class="text-gray-dark group-hover:text-blue-main transition text-xl"
           >
             {{ item.title }}
           </p>

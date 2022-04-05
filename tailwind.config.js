@@ -22,11 +22,14 @@ module.exports = {
       colors:{
         blue:{
           main: '#00A2DF',
-          dark: '#027FAE'
+          'main-hover': '#027FAE',
+          dark: '#2173BA'
         },
         gray:{
-          main: '#616A7D',
-          light: '#768894',
+          light: '#F4F6F7',
+          default: '#D4D9DF',
+          dark: '#616A7D',
+          darkest: '#111111',
         }
       },
       fontFamily:{

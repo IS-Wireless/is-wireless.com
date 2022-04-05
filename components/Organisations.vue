@@ -60,7 +60,7 @@
 
 
     </div>
-    <div class="tablet-small:w-2/6 w-full flex items-center bg-[#F1F2F3]">
+    <div class="tablet-small:w-2/6 w-full flex items-center bg-gray-light">
       <div class="w-1/2 py-3 px-4 desktop:px-10">
       <a href="https://www.is-wireless.com/about-us/#membership-and-associations">
         <img src="https://www.is-wireless.com/wp-content/uploads/2021/02/NCBR.svg" alt="">

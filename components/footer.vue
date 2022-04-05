@@ -45,7 +45,7 @@
           <div class="w-full phablet:w-auto relative border-none h-12">
             <select
               class="
-                bg-[#F4F6F7]
+                bg-gray-light
                 focus-visible:outline-none
                 text-gray-400
                 appearance-none
@@ -212,7 +212,7 @@
               :key="item.title"
             >
               <nuxt-link
-                class="font-lato text-blue-main hover:text-blue-dark transition"
+                class="font-lato text-blue-main hover:text-blue-main-hover transition"
                 :to="item.url"
                 >{{ item.title }}</nuxt-link
               >
@@ -237,7 +237,7 @@
               :key="item.title"
             >
               <nuxt-link
-                class="font-lato text-blue-main hover:text-blue-dark transition"
+                class="font-lato text-blue-main hover:text-blue-main-hover transition"
                 :to="item.url"
                 >{{ item.title }}</nuxt-link
               >

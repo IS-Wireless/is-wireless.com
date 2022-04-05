@@ -4,7 +4,7 @@
     <ul class="flex flex-col">
       <li class="py-3 border-0 border-b border-solid block border-l-gray-light w-4/5" v-for="item in elements" :key="item.title">
           <a :href="'#' + item.anchor"
-            class="text-blue-main hover:text-blue-dark transition  w-full"
+            class="text-blue-main hover:text-blue-main-hover transition  w-full"
           >
             <svg
                 width="12px"

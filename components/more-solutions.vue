@@ -28,7 +28,7 @@
           "
           :to="item.url"
         >
-          <p class="text-gray-main transition text-xl">
+          <p class="text-gray-dark transition text-xl">
             {{ item.title }}
           </p>
         </nuxt-link>

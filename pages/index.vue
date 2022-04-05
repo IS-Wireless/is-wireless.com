@@ -5,13 +5,13 @@
     <ContentSection>
       <template v-slot:left>
         <SectionHeader
-          :class="'text-gray-main'"
+          :class="'text-gray-dark'"
           :title="frontPageData.acf.E2e.title"
         />
         <p class="mb-14 text-gray-light">
           {{ frontPageData.acf.E2e.text }}
         </p>
-        <List :class="'text-gray-main'" :items="frontPageData.acf.E2e.list" />
+        <List :class="'text-gray-dark'" :items="frontPageData.acf.E2e.list" />
       </template>
 
       <template v-slot:right>
@@ -36,13 +36,13 @@
     <ContentSection>
       <template v-slot:left>
         <SectionHeader
-          :class="'text-gray-main'"
+          :class="'text-gray-dark'"
           :title="frontPageData.acf.radio.title"
         />
         <p class="mb-14 text-gray-light">
           {{frontPageData.acf.radio.text}}
         </p>
-        <List :class="'text-gray-main'" :items="frontPageData.acf.radio.list" />
+        <List :class="'text-gray-dark'" :items="frontPageData.acf.radio.list" />
       </template>
 
       <template v-slot:right>

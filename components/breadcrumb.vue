@@ -8,7 +8,7 @@
                 <li class="breadcrumb-item" v-for="(route,index) in routesNames" :key="index">
                     <nuxt-link :to="routesComputed[index]">{{route}}</nuxt-link>
                 </li>
-                <li class="text-base text-gray-main">
+                <li class="text-base text-gray-dark">
                     <p> {{currentRouteName}} </p>
                 </li>
             </ul>
@@ -51,13 +51,13 @@ export default {
     }
 
     .breadcrumb-item a{
-        @apply text-base capitalize flex items-center text-blue-main hover:text-blue-dark transition
+        @apply text-base capitalize flex items-center text-blue-main hover:text-blue-main-hover transition
     }
     .breadcrumb-item a::after{
         content: '';
         display: block;
         height: 15px;
         width: 1px;
-        @apply bg-gray-main ml-2
+        @apply bg-gray-dark ml-2
     }
 </style>

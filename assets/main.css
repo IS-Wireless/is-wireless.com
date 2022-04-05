@@ -7,15 +7,15 @@
 
 @layer base{
     h1,h2{
-        @apply  text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-main font-lato;
+        @apply  text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-dark font-lato;
     }
 
     p,a,select,option,span{
-        @apply text-base text-gray-light font-lato;
+        @apply text-base text-gray-dark font-lato;
     }
 
     li p {
-        @apply text-gray-main font-lato; 
+        @apply text-gray-dark font-lato; 
     }
 
     .parallax-img img{

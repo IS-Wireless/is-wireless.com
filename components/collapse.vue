@@ -13,7 +13,7 @@
             bottom-0
             left-0
             inline-block
-            stroke-gray-main
+            stroke-gray-dark
             group-hover:stroke-blue-main
             transform
             transition
@@ -40,7 +40,7 @@
             bottom-0
             left-0
             inline-block
-            stroke-gray-main
+            stroke-gray-dark
             group-hover:stroke-blue-main
             transform
             transition

@@ -1,7 +1,7 @@
 <template>
 <div class="w-full">
   <div class="w-full relative px-[10%] tablet:w-96 tablet:pr-0 tablet-wide:pr-[10%] tablet-wide:w-full mt-10 flex flex-wrap items-center justify-between tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start">
-    <span class="inline-block text-gray-main mb-2">Filter by:</span>
+    <span class="inline-block text-gray-dark mb-2">Filter by:</span>
     <div class="
           h-[70px]
           w-[160px]
@@ -9,7 +9,7 @@
           flex
           items-center
           mr-2
-          bg-[#F4F6F7]
+          bg-gray-light
           rounded-md
           cursor-pointer
           transition
@@ -24,7 +24,7 @@
             flex
             items-center
             justify-center
-            text-gray-main
+            text-gray-dark
           "
           >{{selectedFilter}}</span
         >
@@ -70,7 +70,7 @@
             tablet-wide:flex-shrink
             items-center
             tablet-wide:mr-2
-            bg-[#F4F6F7]
+            bg-gray-light
             tablet-wide:rounded-md
             border-0
             
@@ -86,7 +86,7 @@
                 flex
                 items-center
                 justify-center
-                text-gray-main
+                text-gray-dark
             "
             :class="{'text-blue-main':selectedFilter=='All'}"
             >All</span
@@ -103,7 +103,7 @@
             tablet-wide:flex-shrink
             items-center
             tablet-wide:mr-2
-            bg-[#F4F6F7]
+            bg-gray-light
             tablet-wide:rounded-md
             tablet-wide:border-0
             border-0
@@ -128,7 +128,7 @@
                 flex
                 items-center
                 justify-center
-                text-gray-main
+                text-gray-dark
                 transition
             "
             :class="{'text-blue-main':selectedFilter==item.category}"
@@ -149,7 +149,7 @@
                 rounded-full
                 bg-blue-main
                 mx-auto
-                hover:bg-blue-dark
+                hover:bg-blue-main-hover
                 duration-300
                 tablet:mb-0
                 mb-6

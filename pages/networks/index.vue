@@ -30,7 +30,7 @@
 
       <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12">
 
-      <OfferTiles :links="
+      <OfferTiles :data="
       [{
           title:'Software',    
           url:'networks/software'

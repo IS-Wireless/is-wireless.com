@@ -1,0 +1,58 @@
+<template>
+  <div class="w-full">
+    <ul class="flex flex-col">
+      <li class="mb-4 group" v-for="(item, index) in data" :key="index">
+        <nuxt-link
+          class="p-7 bg-[#F1F2F3] flex justify-between items-center rounded-md"
+          :to="item.url"
+        >
+          <p
+            class="text-gray-main group-hover:text-blue-main transition text-xl"
+          >
+            {{ item.title }}
+          </p>
+          <span
+            class="hidden tablet-wide:inline-block text-blue-main text-base"
+          >
+            Read more
+            <svg
+              width="12px"
+              height="12px"
+              viewBox="-2 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="
+                stroke-blue-main
+                transition
+                inline-block
+                transform
+                -rotate-90
+              "
+            >
+              <path
+                d="M6 18L24 36L42 18"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </span>
+        </nuxt-link>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'OfferMenu',
+  props: {
+    data: {
+      type: Array,
+      required: true,
+    },
+  },
+}
+</script>
+
+<style></style>

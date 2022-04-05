@@ -3,8 +3,10 @@
     <OfferMenu :data="testLinksArray" />
     <MoreSolutions :data="testLinksArray" />
     <Collapse :title="'Click to expand or collapse'">
-        <h2>Sample collapse content</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis dolor recusandae labore quae id qui nihil facere laudantium quas at, modi tempora perspiciatis dolorem officia incidunt repellat quam? Tempore, nostrum!</p>
+        <div>
+            <h2>Sample collapse content</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis dolor recusandae labore quae id qui nihil facere laudantium quas at, modi tempora perspiciatis dolorem officia incidunt repellat quam? Tempore, nostrum!</p>
+        </div>
     </Collapse>
   </div>
 </template>

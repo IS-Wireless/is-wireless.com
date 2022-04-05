@@ -61,11 +61,9 @@
       </span>
     </div>
     <div ref="contentContainer" class="overflow-hidden transition-all duration-300" :style="{height: contentHeight + 'px'}">
-        <div class="w-full">
-            <slot>
+        <slot>
 
-            </slot>
-        </div>
+        </slot>
     </div>
   </div>
 </template>

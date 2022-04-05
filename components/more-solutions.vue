@@ -8,11 +8,8 @@
         class="
           mb-2.5
           tablet-wide:basis-1/3
-          tablet-wide:px-4
-          tablet-wide:first:px-0
-          tablet-wide:first:pr-4
-          tablet-wide:last:px-0
-          tablet-wide:last:pl-4
+          tablet-wide:pr-8
+          tablet-wide:last:pr-0
         "
         v-for="item in data"
         :key="item.title"

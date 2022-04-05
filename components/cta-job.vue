@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: 'CtaJobs',
+    name: 'CtaJob',
     props:{
         title:{
             type: String,

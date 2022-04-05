@@ -8,6 +8,7 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis dolor recusandae labore quae id qui nihil facere laudantium quas at, modi tempora perspiciatis dolorem officia incidunt repellat quam? Tempore, nostrum!</p>
         </div>
     </Collapse>
+    <CtaFunds :data="testTitleText" />
   </div>
 </template>
 
@@ -15,12 +16,15 @@
 import OfferMenu from '~/components/offer-menu.vue'
 import MoreSolutions from '~/components/more-solutions.vue'
 import Collapse from '~/components/collapse.vue'
+import CtaFunds from '~/components/cta-funds.vue'
+
 export default {
   name: 'Demo',
   components: {
     OfferMenu,
     MoreSolutions,
-    Collapse
+    Collapse,
+    CtaFunds
 },
   data() {
     return {
@@ -36,8 +40,12 @@ export default {
         {
           title: 'Services',
           url: 'networks/services',
-        },
-      ],
+        },],
+      testTitleText:{
+          title:'Public funds',
+          text:'IS-Wireless projects co-financed by public funds.'
+      }
+
     }
   },
 }

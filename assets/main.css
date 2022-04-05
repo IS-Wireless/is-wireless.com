@@ -6,7 +6,7 @@
 
 
 @layer base{
-    h1,h2{
+    h1,h2,h3,h4{
         @apply  text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-dark font-lato;
     }
 

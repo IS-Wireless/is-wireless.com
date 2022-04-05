@@ -8,7 +8,7 @@
           :class="'text-gray-dark'"
           :title="frontPageData.acf.E2e.title"
         />
-        <p class="mb-14 text-gray-light">
+        <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.E2e.text }}
         </p>
         <List :class="'text-gray-dark'" :items="frontPageData.acf.E2e.list" />
@@ -39,7 +39,7 @@
           :class="'text-gray-dark'"
           :title="frontPageData.acf.radio.title"
         />
-        <p class="mb-14 text-gray-light">
+        <p class="mb-14 text-gray-dark">
           {{frontPageData.acf.radio.text}}
         </p>
         <List :class="'text-gray-dark'" :items="frontPageData.acf.radio.list" />

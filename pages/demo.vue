@@ -10,8 +10,16 @@
     </Collapse>
     <CtaFunds :data="testTitleText" />
     <Person :data="testPerson"/>
-    <Logos :data="testLogos"/>
     <ProjectTiles :data="testProjcts"/>
+    <h1 class="p-8">2/3 layout test</h1>
+    <div class="flex flex-col tablet-wide:flex-row">
+      <div class="basis-2/3 tablet-wide:pr-[5%]">
+        <ProjectTiles :data="testProjcts"/>
+      </div>
+      <div class="basis-1/3">
+        <Sidebar :data="testSidebar"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +30,7 @@ import Collapse from '~/components/collapse.vue'
 import CtaFunds from '~/components/cta-funds.vue'
 import Person from '~/components/person.vue'
 import ProjectTiles from '../components/project-tiles.vue'
+import Sidebar from '~/components/sidebar.vue'
 
 export default {
   name: 'Demo',
@@ -31,7 +40,8 @@ export default {
     Collapse,
     CtaFunds,
     Person,
-    ProjectTiles
+    ProjectTiles,
+    Sidebar
 },
   data() {
     return {
@@ -113,6 +123,10 @@ export default {
         url:'https://www.is-wireless.com/research/braine/'
       },
       ],
+      testSidebar:{
+        title:'Horizon Europe – (examples calls of interest)',
+        list:['HORIZON-CL4-2021-DATA-01-05 (Edge Operating Systems)','HORIZON-CL4-2021-TWIN-TRANSITION-01-08 (Data-driven Industrial Environments)','HORIZON-CL4-2021-SPACE-01-11 (Trustworthy AI)','HORIZON-CL4-2021-HUMAN-01-01 (Internet Architecture and Decentralised Technologies)']
+      }
 
     }
   },

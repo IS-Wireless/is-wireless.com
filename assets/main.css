@@ -39,4 +39,8 @@
         @apply rounded-full border-4 border-transparent box-border border-solid bg-gray-200
     }
 
+    picture.img-full img{
+        @apply w-full
+    }
+
 }

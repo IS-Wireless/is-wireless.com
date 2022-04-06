@@ -12,6 +12,7 @@
         </div>
         <div class="tablet-wide:basis-3/4 tablet-wide:pl-20">
           <Person :data="testPerson"/>
+          <Logos :data="testLogos"/>
         </div>
       
     </div>
@@ -38,6 +39,36 @@ export default Vue.extend({
           name: 'Sławomir Pietrzyk',
           description:'<p>President and CEO</p>',
           imgUrl: 'https://www.is-wireless.com/wp-content/uploads/2021/02/Slawomir-Pietrzyk-1.jpg'
+      },
+      testLogos:{
+        0:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/VS-logo-accelleran-17-color-200x58.png',
+          url:'https://accelleran.com/',
+        },
+        1:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/ICOM_COMPANY_logo_300dpi-200x45.jpg',
+          url:'http://www.intracom-telecom.com/',
+        },
+        2:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/pharrowtech_logo_rgb_01-200x46.png',
+          url:'https://accelleran.com/',
+        },
+        3:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/Mellanox-Tech.png',
+          url:'https://accelleran.com/',
+        },
+        4:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/CTTC_logo_square-200x141.png',
+          url:'',
+        },
+        5:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/Master_Logo_RGB-200x200.png',
+          url:'https://accelleran.com/',
+        },
+        6:{
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/03/UNIMI-logo-200x69.png',
+          url:'',
+        }
       },
     }
   },

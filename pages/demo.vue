@@ -11,6 +11,7 @@
     <CtaFunds :data="testTitleText" />
     <Person :data="testPerson"/>
     <Logos :data="testLogos"/>
+    <ProjectTiles :data="testProjcts"/>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import MoreSolutions from '~/components/more-solutions.vue'
 import Collapse from '~/components/collapse.vue'
 import CtaFunds from '~/components/cta-funds.vue'
 import Person from '~/components/person.vue'
+import ProjectTiles from '../components/project-tiles.vue'
 
 export default {
   name: 'Demo',
@@ -28,7 +30,8 @@ export default {
     MoreSolutions,
     Collapse,
     CtaFunds,
-    Person
+    Person,
+    ProjectTiles
 },
   data() {
     return {
@@ -84,6 +87,32 @@ export default {
           url:'',
         }
       },
+      testProjcts:[
+      {
+        title:'Marsal',
+        imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/01/Braine2.png',
+        text:'Big data Processing and Artificial Intelligence at the Network Edge',
+        url:'https://www.is-wireless.com/research/braine/'
+      },
+      {
+        title:'EU Wireless',
+        imgUrl:'https://www.is-wireless.com/wp-content/uploads/2019/06/cropped-EuWireless-logo-kolor-subtitle-e1517233730973-300x108.png',
+        text:'European Mobile Network Operator for Research',
+        url:'https://www.is-wireless.com/research/braine/'
+      },
+      {
+        title:'Marsal',
+        imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/01/Braine2.png',
+        text:'Big data Processing and Artificial Intelligence at the Network Edge',
+        url:'https://www.is-wireless.com/research/braine/'
+      },
+      {
+        title:'Marsal',
+        imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/01/Braine2.png',
+        text:'Big data Processing and Artificial Intelligence at the Network Edge',
+        url:'https://www.is-wireless.com/research/braine/'
+      },
+      ],
 
     }
   },

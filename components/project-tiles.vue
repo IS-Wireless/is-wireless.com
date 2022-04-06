@@ -7,7 +7,7 @@
                 <p>
                     {{item.text}}
                 </p>
-                <div class="text-blue-main pt-2.5 mt-auto transform translate-y-full group-hover:translate-y-0 transition duration-300">
+                <div class="text-blue-main pt-2.5 mt-auto transform tablet:translate-y-full group-hover:translate-y-0 transition duration-300">
                     <span class="inline-block w-[15px] h-1 align-middle rounded-full bg-blue-main transition"></span>
                     <span class="text-blue-main">More details</span>
                 </div>

@@ -2,7 +2,7 @@
   <section
     class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]"
   >
-    <!-- <div
+    <div
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container w-full h-full bg-black/5 overflow-hidden"
     >
@@ -178,7 +178,7 @@
           />
         </svg>
       </div>
-    </div> -->
+    </div>
   </section>
 </template>
 

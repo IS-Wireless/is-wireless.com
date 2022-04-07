@@ -20,6 +20,7 @@
         <Sidebar :data="testSidebar"/>
       </div>
     </div>
+    <Table :data="testTableData"/>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import CtaFunds from '~/components/cta-funds.vue'
 import Person from '~/components/person.vue'
 import ProjectTiles from '../components/project-tiles.vue'
 import Sidebar from '~/components/sidebar.vue'
+import Table from '~/components/table.vue'
 
 export default {
   name: 'Demo',
@@ -41,7 +43,8 @@ export default {
     CtaFunds,
     Person,
     ProjectTiles,
-    Sidebar
+    Sidebar,
+    Table
 },
   data() {
     return {
@@ -126,6 +129,14 @@ export default {
       testSidebar:{
         title:'Horizon Europe – (examples calls of interest)',
         list:['HORIZON-CL4-2021-DATA-01-05 (Edge Operating Systems)','HORIZON-CL4-2021-TWIN-TRANSITION-01-08 (Data-driven Industrial Environments)','HORIZON-CL4-2021-SPACE-01-11 (Trustworthy AI)','HORIZON-CL4-2021-HUMAN-01-01 (Internet Architecture and Decentralised Technologies)']
+      },
+      testTableData:{
+        head:['Application','Benefit','Who can benefit?'],
+        content:[
+            ['Testing and verification','where LTE PHY Lab provides test signal vectors	','ODM, OEM, Operator'],
+            ['LTE PHY prototyping','LTE PHY Lab shortens the development time','Chip manufacturer, ODM'],
+            ['Education','LTE PHY Lab serves as an environment to visualize LTE PHY operation','University, Training Company']
+        ]
       }
 
     }

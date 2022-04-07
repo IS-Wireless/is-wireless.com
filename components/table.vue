@@ -4,7 +4,17 @@
             <thead>
                 <tr>
                     <th v-for="(item,index) in data.head" :key="index" class="p-5 font-bold cursor-pointer" @click="setSort(index)">
-                        {{item}}
+                        <div class="flex items-center">
+                            <span class="w-full text-center">{{item}}</span>
+                            <div class="">
+                                <svg width="10px" height="10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 6" class="fill-current transform -rotate-90 transition" :class="[index==currentSort && currentSortDir == 'asc' ? 'text-blue-main' : 'text-gray-default' ]">
+                                    <path d="M 0 0 L 0 6 L 3 3 Z"></path>
+                                </svg>
+                                <svg width="10px" height="10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 6" class="fill-current transform rotate-90 transition" :class="[index==currentSort && currentSortDir == 'desc' ? 'text-blue-main' : 'text-gray-default' ]">
+                                    <path d="M 0 0 L 0 6 L 3 3 Z"></path>
+                                </svg>
+                            </div>
+                        </div>
                     </th>
                 </tr>
             </thead>
@@ -16,8 +26,6 @@
                 </tr>
             </tbody>
         </table>
-        <p class="text-2xl text-black">debug: sort by: {{currentSort}} <br>  sort dir: {{currentSortDir}}</p>
-
     </div>
   
 </template>
@@ -44,11 +52,11 @@ export default {
                 return this.data.content
             }
             else{
-                // let invert = this.currentSortDir === 'asc'?1:-1;
+                let modifier = this.currentSortDir === 'asc'?1:-1;
                 return this.data.content.sort((a,b) => {
-                    if(a[this.currentSort] < b[this.currentSort]) return -1 
+                    if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier
+                    if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier                    
                 })
-                // return this.data
             }
         }
     },

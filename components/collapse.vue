@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col">
-    <div class="flex group items-center mb-5 cursor-pointer w-max" @click="setExpandedHeight()">
+    <div class="flex group items-center mb-5 cursor-pointer" @click="setExpandedHeight()">
       <span class="shrink-0 grow-0 h-5 w-5 relative">
         <svg
           width="20px"

@@ -21,6 +21,7 @@
       </div>
     </div>
     <Table :data="testTableData"/>
+    <ContactSales :data="testContactSales"/>
   </div>
 </template>
 
@@ -33,6 +34,7 @@ import Person from '~/components/person.vue'
 import ProjectTiles from '../components/project-tiles.vue'
 import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
+import ContactSales from '~/components/contact-sales.vue'
 
 export default {
   name: 'Demo',
@@ -44,7 +46,8 @@ export default {
     Person,
     ProjectTiles,
     Sidebar,
-    Table
+    Table,
+    ContactSales
 },
   data() {
     return {
@@ -137,6 +140,10 @@ export default {
             ['LTE PHY prototyping','LTE PHY Lab shortens the development time','Chip manufacturer, ODM'],
             ['Education','LTE PHY Lab serves as an environment to visualize LTE PHY operation','University, Training Company']
         ]
+      },
+      testContactSales:{
+        title:'Contact sales',
+        content:'<p style="text-align: justify;">We would be excited to learn about your business and technical needs and propose a product or customization to fulfill them. To receive more information about our products, request a quote or get a trial, please contact us at&nbsp;<a href="mailto:sales@is-wireless.com"><strong>sales@is-wireless.com</strong></a>.</p>'
       }
 
     }

@@ -6,15 +6,19 @@ export const state = () => ({
   acf: {
     baner_slide: [
       {
-        baner_image:
+        baner_images:[
+          'https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg',
           'https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-capacity.jpg',
+          'https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg'
+        ],
         baner_content: [
           {
             acf_fc_layout: 'Podstawowy',
             logo:
               'https://www.is-wireless.com/wp-content/uploads/2021/02/IS-Wireless-5GMadeTogether.svg',
             text: '4G and 5G Mobile Networks of the Future',
-            button_first_text: 'https://www.is-wireless.com/networks/',
+            button_first_text: 'Networks',
+            button_first_url: 'https://www.is-wireless.com/networks/',
             button_second_text: 'Academy',
             button_second_url: 'https://www.is-wireless.com/academy/',
           },

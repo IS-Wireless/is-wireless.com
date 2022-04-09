@@ -1,22 +1,14 @@
 <template>
-  <section
-    class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]"
-  >
+  <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <div
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container w-full h-full bg-black/5 overflow-hidden"
     >
       <div class="swiper-wrapper">
-        <div class="swiper-slide" data-hash="slide1">
-          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg" />
-        </div>
-
-        <div class="swiper-slide" data-hash="slide2">
-          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-IS-Wireless.jpg" />
-        </div>
-
-        <div class="swiper-slide" data-hash="slide3">
-          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg" />
+        <div class="swiper-slide" v-for="item in imgUrls" :key="item" >
+          <nuxt-picture
+            :src="item" alt="slide image"
+          />
         </div>
       </div>
 
@@ -37,7 +29,7 @@
         "
       >
         <img
-        ref="content1"
+          ref="content1"
           class="
             opacity-0
             duration-300
@@ -48,11 +40,11 @@
             tablet-wide:w-3/5 tablet-wide:mb-48
             desktop:w-1/2 desktop:mb-24
           "
-          src="https://www.is-wireless.com/wp-content/uploads/2021/02/IS-Wireless-5GMadeTogether.svg"
+          :src="logoUrl"
           alt="5G logo"
         />
-        <p
-        ref="content2"
+        <p v-if="text"
+          ref="content2"
           class="
             opacity-0
             duration-300
@@ -64,10 +56,10 @@
             px-10
           "
         >
-          4G and 5G Mobile Networks of the Future
+          {{text}}
         </p>
         <div
-        ref="content3"
+          ref="content3"
           class="
             opacity-0
             duration-300
@@ -78,9 +70,7 @@
             max-w-screen-phablet
           "
         >
-          <a
-            class="
-              text-lg text-white
+        <nuxt-link class="text-lg text-white
               uppercase
               px-10
               py-2
@@ -90,26 +80,12 @@
               hover:bg-white hover:text-black
               duration-300
               tablet:mb-0
-              mb-6
-            "
-            href="https://www.is-wireless.com/networks/"
-            >Networks</a
-          >
-          <a
-            class="
-              text-lg text-white
-              uppercase
-              px-10
-              py-2
-              rounded-full
-              bg-blue-main
-              mx-auto
-              hover:bg-white hover:text-black
-              duration-300
-            "
-            href="https://www.is-wireless.com/academy/"
-            >Academy</a
-          >
+              mb-6"
+              v-for="item,index in buttons" :key="index"
+              :to="item.url">
+              {{item.text}}
+
+        </nuxt-link>
         </div>
       </div>
 
@@ -122,13 +98,12 @@
           px-6
           py-4
           text-white
-          bg-black bg-opacity-30          
+          bg-black bg-opacity-30
           hover:bg-opacity-40
           transition
           z-20
         "
         data-slide-prev
-
         role="button"
       >
         <svg
@@ -159,9 +134,7 @@
           transition
           z-20
         "
-
         data-slide-next
-
         role="button"
       >
         <svg
@@ -184,6 +157,24 @@
 
 <script>
 export default {
+  props:{
+    imgUrls:{
+      type:Array,
+      required:true
+    },
+    logoUrl:{
+      type:String,
+      required: true
+    },
+    text:{
+      type:String,
+      rquired: false
+    },
+    buttons:{
+      type:Array,
+      required: true
+    }
+  },
   data() {
     return {
       swiperIndex: 0,
@@ -197,7 +188,7 @@ export default {
         direction: 'horizontal',
         effect: 'fade',
         fadeEffect: {
-          crossFade: false
+          crossFade: false,
         },
         navigation: {
           nextEl: '[data-slide-next]',
@@ -210,17 +201,17 @@ export default {
           enabled: true,
           onlyInViewport: true,
         },
-        hashNavigation: {
-          replaceState: true,
-        },
-
       },
     }
   },
 
   mounted() {
-    const content = [this.$refs.content1, this.$refs.content2, this.$refs.content3];
-    
+    const content = [
+      this.$refs.content1,
+      this.$refs.content2,
+      this.$refs.content3,
+    ]
+
     Show(content.length)
 
     function Show(i) {
@@ -237,9 +228,7 @@ export default {
 </script>
 
 <style>
-
-.swiper .swiper-slide picture img{
-  @apply min-w-full h-full object-cover
+.swiper .swiper-slide picture img {
+  @apply min-w-full h-full object-cover;
 }
-
 </style>

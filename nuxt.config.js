@@ -75,7 +75,7 @@ export default {
 
   plugins: [
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
-    { src: '~/plugins/vue-google-maps', mode: 'client' },
+    { src: '~/plugins/vue-google-maps', mode:'ssr' },
     { src: '~/plugins/wpapi-extend.js' },
   ],
 
@@ -87,6 +87,7 @@ export default {
         autoprefixer: {},
       },
     },
+    transpile: [/^vue2-google-maps($|\/)/],
   },
 
   generate: {

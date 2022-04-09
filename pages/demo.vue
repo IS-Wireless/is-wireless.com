@@ -22,6 +22,7 @@
     </div>
     <Table :data="testTableData"/>
     <ContactSales :data="testContactSales"/>
+    <Map/>
   </div>
 </template>
 
@@ -35,6 +36,7 @@ import ProjectTiles from '../components/project-tiles.vue'
 import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
 import ContactSales from '~/components/contact-sales.vue'
+import Map from '../components/map.vue'
 
 export default {
   name: 'Demo',
@@ -47,7 +49,8 @@ export default {
     ProjectTiles,
     Sidebar,
     Table,
-    ContactSales
+    ContactSales,
+    Map
 },
   data() {
     return {

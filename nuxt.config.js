@@ -75,6 +75,7 @@ export default {
 
   plugins: [
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
+    { src: '~/plugins/vue-google-maps', mode: 'client' },
     { src: '~/plugins/wpapi-extend.js' },
   ],
 

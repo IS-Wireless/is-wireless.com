@@ -42,21 +42,10 @@
             :class="{'rotate-180':mobileExpanded}"
 
         >
-          <svg
-            width="15px"
-            height="20px"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="stroke-gray-400"
-          >
-            <path
-              d="M6 18L24 36L42 18"
-              stroke-width="6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
+          <svg class="fill-current text-gray-default" width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.776404 0.623799C1.0001 0.424611 1.30345 0.312714 1.61975 0.312714C1.93605 0.312714 2.2394 0.424611 2.46309 0.623799L8.36769 5.88317L14.2723 0.623799C14.4973 0.430256 14.7986 0.323162 15.1113 0.325583C15.4241 0.328004 15.7233 0.439746 15.9444 0.636742C16.1656 0.833738 16.2911 1.10023 16.2938 1.37881C16.2965 1.65739 16.1763 1.92578 15.959 2.12617L9.21103 8.13674C8.98734 8.33593 8.68399 8.44782 8.36769 8.44782C8.05139 8.44782 7.74804 8.33593 7.52435 8.13674L0.776404 2.12617C0.55278 1.92693 0.427155 1.65672 0.427155 1.37499C0.427155 1.09325 0.55278 0.823048 0.776404 0.623799Z" />
+</svg>
+
         </div>
     </div>
     <ul class="custom-scrollbar flex flex-col tablet-wide:flex-row items-center absolute top-full right-0 tablet:right-[-180px] tablet-wide:right-0 tablet-wide:relative w-full tablet:w-[350px] tablet-wide:w-full px-5 tablet-wide:px-0 tablet:rounded-md tablet-wide:rounded-none overflow-y-scroll tablet-wide:max-h-[none] bg-[#F6F6F6] tablet-wide:bg-transparent mt-0.5 tablet-wide:mt-0 duration-300 transition-all z-30 " :class="{'max-h-80':mobileExpanded,'max-h-0':!mobileExpanded}">

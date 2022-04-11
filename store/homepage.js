@@ -7,9 +7,18 @@ export const state = () => ({
     baner_slide: [
       {
         baner_images:[
-          'https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg',
-          'https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-capacity.jpg',
-          'https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg'
+          {
+            imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg',
+            alt:'IS-Wireless Coverage macro'
+          },
+          {
+            imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-capacity.jpg',
+            alt:'IS-Wireless Indoor-capacity'
+          },
+          {
+            imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg',
+            alt:'IS-Wireless Campus'
+          },
         ],
         baner_content: [
           {
@@ -25,6 +34,51 @@ export const state = () => ({
         ],
       },
     ],
+    organisations:{
+      swiper_logos:[
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2015/07/O-ran-1024x439.png',
+          alt:'randomAlt',
+          url: '/'
+        },
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/tip_logo-200x132.png',
+          alt:'random alt',
+          url: '/'
+        },
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/10/website-logo-header-withoutclaim-200x114.png',
+          alt:'random alt',
+          url: '/'
+        },
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/04/AIOTI-e1610551262965.jpg',
+          alt:'random alt',
+          url: '/'
+        },
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/CyberMadeinPoland.png',
+          alt:'random alt',
+          url: '/'
+        },        
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/ZIPSEE-Cyfrowa-Polska-200x74.png',
+          alt:'random alt',
+          url: '/'
+        },
+      ],
+      static_logos:[        
+        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/NCBR.svg',
+          alt:'random alt',
+          url: 'https://www.is-wireless.com/about-us/#membership-and-associations'
+        },        {
+          imgUrl:'https://www.is-wireless.com/wp-content/uploads/2021/02/European-Union.svg',
+          alt:'random alt',
+          url: '/'
+        },
+      ]
+    },
     E2e: {
       title:'Complete E2E European Open RAN',
       text: 'Software-hardware decoupling and opening of interfaces is a phenomenon well known from other domains such as computers or mobile phones. It always brings more choice at a lower price. This is the long-awaited paradigm shift in RAN business models. On the contrary, single-RAN promoted by the “traditional” vendors is the main reason and cause for the telco industry standstill.',

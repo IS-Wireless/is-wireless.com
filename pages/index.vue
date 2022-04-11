@@ -1,8 +1,8 @@
 <template>
   <div>
     <Banner :imgUrls="frontPageData.acf.baner_slide[0].baner_images" :logoUrl="frontPageData.acf.baner_slide[0].baner_content[0].logo" :text="frontPageData.acf.baner_slide[0].baner_content[0].text" :buttons="[{text:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text},{text:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text}]"   />
-    <Organisations />
-    <ContentSection>
+    <Organisations :swiper_logos="frontPageData.acf.organisations.swiper_logos" :static_logos="frontPageData.acf.organisations.static_logos" />
+    <!-- <ContentSection>
       <template v-slot:left>
         <SectionHeader
           :class="'text-gray-dark'"
@@ -16,7 +16,8 @@
 
       <template v-slot:right>
         <SectionImage
-          :imageUrl="frontPageData.acf.baner_slide[0].baner_images[0]"
+          :imageUrl="frontPageData.acf.baner_slide[0].baner_images[0].imgUrl"
+          :imageAlt="'test alt'"
         />
       </template>
     </ContentSection>
@@ -48,6 +49,7 @@
       <template v-slot:right>
         <SectionImage
           :imageUrl="'https://www.is-wireless.com/wp-content/uploads/2021/02/Radio-Resource-Management-800x800.jpg'"
+          :imageAlt="'test alt'"
         />
       </template>
     </ContentSection>
@@ -78,7 +80,7 @@
           >Explore careers</a
         >
       </template>
-    </CtaJob>
+    </CtaJob> -->
   </div>
 </template>
 

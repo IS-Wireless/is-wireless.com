@@ -2,12 +2,13 @@
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <div
       v-swiper="swiperOptionsObject"
-      class="swiper swiper-container w-full h-full bg-black/5 overflow-hidden"
+      class="swiper swiper-container relative w-full h-full bg-black/5 overflow-hidden"
     >
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="item in imgUrls" :key="item" >
+      <div class="swiper-wrapper h-full">
+        <div class="swiper-slide h-full" v-for="(item,index) in imgUrls" :key="index" >
           <nuxt-picture
-            :src="item" alt="slide image"
+            :src="item.imgUrl" width="1920px" height="768px" :alt="item.alt"
+            :loading="index ? 'lazy' : 'eager' "
           />
         </div>
       </div>
@@ -30,6 +31,8 @@
       >
         <img
           ref="content1"
+          width="550"
+          height="160"
           class="
             opacity-0
             duration-300
@@ -54,6 +57,7 @@
             mb-10
             tablet-wide:mb-20 tablet-wide:font-semibold
             px-10
+            h-10
           "
         >
           {{text}}

@@ -47,4 +47,8 @@
         @apply w-full
     }
 
+    picture.img-h-full img{
+        @apply h-full
+    }
+
 }

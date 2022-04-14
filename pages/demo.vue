@@ -23,6 +23,8 @@
     <Table :data="testTableData"/>
     <ContactSales :data="testContactSales"/>
     <Map :data="testMapMarker" />
+    <BlogPost :data="testBlogPosts[0]"/>
+    <BlogPost :data="testBlogPosts[1]"/>
   </div>
 </template>
 
@@ -37,6 +39,7 @@ import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
 import ContactSales from '~/components/contact-sales.vue'
 import Map from '../components/map.vue'
+import BlogPost from '~/components/blog-post.vue'
 
 export default {
   name: 'Demo',
@@ -50,7 +53,8 @@ export default {
     Sidebar,
     Table,
     ContactSales,
-    Map
+    Map,
+    BlogPost
 },
   data() {
     return {
@@ -155,6 +159,22 @@ export default {
           lng:21.1
         },
       },
+      testBlogPosts:[
+        {
+          date:'Data, Friday 13th',
+          title: 'End-to-end Open RAN 5G solution by a Polish provider successfully tested in European labs',
+          link: '/',
+          imgUrl: 'https://www.is-wireless.com/wp-content/uploads/2022/02/Oran-300x157.jpg',
+          description: 'End-to-end Open RAN 5G solution by a Polish provider successfully tested in European labs'
+        },
+        { 
+          date:'Data, Friday 55th',
+          title: 'Comarch and IS-Wireless Join Forces to Provide a Comprehensive 5G Mobile Network Solution',
+          link: '/',
+          imgUrl: 'https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg',
+          description: 'Comarch and IS-Wireless Join Forces to Provide a Comprehensive 5G Mobile Network Solution'
+        },
+        ]
     }
   },
 }

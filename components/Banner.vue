@@ -5,7 +5,7 @@
       class="swiper swiper-container relative w-full h-full bg-black/5 overflow-hidden"
     >
       <div class="swiper-wrapper h-full">
-        <div class="swiper-slide h-full" v-for="(item,index) in imgUrls" :key="index" >
+        <div class="swiper-slide h-full" v-for="(item,index) in images" :key="index" >
           <nuxt-picture
             :src="item.imgUrl" width="1920px" height="768px" :alt="item.alt"
             :loading="index ? 'lazy' : 'eager' "
@@ -162,7 +162,7 @@
 <script>
 export default {
   props:{
-    imgUrls:{
+    images:{
       type:Array,
       required:true
     },

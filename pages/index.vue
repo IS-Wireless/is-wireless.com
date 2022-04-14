@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Banner :imgUrls="frontPageData.acf.baner_slide[0].baner_images" :logoUrl="frontPageData.acf.baner_slide[0].baner_content[0].logo" :text="frontPageData.acf.baner_slide[0].baner_content[0].text" :buttons="[{text:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text},{text:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text}]"   />
+    <Banner :images="frontPageData.acf.baner_slide[0].baner_images" :logoUrl="frontPageData.acf.baner_slide[0].baner_content[0].logo" :text="frontPageData.acf.baner_slide[0].baner_content[0].text" :buttons="[{text:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text},{text:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text}]"   />
     <Organisations :swiper_logos="frontPageData.acf.organisations.swiper_logos" :static_logos="frontPageData.acf.organisations.static_logos" />
-    <!-- <ContentSection>
+    <ContentSection>
       <template v-slot:left>
         <SectionHeader
           :class="'text-gray-dark'"
@@ -80,7 +80,7 @@
           >Explore careers</a
         >
       </template>
-    </CtaJob> -->
+    </CtaJob>
   </div>
 </template>
 

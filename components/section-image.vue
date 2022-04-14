@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-hidden flex justify-center rounded-md group">
-        <nuxt-picture class="transform group-hover:scale-110 group-hover:opacity-80 transition duration-[1500ms]" :src="imageUrl" :alt="imageAlt"></nuxt-picture>
+        <nuxt-picture width="640" height="640" class="transform img-full group-hover:scale-110 group-hover:opacity-80 transition duration-[1000ms]" :src="imageUrl" :alt="imageAlt"></nuxt-picture>
     </div>
 
 </template>

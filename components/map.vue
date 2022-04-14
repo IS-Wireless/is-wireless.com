@@ -2,7 +2,7 @@
   <div class="mb-10 ">
     <GmapMap
       :center="{ lat: 52, lng: 21.1 }"
-      :zoom="5"
+      :zoom="12"
       :options="mapOptions"
       class="map-custom w-full h-[600px]"
     >      

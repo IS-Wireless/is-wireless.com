@@ -22,7 +22,7 @@
     </div>
     <Table :data="testTableData"/>
     <ContactSales :data="testContactSales"/>
-    <Map/>
+    <Map :data="testMapMarker" />
   </div>
 </template>
 
@@ -147,8 +147,14 @@ export default {
       testContactSales:{
         title:'Contact sales',
         content:'<p style="text-align: justify;">We would be excited to learn about your business and technical needs and propose a product or customization to fulfill them. To receive more information about our products, request a quote or get a trial, please contact us at&nbsp;<a href="mailto:sales@is-wireless.com"><strong>sales@is-wireless.com</strong></a>.</p>'
-      }
-
+      },
+      testMapMarker:{
+        title:'IS-WIreless HQ',
+        position:{
+          lat:52,
+          lng:21.1
+        },
+      },
     }
   },
 }

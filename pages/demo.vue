@@ -23,7 +23,7 @@
     <Table :data="testTableData"/>
     <ContactSales :data="testContactSales"/>
     <Map :data="testMapMarker" />
-    <BlogPost v-for="(post,index) in postsFromGeneral.posts" :key="index" :data="post"/>
+    <BlogTimeline :data="postsFromGeneral.posts" />
   </div>
 </template>
 
@@ -39,6 +39,7 @@ import Table from '~/components/table.vue'
 import ContactSales from '~/components/contact-sales.vue'
 import Map from '../components/map.vue'
 import BlogPost from '~/components/blog-post.vue'
+import BlogTimeline from '~/components/blog-timeline.vue'
 
 export default {
   name: 'Demo',
@@ -53,7 +54,8 @@ export default {
     Table,
     ContactSales,
     Map,
-    BlogPost
+    BlogPost,
+    BlogTimeline
 },
   data() {
     return {

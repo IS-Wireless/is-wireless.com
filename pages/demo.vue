@@ -24,6 +24,7 @@
     <ContactSales :data="testContactSales"/>
     <Map :data="testMapMarker" />
     <BlogTimeline :data="postsFromGeneral.posts" />
+    <BlogShare :data="testBlogShare"/>
   </div>
 </template>
 
@@ -40,6 +41,7 @@ import ContactSales from '~/components/contact-sales.vue'
 import Map from '../components/map.vue'
 import BlogPost from '~/components/blog-post.vue'
 import BlogTimeline from '~/components/blog-timeline.vue'
+import BlogShare from '~/components/blog-share.vue'
 
 export default {
   name: 'Demo',
@@ -55,7 +57,8 @@ export default {
     ContactSales,
     Map,
     BlogPost,
-    BlogTimeline
+    BlogTimeline,
+    BlogShare
 },
   data() {
     return {
@@ -175,7 +178,11 @@ export default {
           imgUrl: 'https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg',
           description: 'Comarch and IS-Wireless Join Forces to Provide a Comprehensive 5G Mobile Network Solution'
         },
-        ]
+      ],
+      testBlogShare:{
+        text:'Share This Story, Choose Your Platform!',
+        socials:[{type:'facebook',link:'/'},{type:'twitter',link:'/'},{type:'linkedIn',link:'/'},{type:'mail',link:'mailto:'}]
+      }
     }
   },
   computed:{

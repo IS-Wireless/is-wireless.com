@@ -23,8 +23,7 @@
     <Table :data="testTableData"/>
     <ContactSales :data="testContactSales"/>
     <Map :data="testMapMarker" />
-    <BlogPost :data="testBlogPosts[0]"/>
-    <BlogPost :data="testBlogPosts[1]"/>
+    <BlogPost v-for="(post,index) in postsFromGeneral.posts" :key="index" :data="post"/>
   </div>
 </template>
 
@@ -177,6 +176,11 @@ export default {
         ]
     }
   },
+  computed:{
+      postsFromGeneral() {    // For testing purpose data is stored via 'general'
+        return this.$store.getters['general/getData']
+      },
+  }
 }
 </script>
 

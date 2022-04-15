@@ -8,7 +8,7 @@
             <div v-for="(monthData,monthIndex) in yearData.posts" :key="monthData.name" ref="monthGroup" data-collapsed=false class="flex flex-col max-w-[960px] mx-auto group transition-all duration-500 overflow-hidden">
                 <div class="w-full text-center hidden tablet-wide:block">
                     <span class="inline-block p-2 bg-gray-light rounded-md my-5 max-w-[131px] hover:bg-gray-default transition cursor-pointer" @click="Collapse(yearIndex + monthIndex)">
-                        {{yearData.year + ' ' + monthData.name}}
+                        {{monthData.name + ' ' + yearData.year}}
                     </span>
                 </div>
                 <div class="timeline-posts transition duration-500 flex tablet-wide:group-even:flex-row-reverse justify-between flex-wrap items-start ">

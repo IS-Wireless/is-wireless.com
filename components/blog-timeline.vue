@@ -12,7 +12,7 @@
                     </span>
                 </div>
                 <div class="timeline-posts transition duration-500 flex tablet-wide:group-even:flex-row-reverse justify-between flex-wrap items-start ">
-                    <div v-for="(post,index) in monthData.posts" :key="index" class="grow-0 tablet-wide:shrink-0 tablet-wide:max-w-[400px] tablet-wide:even:mt-20">
+                    <div v-for="(post,index) in monthData.posts" :key="index" class="w-full tablet-wide:shrink-0 tablet-wide:max-w-[400px] tablet-wide:even:mt-20">
                         <BlogPost :data="post"/>
                     </div>
                 </div>

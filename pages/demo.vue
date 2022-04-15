@@ -181,7 +181,7 @@ export default {
       ],
       testBlogShare:{
         text:'Share This Story, Choose Your Platform!',
-        socials:[{type:'facebook',link:'/'},{type:'twitter',link:'/'},{type:'linkedIn',link:'/'},{type:'mail',link:'mailto:'}]
+        socials:[{type:'facebook',link:'/'},{type:'twitter',link:'/'},{type:'linkedin',link:'/'},{type:'mail',link:'mailto:'}]
       }
     }
   },

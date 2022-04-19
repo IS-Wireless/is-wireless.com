@@ -3,9 +3,7 @@
     <Breadcrumb/>
     <div class="w-full px-[10%]">
         <div class="tablet:w-2/3">
-            <div class="blog-post mt-20" v-html="this.postContent.content.rendered">
-
-            </div>
+            <BlogPostContent :data="this.postContent.content.rendered"/>
             <BlogShare :data="testBlogShare"/>
         </div>
     </div>
@@ -14,12 +12,14 @@
 
 <script>
 import BlogShare from "~/components/blog-share.vue";
+import BlogPostContent from "~/components/blog-post-content.vue";
 
 export default {
     name: "BlogPost",
-    components: { 
-        BlogShare
-    },
+    components: {
+    BlogShare,
+    BlogPostContent
+},
     data(){
         return{
             testBlogShare:{
@@ -42,17 +42,3 @@ export default {
     }
 }
 </script>
-
-<style lang="postcss" scoped>
-.blog-post >>> h1,
-.blog-post >>> h2,
-.blog-post >>> h3{
-    @apply text-2xl tablet:text-3xl 
-}
-.blog-post >>> h4{
-    @apply text-xl
-}
-.blog-post >>> p{
-    @apply text-gray-dark mb-5
-}
-</style>

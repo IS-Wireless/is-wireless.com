@@ -7,19 +7,24 @@
 
             </div>
             <BlogShare :data="testBlogShare"/>
+            <BlogRelated/>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import Breadcrumb from "~/components/breadcrumb.vue"
 import BlogShare from "~/components/blog-share.vue";
+import BlogRelated from "~/components/blog-related.vue";
 
 export default {
     name: "BlogPost",
-    components: { 
-        BlogShare
-    },
+    components: {
+    Breadcrumb,
+    BlogShare,
+    BlogRelated
+},
     data(){
         return{
             testBlogShare:{

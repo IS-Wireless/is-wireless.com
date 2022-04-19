@@ -3,7 +3,7 @@
     <Breadcrumb/>
     <div class="w-full px-[10%]">
         <div class="tablet:w-2/3">
-            <BlogPostContent :data="this.postContent.content.rendered"/>
+            <BlogPostContent :data="postContent.content.rendered"/>
             <BlogShare :data="testBlogShare"/>
             <BlogRelated :data="postsRelated"/>
         </div>

@@ -100,6 +100,16 @@ export const actions = {
             resolve()
           })
       })
-    ])
+    ]),
+    new Promise((resolve) => {
+      app.$wp
+        .namespace('wp/v2')
+        .posts()
+        .then(function (data) {
+          filterData(data)
+          dispatch('general/init', { postsUnsorted: data })
+          resolve()
+        })
+    })
   },
 }

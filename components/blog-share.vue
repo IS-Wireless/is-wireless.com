@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full mt-16">
       <div class="flex flex-col tablet:flex-row tablet:items-center justify-between">
           <h4 class="text-xl text-gray-darkest">{{data.text}}</h4>
           <ul class="flex tablet:p-5 tablet:pr-0">

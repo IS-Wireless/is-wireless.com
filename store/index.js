@@ -81,35 +81,10 @@ export const actions = {
           .posts()
           .then(function (data) {
             filterData(data)
-            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            
-            var groupedPosts = _groupBy(data,(post)=>{
-              return new Date(post.date).getFullYear()
-            })
-            
-            groupedPosts = Object.keys(groupedPosts).map(year => ({ year: year, posts: groupedPosts[year]})).reverse();
-            
-            Object.keys(groupedPosts).forEach((item)=>{
-              groupedPosts[item].posts = _groupBy(groupedPosts[item].posts,(post)=>{
-                return new Date(post.date).getMonth()
-              });
-              groupedPosts[item].posts = Object.keys(groupedPosts[item].posts).map(month => ({ number: month,name: months[month], posts: groupedPosts[item].posts[month]})).reverse();
-            })
-
-            dispatch('general/init', { posts: groupedPosts })
+            dispatch('general/init', { posts: data })
             resolve()
           })
       })
-    ]),
-    new Promise((resolve) => {
-      app.$wp
-        .namespace('wp/v2')
-        .posts()
-        .then(function (data) {
-          filterData(data)
-          dispatch('general/init', { postsUnsorted: data })
-          resolve()
-        })
-    })
+    ])
   },
 }

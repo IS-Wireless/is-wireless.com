@@ -32,7 +32,7 @@ export default {
         postContent(){
             let data =  this.$store.getters['general/getData'];
             var postData = null;
-            Object.values(data.postsUnsorted).forEach(post =>{
+            Object.values(data.posts).forEach(post =>{
                 if(post.slug == this.$route.fullPath.split('/').slice(-1)[0]){
                     postData = post;
                 }

@@ -3,11 +3,11 @@
     <Breadcrumb/>
     <div class="w-full px-[10%]">
         <div class="tablet:w-2/3">
-            <div class="blog-post mt-20" v-html="this.postContent.content.rendered">
+            <div class="blog-post mt-20" v-html="postContent.content.rendered">
 
             </div>
             <BlogShare :data="testBlogShare"/>
-            <BlogRelated/>
+            <BlogRelated :data="postsRelated"/>
         </div>
     </div>
 </div>
@@ -30,20 +30,31 @@ export default {
             testBlogShare:{
                 text:'Share This Story, Choose Your Platform!',
                 socials:[{type:'facebook',link:'/'},{type:'twitter',link:'/'},{type:'linkedin',link:'/'},{type:'mail',link:'mailto:'}]
-            }
+            },
         }
     },
     computed:{
         postContent(){
             let data =  this.$store.getters['general/getData'];
-            var postData = null;
+            let postData = null;
             Object.values(data.posts).forEach(post =>{
                 if(post.slug == this.$route.fullPath.split('/').slice(-1)[0]){
                     postData = post;
                 }
             })
             return postData
-        } 
+        },
+        postsRelated(){
+            let data =  this.$store.getters['general/getData']
+            let postRelatedData = []
+            Object.values(data.posts).forEach(post =>{
+                if(post.slug !== this.$route.fullPath.split('/').slice(-1)[0]){
+                    postRelatedData.push(post)
+                }
+            })
+           return postRelatedData
+
+        }
     }
 }
 </script>

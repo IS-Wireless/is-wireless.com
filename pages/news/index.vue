@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="px-[10%]">
     <Breadcrumb/>
     <BlogTimeline :data="postsGrouped" />
     </div>

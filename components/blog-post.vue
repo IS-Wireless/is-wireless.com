@@ -38,7 +38,6 @@ export default {
             let dateComputed = date.toLocaleDateString('en',{ year: 'numeric', month: 'long', day: 'numeric' })
             return dateComputed
         }
-
     }
 }
 </script>

@@ -53,6 +53,6 @@ export default {
     @apply text-xl
 }
 .blog-post >>> p{
-    @apply mb-5
+    @apply text-gray-dark mb-5
 }
 </style>

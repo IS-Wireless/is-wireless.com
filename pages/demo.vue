@@ -119,25 +119,25 @@ export default {
         title:'Marsal',
         imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/01/Braine2.png',
         text:'Big data Processing and Artificial Intelligence at the Network Edge',
-        url:'https://www.is-wireless.com/research/braine/'
+        url:'/'
       },
       {
         title:'EU Wireless',
         imgUrl:'https://www.is-wireless.com/wp-content/uploads/2019/06/cropped-EuWireless-logo-kolor-subtitle-e1517233730973-300x108.png',
         text:'European Mobile Network Operator for Research',
-        url:'https://www.is-wireless.com/research/braine/'
+        url:'/'
       },
       {
         title:'Marsal',
         imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/01/Braine2.png',
         text:'Big data Processing and Artificial Intelligence at the Network Edge',
-        url:'https://www.is-wireless.com/research/braine/'
+        url:'/'
       },
       {
         title:'Marsal',
         imgUrl:'https://www.is-wireless.com/wp-content/uploads/2020/01/Braine2.png',
         text:'Big data Processing and Artificial Intelligence at the Network Edge',
-        url:'https://www.is-wireless.com/research/braine/'
+        url:'/'
       },
       ],
       testSidebar:{

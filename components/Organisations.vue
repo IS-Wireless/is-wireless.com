@@ -23,7 +23,7 @@
     >
       <div class="swiper-wrapper flex w-full h-full">
         <div
-          v-for="item in swiper_logos"
+          v-for="item in swiperLogos"
           :key="item.imgUrl"
           class="
             swiper-slide
@@ -66,7 +66,7 @@
       "
     >
       <div
-        v-for="item in static_logos"
+        v-for="item in staticLogos"
         :key="item.imgUrl"
         class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
       >
@@ -92,11 +92,11 @@
 export default {
   name: 'Organisations',
   props: {
-    swiper_logos: {
+    swiperLogos: {
       type: Array,
       required: true,
     },
-    static_logos: {
+    staticLogos: {
       type: Array,
       required: true,
     },

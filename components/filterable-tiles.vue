@@ -71,6 +71,7 @@ export default {
     filterBy: {
       type: String,
       required: false,
+      default: '',
     },
   },
 }

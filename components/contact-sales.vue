@@ -17,9 +17,11 @@ export default {
     data: {
       type: Object,
       required: true,
-      default: {
-        title: 'Title here',
-        content: '<p>HTML content from WYSIWYG here</p>',
+      default() {
+        return {
+          title: 'Title here',
+          content: '<p>HTML content from WYSIWYG here</p>',
+        }
       },
     },
   },

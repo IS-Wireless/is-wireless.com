@@ -20,8 +20,8 @@
       ]"
     />
     <Organisations
-      :swiper_logos="frontPageData.acf.organisations.swiper_logos"
-      :static_logos="frontPageData.acf.organisations.static_logos"
+      :swiper-logos="frontPageData.acf.organisations.swiper_logos"
+      :static-logos="frontPageData.acf.organisations.static_logos"
     />
     <ContentSection>
       <template #left>

@@ -41,6 +41,7 @@ export default {
     backgroundUrl: {
       type: String,
       required: false,
+      default: '',
     },
   },
   mounted() {

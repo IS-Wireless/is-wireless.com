@@ -46,14 +46,17 @@ export default {
     title: {
       type: String,
       required: false,
+      default: '',
     },
     text: {
       type: Array,
       required: false,
+      default: () => [],
     },
     image: {
       type: Array,
       required: false,
+      default: () => [],
     },
   },
 }

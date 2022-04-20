@@ -193,6 +193,7 @@ export default {
     text: {
       type: String,
       rquired: false,
+      default: ' 4G and 5G Mobile Networks of the Future',
     },
     buttons: {
       type: Array,

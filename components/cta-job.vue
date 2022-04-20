@@ -14,7 +14,7 @@
       <h2 class="text-white mb-5">
         {{ title }}
       </h2>
-      <hr class="w-[100px] h-0 border-0 border-t-4 border-white mb-5" />
+      <hr class="w-[100px] h-0 border-0 border-t-4 border-white mb-5">
       <slot />
     </div>
   </section>

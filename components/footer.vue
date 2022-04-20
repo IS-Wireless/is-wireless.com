@@ -303,6 +303,9 @@ export default {
     socials: {
       type: Object,
       required: false,
+      default() {
+        return {}
+      },
     },
     languages: {
       type: Array,

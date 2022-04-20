@@ -1,4 +1,4 @@
-import { describe, test, expect, mount } from '@vue/test-utils'
+import { test } from '@vue/test-utils'
 import Organisations from '~/components/Organisations.vue'
 
 describe('Organisations', () => {

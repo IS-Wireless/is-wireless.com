@@ -1,12 +1,19 @@
 <template>
   <div class="w-full">
     <div
-      class="flex flex-col tablet-wide:flex-row justify-between p-7 rounded-md bg-gray-light"
+      class="
+        flex flex-col
+        tablet-wide:flex-row
+        justify-between
+        p-7
+        rounded-md
+        bg-gray-light
+      "
     >
       <div>
-        <h3 class="text-2xl tablet:text-3xl block mb-5">{{data.title}}</h3>
+        <h3 class="text-2xl tablet:text-3xl block mb-5">{{ data.title }}</h3>
         <p class="text-base block mb-5">
-          {{data.text}}
+          {{ data.text }}
         </p>
       </div>
       <div class="flex shrink-0">
@@ -37,13 +44,13 @@
 
 <script>
 export default {
-    name:'CtaFunds',
-    props:{
-        data:{
-            type:Object,
-            required:true
-        }
-    }
+  name: 'CtaFunds',
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>
 

@@ -7,9 +7,7 @@
       <li
         class="
           mb-2.5
-          tablet-wide:basis-1/3
-          tablet-wide:pr-8
-          tablet-wide:last:pr-0
+          tablet-wide:basis-1/3 tablet-wide:pr-8 tablet-wide:last:pr-0
         "
         v-for="item in data"
         :key="item.title"

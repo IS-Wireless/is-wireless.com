@@ -79,7 +79,7 @@
               "
             >
               <svg
-              class=" fill-current text-gray-default"
+                class="fill-current text-gray-default"
                 width="17"
                 height="9"
                 viewBox="0 0 17 9"

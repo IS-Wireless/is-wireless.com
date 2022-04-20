@@ -26,7 +26,11 @@ export default {
   css: ['@/assets/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
+    { src: '~/plugins/vue-google-maps', mode: 'ssr' },
+    { src: '~/plugins/wpapi-extend.js' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -72,12 +76,6 @@ export default {
       lang: 'en',
     },
   },
-
-  plugins: [
-    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
-    { src: '~/plugins/vue-google-maps', mode:'ssr' },
-    { src: '~/plugins/wpapi-extend.js' },
-  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

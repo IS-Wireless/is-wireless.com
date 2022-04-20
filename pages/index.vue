@@ -1,7 +1,28 @@
 <template>
   <div>
-    <Banner :images="frontPageData.acf.baner_slide[0].baner_images" :logoUrl="frontPageData.acf.baner_slide[0].baner_content[0].logo" :text="frontPageData.acf.baner_slide[0].baner_content[0].text" :buttons="[{text:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_first_text},{text:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text,url:frontPageData.acf.baner_slide[0].baner_content[0].button_second_text}]"   />
-    <Organisations :swiper_logos="frontPageData.acf.organisations.swiper_logos" :static_logos="frontPageData.acf.organisations.static_logos" />
+    <Banner
+      :images="frontPageData.acf.baner_slide[0].baner_images"
+      :logoUrl="frontPageData.acf.baner_slide[0].baner_content[0].logo"
+      :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
+      :buttons="[
+        {
+          text: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_first_text,
+          url: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_first_text,
+        },
+        {
+          text: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_second_text,
+          url: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_second_text,
+        },
+      ]"
+    />
+    <Organisations
+      :swiper_logos="frontPageData.acf.organisations.swiper_logos"
+      :static_logos="frontPageData.acf.organisations.static_logos"
+    />
     <ContentSection>
       <template v-slot:left>
         <SectionHeader
@@ -21,12 +42,13 @@
         />
       </template>
     </ContentSection>
-    
-    <ContentSection :class="'text-white'" :backgroundUrl="frontPageData.acf.granularized.bgUrl">
+
+    <ContentSection
+      :class="'text-white'"
+      :backgroundUrl="frontPageData.acf.granularized.bgUrl"
+    >
       <template v-slot:right>
-        <SectionHeader
-          :title="frontPageData.acf.granularized.title"
-        />
+        <SectionHeader :title="frontPageData.acf.granularized.title" />
         <p class="mb-14 text-inherit">
           {{ frontPageData.acf.granularized.text }}
         </p>
@@ -41,7 +63,7 @@
           :title="frontPageData.acf.radio.title"
         />
         <p class="mb-14 text-gray-dark">
-          {{frontPageData.acf.radio.text}}
+          {{ frontPageData.acf.radio.text }}
         </p>
         <List :class="'text-gray-dark'" :items="frontPageData.acf.radio.list" />
       </template>
@@ -59,7 +81,7 @@
     >
       <template>
         <p class="text-white text-center mb-5">
-          {{frontPageData.acf.cta_job.text}}
+          {{ frontPageData.acf.cta_job.text }}
         </p>
         <a
           class="
@@ -91,7 +113,6 @@ import Banner from '~/components/Banner.vue'
 import Organisations from '~/components/Organisations.vue'
 import ContentSection from '~/components/content-section.vue'
 import SectionHeader from '~/components/section-header.vue'
-import ListItem from '~/components/list.vue'
 import SectionImage from '~/components/section-image.vue'
 import CtaJob from '~/components/cta-job.vue'
 
@@ -101,7 +122,6 @@ export default Vue.extend({
     Banner,
     ContentSection,
     SectionHeader,
-    ListItem,
     SectionImage,
     CtaJob,
   },

@@ -1,6 +1,9 @@
 <template>
   <div class="w-full flex flex-col">
-    <div class="flex group items-center mb-5 cursor-pointer" @click="setExpandedHeight()">
+    <div
+      class="flex group items-center mb-5 cursor-pointer"
+      @click="setExpandedHeight()"
+    >
       <span class="shrink-0 grow-0 h-5 w-5 relative">
         <svg
           width="20px"
@@ -19,7 +22,7 @@
             transition
             duration-300
           "
-          :class="{'rotate-180':!collapsed}"
+          :class="{ 'rotate-180': !collapsed }"
         >
           <path
             d="M 0 0 L 34 0"
@@ -46,7 +49,7 @@
             transition
             duration-300
           "
-          :class="{'rotate-90':!collapsed}"
+          :class="{ 'rotate-90': !collapsed }"
         >
           <path
             d="M 17 -17 L 17 17"
@@ -60,10 +63,12 @@
         {{ title }}
       </span>
     </div>
-    <div ref="contentContainer" class="overflow-hidden transition-all duration-300" :style="{height: contentHeight + 'px'}">
-        <slot>
-
-        </slot>
+    <div
+      ref="contentContainer"
+      class="overflow-hidden transition-all duration-300"
+      :style="{ height: contentHeight + 'px' }"
+    >
+      <slot> </slot>
     </div>
   </div>
 </template>
@@ -77,24 +82,24 @@ export default {
       required: true,
     },
   },
-  data(){
-      return{
-          collapsed: true,
-          contentHeight: 0
-      }
+  data() {
+    return {
+      collapsed: true,
+      contentHeight: 0,
+    }
   },
-  methods:{
-      setExpandedHeight(){
-          let container = this.$refs.contentContainer;
-          this.collapsed = !this.collapsed;
+  methods: {
+    setExpandedHeight() {
+      let container = this.$refs.contentContainer
+      this.collapsed = !this.collapsed
 
-          if(this.collapsed){
-            this.contentHeight = 0;
-          }else{
-            this.contentHeight = container.children[0].clientHeight;
-          }
+      if (this.collapsed) {
+        this.contentHeight = 0
+      } else {
+        this.contentHeight = container.children[0].clientHeight
       }
-  }
+    },
+  },
 }
 </script>
 

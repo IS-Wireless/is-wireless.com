@@ -10,12 +10,31 @@
   >
     <div
       v-swiper="swiperOptionsObject"
-      class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full         flex-grow-0 flex-shrink-0
- h-[120px]"
+      class="
+        swiper swiper-container
+        overflow-hidden
+        tablet-small:w-4/6
+        basis-full
+        tablet-small:basis-4/6
+        w-full
+        flex-grow-0 flex-shrink-0
+        h-[120px]
+      "
     >
       <div class="swiper-wrapper flex w-full h-full">
         <div
-          class="swiper-slide flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5 "
+          class="
+            swiper-slide
+            flex
+            justify-center
+            shrink-0
+            basis-1/2
+            phablet:basis-1/3
+            tablet-small:basis-1/2
+            tablet:basis-1/3
+            desktop:basis-1/4
+            full-hd:basis-1/5
+          "
           v-for="item in swiper_logos"
           :key="item.imgUrl"
         >
@@ -35,9 +54,9 @@
       class="
         tablet-small:w-2/6
         w-full
-        basis-full tablet-small:basis-2/6
-        flex-grow-0 flex-shrink-0
-        flex
+        basis-full
+        tablet-small:basis-2/6
+        flex-grow-0 flex-shrink-0 flex
         items-center
         bg-gray-light
         h-[120px]
@@ -49,7 +68,15 @@
         :key="item.imgUrl"
       >
         <nuxt-link class="block h-full" :to="item.url">
-          <nuxt-picture loading="eager" class="h-full img-h-full" width="200" height="200" :src="item.imgUrl" :alt="item.alt"> </nuxt-picture>
+          <nuxt-picture
+            loading="eager"
+            class="h-full img-h-full"
+            width="200"
+            height="200"
+            :src="item.imgUrl"
+            :alt="item.alt"
+          >
+          </nuxt-picture>
         </nuxt-link>
       </div>
     </div>
@@ -58,6 +85,7 @@
 
 <script>
 export default {
+  name: 'Organisations',
   props: {
     swiper_logos: {
       type: Array,
@@ -86,7 +114,7 @@ export default {
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,
-          pauseOnMouseEnter: true
+          pauseOnMouseEnter: true,
         },
         preloadImages: false,
         lazy: {

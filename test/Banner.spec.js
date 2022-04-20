@@ -1,4 +1,4 @@
-import { test } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import Banner from '~/components/Banner.vue'
 
 describe('Banner', () => {

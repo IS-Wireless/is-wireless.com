@@ -7,8 +7,7 @@ module.exports = {
     node: true,
   },
   ignorePatterns: readGitignoreFiles({ cwd: __dirname }).concat(
-    '**/*.spec.js',
-    '**/*.spec.jsx',
+    '**/test/**',
     '**/package/**'
   ),
   parserOptions: {

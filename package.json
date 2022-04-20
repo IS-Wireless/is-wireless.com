@@ -9,7 +9,7 @@
     "generate": "nuxt generate",
     "lint:js": "eslint .",
     "lint": "npm run lint:js",
-    "test": "jest",
+    "test": "jest --silent",
     "deploy": "nuxt generate"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.1.0",
+    "@vue/server-test-utils": "^1.3.0",
     "@vue/test-utils": "^1.3.0",
     "autoprefixer": "^10.4.4",
     "babel-core": "7.0.0-bridge.0",

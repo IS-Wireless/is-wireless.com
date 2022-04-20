@@ -29,7 +29,6 @@ export default {
   plugins: [
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '~/plugins/vue-google-maps', mode: 'ssr' },
-    { src: '~/plugins/wpapi-extend.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

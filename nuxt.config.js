@@ -28,12 +28,20 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
-    { src: '~/plugins/vue-google-maps', mode: 'ssr' },
+    { src: '~/plugins/vue-google-maps', mode: 'server' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
+  sitemap: {
+    hostname: `${process.env.API_URL}`,
+    gzip: true,
+  },
+  wp: {
+    sitemap: {
+      hostname: process.env.HOSTNAME, // default; format e.g. 'http://localhost:3000'
+    },
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
@@ -65,6 +73,10 @@ export default {
         username: `${process.env.WP_USER}`,
         password: `${process.env.WP_PASSWORD}`,
         auth: true,
+        sitemap: {
+          hostname: `${process.env.API_URL}`, // default; format e.g. 'http://localhost:3000'
+          gzip: true,
+        },
       },
     },
   ],

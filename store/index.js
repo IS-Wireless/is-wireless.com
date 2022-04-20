@@ -1,4 +1,4 @@
-import { isEmpty as _isEmpty, groupBy as _groupBy, reverse as _reverse } from 'lodash'
+import { isEmpty as _isEmpty } from 'lodash'
 
 const filterWords = ['yoast_head', 'meta', '{}']
 
@@ -33,7 +33,7 @@ export const mutations = {}
 export const getters = {}
 
 export const actions = {
-  async nuxtServerInit({ dispatch }, { app, env }) {
+  async nuxtServerInit({ dispatch }, { app }) {
     return Promise.all([
       new Promise((resolve) => {
         app.$wp
@@ -84,7 +84,7 @@ export const actions = {
             dispatch('general/init', { posts: data })
             resolve()
           })
-      })
+      }),
     ])
   },
 }

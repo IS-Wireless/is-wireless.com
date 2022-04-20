@@ -2,20 +2,19 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
   extends: [
-    "eslint:recommended",
-    "plugin:vue/recommended",
-    "plugin:tailwind/recommended"
+    'eslint:recommended',
+    'plugin:vue/recommended',
+    'plugin:tailwind/recommended',
   ],
-  plugins: [
-    "vue"
-  ],
+  plugins: ['vue'],
   rules: {
-    "vue/no-v-html": "off"
-  }
+    'vue/no-v-html': 'off',
+    'no-unexpected-multiline': 'off',
+  },
 }

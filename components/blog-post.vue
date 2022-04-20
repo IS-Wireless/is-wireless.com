@@ -9,15 +9,13 @@
       >
         <nuxt-picture
           class="img-full"
+          width="300"
+          height="157"
           src="https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg"
         />
         <div class="p-5 pb-1">
           <h2
-            class="
-              text-xl text-blue-main
-              group-hover:text-blue-main-hover
-              transition
-            "
+            class="text-xl text-blue-main group-hover:text-blue-main-hover transition"
           >
             {{ data.title.rendered }}
           </h2>

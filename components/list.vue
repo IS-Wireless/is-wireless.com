@@ -21,7 +21,7 @@
             z-10
           "
           :src="item.iconUrl"
-        ></nuxt-picture>
+        />
         <div
           class="
             absolute
@@ -37,7 +37,7 @@
             transition
             duration-700
           "
-        ></div>
+        />
       </div>
       <p class="mx-5 text-inherit group-hover:text-blue-main transition">
         {{ item.text }}

@@ -13,9 +13,9 @@
     >
       <div class="swiper-wrapper h-full">
         <div
-          class="swiper-slide h-full"
           v-for="(item, index) in images"
           :key="index"
+          class="swiper-slide h-full"
         >
           <nuxt-picture
             :src="item.imgUrl"
@@ -59,7 +59,7 @@
           "
           :src="logoUrl"
           alt="5G logo"
-        />
+        >
         <p
           v-if="text"
           ref="content2"
@@ -90,6 +90,8 @@
           "
         >
           <nuxt-link
+            v-for="(item, index) in buttons"
+            :key="index"
             class="
               text-lg text-white
               uppercase
@@ -103,8 +105,6 @@
               tablet:mb-0
               mb-6
             "
-            v-for="(item, index) in buttons"
-            :key="index"
             :to="item.url"
           >
             {{ item.text }}

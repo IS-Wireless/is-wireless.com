@@ -1,7 +1,9 @@
 <template>
   <div class="mb-10">
-    <h2 class="mb-5 mt-10 text-inherit">{{ title }}</h2>
-    <hr class="w-[100px] h-0 border-0 border-t-4 border-blue-main" />
+    <h2 class="mb-5 mt-10 text-inherit">
+      {{ title }}
+    </h2>
+    <hr class="w-[100px] h-0 border-0 border-t-4 border-blue-main">
   </div>
 </template>
 

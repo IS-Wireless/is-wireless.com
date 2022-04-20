@@ -1,7 +1,11 @@
 <template>
   <div class="w-full">
     <ul class="flex flex-col">
-      <li class="mb-4 group" v-for="(item, index) in data" :key="index">
+      <li
+        v-for="(item, index) in data"
+        :key="index"
+        class="mb-4 group"
+      >
         <nuxt-link
           class="p-7 bg-gray-light flex justify-between items-center rounded-md"
           :to="item.url"
@@ -34,7 +38,7 @@
                 stroke-width="6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-              ></path>
+              />
             </svg>
           </span>
         </nuxt-link>

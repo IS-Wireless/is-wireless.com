@@ -1,8 +1,17 @@
 <template>
   <div>
-    <Navbar :mainMenu="mainMenuData.menu" :sideMenu="sideMenuData.menu" />
+    <Navbar
+      :main-menu="mainMenuData.menu"
+      :side-menu="sideMenuData.menu"
+    />
     <Nuxt />
-    <Footer :imageUrl="footerData.image" :copyright="footerData.copyright" :menu="footerData.menu" :socials="footerData.socials" :languages="footerData.language" />
+    <Footer
+      :image-url="footerData.image"
+      :copyright="footerData.copyright"
+      :menu="footerData.menu"
+      :socials="footerData.socials"
+      :languages="footerData.language"
+    />
   </div>
 </template>
 

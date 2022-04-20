@@ -11,7 +11,9 @@
       "
     >
       <div>
-        <h3 class="text-2xl tablet:text-3xl block mb-5">{{ data.title }}</h3>
+        <h3 class="text-2xl tablet:text-3xl block mb-5">
+          {{ data.title }}
+        </h3>
         <p class="text-base block mb-5">
           {{ data.text }}
         </p>
@@ -35,7 +37,8 @@
             mb-6
           "
           :to="'/'"
-          >Read More
+        >
+          Read More
         </nuxt-link>
       </div>
     </div>

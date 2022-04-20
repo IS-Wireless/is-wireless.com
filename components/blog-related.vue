@@ -1,17 +1,23 @@
 <template>
   <div class="w-full my-16">
-    <div v-swiper="swiperOptionsObject" class="swiper">
+    <div
+      v-swiper="swiperOptionsObject"
+      class="swiper"
+    >
       <div class="swiper-wrapper">
         <div
-          class="swiper-slide flex flex-col"
           v-for="post in data"
           :key="post.id"
+          class="swiper-slide flex flex-col"
         >
-          <nuxt-link class="group flex flex-col" :to="post.slug">
+          <nuxt-link
+            class="group flex flex-col"
+            :to="post.slug"
+          >
             <nuxt-picture
               class="mb-3"
               src="https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg"
-            ></nuxt-picture>
+            />
             <h4
               class="
                 mb-2

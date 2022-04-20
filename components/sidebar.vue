@@ -1,9 +1,15 @@
 <template>
   <div class="w-full">
     <div class="p-4 bg-gray-light rounded-md">
-      <h3 class="text-2xl text-blue-main pb-4">{{ data.title }}</h3>
+      <h3 class="text-2xl text-blue-main pb-4">
+        {{ data.title }}
+      </h3>
       <ul>
-        <li v-for="(item, index) in data.list" :key="index" class="mb-2">
+        <li
+          v-for="(item, index) in data.list"
+          :key="index"
+          class="mb-2"
+        >
           <span class="flex">
             <div class="pl-2 pr-4 pt-2">
               <svg

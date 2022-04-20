@@ -1,6 +1,8 @@
 <template>
   <div class="w-full mb-32 flex flex-wrap">
     <div
+      v-for="(item, index) in data"
+      :key="index"
       class="
         p-[6px]
         basis-full
@@ -13,8 +15,6 @@
         aspect-[4/3]
         max-h-80
       "
-      v-for="(item, index) in data"
-      :key="index"
     >
       <nuxt-link
         class="
@@ -66,7 +66,7 @@
                 group-hover:bg-blue-main
                 transition
               "
-            ></span>
+            />
             <span>Read more</span>
           </div>
         </div>

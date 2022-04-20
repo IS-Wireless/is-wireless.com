@@ -3,14 +3,18 @@
     <div class="w-4/5 mx-auto">
       <ul class="flex flex-row my-4">
         <li class="breadcrumb-item">
-          <nuxt-link to="/">Home</nuxt-link>
+          <nuxt-link to="/">
+            Home
+          </nuxt-link>
         </li>
         <li
-          class="breadcrumb-item"
           v-for="(route, index) in routesNames"
           :key="index"
+          class="breadcrumb-item"
         >
-          <nuxt-link :to="routesComputed[index]">{{ route }}</nuxt-link>
+          <nuxt-link :to="routesComputed[index]">
+            {{ route }}
+          </nuxt-link>
         </li>
         <li class="text-base text-gray-dark">
           <p>{{ currentRouteName }}</p>

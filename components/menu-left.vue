@@ -3,6 +3,8 @@
     <p>Table of Contents</p>
     <ul class="flex flex-col">
       <li
+        v-for="item in elements"
+        :key="item.title"
         class="
           py-3
           border-0 border-b border-solid
@@ -10,8 +12,6 @@
           border-l-gray-light
           w-4/5
         "
-        v-for="item in elements"
-        :key="item.title"
       >
         <a
           :href="'#' + item.anchor"
@@ -36,7 +36,7 @@
               stroke-width="6"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ></path>
+            />
           </svg>
           {{ item.title }}
         </a>

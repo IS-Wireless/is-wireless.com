@@ -1,7 +1,12 @@
 <template>
   <div class="mt-10 w-full">
-    <h2 class="mb-5 text-gray-dark">{{ data.title }}</h2>
-    <div class="mb-5" v-html="data.content"></div>
+    <h2 class="mb-5 text-gray-dark">
+      {{ data.title }}
+    </h2>
+    <div
+      class="mb-5"
+      v-html="data.content"
+    />
   </div>
 </template>
 

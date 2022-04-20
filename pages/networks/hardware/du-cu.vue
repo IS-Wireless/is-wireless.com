@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <Breadcrumb />
-        DU/CU page
-    </div>
+  <div>
+    <Breadcrumb />
+    DU/CU page
+  </div>
 </template>
 
 <script>
@@ -11,19 +11,15 @@ import Vue from 'vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 
 export default Vue.extend({
-    components:{
-        Breadcrumb
+  components: {
+    Breadcrumb,
+  },
+  computed: {
+    networkPageData() {
+      return this.$store.getters['networks/getData']
     },
-    computed:{
-        networkPageData() {
-            return this.$store.getters['networks/getData']
-        },
-    },
-
-
+  },
 })
 </script>
 
-<style>
-
-</style>
+<style></style>

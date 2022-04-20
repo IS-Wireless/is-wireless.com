@@ -7,6 +7,8 @@
   >
     <!-- <nuxt-picture class="absolute parallax-img h-full min-w-full top-0 left-0 -z-10 transform" v-if="backgroundUrl" ref="parallax" :src="backgroundUrl"></nuxt-picture> -->
     <div
+      v-if="backgroundUrl"
+      ref="parallax"
       class="
         absolute
         -z-10
@@ -19,16 +21,14 @@
         min-h-screen
         h-[120%]
       "
-      ref="parallax"
-      v-if="backgroundUrl"
-      v-bind:style="{ 'background-image': 'url(' + backgroundUrl + ')' }"
-    ></div>
+      :style="{ 'background-image': 'url(' + backgroundUrl + ')' }"
+    />
     <div class="flex flex-col tablet-wide:flex-row w-4/5 mx-auto">
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-5">
-        <slot name="left"></slot>
+        <slot name="left" />
       </div>
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-5">
-        <slot name="right"></slot>
+        <slot name="right" />
       </div>
     </div>
   </section>
@@ -43,16 +43,6 @@ export default {
       required: false,
     },
   },
-  methods: {
-    handleParallax() {
-      var element = this.$refs.parallax
-      element.style.transform =
-        'translateY(' +
-        (window.top.scrollY - (this.$el.clientTop + this.$el.clientHeight)) /
-          100 +
-        '%)'
-    },
-  },
   mounted() {
     if (this.backgroundUrl !== undefined) {
       window.addEventListener('scroll', this.handleParallax)
@@ -63,6 +53,16 @@ export default {
     if (this.backgroundUrl !== undefined) {
       window.removeEventListener('scroll', this.handleParallax)
     }
+  },
+  methods: {
+    handleParallax() {
+      var element = this.$refs.parallax
+      element.style.transform =
+        'translateY(' +
+        (window.top.scrollY - (this.$el.clientTop + this.$el.clientHeight)) /
+          100 +
+        '%)'
+    },
   },
 }
 </script>

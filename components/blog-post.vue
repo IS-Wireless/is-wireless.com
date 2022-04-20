@@ -5,12 +5,12 @@
     <div class="w-full">
       <nuxt-link
         class="group flex flex-col"
-        :to="this.$route.fullPath.split('/').slice(-1)[0] + '/' + data.slug"
+        :to="$route.fullPath.split('/').slice(-1)[0] + '/' + data.slug"
       >
         <nuxt-picture
           class="img-full"
           src="https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg"
-        ></nuxt-picture>
+        />
         <div class="p-5 pb-1">
           <h2
             class="

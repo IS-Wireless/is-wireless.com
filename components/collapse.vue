@@ -29,7 +29,7 @@
             stroke-width="6"
             stroke-linecap="round"
             stroke-linejoin="round"
-          ></path>
+          />
         </svg>
 
         <svg
@@ -56,7 +56,7 @@
             stroke-width="6"
             stroke-linecap="round"
             stroke-linejoin="round"
-          ></path>
+          />
         </svg>
       </span>
       <span class="text-2xl tablet:text-3xl ml-4 text-blue-main">
@@ -68,7 +68,7 @@
       class="overflow-hidden transition-all duration-300"
       :style="{ height: contentHeight + 'px' }"
     >
-      <slot> </slot>
+      <slot />
     </div>
   </div>
 </template>

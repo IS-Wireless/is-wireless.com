@@ -12,7 +12,7 @@
       "
       :src="imageUrl"
       :alt="imageAlt"
-    ></nuxt-picture>
+    />
   </div>
 </template>
 

@@ -1,5 +1,8 @@
 <template>
-  <div class="blog-post mt-20" v-html="data"></div>
+  <div
+    class="blog-post mt-20"
+    v-html="data"
+  />
 </template>
 
 <script>
@@ -7,6 +10,7 @@ export default {
   name: 'BlogPostContent',
   props: {
     data: {
+      type: String,
       required: true,
     },
   },

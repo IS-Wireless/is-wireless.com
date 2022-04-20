@@ -26,7 +26,7 @@
           />
         </svg>
       </span>
-      <div class="h-full w-1 bg-gray-light"></div>
+      <div class="h-full w-1 bg-gray-light" />
     </div>
     <div class="relative z-10">
       <template v-for="(yearData, yearIndex) in data">

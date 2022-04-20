@@ -2,6 +2,8 @@
   <div class="w-full">
     <div class="flex flex-wrap">
       <div
+        v-for="item in data"
+        :key="item.imgUrl"
         class="
           basis-1/2
           tablet-wide:basis-1/3
@@ -10,8 +12,6 @@
           items-center
           p-[5%]
         "
-        v-for="item in data"
-        :key="item.imgUrl"
       >
         <nuxt-link
           v-if="item.url != ''"
@@ -21,13 +21,13 @@
           <nuxt-picture
             :src="item.imgUrl"
             class="w-full img-full"
-          ></nuxt-picture>
+          />
         </nuxt-link>
         <nuxt-picture
           v-else
           :src="item.imgUrl"
           class="w-full img-full p-1"
-        ></nuxt-picture>
+        />
       </div>
     </div>
   </div>

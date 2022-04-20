@@ -40,8 +40,7 @@
             justify-center
             text-gray-dark
           "
-          >{{ selectedFilter }}</span
-        >
+        >{{ selectedFilter }}</span>
         <div
           class="
             tablet-wide:hidden
@@ -125,11 +124,12 @@
               text-gray-dark
             "
             :class="{ 'text-blue-main': selectedFilter == 'All' }"
-            >All</span
-          >
+          >All</span>
         </li>
 
         <li
+          v-for="(item, index) in filters"
+          :key="index"
           class="
             h-[70px]
             w-full
@@ -143,15 +143,13 @@
             border-0 border-t border-t-gray-200
             cursor-pointer
           "
-          v-for="(item, index) in filters"
-          :key="index"
           @click="filterItems(item.category), switchMobileExpand()"
         >
           <nuxt-picture
             class="w-12 mx-2"
             fit="contain"
             :src="item.iconUrl"
-          ></nuxt-picture>
+          />
           <span
             class="
               flex-grow
@@ -163,15 +161,20 @@
               transition
             "
             :class="{ 'text-blue-main': selectedFilter == item.category }"
-            >{{ item.category }}</span
-          >
+          >{{ item.category }}</span>
         </li>
       </ul>
     </div>
     <div class="w-4/5 mx-auto mt-14">
-      <FilterableTiles :tiles="filteredItems" :filterBy="selectedFilter" />
+      <FilterableTiles
+        :tiles="filteredItems"
+        :filter-by="selectedFilter"
+      />
 
-      <div class="text-center my-10" v-if="filteredItems.length > 9">
+      <div
+        v-if="filteredItems.length > 9"
+        class="text-center my-10"
+      >
         <button
           href="https://www.is-wireless.com/networks/"
           class="

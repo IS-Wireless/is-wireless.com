@@ -1,6 +1,8 @@
 <template>
   <div class="w-full mb-32 flex flex-wrap">
     <div
+      v-for="item in data"
+      :key="item.title"
       class="
         p-[6px]
         basis-full
@@ -9,8 +11,6 @@
         flex-shrink flex-grow
         tablet-small:flex-grow-0
       "
-      v-for="item in data"
-      :key="item.title"
     >
       <nuxt-link
         class="
@@ -24,8 +24,13 @@
         "
         :to="item.url"
       >
-        <h2 class="text-blue-main text-3xl pt-0.5">{{ item.title }}</h2>
-        <nuxt-picture class="w-1/2 py-5" :src="item.imgUrl"></nuxt-picture>
+        <h2 class="text-blue-main text-3xl pt-0.5">
+          {{ item.title }}
+        </h2>
+        <nuxt-picture
+          class="w-1/2 py-5"
+          :src="item.imgUrl"
+        />
         <p>
           {{ item.text }}
         </p>
@@ -51,7 +56,7 @@
               bg-blue-main
               transition
             "
-          ></span>
+          />
           <span class="text-blue-main">More details</span>
         </div>
       </nuxt-link>

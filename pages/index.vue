@@ -2,7 +2,7 @@
   <div>
     <Banner
       :images="frontPageData.acf.baner_slide[0].baner_images"
-      :logoUrl="frontPageData.acf.baner_slide[0].baner_content[0].logo"
+      :logo-url="frontPageData.acf.baner_slide[0].baner_content[0].logo"
       :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
       :buttons="[
         {
@@ -24,7 +24,7 @@
       :static_logos="frontPageData.acf.organisations.static_logos"
     />
     <ContentSection>
-      <template v-slot:left>
+      <template #left>
         <SectionHeader
           :class="'text-gray-dark'"
           :title="frontPageData.acf.E2e.title"
@@ -32,22 +32,25 @@
         <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.E2e.text }}
         </p>
-        <List :class="'text-gray-dark'" :items="frontPageData.acf.E2e.list" />
+        <List
+          :class="'text-gray-dark'"
+          :items="frontPageData.acf.E2e.list"
+        />
       </template>
 
-      <template v-slot:right>
+      <template #right>
         <SectionImage
-          :imageUrl="frontPageData.acf.baner_slide[0].baner_images[0].imgUrl"
-          :imageAlt="'test alt'"
+          :image-url="frontPageData.acf.baner_slide[0].baner_images[0].imgUrl"
+          :image-alt="'test alt'"
         />
       </template>
     </ContentSection>
 
     <ContentSection
       :class="'text-white'"
-      :backgroundUrl="frontPageData.acf.granularized.bgUrl"
+      :background-url="frontPageData.acf.granularized.bgUrl"
     >
-      <template v-slot:right>
+      <template #right>
         <SectionHeader :title="frontPageData.acf.granularized.title" />
         <p class="mb-14 text-inherit">
           {{ frontPageData.acf.granularized.text }}
@@ -57,7 +60,7 @@
     </ContentSection>
 
     <ContentSection>
-      <template v-slot:left>
+      <template #left>
         <SectionHeader
           :class="'text-gray-dark'"
           :title="frontPageData.acf.radio.title"
@@ -65,21 +68,24 @@
         <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.radio.text }}
         </p>
-        <List :class="'text-gray-dark'" :items="frontPageData.acf.radio.list" />
+        <List
+          :class="'text-gray-dark'"
+          :items="frontPageData.acf.radio.list"
+        />
       </template>
 
-      <template v-slot:right>
+      <template #right>
         <SectionImage
-          :imageUrl="'https://www.is-wireless.com/wp-content/uploads/2021/02/Radio-Resource-Management-800x800.jpg'"
-          :imageAlt="'test alt'"
+          :image-url="'https://www.is-wireless.com/wp-content/uploads/2021/02/Radio-Resource-Management-800x800.jpg'"
+          :image-alt="'test alt'"
         />
       </template>
     </ContentSection>
     <CtaJob
       :title="frontPageData.acf.cta_job.title"
-      :backgroundUrl="frontPageData.acf.cta_job.bgUrl"
+      :background-url="frontPageData.acf.cta_job.bgUrl"
     >
-      <template>
+      <template #default>
         <p class="text-white text-center mb-5">
           {{ frontPageData.acf.cta_job.text }}
         </p>
@@ -99,8 +105,7 @@
             mb-6
           "
           href="https://www.is-wireless.com/networks/"
-          >Explore careers</a
-        >
+        >Explore careers</a>
       </template>
     </CtaJob>
   </div>

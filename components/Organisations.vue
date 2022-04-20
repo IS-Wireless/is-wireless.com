@@ -23,6 +23,8 @@
     >
       <div class="swiper-wrapper flex w-full h-full">
         <div
+          v-for="item in swiper_logos"
+          :key="item.imgUrl"
           class="
             swiper-slide
             flex
@@ -35,10 +37,11 @@
             desktop:basis-1/4
             full-hd:basis-1/5
           "
-          v-for="item in swiper_logos"
-          :key="item.imgUrl"
         >
-          <nuxt-link class="py-3 px-5 block tablet-small:pr-10" :to="item.url">
+          <nuxt-link
+            class="py-3 px-5 block tablet-small:pr-10"
+            :to="item.url"
+          >
             <nuxt-picture
               width="200"
               height="200"
@@ -63,11 +66,14 @@
       "
     >
       <div
-        class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
         v-for="item in static_logos"
         :key="item.imgUrl"
+        class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
       >
-        <nuxt-link class="block h-full" :to="item.url">
+        <nuxt-link
+          class="block h-full"
+          :to="item.url"
+        >
           <nuxt-picture
             loading="eager"
             class="h-full img-h-full"
@@ -75,8 +81,7 @@
             height="200"
             :src="item.imgUrl"
             :alt="item.alt"
-          >
-          </nuxt-picture>
+          />
         </nuxt-link>
       </div>
     </div>

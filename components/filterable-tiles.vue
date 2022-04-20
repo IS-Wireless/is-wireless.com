@@ -1,6 +1,8 @@
 <template>
   <div class="w-full mb-32 flex flex-wrap transition-all">
     <div
+      v-for="(item, index) in tiles"
+      :key="index"
       class="
         p-[6px]
         basis-full
@@ -10,8 +12,6 @@
         tablet-small:flex-grow-0
         min-w-[220px]
       "
-      v-for="(item, index) in tiles"
-      :key="index"
       :class="{ hidden: item.category != filterBy && filterBy != 'All' }"
     >
       <nuxt-link
@@ -32,7 +32,7 @@
             class="mb-2.5 w-10"
             :src="item.catIconUrl"
             :title="item.category"
-          ></nuxt-picture>
+          />
           <h2
             class="text-lg tablet:text-2xl transform transition block my-[30px]"
           >
@@ -50,7 +50,7 @@
               rounded-full
               bg-blue-main
             "
-          ></span>
+          />
           <p class="mt-[30px] text-sm tablet:text-base">
             {{ item.description }}
           </p>

@@ -57,6 +57,7 @@
             "
           >
             <div
+              v-if="indexCol == 0"
               class="
                 phablet:hidden
                 p-2.5
@@ -67,7 +68,6 @@
                 cursor-pointer
               "
               @click="toggleRowExpand($event, indexRow)"
-              v-if="indexCol == 0"
             >
               <svg
                 class="fill-current text-gray-default transition duration-300"

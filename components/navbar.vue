@@ -16,9 +16,9 @@
           "
         >
           <li
-            class="navbar-item flex group text-white"
             v-for="item in mainMenu"
-            v-bind:key="item.title"
+            :key="item.title"
+            class="navbar-item flex group text-white"
           >
             <!-- <nuxt-link class="text-base text-inherit" :to="item.url">{{item.title}}</nuxt-link>  -->
             <div
@@ -37,9 +37,9 @@
             >
               <ul class="w-4/5 mx-auto flex">
                 <li
-                  class="basis-1/4 grow-0 flex"
                   v-for="subItem in item.children"
                   :key="subItem.title"
+                  class="basis-1/4 grow-0 flex"
                 >
                   <div class="menu-sub-col">
                     <!-- <nuxt-link class="text-base block uppercase text-white hover:text-blue-main font-bold transition mt-7 mb-6" :to="subItem.url">{{subItem.title}}</nuxt-link>  -->
@@ -58,7 +58,10 @@
           </li>
         </ul>
         <ul class="h-full flex items-center">
-          <li class="navbar-item flex" @click="toggleExpanded">
+          <li
+            class="navbar-item flex"
+            @click="toggleExpanded"
+          >
             <svg
               width="20"
               height="35"
@@ -66,9 +69,30 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect x="13" y="10" width="25" height="3" rx="1" fill="#FFFFFF" />
-              <rect x="13" y="18" width="25" height="3" rx="1" fill="#FFFFFF" />
-              <rect x="13" y="26" width="25" height="3" rx="1" fill="#FFFFFF" />
+              <rect
+                x="13"
+                y="10"
+                width="25"
+                height="3"
+                rx="1"
+                fill="#FFFFFF"
+              />
+              <rect
+                x="13"
+                y="18"
+                width="25"
+                height="3"
+                rx="1"
+                fill="#FFFFFF"
+              />
+              <rect
+                x="13"
+                y="26"
+                width="25"
+                height="3"
+                rx="1"
+                fill="#FFFFFF"
+              />
             </svg>
           </li>
           <li
@@ -102,7 +126,7 @@
           "
         >
           <div class="mx-auto w-4/5 h-full flex overflow-hidden">
-            <span class="w-[200px] shrink-0"></span>
+            <span class="w-[200px] shrink-0" />
             <form
               class="
                 flex flex-row
@@ -113,7 +137,7 @@
                 duration-500
                 pointer-events-auto
               "
-              :class="{ 'translate-x-full': !this.mainSearch }"
+              :class="{ 'translate-x-full': !mainSearch }"
             >
               <button
                 type="submit"
@@ -149,7 +173,7 @@
                   text-base text-white
                   focus-visible:outline-none
                 "
-              />
+              >
               <div
                 class="
                   px-5
@@ -202,7 +226,7 @@
         class="w-full transition duration-500"
         :class="{ 'bg-[#3F3F3F]/70': expanded }"
         @click="toggleExpanded"
-      ></div>
+      />
       <div
         class="
           absolute
@@ -217,7 +241,7 @@
           transition
           duration-500
         "
-        v-bind:class="{ '-translate-x-full ': expanded }"
+        :class="{ '-translate-x-full ': expanded }"
       >
         <div
           class="w-8 ml-5 mt-3 cursor-pointer text-white hover:text-white/80"
@@ -269,7 +293,7 @@
                 text-white
                 focus-visible:outline-none
               "
-            />
+            >
             <button
               type="submit"
               class="
@@ -300,9 +324,9 @@
         </div>
         <ul class="flex flex-col px-7 mt-10">
           <li
-            class="mb-3"
             v-for="items in sideMenu"
-            v-bind:key="items.title"
+            :key="items.title"
+            class="mb-3"
             :class="{ 'tablet-wide:hidden': !items.desktop }"
           >
             <!-- <nuxt-link class="text-xl text-white hover:text-blue-main transition" :to="items.url">{{items.title}}</nuxt-link> -->

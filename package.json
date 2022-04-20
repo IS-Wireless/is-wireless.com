@@ -18,6 +18,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
+    "eslint-gitignore": "^0.1.0",
     "eslint-plugin-tailwind": "^0.2.1",
     "nuxt": "^2.15.3",
     "swiper": "^6.8.4",

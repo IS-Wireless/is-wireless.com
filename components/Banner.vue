@@ -59,7 +59,7 @@
           "
           :src="logoUrl"
           alt="5G logo"
-        >
+        />
         <p
           v-if="text"
           ref="content2"

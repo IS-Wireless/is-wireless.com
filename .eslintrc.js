@@ -23,18 +23,8 @@ module.exports = {
   rules: {
     'vue/no-v-html': 'off',
     'no-unexpected-multiline': 'off',
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'never',
-          normal: 'always',
-          component: 'always',
-        },
-        svg: 'always',
-        math: 'always',
-      },
-    ],
+    'vue/html-self-closing': 'off',
+    'vue/multi-word-component-names': 'off',
   },
   overrides: [
     {

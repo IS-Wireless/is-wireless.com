@@ -7,8 +7,9 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint:js": "eslint .",
-    "lint": "npm run lint:js",
+    "lint:js": "eslint ./**/*.js",
+    "lint:vue": "eslint ./**/*.vue",
+    "lint": "npm run lint:js && npm run lint:vue",
     "test": "jest --silent",
     "deploy": "nuxt generate"
   },

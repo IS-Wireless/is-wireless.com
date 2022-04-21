@@ -101,7 +101,6 @@ export default {
         username: `${process.env.WP_USER}`,
         password: `${process.env.WP_PASSWORD}`,
         auth: true,
-        sitemap: false,
       },
     },
     {
@@ -153,7 +152,9 @@ export default {
   generate: {
     dir: 'public',
   },
-
+  wp: {
+    sitemap: false,
+  },
   image: {
     domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],
   },

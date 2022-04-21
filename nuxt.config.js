@@ -56,12 +56,31 @@ export default {
     '@nuxt/typescript-build',
 
     '@nuxt/image',
+    '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    {
+      src: '@nuxtjs/robots',
+      options: {
+        robots: {
+          UserAgent: '*',
+        },
+      },
+    },
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    {
+      src: '@nuxtjs/pwa',
+      options: {
+        meta: {
+          theme_color: '#00A2DF',
+        },
+        manifest: {
+          lang: 'en',
+        },
+      },
+    },
     {
       src: '@nuxtjs/dotenv',
       options: {
@@ -118,13 +137,6 @@ export default {
       },
     },
   ],
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en',
-    },
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

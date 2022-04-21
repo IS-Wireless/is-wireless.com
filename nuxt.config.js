@@ -1,4 +1,21 @@
 require('dotenv').config()
+import WPAPI from 'wpapi'
+
+// http://wp-api.org/node-wpapi/collection-pagination/
+function getAll(request) {
+  return request.then((response) => {
+    if (!response._paging || !response._paging.next) {
+      return response
+    }
+    // Request the next page and return both responses as one collection
+    return Promise.all([response, getAll(response._paging.next)]).then(
+      (responses) => {
+        return [].concat(...responses)
+      }
+    )
+  })
+}
+
 export default {
   env: {
     CONTEXT: process.env.CONTEXT,
@@ -33,15 +50,6 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-  sitemap: {
-    hostname: `${process.env.API_URL}`,
-    gzip: true,
-  },
-  wp: {
-    sitemap: {
-      hostname: process.env.HOSTNAME, // default; format e.g. 'http://localhost:3000'
-    },
-  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
@@ -73,9 +81,39 @@ export default {
         username: `${process.env.WP_USER}`,
         password: `${process.env.WP_PASSWORD}`,
         auth: true,
-        sitemap: {
-          hostname: `${process.env.API_URL}`, // default; format e.g. 'http://localhost:3000'
-          gzip: true,
+        sitemap: false,
+      },
+    },
+    {
+      src: '@nuxtjs/sitemap',
+      options: {
+        hostname: `${process.env.API_URL}`,
+        defaults: {
+          changefreq: 'daily',
+          priority: 1,
+          lastmodISO: new Date().toISOString(),
+          lastmodrealtime: true,
+          cacheTime: 0,
+        },
+        routes: async () => {
+          const postsBasePath = '/'
+          const wpapi = new WPAPI(this.options.wp)
+          let posts = []
+          posts = await getAll(wpapi.posts(100))
+          console.log(posts)
+          let pages = posts.map((item) => {
+            return {
+              url: `${postsBasePath}${item.slug}`,
+              lastmod: new Date(item.modified).toISOString(),
+            }
+          })
+          pages = pages.concat(
+            this.options.router.routes.map((route) => route.path)
+          )
+          if (this.options.sitemap && this.options.sitemap.additionalPages) {
+            pages = [...pages, this.options.sitemap.additionalPages]
+          }
+          return pages
         },
       },
     },

@@ -1,21 +1,23 @@
 <template>
-  <div>
+  <div class="flex flex-col">
     <Banner
       :images="frontPageData.acf.baner_slide[0].baner_images"
       :logo-url="frontPageData.acf.baner_slide[0].baner_content[0].logo"
       :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
       :buttons="[
         {
-          text: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_first_text,
-          url: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_first_text,
+          text:
+            frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,
+          url:
+            frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,
         },
         {
-          text: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_second_text,
-          url: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_second_text,
+          text:
+            frontPageData.acf.baner_slide[0].baner_content[0]
+              .button_second_text,
+          url:
+            frontPageData.acf.baner_slide[0].baner_content[0]
+              .button_second_text,
         },
       ]"
     />
@@ -32,10 +34,7 @@
         <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.E2e.text }}
         </p>
-        <List
-          :class="'text-gray-dark'"
-          :items="frontPageData.acf.E2e.list"
-        />
+        <List :class="'text-gray-dark'" :items="frontPageData.acf.E2e.list" />
       </template>
 
       <template #right>
@@ -68,10 +67,7 @@
         <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.radio.text }}
         </p>
-        <List
-          :class="'text-gray-dark'"
-          :items="frontPageData.acf.radio.list"
-        />
+        <List :class="'text-gray-dark'" :items="frontPageData.acf.radio.list" />
       </template>
 
       <template #right>
@@ -90,22 +86,10 @@
           {{ frontPageData.acf.cta_job.text }}
         </p>
         <a
-          class="
-            block
-            object-cover object-
-            text-sm text-white
-            uppercase
-            px-7
-            py-3
-            rounded-full
-            bg-blue-main
-            hover:bg-white hover:text-black
-            duration-300
-            tablet:mb-0
-            mb-6
-          "
+          class="block object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
           href="https://www.is-wireless.com/networks/"
-        >Explore careers</a>
+          >Explore careers</a
+        >
       </template>
     </CtaJob>
   </div>

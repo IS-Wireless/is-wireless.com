@@ -1,53 +1,52 @@
 <template>
-  <section
-    class="w-4/5 mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
-  >
+  <section class="relatove bg-white">
     <div
-      v-swiper="swiperOptionsObject"
-      class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
+      class="w-4/5 mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
     >
-      <div class="swiper-wrapper flex w-full h-full">
-        <div
-          v-for="item in swiperLogos"
-          :key="item.imgUrl"
-          class="swiper-slide flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
-        >
-          <nuxt-link
-            class="py-3 px-5 block tablet-small:pr-10"
-            :to="item.url"
+      <div
+        v-swiper="swiperOptionsObject"
+        class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
+      >
+        <div class="swiper-wrapper flex w-full h-full">
+          <div
+            v-for="item in swiperLogos"
+            :key="item.imgUrl"
+            class="swiper-slide flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
           >
+            <nuxt-link
+              class="py-3 px-5 block tablet-small:pr-10"
+              :to="item.url"
+            >
+              <nuxt-picture
+                width="200"
+                height="200"
+                class="swiper-lazy organisations-logo h-full"
+                :src="item.imgUrl"
+                :alt="item.alt"
+              />
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tablet-small:w-2/6 w-full basis-full tablet-small:basis-2/6 flex-grow-0 flex-shrink-0 flex items-center bg-gray-light h-[120px]"
+      >
+        <div
+          v-for="item in staticLogos"
+          :key="item.imgUrl"
+          class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
+        >
+          <nuxt-link class="block h-full" :to="item.url">
             <nuxt-picture
+              loading="eager"
+              class="h-full img-h-full"
               width="200"
               height="200"
-              class="swiper-lazy organisations-logo h-full"
               :src="item.imgUrl"
               :alt="item.alt"
             />
           </nuxt-link>
         </div>
-      </div>
-    </div>
-    <div
-      class="tablet-small:w-2/6 w-full basis-full tablet-small:basis-2/6 flex-grow-0 flex-shrink-0 flex items-center bg-gray-light h-[120px]"
-    >
-      <div
-        v-for="item in staticLogos"
-        :key="item.imgUrl"
-        class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
-      >
-        <nuxt-link
-          class="block h-full"
-          :to="item.url"
-        >
-          <nuxt-picture
-            loading="eager"
-            class="h-full img-h-full"
-            width="200"
-            height="200"
-            :src="item.imgUrl"
-            :alt="item.alt"
-          />
-        </nuxt-link>
       </div>
     </div>
   </section>

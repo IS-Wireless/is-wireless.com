@@ -78,6 +78,7 @@ export default {
         },
         manifest: {
           lang: 'en',
+          theme_color: '#00A2DF',
         },
       },
     },

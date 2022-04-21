@@ -116,7 +116,9 @@ export default {
         },
         routes: async () => {
           const postsBasePath = '/'
-          const wpapi = new WPAPI(this.options.wp)
+          const wpapi = new WPAPI({
+            endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
+          })
           let posts = []
           posts = await getAll(wpapi.posts(100))
           console.log(posts)
@@ -129,9 +131,6 @@ export default {
           pages = pages.concat(
             this.options.router.routes.map((route) => route.path)
           )
-          if (this.options.sitemap && this.options.sitemap.additionalPages) {
-            pages = [...pages, this.options.sitemap.additionalPages]
-          }
           return pages
         },
       },

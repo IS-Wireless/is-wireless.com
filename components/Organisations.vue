@@ -12,7 +12,10 @@
           :key="item.imgUrl"
           class="swiper-slide flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
         >
-          <nuxt-link class="py-3 px-5 block tablet-small:pr-10" :to="item.url">
+          <nuxt-link
+            class="py-3 px-5 block tablet-small:pr-10"
+            :to="item.url"
+          >
             <nuxt-picture
               width="200"
               height="200"
@@ -32,7 +35,10 @@
         :key="item.imgUrl"
         class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
       >
-        <nuxt-link class="block h-full" :to="item.url">
+        <nuxt-link
+          class="block h-full"
+          :to="item.url"
+        >
           <nuxt-picture
             loading="eager"
             class="h-full img-h-full"

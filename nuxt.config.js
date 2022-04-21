@@ -103,38 +103,6 @@ export default {
         auth: true,
       },
     },
-    {
-      src: '@nuxtjs/sitemap',
-      options: {
-        hostname: `${process.env.API_URL}`,
-        defaults: {
-          changefreq: 'daily',
-          priority: 1,
-          lastmodISO: new Date().toISOString(),
-          lastmodrealtime: true,
-          cacheTime: 0,
-        },
-        routes: async () => {
-          const postsBasePath = '/'
-          const wpapi = new WPAPI({
-            endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
-          })
-          let posts = []
-          posts = await getAll(wpapi.posts(100))
-          console.log(posts)
-          let pages = posts.map((item) => {
-            return {
-              url: `${postsBasePath}${item.slug}`,
-              lastmod: new Date(item.modified).toISOString(),
-            }
-          })
-          pages = pages.concat(
-            this.options.router.routes.map((route) => route.path)
-          )
-          return pages
-        },
-      },
-    },
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -152,7 +120,9 @@ export default {
     dir: 'public',
   },
   wp: {
-    sitemap: false,
+    sitemap: {
+      hostname: `${process.env.API_URL}`,
+    },
   },
   image: {
     domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],

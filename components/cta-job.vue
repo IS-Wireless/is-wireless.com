@@ -3,7 +3,11 @@
     <nuxt-picture
       class="block fixed w-full h-full inset-0 -z-10"
       :src="backgroundUrl"
-      :imgAttrs="{ alt: 'test alt', class: 'w-full h-full object-cover' }"
+      :imgAttrs="{
+        alt: 'test alt',
+        class: 'w-full h-full object-cover',
+        loading: 'lazy',
+      }"
     />
     <div class="flex flex-col justify-center items-center w-4/5 mx-auto">
       <h2 class="text-white mb-5">

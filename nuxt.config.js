@@ -40,7 +40,24 @@ export default {
         content: 'Mobile Networks of the Future',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true,
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://is-wireless.com',
+        crossorigin: true,
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://cdn.jsdelivr.net',
+        crossorigin: true,
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

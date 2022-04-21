@@ -118,11 +118,10 @@ export default {
 
   generate: {
     dir: 'public',
+    exclude: ['/https://www.is-wireless.com/about-us'],
   },
   wp: {
-    sitemap: {
-      hostname: `${process.env.API_URL}`,
-    },
+    endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
   },
   image: {
     domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],

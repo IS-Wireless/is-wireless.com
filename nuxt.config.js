@@ -72,15 +72,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     {
       src: '@nuxtjs/pwa',
-      options: {
-        meta: {
-          theme_color: '#00A2DF',
-        },
-        manifest: {
-          lang: 'en',
-          theme_color: '#00A2DF',
-        },
-      },
+      options: {},
     },
     {
       src: '@nuxtjs/dotenv',
@@ -125,5 +117,14 @@ export default {
   },
   image: {
     domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],
+  },
+  pwa: {
+    meta: {
+      theme_color: '#00A2DF',
+    },
+    manifest: {
+      lang: 'en',
+      theme_color: '#00A2DF',
+    },
   },
 }

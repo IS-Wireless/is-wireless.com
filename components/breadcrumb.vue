@@ -3,9 +3,7 @@
     <div class="w-4/5 mx-auto">
       <ul class="flex flex-row my-4">
         <li class="breadcrumb-item">
-          <nuxt-link to="/">
-            Home
-          </nuxt-link>
+          <nuxt-link to="/"> Home </nuxt-link>
         </li>
         <li
           v-for="(route, index) in routesNames"

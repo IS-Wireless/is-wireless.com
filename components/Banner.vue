@@ -2,14 +2,7 @@
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <div
       v-swiper="swiperOptionsObject"
-      class="
-        swiper swiper-container
-        relative
-        w-full
-        h-full
-        bg-black/5
-        overflow-hidden
-      "
+      class="swiper swiper-container relative w-full h-full bg-black/5 overflow-hidden"
     >
       <div class="swiper-wrapper h-full">
         <div
@@ -28,83 +21,31 @@
       </div>
 
       <div
-        class="
-          absolute
-          h-full
-          w-full
-          flex
-          justify-center
-          items-center
-          flex-col
-          text-5xl
-          bg-black bg-opacity-40
-          z-10
-          top-0
-          select-none
-        "
+        class="absolute h-full w-full flex justify-center items-center flex-col text-5xl bg-black bg-opacity-40 z-10 top-0 select-none"
       >
         <img
           ref="content1"
           width="550"
           height="160"
-          class="
-            opacity-0
-            duration-300
-            mb-12
-            w-4/5
-            phone-wide:mb-20 phone-wide:w-3/5
-            tablet:mb-24
-            tablet-wide:w-3/5 tablet-wide:mb-48
-            desktop:w-1/2 desktop:mb-24
-          "
+          class="opacity-0 duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
           :src="logoUrl"
           alt="5G logo"
         />
         <p
           v-if="text"
           ref="content2"
-          class="
-            opacity-0
-            duration-300
-            text-2xl
-            tablet:text-3xl
-            text-center text-white
-            mb-10
-            tablet-wide:mb-20 tablet-wide:font-semibold
-            px-10
-            h-10
-          "
+          class="opacity-0 duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10 h-10"
         >
           {{ text }}
         </p>
         <div
           ref="content3"
-          class="
-            opacity-0
-            duration-300
-            flex
-            justify-evenly
-            flex-col
-            tablet:flex-row tablet:w-4/5
-            max-w-screen-phablet
-          "
+          class="opacity-0 duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
         >
           <nuxt-link
             v-for="(item, index) in buttons"
             :key="index"
-            class="
-              text-lg text-white
-              uppercase
-              px-10
-              py-2
-              rounded-full
-              bg-blue-main
-              mx-auto
-              hover:bg-white hover:text-black
-              duration-300
-              tablet:mb-0
-              mb-6
-            "
+            class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
             :to="item.url"
           >
             {{ item.text }}
@@ -114,18 +55,7 @@
 
       <div
         tabindex="0"
-        class="
-          absolute
-          top-1/2
-          left-0
-          px-6
-          py-4
-          text-white
-          bg-black bg-opacity-30
-          hover:bg-opacity-40
-          transition
-          z-20
-        "
+        class="absolute top-1/2 left-0 px-6 py-4 text-white bg-black bg-opacity-30 hover:bg-opacity-40 transition z-20"
         data-slide-prev
         role="button"
       >
@@ -145,18 +75,7 @@
       </div>
       <div
         tabindex="0"
-        class="
-          absolute
-          top-1/2
-          right-0
-          px-6
-          py-4
-          text-white
-          bg-black bg-opacity-30
-          hover:bg-opacity-40
-          transition
-          z-20
-        "
+        class="absolute top-1/2 right-0 px-6 py-4 text-white bg-black bg-opacity-30 hover:bg-opacity-40 transition z-20"
         data-slide-next
         role="button"
       >
@@ -252,8 +171,8 @@ export default {
 }
 </script>
 
-<style>
-.swiper .swiper-slide picture img {
+<style lang="postcss" scoped>
+.swiper .swiper-slide picture >>> img {
   @apply min-w-full h-full object-cover;
 }
 </style>

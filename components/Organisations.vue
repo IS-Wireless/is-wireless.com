@@ -8,18 +8,25 @@
     >
       <div class="swiper-wrapper flex w-full h-full">
         <div
-          v-for="item in swiperLogos"
+          v-for="(item, index) in swiperLogos"
           :key="item.imgUrl"
-          class="swiper-slide flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
+          class="swiper-slide h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
         >
-          <nuxt-link class="py-3 px-5 block tablet-small:pr-10" :to="item.url">
+          <nuxt-link
+            class="py-3 px-5 flex items-center tablet-small:pr-10"
+            :to="item.url"
+          >
             <nuxt-picture
               width="200"
               height="200"
-              class="organisations-logo h-full"
+              fit="outside"
               :src="item.imgUrl"
               :alt="item.alt"
-              :imgAttrs="{ loading: 'lazy' }"
+              :imgAttrs="{
+                loading: index < 2 ? 'eager' : index > 3 ? 'lazy' : 'auto',
+                class:
+                  'w-full object-contain filter saturate-0 hover:saturate-100 duration-300',
+              }"
             />
           </nuxt-link>
         </div>
@@ -31,7 +38,7 @@
       <div
         v-for="item in staticLogos"
         :key="item.imgUrl"
-        class="w-1/2 py-3 px-4 desktop:px-10 h-full flex items-center"
+        class="py-3 px-4 desktop:px-10 h-full flex items-center"
       >
         <nuxt-link class="block h-full" :to="item.url">
           <nuxt-picture
@@ -76,40 +83,17 @@ export default {
         speed: 600,
         loop: true,
 
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
+        // autoplay: {
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
         preloadImages: false,
         lazy: {
           loadPrevNext: true,
         },
-        // breakpoints: {
-        //   1664: {
-        //     slidesPerView: 5,
-        //   },
-        //   1224: {
-        //     slidesPerView: 4,
-        //   },
-        //   784: {
-        //     slidesPerView: 3,
-        //   },
-        //   640: {
-        //     slidesPerView: 2,
-        //   },
-        //   512: {
-        //     slidesPerView: 3,
-        //   },
-        // },
       },
     }
   },
 }
 </script>
-
-<style scoped lang="postcss">
-.swiper .swiper-slide .organisations-logo img {
-  @apply h-full object-contain filter saturate-0  hover:saturate-100 duration-300;
-}
-</style>

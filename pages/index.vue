@@ -6,18 +6,16 @@
       :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
       :buttons="[
         {
-          text:
-            frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,
-          url:
-            frontPageData.acf.baner_slide[0].baner_content[0].button_first_text,
+          text: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_first_text,
+          url: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_first_text,
         },
         {
-          text:
-            frontPageData.acf.baner_slide[0].baner_content[0]
-              .button_second_text,
-          url:
-            frontPageData.acf.baner_slide[0].baner_content[0]
-              .button_second_text,
+          text: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_second_text,
+          url: frontPageData.acf.baner_slide[0].baner_content[0]
+            .button_second_text,
         },
       ]"
     />
@@ -114,16 +112,6 @@ export default Vue.extend({
     SectionImage,
     CtaJob,
   },
-
-  // async fetch({ app, store }) {
-  //   await app.$wp
-  //     .namespace('wuxt')
-  //     .v1()
-  //     .frontPage()
-  //     .then(function (data) {
-  //       store.commit('homepage/save', data)
-  //     })
-  // },
   computed: {
     frontPageData() {
       return this.$store.getters['homepage/getData']

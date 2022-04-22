@@ -67,6 +67,7 @@ export default {
   plugins: [
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '~/plugins/vue-google-maps', mode: 'server' },
+    { src: '~/plugins/vue-composition-api', mode: 'server' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -127,6 +128,13 @@ export default {
       },
     },
     transpile: [/^vue2-google-maps($|\/)/],
+    extend(config) {
+      config.module.rules.push({
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      })
+    },
   },
 
   generate: {

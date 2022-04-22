@@ -1,6 +1,6 @@
 <template>
   <section
-    class="w-4/5 mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
+    class="w-full px-[10%] bg-white mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
   >
     <div
       v-swiper="swiperOptionsObject"
@@ -82,12 +82,11 @@ export default {
         direction: 'horizontal',
         speed: 600,
         loop: true,
-
-        // autoplay: {
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         preloadImages: false,
         lazy: {
           loadPrevNext: true,

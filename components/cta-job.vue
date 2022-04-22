@@ -1,8 +1,14 @@
 <template>
-  <section
-    class="w-full bg-cover tablet-wide:bg-fixed bg-[center_top] bg-gray-light py-[100px]"
-    :style="{ backgroundImage: 'url(' + backgroundUrl + ')' }"
-  >
+  <section class="w-full relative overflow-hidden bg-[center_top] py-[120px]">
+    <nuxt-picture
+      class="block absolute tablet-wide:fixed w-full h-full inset-0 -z-20"
+      :src="backgroundUrl"
+      :imgAttrs="{
+        alt: 'test alt',
+        class: 'w-full h-full object-cover',
+        loading: 'lazy',
+      }"
+    />
     <div class="flex flex-col justify-center items-center w-4/5 mx-auto">
       <h2 class="text-white mb-5">
         {{ title }}

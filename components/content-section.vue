@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative w-full mb-8 tablet-wide:mb-14 pt-10 tablet-wide:pt-16"
+    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16"
     :class="{
       ' bg-black/50 tablet-wide:bg-black/5 overflow-hidden': backgroundUrl,
     }"

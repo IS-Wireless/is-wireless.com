@@ -23,7 +23,7 @@
         ]"
       />
 
-      <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12">
+      <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12" />
 
       <ContentStatic
         :text="[
@@ -37,21 +37,21 @@
         ]"
       />
 
-      <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12">
+      <hr class="w-4/5 mx-auto border-0 border-t border-gray-200 mb-12" />
 
       <OfferTiles
         :data="[
           {
             title: 'Software',
-            url: 'networks/software',
+            url: 'software/',
           },
           {
             title: 'Hardware',
-            url: 'networks/hardware',
+            url: 'hardware/',
           },
           {
             title: 'Services',
-            url: 'networks/services',
+            url: 'services/',
           },
         ]"
       />

@@ -139,4 +139,7 @@ export default {
       theme_color: '#00A2DF',
     },
   },
+  router: {
+    trailingSlash: true,
+  },
 }

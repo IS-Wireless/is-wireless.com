@@ -10,7 +10,7 @@
           :key="index"
           class="breadcrumb-item"
         >
-          <nuxt-link :to="routesComputed[index]">
+          <nuxt-link :to="routesComputed[index] + '/'">
             {{ route }}
           </nuxt-link>
         </li>
@@ -37,14 +37,13 @@ export default {
     },
 
     routesNames() {
-      let routesNames = this.$route.fullPath.split('/')
-      routesNames.shift()
+      let routesNames = this.$route.fullPath.slice(1, -1).split('/')
       routesNames.pop()
       return routesNames
     },
 
     currentRouteName() {
-      return this.$route.fullPath.split('/').slice(-1)[0]
+      return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
     },
   },
 }

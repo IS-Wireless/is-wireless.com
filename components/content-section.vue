@@ -2,24 +2,26 @@
   <section
     class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16"
     :class="{
-      ' bg-black/50 tablet-wide:bg-black/5 overflow-hidden': backgroundUrl,
+      'overflow-hidden': backgroundUrl,
     }"
+    :style="[backgroundUrl ? { perspective: '5000px' } : '']"
   >
-    <!-- <nuxt-picture class="absolute target-img h-full min-w-full top-0 left-0 -z-10 transform" v-if="backgroundUrl" ref="target" :src="backgroundUrl"></nuxt-picture> -->
-    <div
+    <nuxt-picture
+      class="absolute -inset-6 tablet-wide:-inset-10 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
+      :imgAttrs="{
+        class:
+          'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
+      }"
       v-if="backgroundUrl"
-      class="absolute -z-10 bottom-0 bg-[25%_center] mx-auto desktop:bg-cover transform w-full min-h-screen h-[120%]"
-      :style="{ 'background-image': 'url(' + backgroundUrl + ')' }"
-    ></div>
+      ref="parallaxTarget"
+      :style="parallaxStyle"
+      :src="backgroundUrl"
+    ></nuxt-picture>
     <div class="flex flex-col tablet-wide:flex-row w-4/5 mx-auto">
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-5">
         <slot name="left" />
       </div>
-      <div
-        ref="target"
-        :style="container"
-        class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-5"
-      >
+      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-5">
         <slot name="right" />
       </div>
     </div>
@@ -39,54 +41,23 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      container: null,
-    }
-  },
   setup() {
-    const target = ref(null)
-    const parallax = reactive(useParallax(target))
-
+    const parallaxTarget = ref(null)
+    const parallax = reactive(useParallax(parallaxTarget))
     const layerBase = {
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
       transition: '.3s ease-out all',
     }
 
-    computed(() => {
-      this.data.container = {
-        ...layerBase,
-        transform: `translateX(${parallax.tilt * 10}px) translateY(${
-          parallax.roll * 10
-        }px) scale(1.33)`,
-      }
-    })
-  },
-  // mounted() {
-  //   if (this.backgroundUrl !== undefined) {
-  //     window.addEventListener('scroll', this.handletarget)
-  //   }
-  // },
+    const parallaxStyle = computed(() => ({
+      ...layerBase,
+      transform: `rotateX(${parallax.roll * 20}deg) rotateY(${
+        parallax.tilt * 20
+      }deg)
+      `,
+    }))
 
-  // beforeDestroy() {
-  //   if (this.backgroundUrl !== undefined) {
-  //     window.removeEventListener('scroll', this.handletarget)
-  //   }
-  // },
-  // methods: {
-  //   handletarget() {
-  //     var element = this.$refs.target
-  //     if (element) {
-  //       element.style.transform =
-  //         'translateY(' +
-  //         (window.top.scrollY - (this.$el.clientTop + this.$el.clientHeight)) /
-  //           100 +
-  //         '%)'
-  //     }
-  //   },
-  // },
+    return { parallaxStyle, parallaxTarget }
+  },
 }
 </script>
 

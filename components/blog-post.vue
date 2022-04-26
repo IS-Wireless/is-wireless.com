@@ -5,7 +5,7 @@
     <div class="w-full">
       <nuxt-link
         class="group flex flex-col"
-        :to="$route.fullPath.split('/').slice(-1)[0] + '/' + data.slug"
+        :to="$route.fullPath + data.slug + '/'"
       >
         <nuxt-picture
           class="img-full"

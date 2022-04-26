@@ -43,7 +43,9 @@ export default {
       let data = this.$store.getters['general/getData']
       let postData = null
       Object.values(data.posts).forEach((post) => {
-        if (post.slug == this.$route.fullPath.split('/').slice(-1)[0]) {
+        if (
+          post.slug == this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+        ) {
           postData = post
         }
       })
@@ -53,7 +55,10 @@ export default {
       let data = this.$store.getters['general/getData']
       let postRelatedData = []
       Object.values(data.posts).forEach((post) => {
-        if (post.slug !== this.$route.fullPath.split('/').slice(-1)[0]) {
+        if (
+          post.slug !==
+          this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+        ) {
           postRelatedData.push(post)
         }
       })

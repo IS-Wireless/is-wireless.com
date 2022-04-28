@@ -7,23 +7,10 @@
         {{ data.text }}
       </h4>
       <ul class="flex tablet:p-5 tablet:pr-0">
-        <li
-          v-for="item in data.socials"
-          :key="item.type"
-          class="block m-1.5"
-        >
+        <li v-for="item in data.socials" :key="item.type" class="block m-1.5">
           <a
             :href="item.link"
-            class="
-              flex
-              justify-center
-              items-center
-              w-8
-              h-8
-              hover:bg-opacity-70
-              transition
-              rounded-md
-            "
+            class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md"
             :class="{
               'bg-[#3b5998]': item.type === 'facebook',
               'bg-[#55acee]': item.type === 'twitter',

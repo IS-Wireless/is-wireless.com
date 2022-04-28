@@ -6,14 +6,7 @@
             </nuxt-link> -->
       <div class="grow flex items-center justify-end">
         <ul
-          class="
-            h-full
-            flex-shrink-0
-            hidden
-            tablet-wide:flex
-            items-center
-            justify-end
-          "
+          class="h-full flex-shrink-0 hidden tablet-wide:flex items-center justify-end"
         >
           <li
             v-for="item in mainMenu"
@@ -22,18 +15,7 @@
           >
             <!-- <nuxt-link class="text-base text-inherit" :to="item.url">{{item.title}}</nuxt-link>  -->
             <div
-              class="
-                absolute
-                top-full
-                left-0
-                hidden
-                hover:flex
-                group-hover:flex
-                px-5
-                w-full
-                bg-[#232323]
-                cursor-default
-              "
+              class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#232323] cursor-default"
             >
               <ul class="w-4/5 mx-auto flex">
                 <li
@@ -58,10 +40,7 @@
           </li>
         </ul>
         <ul class="h-full flex items-center">
-          <li
-            class="navbar-item flex"
-            @click="toggleExpanded"
-          >
+          <li class="navbar-item flex" @click="toggleExpanded">
             <svg
               width="20"
               height="35"
@@ -69,30 +48,9 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect
-                x="13"
-                y="10"
-                width="25"
-                height="3"
-                rx="1"
-                fill="#FFFFFF"
-              />
-              <rect
-                x="13"
-                y="18"
-                width="25"
-                height="3"
-                rx="1"
-                fill="#FFFFFF"
-              />
-              <rect
-                x="13"
-                y="26"
-                width="25"
-                height="3"
-                rx="1"
-                fill="#FFFFFF"
-              />
+              <rect x="13" y="10" width="25" height="3" rx="1" fill="#FFFFFF" />
+              <rect x="13" y="18" width="25" height="3" rx="1" fill="#FFFFFF" />
+              <rect x="13" y="26" width="25" height="3" rx="1" fill="#FFFFFF" />
             </svg>
           </li>
           <li
@@ -114,41 +72,17 @@
           </li>
         </ul>
         <div
-          class="
-            absolute
-            top-0
-            right-0
-            w-full
-            h-full
-            hidden
-            tablet-wide:block
-            pointer-events-none
-          "
+          class="absolute top-0 right-0 w-full h-full hidden tablet-wide:block pointer-events-none"
         >
           <div class="mx-auto w-4/5 h-full flex overflow-hidden">
             <span class="w-[200px] shrink-0" />
             <form
-              class="
-                flex flex-row
-                h-full
-                grow
-                bg-[#111]
-                transition
-                duration-500
-                pointer-events-auto
-              "
+              class="flex flex-row h-full grow bg-[#111] transition duration-500 pointer-events-auto"
               :class="{ 'translate-x-full': !mainSearch }"
             >
               <button
                 type="submit"
-                class="
-                  px-5
-                  flex
-                  justify-center
-                  items-center
-                  text-white
-                  hover:text-blue-main
-                "
+                class="px-5 flex justify-center items-center text-white hover:text-blue-main"
               >
                 <svg
                   class="fill-current transition"
@@ -164,28 +98,14 @@
                 </svg>
               </button>
               <input
+                ref="searchInput"
                 type="text"
                 placeholder="Search here..."
-                class="
-                  w-full
-                  px-5
-                  bg-[#111]
-                  text-base text-white
-                  focus-visible:outline-none
-                "
-              >
+                class="w-full px-5 bg-[#111] text-base text-white focus-visible:outline-none"
+              />
               <div
-                class="
-                  px-5
-                  h-full
-                  flex
-                  justify-center
-                  items-center
-                  cursor-pointer
-                  text-white
-                  hover:text-white/70
-                "
-                @click="toggleMainSearch"
+                class="px-5 h-full flex justify-center items-center cursor-pointer text-white hover:text-white/70"
+                @click="toggleMainSearch()"
               >
                 <svg
                   class="text-inherit fill-current transition"
@@ -228,19 +148,7 @@
         @click="toggleExpanded"
       />
       <div
-        class="
-          absolute
-          z-50
-          top-0
-          left-full
-          w-full
-          tablet-wide:w-[300px]
-          h-screen
-          bg-[#242424]
-          transform
-          transition
-          duration-500
-        "
+        class="absolute z-50 top-0 left-full w-full tablet-wide:w-[300px] h-screen bg-[#242424] transform transition duration-500"
         :class="{ '-translate-x-full ': expanded }"
       >
         <div
@@ -275,37 +183,16 @@
         </div>
         <div class="px-7 tablet-wide:hidden">
           <form
-            class="
-              mt-10
-              flex
-              w-full
-              border border-solid border-white
-              focus-visible:outline-none
-            "
+            class="mt-10 flex w-full border border-solid border-white focus-visible:outline-none"
           >
             <input
               type="search"
               placeholder="Search..."
-              class="
-                px-5
-                grow
-                bg-[#A7A7A7]/30
-                text-white
-                focus-visible:outline-none
-              "
-            >
+              class="px-5 grow bg-[#A7A7A7]/30 text-white focus-visible:outline-none"
+            />
             <button
               type="submit"
-              class="
-                flex
-                items-center
-                justify-center
-                w-[50px]
-                h-[48px]
-                bg-white
-                text-[#555]
-                hover:text-blue-main
-              "
+              class="flex items-center justify-center w-[50px] h-[48px] bg-white text-[#555] hover:text-blue-main"
             >
               <svg
                 class="fill-current transition"

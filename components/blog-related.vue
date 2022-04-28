@@ -2,11 +2,11 @@
   <div class="w-full my-16">
     <client-only>
       <div v-swiper="swiperOptionsObject" class="swiper">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper flex w-full">
           <div
             v-for="post in data"
             :key="post.id"
-            class="swiper-slide flex flex-col"
+            class="swiper-slide flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
           >
             <nuxt-link
               v-if="post.slug"

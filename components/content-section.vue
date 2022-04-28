@@ -7,7 +7,7 @@
     :style="[backgroundUrl ? { perspective: '5000px' } : '']"
   >
     <nuxt-picture
-      class="absolute -inset-6 tablet-wide:-inset-10 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
+      class="absolute -inset-6 tablet-wide:-inset-14 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
       :imgAttrs="{
         class:
           'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',

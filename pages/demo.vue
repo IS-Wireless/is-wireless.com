@@ -16,9 +16,7 @@
     <CtaFunds :data="testTitleText" />
     <Person :data="testPerson" />
     <ProjectTiles :data="testProjcts" />
-    <h1 class="p-8">
-      2/3 layout test
-    </h1>
+    <h1 class="p-8">2/3 layout test</h1>
     <div class="flex flex-col tablet-wide:flex-row">
       <div class="basis-2/3 tablet-wide:pr-[5%]">
         <ProjectTiles :data="testProjcts" />
@@ -30,8 +28,8 @@
     <Table :data="testTableData" />
     <ContactSales :data="testContactSales" />
     <Map :data="testMapMarker" />
-    <BlogTimeline :data="postsFromGeneral.posts" />
-    <BlogShare :data="testBlogShare" />
+    <!-- <BlogTimeline :data="postsFromGeneral.posts" /> -->
+    <!-- <BlogShare :data="testBlogShare" /> -->
   </div>
 </template>
 

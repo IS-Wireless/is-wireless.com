@@ -1,16 +1,7 @@
 <template>
   <div class="w-full relative">
     <div
-      class="
-        absolute
-        h-full
-        w-full
-        hidden
-        tablet-wide:flex
-        flex-col
-        items-center
-        z-0
-      "
+      class="absolute h-full w-full hidden tablet-wide:flex flex-col items-center z-0"
     >
       <span>
         <svg
@@ -34,59 +25,28 @@
           v-for="(monthData, monthIndex) in yearData.posts"
           :key="monthData.name"
           ref="monthGroup"
+          class="flex flex-col max-w-[960px] mx-auto group transition-all duration-500 overflow-hidden"
           data-collapsed="false"
-          class="
-            flex flex-col
-            max-w-[960px]
-            mx-auto
-            group
-            transition-all
-            duration-500
-            overflow-hidden
-          "
+          data-month-group
         >
           <div
             class="w-full text-center hidden tablet-wide:block"
             :class="{ 'pt-10': monthIndex === 0 && yearIndex === 0 }"
           >
             <span
-              class="
-                inline-block
-                p-2
-                bg-gray-light
-                rounded-md
-                my-5
-                max-w-[131px]
-                hover:bg-gray-default
-                transition
-                cursor-pointer
-              "
-              @click="Collapse(yearIndex + monthIndex)"
+              class="inline-block p-2 bg-gray-light rounded-md my-5 max-w-[131px] hover:bg-gray-default transition cursor-pointer"
+              @click="Collapse($event)"
             >
               {{ monthData.name + ' ' + yearData.year }}
             </span>
           </div>
           <div
-            class="
-              timeline-posts
-              transition
-              duration-500
-              flex
-              tablet-wide:group-even:flex-row-reverse
-              justify-between
-              flex-wrap
-              items-start
-            "
+            class="timeline-posts transition duration-500 flex tablet-wide:group-even:flex-row-reverse justify-between flex-wrap items-start"
           >
             <div
               v-for="(post, index) in monthData.posts"
               :key="index"
-              class="
-                w-full
-                tablet-wide:shrink-0
-                tablet-wide:max-w-[400px]
-                tablet-wide:even:mt-20
-              "
+              class="w-full tablet-wide:shrink-0 tablet-wide:max-w-[400px] tablet-wide:even:mt-20"
             >
               <BlogPost :data="post" />
             </div>
@@ -95,19 +55,7 @@
       </template>
       <div class="w-full text-center">
         <span
-          class="
-            block
-            mt-20
-            p-5
-            bg-gray-light
-            rounded-md
-            my-5
-            uppercase
-            font-semibold
-            transition
-            hover:bg-gray-default
-            cursor-pointer
-          "
+          class="block mt-20 p-5 bg-gray-light rounded-md my-5 uppercase font-semibold transition hover:bg-gray-default cursor-pointer"
         >
           Load more posts
         </span>
@@ -137,9 +85,19 @@ export default {
   unmounted() {
     window.removeEventListener('resize', this.setFullHeight)
   },
+  data() {
+    return {
+      groupsCount: 0,
+    }
+  },
+  computed: {
+    setGroupIndex() {
+      return this.groupsCount++
+    },
+  },
   methods: {
-    Collapse(index) {
-      let group = this.$refs.monthGroup[index]
+    Collapse(event) {
+      let group = event.target.closest('[data-month-group]')
       let collapseState = group.getAttribute('data-collapsed') === 'true'
       let collapsedHeight = group.firstChild.clientHeight
       let expandedHeight =

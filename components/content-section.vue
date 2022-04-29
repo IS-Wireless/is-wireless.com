@@ -4,20 +4,24 @@
     :class="{
       'overflow-hidden': backgroundUrl,
     }"
-    :style="[backgroundUrl ? { perspective: '5000px' } : '']"
   >
-    <nuxt-picture
-      class="absolute -inset-6 tablet-wide:-inset-14 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
-      :imgAttrs="{
-        class:
-          'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
-      }"
+    <div
+      class="absolute w-full h-full top-0 left-0"
+      style="perspective: 5000px"
       v-if="backgroundUrl"
-      ref="parallaxTarget"
-      :style="parallaxStyle"
-      :src="backgroundUrl"
-    ></nuxt-picture>
-    <div class="flex flex-col tablet-wide:flex-row w-4/5 mx-auto">
+    >
+      <nuxt-picture
+        class="absolute -inset-7 tablet-wide:-inset-14 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
+        :imgAttrs="{
+          class:
+            'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
+        }"
+        ref="parallaxTarget"
+        :style="parallaxStyle"
+        :src="backgroundUrl"
+      ></nuxt-picture>
+    </div>
+    <div class="relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto">
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-5">
         <slot name="left" />
       </div>

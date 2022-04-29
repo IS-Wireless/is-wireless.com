@@ -257,7 +257,7 @@ export default {
 
 <style>
 .navbar-item {
-  @apply w-auto h-full p-4 cursor-pointer items-center hover:border-0 border-y-0 hover:border-y-4 border-transparent border-b-blue-main duration-75 transition-all;
+  @apply w-auto h-full p-4 cursor-pointer overflow-hidden items-center relative after:absolute after:content-[''] after:block after:w-full after:h-1 after:bg-blue-main after:left-0 after:-bottom-1 after:hover:-translate-y-1 after:duration-75 after:transition-all;
 }
 
 .menu-sub-col:hover > a {

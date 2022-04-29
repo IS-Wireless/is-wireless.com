@@ -90,11 +90,6 @@ export default {
       groupsCount: 0,
     }
   },
-  computed: {
-    setGroupIndex() {
-      return this.groupsCount++
-    },
-  },
   methods: {
     Collapse(event) {
       let group = event.target.closest('[data-month-group]')

@@ -44,8 +44,6 @@ import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
 import ContactSales from '~/components/contact-sales.vue'
 import Map from '../components/map.vue'
-import BlogTimeline from '~/components/blog-timeline.vue'
-import BlogShare from '~/components/blog-share.vue'
 
 export default {
   name: 'Demo',
@@ -60,8 +58,6 @@ export default {
     Table,
     ContactSales,
     Map,
-    BlogTimeline,
-    BlogShare,
   },
   data() {
     return {

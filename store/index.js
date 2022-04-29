@@ -40,7 +40,6 @@ export const actions = {
           .namespace('acf/v2')
           .options()
           .then(function (data) {
-            filterData(data)
             dispatch('general/init', data.acf)
             resolve()
           })
@@ -82,6 +81,16 @@ export const actions = {
           .then(function (data) {
             filterData(data)
             dispatch('general/init', { posts: data })
+            resolve()
+          })
+      }),
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('wp/v2')
+          .pages()
+          .then(function (data) {
+            filterData(data)
+            dispatch('general/init', { pages: data })
             resolve()
           })
       }),

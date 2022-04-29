@@ -55,7 +55,7 @@
           </li>
           <li
             class="navbar-item hidden tablet-wide:flex"
-            @click="toggleMainSearch"
+            @click="toggleMainSearch()"
           >
             <svg
               width="16"
@@ -81,7 +81,6 @@
               :class="{ 'translate-x-full': !mainSearch }"
             >
               <button
-                type="submit"
                 class="px-5 flex justify-center items-center text-white hover:text-blue-main"
               >
                 <svg
@@ -225,6 +224,8 @@
 </template>
 
 <script>
+import { useFocus } from '@vueuse/core'
+import { ref } from '@vue/composition-api'
 export default {
   name: 'Navbar',
   props: {
@@ -243,6 +244,11 @@ export default {
       mainSearch: false,
     }
   },
+  setup() {
+    const searchInput = ref()
+    const { focused } = useFocus(searchInput, { initialValue: false })
+    return { searchInput, focused }
+  },
   methods: {
     toggleExpanded() {
       this.expanded = !this.expanded
@@ -250,6 +256,16 @@ export default {
 
     toggleMainSearch() {
       this.mainSearch = !this.mainSearch
+      if (this.mainSearch) {
+        setTimeout(
+          function () {
+            this.focused = true
+          }.bind(this),
+          501
+        )
+      } else {
+        this.focused = false
+      }
     },
   },
 }

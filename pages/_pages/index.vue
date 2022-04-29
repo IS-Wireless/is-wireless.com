@@ -1,0 +1,94 @@
+<template>
+  <div>
+    <Breadcrumb />
+    <div class="w-4/5 mx-auto">
+      <span class="inline-block text-gray-dark mt-14">
+        <SectionHeader :title="currentRouteName" />
+      </span>
+      <div class="text-page mb-10"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+import SectionHeader from '~/components/section-header.vue'
+import Breadcrumb from '~/components/breadcrumb.vue'
+
+export default {
+  components: {
+    SectionHeader,
+    Breadcrumb,
+  },
+  data() {
+    return {
+      content:
+        '<p><strong>1.Collection of Your Personal Information</strong></p><p>We will inform you of the purpose for collecting personal information when we collect it from you and keep it to fulfill the purposes for which it was collected, as required by applicable laws or for legitimate purposes.</p><p><strong>2.Uses of Your Personal Information</strong></p><p>We will only use your personal information in the way we specified when it was collected. We will not subsequently change the way your personal information is used without first asking for your permission. Some of the ways we may use personal information include: delivering or supporting products, services or information you have requested, contacting you for customer satisfaction surveys, personalizing websites and newsletters to your preferences, communicating for marketing purposes.</p><p><strong>3.Access to and Accuracy of Your Personal Information</strong></p><p>We need your help in keeping your personal information accurate and up to date, so please notify us of any changes to your personal information. To update your personal information and communication preferences, please contact us on <a href="mailto:info@is-wireless.com">info@is-wireless.com</a></p><p><strong>4.Sharing Your Personal Information</strong></p><p>We do not sell or share your personal information to third parties for marketing purposes unless you have granted us permission to do so. We may share personal information with business partners, service vendors, authorized third-party agents, or contractors to provide a requested service or transaction. This includes processing orders, hosting seminar registration, and providing customer support. We only provide these third parties with the minimum amount of personal information necessary to complete or provide the requested service or transaction. We do not allow third parties to use your personal information for a different purpose.</p><p><strong>5.Security of Your Personal Information</strong></p><p>We are committed to protecting the personal information you share with us. We will only retain your personal information to fulfill the purposes for which it was collected or as required for legitimate purposes or permitted by law.</p><p><strong>6.Updates to this Privacy Statement</strong></p><p>We may update this Privacy Statement at any time, so please review it frequently. If we change our Privacy Statement, we will post the revised version here, with an updated revision date. If we make significant changes to our Privacy Statement, we may also notify you by other means prior to the changes taking effect, such as sending an email or posting a notice on our website.</p>',
+    }
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+    },
+  },
+}
+</script>
+
+<style lang="postcss" scoped>
+.text-page >>> h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+b,
+u,
+code {
+  @apply text-gray-dark;
+}
+
+.text-page >>> h1 {
+  @apply text-4xl tablet:text-[50px] mb-5;
+}
+
+.text-page >>> h2 {
+  @apply text-3xl tablet:text-4xl mb-5;
+}
+.text-page >>> h3 {
+  @apply text-2xl tablet:text-3xl mb-5;
+}
+.text-page >>> h4 {
+  @apply text-xl tablet:text-2xl mb-5;
+}
+.text-page >>> h5 {
+  @apply text-lg tablet:text-xl mb-5;
+}
+.text-page >>> h6 {
+  @apply text-base tablet:text-lg mb-5;
+}
+.text-page >>> p {
+  @apply text-base inline-block mb-5;
+}
+
+.text-page >>> ul,
+li {
+  @apply mb-5;
+}
+
+b,
+u {
+  @apply font-lato;
+}
+
+.text-page >>> ol li {
+  @apply list-disc ml-5;
+}
+
+.text-page >>> hr {
+  @apply block mx-[10%] mt-5 mb-10;
+}
+
+.text-page >>> code {
+  @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
+}
+</style>

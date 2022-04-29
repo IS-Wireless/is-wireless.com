@@ -6,7 +6,7 @@
         <SectionHeader :title="currentRouteName" />
       </span>
       <div class="text-page mb-10">
-        <!-- <h1>header 1 test</h1>
+        <h1>header 1 test</h1>
         <h2>header 2 test</h2>
         <h3>header 3 test</h3>
         <h4>header 4 test</h4>
@@ -40,7 +40,7 @@
         <img
           src="https://www.is-wireless.com/wp-content/uploads/2021/02/Radio-Resource-Management-800x800.jpg"
           alt="image alt text"
-        /> -->
+        />
       </div>
     </div>
   </div>

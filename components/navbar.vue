@@ -188,7 +188,7 @@
             <input
               type="search"
               placeholder="Search..."
-              class="px-5 grow bg-[#A7A7A7]/30 text-white focus-visible:outline-none"
+              class="px-5 grow bg-[#A7A7A7]/30 text-white focus-visible:outline-none focus:outline-none font-lato appearance-none"
             />
             <button
               type="submit"

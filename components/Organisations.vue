@@ -6,7 +6,7 @@
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
     >
-      <div class="swiper-wrapper flex w-full h-full">
+      <div class="swiper-wrapper flex w-full h-full items-center">
         <div
           v-for="(item, index) in swiperLogos"
           :key="item.imgUrl"
@@ -24,8 +24,7 @@
               :alt="item.alt"
               :imgAttrs="{
                 loading: index < 2 ? 'eager' : index > 3 ? 'lazy' : 'auto',
-                class:
-                  'w-full object-contain filter saturate-0 hover:saturate-100 duration-300',
+                class: 'w-full object-contain custom-filter duration-300',
               }"
             />
           </nuxt-link>
@@ -96,3 +95,12 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+>>> .custom-filter {
+  filter: saturate(0);
+}
+>>> .custom-filter:hover {
+  filter: saturate(1);
+}
+</style>

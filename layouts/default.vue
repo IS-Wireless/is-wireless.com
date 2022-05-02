@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar :main-menu="sideMenuData.menu" :side-menu="sideMenuData.menu" />
+    <Navbar :main-menu="topMenuData" :side-menu="sideMenuData.menu" />
     <Nuxt />
     <Footer
       :image-url="footerData.image"
@@ -21,30 +21,24 @@ export default {
     Navbar,
     Footer,
   },
-  methods: {
-    findParent() {
-      console.log('funckjsakd')
-    },
-  },
   computed: {
     topMenuData() {
       const topMenu = []
       let data = this.$store.getters['general/getData']
-      data.menu_items.forEach((item) => {
-        if (item.menus == 53) {
+      let dataCopy = JSON.parse(JSON.stringify(data))
+      dataCopy.menu_items.forEach((item) => {
+        item['children'] = []
+        if (
+          item.menus === dataCopy.menu_locations.main_navigation.menu &&
+          !item.parent
+        ) {
           topMenu.push(item)
-          if (item.parent) {
-            console.log(item)
-            item.push(
-              data.menu_items.forEach((parentItem) => {
-                if (parentItem['id'] === item.parent) {
-                  console.log('rodzic: ' + parentItem.title.rendered)
-                  console.log('dziecko: ' + item.title.rendered)
-                  return item
-                }
-              })
-            )
-          }
+        } else if (item.parent) {
+          dataCopy.menu_items.forEach((parentItem) => {
+            if (parentItem['id'] === item.parent) {
+              parentItem.children.push(item)
+            }
+          })
         }
       })
       return topMenu

@@ -41,7 +41,7 @@
             class="navbar-item flex group text-white"
           >
             <nuxt-link
-              class="p-4 flex h-full justify-center items-center text-base overflow-hidden relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition hover:after:-translate-y-1"
+              class="p-4 flex h-full justify-center items-center text-base overflow-hidden relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition hover:after:-translate-y-1 transition duration-200"
               :class="
                 item.object == 'custom'
                   ? 'text-blue-main hover:text-blue-main'
@@ -61,7 +61,7 @@
                 >
                   <div class="menu-sub-col">
                     <nuxt-link
-                      class="text-base block uppercase text-white hover:text-blue-main font-bold transition mt-7 mb-6"
+                      class="text-base block uppercase text-white hover:text-blue-main font-bold transition duration-200 mt-7 mb-6"
                       :to="subItem.url.slice(27)"
                       >{{ subItem.title.rendered }}</nuxt-link
                     >
@@ -71,7 +71,7 @@
                         :key="subSubItem.id"
                       >
                         <nuxt-link
-                          class="py-1.5 block text-sm text-white hover:text-blue-main transition"
+                          class="py-1.5 block text-sm text-white hover:text-blue-main transition duration-200"
                           :to="subSubItem.url.slice(27)"
                           >{{ subSubItem.title.rendered }}</nuxt-link
                         >
@@ -257,12 +257,19 @@
         </div>
         <ul class="flex flex-col px-7 mt-10">
           <li
-            v-for="items in sideMenu"
-            :key="items.title"
+            v-for="(items, index) in sideMenu"
+            :key="items.id"
             class="mb-3"
-            :class="{ 'tablet-wide:hidden': !items.desktop }"
+            :class="{
+              'tablet-wide:hidden': index < 4,
+            }"
           >
-            <!-- <nuxt-link class="text-xl text-white hover:text-blue-main transition" :to="items.url">{{items.title}}</nuxt-link> -->
+            <nuxt-link
+              class="text-xl text-white hover:text-blue-main transition"
+              :to="items.url.slice(27)"
+              @click.native="toggleExpanded()"
+              >{{ items.title.rendered }}</nuxt-link
+            >
           </li>
         </ul>
       </div>
@@ -281,7 +288,7 @@ export default {
       required: true,
     },
     sideMenu: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },

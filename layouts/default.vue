@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar :main-menu="topMenuData" :side-menu="sideMenuData.menu" />
+    <Navbar :main-menu="topMenuData" :side-menu="sideMenuData" />
     <Nuxt />
     <Footer
       :image-url="footerData.image"
@@ -45,50 +45,14 @@ export default {
     },
 
     sideMenuData() {
-      return {
-        menu: {
-          0: {
-            title: '5G Made Together',
-            desktop: false,
-          },
-          1: {
-            title: 'Academy',
-            desktop: false,
-          },
-          2: {
-            title: 'Networks',
-            desktop: false,
-          },
-          3: {
-            title: 'Solutions',
-            desktop: false,
-          },
-          4: {
-            title: 'Research',
-            desktop: true,
-          },
-          5: {
-            title: 'Resources',
-            desktop: true,
-          },
-          6: {
-            title: 'About Us',
-            desktop: true,
-          },
-          7: {
-            title: 'Careers',
-            desktop: true,
-          },
-          8: {
-            title: 'News',
-            desktop: true,
-          },
-          9: {
-            title: 'Contact',
-            desktop: true,
-          },
-        },
-      }
+      const sideMenu = []
+      let data = this.$store.getters['general/getData']
+      Object.values(data.menu_items).forEach((item) => {
+        if (item.menus == 24) {
+          sideMenu.push(item)
+        }
+      })
+      return sideMenu
     },
 
     footerData() {

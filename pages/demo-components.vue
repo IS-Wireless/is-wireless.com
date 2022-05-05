@@ -28,6 +28,7 @@
     <Table :data="testTableData" />
     <ContactSales :data="testContactSales" />
     <Map :data="testMapMarker" />
+    <Tabs :data="testTabsData" />
     <!-- <BlogTimeline :data="postsFromGeneral.posts" /> -->
     <!-- <BlogShare :data="testBlogShare" /> -->
   </div>
@@ -44,6 +45,7 @@ import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
 import ContactSales from '~/components/contact-sales.vue'
 import Map from '../components/map.vue'
+import Tabs from '~/components/tabs.vue'
 
 export default {
   name: 'Demo',
@@ -58,6 +60,7 @@ export default {
     Table,
     ContactSales,
     Map,
+    Tabs,
   },
   data() {
     return {
@@ -224,6 +227,22 @@ export default {
           { type: 'mail', link: 'mailto:' },
         ],
       },
+      testTabsData: [
+        {
+          title: 'tab1',
+          content: '<p>Test</p>',
+        },
+        {
+          title: 'tab2',
+          content:
+            '<h1>Test2</h1> <h1>Test2</h1><h1>Test2</h1><h1>Test2</h1><h1>Test2</h1><h1>Test2</h1>',
+        },
+        {
+          title: 'tab3',
+          content:
+            '<div><h2>Test 3</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></div>',
+        },
+      ],
     }
   },
   computed: {

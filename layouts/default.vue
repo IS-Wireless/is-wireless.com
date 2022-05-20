@@ -119,4 +119,8 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+.gcsc-find-more-on-google-text:last-child {
+  display: none;
+}
 </style>

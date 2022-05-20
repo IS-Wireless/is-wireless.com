@@ -22,6 +22,10 @@ export default {
         name: 'description',
         content: 'Mobile Networks of the Future',
       },
+      {
+        src: 'https://cse.google.com/cse.js?cx=4a61290bc618cbfe1',
+        async: true,
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

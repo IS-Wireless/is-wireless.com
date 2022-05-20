@@ -125,6 +125,7 @@
             <span class="w-[200px] shrink-0" />
             <form
               class="flex flex-row h-full grow bg-[#111] transition duration-500 pointer-events-auto"
+              action="/search/"
               :class="{ 'translate-x-full': !mainSearch }"
             >
               <button
@@ -146,6 +147,7 @@
               <input
                 ref="searchInput"
                 type="text"
+                name="q"
                 placeholder="Search here..."
                 class="w-full px-5 bg-[#111] text-base text-white focus-visible:outline-none"
               />
@@ -230,9 +232,11 @@
         <div class="px-7 tablet-wide:hidden">
           <form
             class="mt-10 flex w-full border border-solid border-white focus-visible:outline-none"
+            action="/search/"
           >
             <input
               type="search"
+              name="q"
               placeholder="Search..."
               class="px-5 grow bg-[#A7A7A7]/30 text-white focus-visible:outline-none focus:outline-none font-lato appearance-none"
             />

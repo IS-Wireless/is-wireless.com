@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto">
+  <div class="relative z-10 flex flex-col tablet-wide:w-4/5 mx-auto">
     <div class="gcse-searchresults-only"></div>
   </div>
 </template>
@@ -18,3 +18,4 @@ export default {
   },
 }
 </script>
+<style scoped></style>

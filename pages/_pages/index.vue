@@ -5,7 +5,9 @@
       <span class="inline-block text-gray-dark mt-14">
         <SectionHeader :title="currentRouteName" />
       </span>
-      <div class="text-page mb-10"></div>
+      <div class="text-page mb-10">
+        <!-- <component v-for="component in pageData" :key="component.acf_fc_layout" :is="component.acf_fc_layout"></component> -->
+      </div>
     </div>
   </div>
 </template>

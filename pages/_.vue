@@ -22,7 +22,7 @@
         <div v-if="pageData.acf.sidebar" class="w-1/3"></div>
       </div>
       <div
-        v-else
+        v-else-if="pageData.content"
         v-html="pageData.content.rendered"
         class="text-page mb-10"
       ></div>

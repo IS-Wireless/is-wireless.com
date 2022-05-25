@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="pageData">
     <template v-if="pageData.acf">
       <StaticBanner
         v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"

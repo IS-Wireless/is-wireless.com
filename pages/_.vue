@@ -62,6 +62,8 @@ export default {
       for (let i = 0; i < storeData.pages.length; i++) {
         if (storeData.pages[i].slug == this.currentRouteName) {
           return storeData.pages[i]
+        } else {
+          return null
         }
       }
     },

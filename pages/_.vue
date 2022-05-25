@@ -1,26 +1,31 @@
 <template>
   <div>
     <template v-if="pageData.acf">
-      <StaticBanner v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
+      <StaticBanner
+        v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
         :title="pageData.acf.sections[0].title"
         :background-url="pageData.acf.sections[0].background.url"
       />
     </template>
     <Breadcrumb />
     <div class="w-4/5 mx-auto py-10">
-      <div
-      v-if="pageData.acf" class="flex">
-        <div class=" mb-10"
-        :class="pageData.acf.sidebar ? 'w-2/3 ':'w-full'">
-        <div v-for="component,index in pageData.acf.sections" :key="index">
-          <component v-if="component.acf_fc_layout !== 'section_header'" :is="component.acf_fc_layout" :data="component"></component>
+      <div v-if="pageData.acf" class="flex">
+        <div class="mb-10" :class="pageData.acf.sidebar ? 'w-2/3 ' : 'w-full'">
+          <div v-for="(component, index) in pageData.acf.sections" :key="index">
+            <component
+              v-if="component.acf_fc_layout !== 'section_header'"
+              :is="component.acf_fc_layout"
+              :data="component"
+            ></component>
+          </div>
         </div>
-        </div>
-        <div v-if="pageData.acf.sidebar" class="w-1/3">
-
-        </div>
+        <div v-if="pageData.acf.sidebar" class="w-1/3"></div>
       </div>
-      <div v-else v-html="pageData.content.rendered" class="text-page mb-10"></div>
+      <div
+        v-else
+        v-html="pageData.content.rendered"
+        class="text-page mb-10"
+      ></div>
     </div>
   </div>
 </template>
@@ -40,7 +45,7 @@ export default {
     section_content,
     section_list_links_alternative,
     section_tabs,
-    section_links_list
+    section_links_list,
   },
   data() {
     return {
@@ -52,14 +57,14 @@ export default {
     currentRouteName() {
       return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
     },
-    pageData(){
-      let storeData = this.$store.getters["general/getData"]
+    pageData() {
+      let storeData = this.$store.getters['general/getData']
       for (let i = 0; i < storeData.pages.length; i++) {
         if (storeData.pages[i].slug == this.currentRouteName) {
           return storeData.pages[i]
-        }        
-    }
-    }
+        }
+      }
+    },
   },
 }
 </script>
@@ -125,5 +130,4 @@ code {
 .text-page >>> img {
   @apply w-full h-auto;
 }
-
 </style>

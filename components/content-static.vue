@@ -1,6 +1,6 @@
 <template>
   <div class="w-full tablet:max-w-[75%]">
-    <span v-if="data.title" class="inline-block text-gray-dark mt-10 ">
+    <span v-if="data.title" class="inline-block text-gray-dark mt-10">
       <SectionHeader :title="data.title" />
     </span>
 
@@ -15,12 +15,7 @@
     <div
       v-for="(item, index) in data.image"
       :key="index"
-      class="
-        flex flex-col
-        justify-center
-        items-center
-        tablet-wide:w-3/4 tablet-wide:mr-10
-      "
+      class="flex flex-col justify-center items-center tablet-wide:w-3/4 tablet-wide:mr-10"
     >
       <nuxt-picture
         fit="contain"
@@ -28,10 +23,7 @@
         :src="item.url"
         :title="item.title"
       />
-      <p
-        v-if="item.title"
-        class="grow-0 italic text-center mb-5"
-      >
+      <p v-if="item.title" class="grow-0 italic text-center mb-5">
         {{ item.title }}
       </p>
     </div>
@@ -42,10 +34,10 @@
 export default {
   name: 'section_content',
   props: {
-    data:{
+    data: {
       type: Object,
-      required: false
-    }
+      required: false,
+    },
   },
 }
 </script>
@@ -109,7 +101,4 @@ code {
 .content-html >>> img {
   @apply w-full h-auto;
 }
-
-
-
 </style>

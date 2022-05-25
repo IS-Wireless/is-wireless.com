@@ -10,7 +10,7 @@
     <div class="w-4/5 mx-auto py-10">
       <div
       v-if="pageData.acf" class="flex">
-        <div class="text-page mb-10"
+        <div class=" mb-10"
         :class="{ 'w-2/3 ': pageData.acf.sidebar}">
         <div v-for="component,index in pageData.acf.sections" :key="index">
           <component v-if="component.acf_fc_layout !== 'section_header'" :is="component.acf_fc_layout" :data="component"></component>
@@ -20,6 +20,7 @@
 
         </div>
       </div>
+      <div v-else v-html="pageData.content" class="text-page mb-10"></div>
     </div>
   </div>
 </template>
@@ -28,12 +29,14 @@
 import SectionHeader from '~/components/section-header.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 import section_content from '~/components/content-static.vue'
+import section_list_links_alternative from '~/components/more-solutions.vue'
 
 export default {
   components: {
     SectionHeader,
     Breadcrumb,
     section_content,
+    section_list_links_alternative
   },
   data() {
     return {
@@ -67,15 +70,16 @@ h6,
 li,
 b,
 u,
+div,
 code {
-  @apply text-gray-dark;
+  @apply text-gray-dark font-lato;
 }
 
 .text-page >>> h1 {
   @apply text-4xl tablet:text-[50px] mb-5;
 }
 
-.text-page >>> h2:not(.header) {
+.text-page >>> h2 {
   @apply text-3xl tablet:text-4xl mb-5;
 }
 .text-page >>> h3 {
@@ -98,11 +102,6 @@ code {
   @apply text-gray-dark;
 }
 
-b,
-u {
-  @apply font-lato;
-}
-
 .text-page >>> ol li {
   @apply list-disc ml-5;
 }
@@ -111,16 +110,12 @@ u {
   @apply mb-5;
 }
 
-.text-page >>> hr:not(.header) {
+.text-page >>> hr {
   @apply block mx-[10%] mt-5 mb-10;
 }
 
 .text-page >>> code {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
-}
-
-.text-page >>> img {
-  @apply w-full h-auto
 }
 
 </style>

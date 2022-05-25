@@ -4,7 +4,7 @@
       <SectionHeader :title="data.title" />
     </span>
 
-    <div v-if="data.content" v-html="data.content"></div>
+    <div class="content-html" v-if="data.content" v-html="data.content"></div>
     <p
       v-for="item in data.text"
       :key="item"
@@ -50,4 +50,61 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.content-html >>> h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+b,
+u,
+div,
+code {
+  @apply text-gray-dark font-lato;
+}
+.content-html >>> h1 {
+  @apply text-4xl tablet:text-[50px] mb-5;
+}
+.content-html >>> h2 {
+  @apply text-3xl tablet:text-4xl mb-5;
+}
+.content-html >>> h3 {
+  @apply text-2xl tablet:text-3xl mb-5;
+}
+.content-html >>> h4 {
+  @apply text-xl tablet:text-2xl mb-5;
+}
+.content-html >>> h5 {
+  @apply text-lg tablet:text-xl mb-5;
+}
+.content-html >>> h6 {
+  @apply text-base tablet:text-lg mb-5;
+}
+.content-html >>> p {
+  @apply text-base inline-block mb-5 w-full;
+}
+
+.content-html >>> li {
+  @apply text-gray-dark;
+}
+
+.content-html >>> ol li {
+  @apply list-disc ml-5;
+}
+
+.content-html >>> ul {
+  @apply mb-5;
+}
+
+.content-html >>> hr {
+  @apply block mx-[10%] mt-5 mb-10;
+}
+
+.content-html >>> code {
+  @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
+}
+
+
+</style>

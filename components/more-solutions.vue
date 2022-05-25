@@ -5,7 +5,7 @@
     </h2>
     <ul class="flex flex-col tablet-wide:flex-row tablet-wide:justify-between">
       <li
-        v-for="item in data"
+        v-for="item in data.block"
         :key="item.title"
         class="
           mb-2.5
@@ -21,7 +21,7 @@
             hover:border-blue-main
             transition
           "
-          :to="item.url"
+          :to="item.link.url"
         >
           <p class="text-gray-dark transition text-xl">
             {{ item.title }}
@@ -34,10 +34,10 @@
 
 <script>
 export default {
-  name: 'MoreSolutions',
+  name: 'section_list_links_alternative',
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

@@ -1,57 +1,19 @@
 <template>
   <div class="w-full">
     <div
-      class="
-        w-full
-        relative
-        tablet:w-96
-        tablet-wide:w-full
-        mt-10
-        flex flex-wrap
-        items-center
-        justify-between
-        tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start
-      "
+      class="w-full relative tablet:w-96 tablet-wide:w-full mt-10 flex flex-wrap items-center justify-between tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start"
     >
       <span class="inline-block text-gray-dark mb-2">Filter by:</span>
       <div
-        class="
-          h-[70px]
-          w-[160px]
-          tablet-wide:w-[100px]
-          flex
-          items-center
-          mr-2
-          bg-gray-light
-          rounded-md
-          cursor-pointer
-          transition
-          tablet-wide:hidden
-        "
+        class="h-[70px] w-[160px] tablet-wide:w-[100px] flex items-center mr-2 bg-gray-light rounded-md cursor-pointer transition tablet-wide:hidden"
         @click="switchMobileExpand"
       >
         <span
-          class="
-            flex-grow
-            h-full
-            flex
-            items-center
-            justify-center
-            text-gray-dark
-            capitalize
-          "
-        >{{ selectedFilter }}</span>
+          class="flex-grow h-full flex items-center justify-center text-gray-dark capitalize"
+          >{{ selectedFilter }}</span
+        >
         <div
-          class="
-            tablet-wide:hidden
-            inset-y-0
-            right-0
-            flex
-            items-center
-            px-4
-            transform
-            transition
-          "
+          class="tablet-wide:hidden inset-y-0 right-0 flex items-center px-4 transform transition"
           :class="{ 'rotate-180': mobileExpanded }"
         >
           <svg
@@ -69,124 +31,42 @@
         </div>
       </div>
       <ul
-        class="
-          custom-scrollbar
-          flex flex-col
-          tablet-wide:flex-row
-          items-center
-          absolute
-          top-full
-          right-0
-          tablet:right-[-180px]
-          tablet-wide:right-0 tablet-wide:relative
-          w-full
-          tablet:w-[350px]
-          tablet-wide:w-full
-          px-5
-          tablet-wide:px-0
-          tablet:rounded-md
-          tablet-wide:rounded-none
-          overflow-y-scroll
-          tablet-wide:max-h-[none]
-          bg-[#F6F6F6]
-          tablet-wide:bg-transparent
-          mt-0.5
-          tablet-wide:mt-0
-          duration-300
-          transition-all
-          z-20
-        "
+        class="custom-scrollbar flex flex-col tablet-wide:flex-row items-center absolute top-full right-0 tablet:right-[-180px] tablet-wide:right-0 tablet-wide:relative w-full tablet:w-[350px] tablet-wide:w-full px-5 tablet-wide:px-0 tablet:rounded-md tablet-wide:rounded-none overflow-y-scroll tablet-wide:max-h-[none] bg-[#F6F6F6] tablet-wide:bg-transparent mt-0.5 tablet-wide:mt-0 duration-300 transition-all z-20"
         :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
       >
         <li
-          class="
-            h-[70px]
-            w-full
-            tablet-wide:w-[100px]
-            flex flex-shrink-0
-            tablet-wide:flex-shrink
-            items-center
-            tablet-wide:mr-2
-            bg-gray-light
-            tablet-wide:rounded-md
-            border-0
-            cursor-pointer
-          "
+          class="h-[70px] w-full tablet-wide:w-[100px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 bg-gray-light tablet-wide:rounded-md border-0 cursor-pointer"
           @click="filterItems('All'), switchMobileExpand()"
         >
           <span
-            class="
-              flex-grow
-              h-full
-              flex
-              items-center
-              justify-center
-              text-gray-dark
-            "
+            class="flex-grow h-full flex items-center justify-center text-gray-dark"
             :class="{ 'text-blue-main': selectedFilter == 'All' }"
-          >All</span>
+            >All</span
+          >
         </li>
 
         <li
           v-for="(filter, index) in createdFilters"
           :key="index"
-          class="
-            h-[70px]
-            w-full
-            tablet-wide:w-[200px]
-            flex flex-shrink-0
-            tablet-wide:flex-shrink
-            items-center
-            tablet-wide:mr-2
-            bg-gray-light
-            tablet-wide:rounded-md tablet-wide:border-0
-            border-0 border-t border-t-gray-200
-            cursor-pointer
-          "
+          class="h-[70px] w-full tablet-wide:w-[200px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 bg-gray-light tablet-wide:rounded-md tablet-wide:border-0 border-0 border-t border-t-gray-200 cursor-pointer"
           @click="filterItems(filter), switchMobileExpand()"
         >
-          <svgIcon :class="'w-12 mx-2 p-1'" :name="filter"/>
+          <svgIcon :class="'w-12 mx-2 p-1'" :name="filter" />
           <span
-            class="
-              flex-grow
-              h-full
-              flex
-              items-center
-              justify-center
-              text-gray-dark
-              transition
-              capitalize
-            "
+            class="flex-grow h-full flex items-center justify-center text-gray-dark transition capitalize"
             :class="{ 'text-blue-main': selectedFilter == filter }"
-          >{{ filter }}</span>
+            >{{ filter }}</span
+          >
         </li>
       </ul>
     </div>
     <div class="w-full mt-14">
-      <FilterableTiles
-        :tiles="downloadedData"
-        :filter-by="selectedFilter"
-      />
+      <FilterableTiles :tiles="downloadedData" :filter-by="selectedFilter" />
 
-      <div
-        v-if="downloadedData.length > 9"
-        class="text-center my-10"
-      >
+      <div v-if="downloadedData.length > 9" class="text-center my-10">
         <button
           href="https://www.is-wireless.com/networks/"
-          class="
-            text-lg text-white
-            uppercase
-            px-10
-            py-2
-            rounded-full
-            bg-blue-main
-            mx-auto
-            hover:bg-blue-main-hover
-            duration-300
-            tablet:mb-0
-            mb-6
-          "
+          class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mb-6"
         >
           Load More
         </button>
@@ -203,7 +83,7 @@ export default {
   name: 'section_links_list',
   components: {
     FilterableTiles,
-    svgIcon
+    svgIcon,
   },
   props: {
     data: {
@@ -217,8 +97,22 @@ export default {
       selectedFilter: 'All',
     }
   },
-  computed:{
-    downloadedData(){
+  computed: {
+    downloadedData() {
+      return this.getData()
+    },
+    createdFilters() {
+      let filters = []
+      this.downloadedData.forEach((item) => {
+        if (filters.indexOf(item.type) === -1) {
+          filters.push(item.type)
+        }
+      })
+      return filters
+    },
+  },
+  methods: {
+    getData() {
       if (this.$props.data.use_courses) {
         return this.$store.getters['resources/getData'].courses
       }
@@ -226,17 +120,7 @@ export default {
         return this.$store.getters['general/getOptionsData'].materials
       }
     },
-    createdFilters(){
-      let filters = []
-      this.downloadedData.forEach((item) => {
-        if (filters.indexOf(item.type) === -1){
-          filters.push(item.type)
-        }
-      })
-      return filters
-    }
-  },
-  methods: {
+
     switchMobileExpand() {
       if (window.innerWidth < 1024) this.mobileExpanded = !this.mobileExpanded
     },
@@ -252,9 +136,9 @@ export default {
           }
         })
         this.downloadedData = filteredTiles
-      } else this.downloadedData = this.downloadedData
+      } else this.downloadedData = this.getData()
     },
-  }
+  },
 }
 </script>
 

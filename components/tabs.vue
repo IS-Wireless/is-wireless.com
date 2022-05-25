@@ -18,7 +18,11 @@
       </li>
     </ul>
     <div class="w-full">
-      <div class="w-full relative" v-for="(item, index) in data.tab" :key="index">
+      <div
+        class="w-full relative"
+        v-for="(item, index) in data.tab"
+        :key="index"
+      >
         <transition name="fade" mode="out-in">
           <div
             v-if="index == selected || !rctvTabletWide.value"
@@ -163,5 +167,4 @@ code {
 .content-html >>> img {
   @apply w-full h-auto;
 }
-
 </style>

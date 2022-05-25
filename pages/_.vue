@@ -63,7 +63,7 @@ export default {
         if (storeData.pages[i].slug == this.currentRouteName) {
           return storeData.pages[i]
         } else {
-          return null
+          return false
         }
       }
     },

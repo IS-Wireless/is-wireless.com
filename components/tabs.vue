@@ -8,7 +8,7 @@
             ? 'border-blue-main hover:border-blue-main'
             : 'border-transparent hover:border-blue-main-hover/30'
         "
-        v-for="(item, index) in data"
+        v-for="(item, index) in data.tab"
         :key="index"
         @click="setSelectedTab(index)"
       >
@@ -18,7 +18,7 @@
       </li>
     </ul>
     <div class="w-full">
-      <div v-for="(item, index) in data" :key="index">
+      <div class="w-full relative" v-for="(item, index) in data.tab" :key="index">
         <transition name="fade" mode="out-in">
           <div
             v-if="index == selected || !rctvTabletWide.value"
@@ -32,7 +32,7 @@
             >
               {{ item.title }}
             </h4>
-            <div class="content-html mb-10" v-html="item.content"></div>
+            <div class="content-html mb-10 w-full" v-html="item.content"></div>
           </div>
         </transition>
       </div>
@@ -44,10 +44,10 @@
 import { useMediaQuery } from '@vueuse/core'
 import { computed, reactive } from '@vue/composition-api'
 export default {
-  name: 'Tabs',
+  name: 'section_tabs',
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
@@ -91,7 +91,7 @@ export default {
 <style lang="postcss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .fade-enter,
 .fade-leave-to {
@@ -114,14 +114,13 @@ h6,
 li,
 b,
 u,
+div,
 code {
-  @apply text-gray-dark;
+  @apply text-gray-dark font-lato;
 }
-
 .content-html >>> h1 {
   @apply text-4xl tablet:text-[50px] mb-5;
 }
-
 .content-html >>> h2 {
   @apply text-3xl tablet:text-4xl mb-5;
 }
@@ -138,21 +137,19 @@ code {
   @apply text-base tablet:text-lg mb-5;
 }
 .content-html >>> p {
-  @apply text-base inline-block mb-5;
+  @apply text-base inline-block mb-5 w-full;
 }
 
-.content-html >>> ul,
-li {
-  @apply mb-5;
-}
-
-b,
-u {
-  @apply font-lato;
+.content-html >>> li {
+  @apply text-gray-dark;
 }
 
 .content-html >>> ol li {
   @apply list-disc ml-5;
+}
+
+.content-html >>> ul {
+  @apply mb-5;
 }
 
 .content-html >>> hr {
@@ -162,4 +159,9 @@ u {
 .content-html >>> code {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
 }
+
+.content-html >>> img {
+  @apply w-full h-auto;
+}
+
 </style>

@@ -11,7 +11,7 @@
       <div
       v-if="pageData.acf" class="flex">
         <div class=" mb-10"
-        :class="{ 'w-2/3 ': pageData.acf.sidebar}">
+        :class="pageData.acf.sidebar ? 'w-2/3 ':'w-full'">
         <div v-for="component,index in pageData.acf.sections" :key="index">
           <component v-if="component.acf_fc_layout !== 'section_header'" :is="component.acf_fc_layout" :data="component"></component>
         </div>
@@ -30,13 +30,15 @@ import SectionHeader from '~/components/section-header.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 import section_content from '~/components/content-static.vue'
 import section_list_links_alternative from '~/components/more-solutions.vue'
+import section_tabs from '~/components/tabs.vue'
 
 export default {
   components: {
     SectionHeader,
     Breadcrumb,
     section_content,
-    section_list_links_alternative
+    section_list_links_alternative,
+    section_tabs
   },
   data() {
     return {
@@ -116,6 +118,10 @@ code {
 
 .text-page >>> code {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
+}
+
+.text-page >>> img {
+  @apply w-full h-auto;
 }
 
 </style>

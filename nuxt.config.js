@@ -125,7 +125,8 @@ export default {
 
   generate: {
     dir: 'public',
-    exclude: ['/https://www.is-wireless.com/about-us'],
+    //    exclude: ['/https://www.is-wireless.com/about-us'],
+    crawler: false,
   },
   wp: {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,

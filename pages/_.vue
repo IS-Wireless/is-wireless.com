@@ -59,13 +59,13 @@ export default {
     },
     pageData() {
       let storeData = this.$store.getters['general/getData']
+      let pageData = false
       for (let i = 0; i < storeData.pages.length; i++) {
         if (storeData.pages[i].slug == this.currentRouteName) {
-          return storeData.pages[i]
-        } else {
-          return false
+          pageData = storeData.pages[i]
         }
       }
+      return pageData
     },
   },
 }

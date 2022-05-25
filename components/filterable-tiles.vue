@@ -12,9 +12,9 @@
         tablet-small:flex-grow-0
         min-w-[220px]
       "
-      :class="{ hidden: item.category != filterBy && filterBy != 'All' }"
+      :class="{ hidden: item.type != filterBy && filterBy != 'All' }"
     >
-      <nuxt-link
+      <a 
         class="
           group
           rounded-md
@@ -25,14 +25,12 @@
           hover:border-blue-main
           transition
         "
-        to="/"
+        :href="item.link"
+        target="_blank"
       >
         <div class="m-[30px] flex flex-col">
-          <nuxt-picture
-            class="mb-2.5 w-10"
-            :src="item.catIconUrl"
-            :title="item.category"
-          />
+            <svgIcon :class="'w-[50px] h-[50px] mb-2.5 p-1'" :name="item.type"/>
+
           <h2
             class="text-lg tablet:text-2xl transform transition block my-[30px]"
           >
@@ -55,14 +53,19 @@
             {{ item.description }}
           </p>
         </div>
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>
 
 <script>
+import svgIcon from './svg-icon.vue'
+
 export default {
   name: 'FilterableTiles',
+  components:{
+    svgIcon
+  },
   props: {
     tiles: {
       type: Array,

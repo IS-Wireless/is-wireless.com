@@ -20,7 +20,7 @@
 
         </div>
       </div>
-      <div v-else v-html="pageData.content" class="text-page mb-10"></div>
+      <div v-else v-html="pageData.content.rendered" class="text-page mb-10"></div>
     </div>
   </div>
 </template>
@@ -31,6 +31,7 @@ import Breadcrumb from '~/components/breadcrumb.vue'
 import section_content from '~/components/content-static.vue'
 import section_list_links_alternative from '~/components/more-solutions.vue'
 import section_tabs from '~/components/tabs.vue'
+import section_links_list from '~/components/filters.vue'
 
 export default {
   components: {
@@ -38,7 +39,8 @@ export default {
     Breadcrumb,
     section_content,
     section_list_links_alternative,
-    section_tabs
+    section_tabs,
+    section_links_list
   },
   data() {
     return {

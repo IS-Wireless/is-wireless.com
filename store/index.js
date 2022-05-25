@@ -37,15 +37,6 @@ export const actions = {
     return Promise.all([
       new Promise((resolve) => {
         app.$wp
-          .namespace('acf/v2')
-          .options()
-          .then(function (data) {
-            dispatch('general/init', data.acf)
-            resolve()
-          })
-      }),
-      new Promise((resolve) => {
-        app.$wp
           .namespace('wp/v2')
           .menus()
           .then(function (data) {
@@ -95,6 +86,15 @@ export const actions = {
             resolve()
           })
       }),
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('acf/v2')
+          .options()
+          .then(function (data) {
+            dispatch('general/init', {options:data})
+            resolve()
+          })
+      })
     ])
   },
 }

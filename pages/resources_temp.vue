@@ -16,8 +16,7 @@
     </div>
 
     <Filters
-      :filters="resourcesPageData.acf.filters"
-      :posts="resourcesPageData.acf.tiles"
+      :data="resourcesPageData.acf.tiles"
     />
   </div>
 </template>
@@ -37,7 +36,12 @@ export default Vue.extend({
   },
   computed: {
     resourcesPageData() {
-      return this.$store.getters['resources/getData']
+      if (data.use_courses) {
+        return this.$store.getters['resources/getData'].courses
+      }
+      if (data.use_materials) {
+        return this.$store.getters['resources/getData'].materials
+      }
     },
   },
 })

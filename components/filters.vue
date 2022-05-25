@@ -4,9 +4,8 @@
       class="
         w-full
         relative
-        px-[10%]
-        tablet:w-96 tablet:pr-0
-        tablet-wide:pr-[10%] tablet-wide:w-full
+        tablet:w-96
+        tablet-wide:w-full
         mt-10
         flex flex-wrap
         items-center
@@ -128,7 +127,7 @@
         </li>
 
         <li
-          v-for="(item, index) in filters"
+          v-for="(filter, index) in createdFilters"
           :key="index"
           class="
             h-[70px]
@@ -143,13 +142,9 @@
             border-0 border-t border-t-gray-200
             cursor-pointer
           "
-          @click="filterItems(item.category), switchMobileExpand()"
+          @click="filterItems(filter), switchMobileExpand()"
         >
-          <nuxt-picture
-            class="w-12 mx-2"
-            fit="contain"
-            :src="item.iconUrl"
-          />
+          <svgIcon :class="'w-12 mx-2 p-1'" :name="filter"/>
           <span
             class="
               flex-grow
@@ -159,20 +154,21 @@
               justify-center
               text-gray-dark
               transition
+              capitalize
             "
-            :class="{ 'text-blue-main': selectedFilter == item.category }"
-          >{{ item.category }}</span>
+            :class="{ 'text-blue-main': selectedFilter == filter }"
+          >{{ filter }}</span>
         </li>
       </ul>
     </div>
-    <div class="w-4/5 mx-auto mt-14">
+    <div class="w-full mt-14">
       <FilterableTiles
-        :tiles="filteredItems"
+        :tiles="downloadedData"
         :filter-by="selectedFilter"
       />
 
       <div
-        v-if="filteredItems.length > 9"
+        v-if="downloadedData.length > 9"
         class="text-center my-10"
       >
         <button
@@ -200,19 +196,17 @@
 
 <script>
 import FilterableTiles from './filterable-tiles.vue'
+import svgIcon from './svg-icon.vue'
 
 export default {
-  name: 'Filters',
+  name: 'section_links_list',
   components: {
     FilterableTiles,
+    svgIcon
   },
   props: {
-    filters: {
+    data: {
       type: Object,
-      required: true,
-    },
-    posts: {
-      type: Array,
       required: true,
     },
   },
@@ -220,7 +214,25 @@ export default {
     return {
       mobileExpanded: false,
       selectedFilter: 'All',
-      filteredItems: this.posts,
+    }
+  },
+  computed:{
+    downloadedData(){
+      if (this.$props.data.use_courses) {
+        return this.$store.getters['resources/getData'].courses
+      }
+      if (this.$props.data.use_materials) {
+        return this.$store.getters['general/getOptionsData'].materials
+      }
+    },
+    createdFilters(){
+      let filters = []
+      this.downloadedData.forEach((item) => {
+        if (filters.indexOf(item.type) === -1){
+          filters.push(item.type)
+        }
+      })
+      return filters
     }
   },
   methods: {
@@ -232,16 +244,16 @@ export default {
       this.selectedFilter = filter
       if (filter !== 'All') {
         let filteredTiles = []
-        this.posts.filter((item) => {
-          if (item.category.includes(filter)) {
+        this.downloadedData.filter((item) => {
+          if (item.type.includes(filter)) {
             filteredTiles.push(item)
             console.log(item)
           }
         })
-        this.filteredItems = filteredTiles
-      } else this.filteredItems = this.posts
+        this.downloadedData = filteredTiles
+      } else this.downloadedData = this.downloadedData
     },
-  },
+  }
 }
 </script>
 

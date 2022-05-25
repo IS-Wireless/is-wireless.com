@@ -38,6 +38,7 @@
             items-center
             justify-center
             text-gray-dark
+            capitalize
           "
         >{{ selectedFilter }}</span>
         <div
@@ -93,7 +94,7 @@
           tablet-wide:mt-0
           duration-300
           transition-all
-          z-30
+          z-20
         "
         :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
       >

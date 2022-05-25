@@ -1,20 +1,19 @@
 <template>
-  <div class="w-full">
-    <h1
-      v-if="title"
-      class="mb-5 pt-14 tablet-wide:w-4/5 text-2xl tablet:text-3xl"
-    >
-      {{ title }}
-    </h1>
+  <div class="w-full tablet:max-w-[75%]">
+    <span v-if="data.title" class="inline-block text-gray-dark mt-10 ">
+      <SectionHeader :title="data.title" />
+    </span>
+
+    <div v-if="data.content" v-html="data.content"></div>
     <p
-      v-for="item in text"
+      v-for="item in data.text"
       :key="item"
       class="mb-5 tablet-wide:w-3/4 text-justify"
     >
       {{ item }}
     </p>
     <div
-      v-for="(item, index) in image"
+      v-for="(item, index) in data.image"
       :key="index"
       class="
         flex flex-col
@@ -41,23 +40,12 @@
 
 <script>
 export default {
-  name: 'ContentStatic',
+  name: 'section_content',
   props: {
-    title: {
-      type: String,
-      required: false,
-      default: '',
-    },
-    text: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-    image: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
+    data:{
+      type: Object,
+      required: false
+    }
   },
 }
 </script>

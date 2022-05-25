@@ -1,7 +1,7 @@
 <template>
   <ul class="mb-14">
     <li
-      v-for="item in items"
+      v-for="item in data"
       :key="item.text"
       class="group flex items-center my-5"
     >
@@ -28,8 +28,8 @@
 export default {
   name: 'List',
   props: {
-    items: {
-      type: Array,
+    data: {
+      type: Object,
       default: null,
       required: true,
     },

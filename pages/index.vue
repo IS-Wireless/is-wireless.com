@@ -32,7 +32,7 @@
         <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.E2e.text }}
         </p>
-        <List :class="'text-gray-dark'" :items="frontPageData.acf.E2e.list" />
+        <List :class="'text-gray-dark'" :data="frontPageData.acf.E2e.list" />
       </template>
 
       <template #right>
@@ -52,7 +52,7 @@
         <p class="mb-14 text-inherit">
           {{ frontPageData.acf.granularized.text }}
         </p>
-        <List :items="frontPageData.acf.granularized.list" />
+        <List :data="frontPageData.acf.granularized.list" />
       </template>
     </ContentSection>
 
@@ -65,7 +65,7 @@
         <p class="mb-14 text-gray-dark">
           {{ frontPageData.acf.radio.text }}
         </p>
-        <List :class="'text-gray-dark'" :items="frontPageData.acf.radio.list" />
+        <List :class="'text-gray-dark'" :data="frontPageData.acf.radio.list" />
       </template>
 
       <template #right>

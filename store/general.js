@@ -33,7 +33,7 @@ const filterData = (obj) => {
 export const getters = {
     getData: ($state) => {
         return $state
-    }
+    },
 }
 
 export const mutations = {

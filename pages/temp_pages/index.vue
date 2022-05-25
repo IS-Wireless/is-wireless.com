@@ -1,12 +1,24 @@
 <template>
   <div>
+    <template v-if="pageData.acf">
+      <StaticBanner v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
+        :title="pageData.acf.sections[0].title"
+        :background-url="pageData.acf.sections[0].background.url"
+      />
+    </template>
     <Breadcrumb />
-    <div class="w-4/5 mx-auto">
-      <span class="inline-block text-gray-dark mt-14">
-        <SectionHeader :title="currentRouteName" />
-      </span>
-      <div class="text-page mb-10">
-        <!-- <component v-for="component in pageData" :key="component.acf_fc_layout" :is="component.acf_fc_layout"></component> -->
+    <div class="w-4/5 mx-auto py-10">
+      <div
+      v-if="pageData.acf" class="flex">
+        <div class="text-page mb-10"
+        :class="{ 'w-2/3 ': pageData.acf.sidebar}">
+        <div v-for="component,index in pageData.acf.sections" :key="index">
+          <component v-if="component.acf_fc_layout !== 'section_header'" :is="component.acf_fc_layout" :data="component"></component>
+        </div>
+        </div>
+        <div v-if="pageData.acf.sidebar" class="w-1/3">
+
+        </div>
       </div>
     </div>
   </div>
@@ -15,11 +27,13 @@
 <script>
 import SectionHeader from '~/components/section-header.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
+import section_content from '~/components/content-static.vue'
 
 export default {
   components: {
     SectionHeader,
     Breadcrumb,
+    section_content,
   },
   data() {
     return {
@@ -31,6 +45,14 @@ export default {
     currentRouteName() {
       return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
     },
+    pageData(){
+      let storeData = this.$store.getters["general/getData"]
+      for (let i = 0; i < storeData.pages.length; i++) {
+        if (storeData.pages[i].slug == this.currentRouteName) {
+          return storeData.pages[i]
+        }        
+    }
+    }
   },
 }
 </script>
@@ -53,7 +75,7 @@ code {
   @apply text-4xl tablet:text-[50px] mb-5;
 }
 
-.text-page >>> h2 {
+.text-page >>> h2:not(.header) {
   @apply text-3xl tablet:text-4xl mb-5;
 }
 .text-page >>> h3 {
@@ -69,12 +91,12 @@ code {
   @apply text-base tablet:text-lg mb-5;
 }
 .text-page >>> p {
-  @apply text-base inline-block mb-5;
+  @apply text-base inline-block mb-5 w-full;
 }
 
 .text-page >>> ul,
 li {
-  @apply mb-5;
+  @apply font-lato mb-5;
 }
 
 b,
@@ -86,11 +108,16 @@ u {
   @apply list-disc ml-5;
 }
 
-.text-page >>> hr {
+.text-page >>> hr:not(.header) {
   @apply block mx-[10%] mt-5 mb-10;
 }
 
 .text-page >>> code {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
 }
+
+.text-page >>> img {
+  @apply w-full h-auto
+}
+
 </style>

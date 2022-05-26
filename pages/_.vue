@@ -38,6 +38,7 @@ import section_list_links_alternative from '~/components/more-solutions.vue'
 import section_tabs from '~/components/tabs.vue'
 import section_links_list from '~/components/filters.vue'
 import section_grid_links from '~/components/offer-tiles.vue'
+import section_list_links from '~/components/offer-menu.vue'
 
 export default {
   components: {
@@ -48,6 +49,7 @@ export default {
     section_tabs,
     section_links_list,
     section_grid_links,
+    section_list_links,
   },
   data() {
     return {

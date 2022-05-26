@@ -39,6 +39,7 @@ import section_tabs from '~/components/tabs.vue'
 import section_links_list from '~/components/filters.vue'
 import section_grid_links from '~/components/offer-tiles.vue'
 import section_list_links from '~/components/offer-menu.vue'
+import section_cta_background_color from '~/components/cta-funds.vue'
 
 export default {
   components: {
@@ -50,6 +51,7 @@ export default {
     section_links_list,
     section_grid_links,
     section_list_links,
+    section_cta_background_color,
   },
   data() {
     return {

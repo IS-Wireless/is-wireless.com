@@ -45,7 +45,7 @@
               :class="
                 item.object == 'custom'
                   ? 'text-blue-main hover:text-blue-main'
-                  : 'text-inherit hover:text-inherit'
+                  : 'text-white'
               "
               :url="item.url"
               :title="item.title.rendered"
@@ -62,11 +62,11 @@
                 >
                   <div class="menu-sub-col">
                     <CustomLink
-                      class="text-base block uppercase text-white hover:text-blue-main font-bold transition duration-200 mt-7 mb-6"
+                      class="text-base block uppercase font-bold transition duration-200 mt-7 mb-6"
                       :class="
                         subItem.object == 'custom'
                           ? 'text-blue-main hover:text-blue-main'
-                          : 'text-inherit hover:text-inherit'
+                          : 'text-white hover:text-blue-main'
                       "
                       :url="subItem.url"
                       :title="subItem.title.rendered"
@@ -78,11 +78,11 @@
                         :key="subSubItem.id"
                       >
                         <CustomLink
-                          class="py-1.5 block text-sm text-white hover:text-blue-main transition duration-200"
+                          class="py-1.5 block text-sm transition duration-200"
                           :class="
                             subSubItem.object == 'custom'
                               ? 'text-blue-main hover:text-blue-main'
-                              : 'text-inherit hover:text-inherit'
+                              : 'text-white hover:text-blue-main'
                           "
                           :url="subSubItem.url"
                           :title="subSubItem.title.rendered"

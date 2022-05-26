@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full tablet:max-w-[75%] mb-10">
+  <div class="section-content w-full tablet:max-w-[75%] mb-10">
     <span v-if="data.title" class="inline-block text-gray-dark mt-10">
       <SectionHeader :title="data.title" />
     </span>
@@ -75,7 +75,7 @@ code {
   @apply text-base tablet:text-lg mb-5;
 }
 .content-html >>> p {
-  @apply text-base inline-block mb-5 w-full;
+  @apply text-base inline-block mb-5 w-full text-justify;
 }
 
 .content-html >>> li {

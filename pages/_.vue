@@ -9,8 +9,14 @@
     </template>
     <Breadcrumb />
     <div class="w-4/5 mx-auto py-10">
-      <div v-if="pageData.acf" class="flex">
-        <div class="mb-10" :class="pageData.acf.sidebar ? 'w-2/3 ' : 'w-full'">
+      <div
+        v-if="pageData.acf"
+        class="flex flex-col-reverse tablet:flex-row-reverse"
+      >
+        <div
+          class="mb-10"
+          :class="pageData.acf.sidebar ? 'tablet:w-2/3 has-sidebar' : 'w-full'"
+        >
           <div v-for="(component, index) in pageData.acf.sections" :key="index">
             <component
               v-if="component.acf_fc_layout !== 'section_header'"
@@ -19,7 +25,7 @@
             ></component>
           </div>
         </div>
-        <div v-if="pageData.acf.sidebar" class="w-1/3">
+        <div v-if="pageData.acf.sidebar" class="tablet:w-1/3">
           <component
             v-for="(component, index) in pageData.acf.sidebar"
             :key="index"

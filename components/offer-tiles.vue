@@ -5,9 +5,9 @@
       :key="index"
       class="p-[6px] basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 h-full min-w-[220px] aspect-[4/3] max-h-80"
     >
-      <nuxt-link
+      <CustomLink
         class="group rounded-md bg-gray-light flex items-end h-full overflow-hidden"
-        :to="item.link.url"
+        :url="item.link.url"
       >
         <div class="relative mx-6 h-1/2 mb-4">
           <h2
@@ -24,7 +24,7 @@
             <span>{{ item.link.link_title }}</span>
           </div>
         </div>
-      </nuxt-link>
+      </CustomLink>
     </div>
   </div>
 </template>

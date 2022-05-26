@@ -2,9 +2,9 @@
   <div class="w-full">
     <ul class="flex flex-col">
       <li v-for="(item, index) in data.block" :key="index" class="mb-4 group">
-        <nuxt-link
+        <CustomLink
           class="p-7 bg-gray-light flex justify-between items-center rounded-md"
-          :to="item.link.url"
+          :url="item.link.url"
         >
           <p
             class="text-gray-dark group-hover:text-blue-main transition text-xl"
@@ -31,7 +31,7 @@
               />
             </svg>
           </span>
-        </nuxt-link>
+        </CustomLink>
       </li>
     </ul>
   </div>

@@ -29,7 +29,7 @@ export default {
   name: 'List',
   props: {
     data: {
-      type: Object,
+      type: Array,
       default: null,
       required: true,
     },

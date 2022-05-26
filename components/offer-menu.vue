@@ -1,14 +1,10 @@
 <template>
   <div class="w-full">
     <ul class="flex flex-col">
-      <li
-        v-for="(item, index) in data"
-        :key="index"
-        class="mb-4 group"
-      >
+      <li v-for="(item, index) in data.block" :key="index" class="mb-4 group">
         <nuxt-link
           class="p-7 bg-gray-light flex justify-between items-center rounded-md"
-          :to="item.url"
+          :to="item.link.url"
         >
           <p
             class="text-gray-dark group-hover:text-blue-main transition text-xl"
@@ -18,20 +14,14 @@
           <span
             class="hidden tablet-wide:inline-block text-blue-main text-base"
           >
-            Read more
+            {{ item.link.link_title }}
             <svg
               width="12px"
               height="12px"
               viewBox="-2 0 48 48"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              class="
-                stroke-blue-main
-                transition
-                inline-block
-                transform
-                -rotate-90
-              "
+              class="stroke-blue-main transition inline-block transform -rotate-90"
             >
               <path
                 d="M6 18L24 36L42 18"
@@ -49,10 +39,10 @@
 
 <script>
 export default {
-  name: 'OfferMenu',
+  name: 'section_list_links',
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

@@ -1,20 +1,14 @@
 <template>
   <div>
-    <p>Table of Contents</p>
+    <p>{{ data.title }}</p>
     <ul class="flex flex-col">
       <li
-        v-for="item in elements"
-        :key="item.title"
-        class="
-          py-3
-          border-0 border-b border-solid
-          block
-          border-l-gray-light
-          w-4/5
-        "
+        v-for="item in data.links"
+        :key="item.link_title"
+        class="py-3 border-0 border-b border-solid block border-l-gray-light w-4/5"
       >
         <a
-          :href="'#' + item.anchor"
+          :href="'#' + item.link_title"
           class="text-blue-main hover:text-blue-main-hover transition w-full"
         >
           <svg
@@ -23,13 +17,7 @@
             viewBox="-2 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="
-              stroke-blue-main
-              transition
-              inline-block
-              transform
-              -rotate-90
-            "
+            class="stroke-blue-main transition inline-block transform -rotate-90"
           >
             <path
               d="M6 18L24 36L42 18"
@@ -38,7 +26,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          {{ item.title }}
+          {{ item.link_title }}
         </a>
       </li>
     </ul>
@@ -47,10 +35,10 @@
 
 <script>
 export default {
-  name: 'MenuLeft',
+  name: 'sidebar_blocks_links',
   props: {
-    elements: {
-      type: Array,
+    data: {
+      type: Object,
       required: true,
     },
   },

@@ -276,19 +276,20 @@
         </div>
         <ul class="flex flex-col px-7 mt-10">
           <li
-            v-for="(items, index) in sideMenu"
-            :key="items.id"
+            v-for="(item, index) in sideMenu"
+            :key="item.id"
             class="mb-3"
             :class="{
               'tablet-wide:hidden': index < 4,
             }"
           >
-            <nuxt-link
+            <CustomLink
               class="text-xl text-white hover:text-blue-main transition"
-              :to="items.url.slice(27)"
+              :url="item.url"
+              :title="item.title.rendered"
+              :isExternal="item.object == 'custom' ? true : false"
               @click.native="toggleExpanded()"
-              >{{ items.title.rendered }}</nuxt-link
-            >
+            ></CustomLink>
           </li>
         </ul>
       </div>

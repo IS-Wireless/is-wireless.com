@@ -19,7 +19,14 @@
             ></component>
           </div>
         </div>
-        <div v-if="pageData.acf.sidebar" class="w-1/3"></div>
+        <div v-if="pageData.acf.sidebar" class="w-1/3">
+          <component
+            v-for="(component, index) in pageData.acf.sidebar"
+            :key="index"
+            :is="component.acf_fc_layout"
+            :data="component"
+          ></component>
+        </div>
       </div>
       <div
         v-else-if="pageData.content"
@@ -40,6 +47,7 @@ import section_links_list from '~/components/filters.vue'
 import section_grid_links from '~/components/offer-tiles.vue'
 import section_list_links from '~/components/offer-menu.vue'
 import section_cta_background_color from '~/components/cta-funds.vue'
+import sidebar_blocks_links from '~/components/menu-left.vue'
 
 export default {
   components: {
@@ -52,6 +60,7 @@ export default {
     section_grid_links,
     section_list_links,
     section_cta_background_color,
+    sidebar_blocks_links,
   },
   data() {
     return {

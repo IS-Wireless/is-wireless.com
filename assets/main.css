@@ -59,4 +59,8 @@
   picture.img-h-full img {
     @apply h-full;
   }
+
+  .has-sidebar .section-content {
+    @apply max-w-full;
+  }
 }

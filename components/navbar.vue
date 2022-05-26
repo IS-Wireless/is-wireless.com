@@ -45,7 +45,7 @@
               :class="
                 item.object == 'custom'
                   ? 'text-blue-main hover:text-blue-main'
-                  : 'text-inherit hover:text-inherit'
+                  : 'text-white'
               "
               :url="item.url"
               :title="item.title.rendered"
@@ -62,11 +62,11 @@
                 >
                   <div class="menu-sub-col">
                     <CustomLink
-                      class="text-base block uppercase text-white hover:text-blue-main font-bold transition duration-200 mt-7 mb-6"
+                      class="text-base block uppercase font-bold transition duration-200 mt-7 mb-6"
                       :class="
                         subItem.object == 'custom'
                           ? 'text-blue-main hover:text-blue-main'
-                          : 'text-inherit hover:text-inherit'
+                          : 'text-white hover:text-blue-main'
                       "
                       :url="subItem.url"
                       :title="subItem.title.rendered"
@@ -78,11 +78,11 @@
                         :key="subSubItem.id"
                       >
                         <CustomLink
-                          class="py-1.5 block text-sm text-white hover:text-blue-main transition duration-200"
+                          class="py-1.5 block text-sm transition duration-200"
                           :class="
                             subSubItem.object == 'custom'
                               ? 'text-blue-main hover:text-blue-main'
-                              : 'text-inherit hover:text-inherit'
+                              : 'text-white hover:text-blue-main'
                           "
                           :url="subSubItem.url"
                           :title="subSubItem.title.rendered"
@@ -276,19 +276,20 @@
         </div>
         <ul class="flex flex-col px-7 mt-10">
           <li
-            v-for="(items, index) in sideMenu"
-            :key="items.id"
+            v-for="(item, index) in sideMenu"
+            :key="item.id"
             class="mb-3"
             :class="{
               'tablet-wide:hidden': index < 4,
             }"
           >
-            <nuxt-link
+            <CustomLink
               class="text-xl text-white hover:text-blue-main transition"
-              :to="items.url.slice(27)"
+              :url="item.url"
+              :title="item.title.rendered"
+              :isExternal="item.object == 'custom' ? true : false"
               @click.native="toggleExpanded()"
-              >{{ items.title.rendered }}</nuxt-link
-            >
+            ></CustomLink>
           </li>
         </ul>
       </div>

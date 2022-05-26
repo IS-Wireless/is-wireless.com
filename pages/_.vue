@@ -8,13 +8,13 @@
       />
     </template>
     <Breadcrumb />
-    <div class="w-4/5 mx-auto py-10">
+    <div class="tablet:w-4/5 mx-auto py-10">
       <div
         v-if="pageData.acf"
         class="flex flex-col-reverse tablet:flex-row-reverse"
       >
         <div
-          class="mb-10"
+          class="w-4/5 tablet:w-full mx-auto mb-10"
           :class="pageData.acf.sidebar ? 'tablet:w-2/3 has-sidebar' : 'w-full'"
         >
           <div v-for="(component, index) in pageData.acf.sections" :key="index">

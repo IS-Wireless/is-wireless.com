@@ -40,11 +40,13 @@
 
 <script>
 import svgIcon from './svg-icon.vue'
+import CustomLink from './custom-link.vue'
 
 export default {
   name: 'FilterableTiles',
   components: {
     svgIcon,
+    CustomLink,
   },
   props: {
     tiles: {

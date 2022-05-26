@@ -38,8 +38,13 @@
 </template>
 
 <script>
+import CustomLink from './custom-link.vue'
+
 export default {
   name: 'section_list_links',
+  components: {
+    CustomLink,
+  },
   props: {
     data: {
       type: Object,

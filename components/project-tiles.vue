@@ -29,8 +29,13 @@
 </template>
 
 <script>
+import CustomLink from './custom-link.vue'
+
 export default {
   name: 'ProjectTiles',
+  components: {
+    CustomLink,
+  },
   props: {
     data: {
       type: Array,

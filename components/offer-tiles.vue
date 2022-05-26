@@ -30,8 +30,13 @@
 </template>
 
 <script>
+import CustomLink from './custom-link.vue'
+
 export default {
   name: 'section_grid_links',
+  components: {
+    CustomLink,
+  },
   props: {
     data: {
       type: Object,

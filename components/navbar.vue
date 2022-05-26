@@ -48,8 +48,8 @@
                   : 'text-inherit hover:text-inherit'
               "
               :to="item.url.slice(27)"
-              >{{ item.title.rendered }}</nuxt-link
-            >
+              v-html="item.title.rendered"
+            ></nuxt-link>
             <div
               class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#232323] cursor-default"
             >
@@ -63,8 +63,8 @@
                     <nuxt-link
                       class="text-base block uppercase text-white hover:text-blue-main font-bold transition duration-200 mt-7 mb-6"
                       :to="subItem.url.slice(27)"
-                      >{{ subItem.title.rendered }}</nuxt-link
-                    >
+                      v-html="subItem.title.rendered"
+                    ></nuxt-link>
                     <ul class="flex flex-col mb-5">
                       <li
                         v-for="subSubItem in subItem.children"
@@ -73,8 +73,8 @@
                         <nuxt-link
                           class="py-1.5 block text-sm text-white hover:text-blue-main transition duration-200"
                           :to="subSubItem.url.slice(27)"
-                          >{{ subSubItem.title.rendered }}</nuxt-link
-                        >
+                          v-html="subSubItem.title.rendered"
+                        ></nuxt-link>
                       </li>
                     </ul>
                   </div>

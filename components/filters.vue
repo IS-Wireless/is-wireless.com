@@ -61,9 +61,9 @@
       </ul>
     </div>
     <div class="w-full mt-14">
-      <FilterableTiles :tiles="downloadedData" :filter-by="selectedFilter" />
+      <FilterableTiles :tiles="posts" :filter-by="selectedFilter" />
 
-      <div v-if="downloadedData.length > 9" class="text-center my-10">
+      <div v-if="posts.length > 9" class="text-center my-10">
         <button
           href="https://www.is-wireless.com/networks/"
           class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mb-6"
@@ -95,6 +95,7 @@ export default {
     return {
       mobileExpanded: false,
       selectedFilter: 'All',
+      posts: this.getData(),
     }
   },
   computed: {
@@ -114,11 +115,12 @@ export default {
   methods: {
     getData() {
       if (this.$props.data.use_courses) {
-        return this.$store.getters['resources/getData'].courses
+        return this.$store.getters['general/getOptionsData'].collection
       }
       if (this.$props.data.use_materials) {
         return this.$store.getters['general/getOptionsData'].materials
       }
+      return []
     },
 
     switchMobileExpand() {
@@ -132,11 +134,10 @@ export default {
         this.downloadedData.filter((item) => {
           if (item.type.includes(filter)) {
             filteredTiles.push(item)
-            console.log(item)
           }
         })
-        this.downloadedData = filteredTiles
-      } else this.downloadedData = this.getData()
+        this.posts = filteredTiles
+      } else this.posts = this.getData()
     },
   },
 }

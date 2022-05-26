@@ -10,12 +10,14 @@
           :key="index"
           class="breadcrumb-item"
         >
-          <nuxt-link :to="routesComputed[index] + '/'">
-            {{ route }}
+          <nuxt-link
+            :to="routesComputed[index] + '/'"
+            v-html="getTitleBySlug(route)"
+          >
           </nuxt-link>
         </li>
         <li class="text-base text-gray-dark">
-          <p>{{ getTitleBySlug(currentRouteName) }}</p>
+          <p v-html="getTitleBySlug(currentRouteName)"></p>
         </li>
       </ul>
     </div>

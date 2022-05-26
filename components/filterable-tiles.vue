@@ -15,9 +15,16 @@
           <svgIcon :class="'w-[50px] h-[50px] mb-2.5 p-1'" :name="item.type" />
 
           <h2
+            v-if="item.title"
             class="text-lg tablet:text-2xl transform transition block my-[30px]"
           >
             {{ item.title }}
+          </h2>
+          <h2
+            v-if="item.name"
+            class="text-lg tablet:text-2xl transform transition block my-[30px]"
+          >
+            {{ item.name }}
           </h2>
           <span
             class="inline-block mb-2.5 w-10 tablet:w-[75px] h-0.5 tablet:h-1 align-middle rounded-full bg-blue-main"

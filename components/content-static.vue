@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full tablet:max-w-[75%]">
+  <div class="w-full tablet:max-w-[75%] mb-10">
     <span v-if="data.title" class="inline-block text-gray-dark mt-10">
       <SectionHeader :title="data.title" />
     </span>

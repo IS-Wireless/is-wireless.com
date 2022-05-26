@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="w-4/5 mx-auto">
-      <ul class="flex flex-row my-4">
+      <ul class="flex flex-row flex-wrap my-4">
         <li class="breadcrumb-item">
           <nuxt-link to="/"> Home </nuxt-link>
         </li>
@@ -15,7 +15,7 @@
           </nuxt-link>
         </li>
         <li class="text-base text-gray-dark">
-          <p>{{ currentRouteName }}</p>
+          <p>{{ getTitleBySlug(currentRouteName) }}</p>
         </li>
       </ul>
     </div>
@@ -44,6 +44,32 @@ export default {
 
     currentRouteName() {
       return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+    },
+
+    pagesData() {
+      return this.$store.getters['general/getData'].pages
+    },
+
+    postsData() {
+      return this.$store.getters['general/getData'].posts
+    },
+  },
+  methods: {
+    getTitleBySlug(slug) {
+      if (this.routesNames[0] !== 'news') {
+        for (let i = 0; i < this.pagesData.length; i++) {
+          if (this.pagesData[i].slug === slug) {
+            return this.pagesData[i].title.rendered
+          }
+        }
+      } else {
+        for (let i = 0; i < this.postsData.length; i++) {
+          if (this.postsData[i].slug === slug) {
+            return this.postsData[i].title.rendered
+          }
+        }
+      }
+      return slug
     },
   },
 }

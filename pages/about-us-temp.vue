@@ -8,10 +8,11 @@
 
     <div class="w-4/5 mx-auto flex flex-col tablet-wide:flex-row mt-20">
       <div class="tablet-wide:basis-1/4">
-        <MenuLeft :elements="aboutUsPageData.acf.content" />
+        <MenuLeft :data="aboutUsPageData.acf.content" />
       </div>
       <div class="tablet-wide:basis-3/4 tablet-wide:pl-20">
         <Person :data="testPerson" />
+        <div id="Team"></div>
         <Logos :data="testLogos" />
       </div>
     </div>

@@ -3,17 +3,28 @@ import { isEmpty as _isEmpty } from 'lodash'
 const filterWords = ['yoast_head', 'meta', '{}']
 
 export const state = () => ({
-    acf:{
-        banner:{
-            title: 'About Us',
-            bgUrl: 'https://www.is-wireless.com/wp-content/uploads/2021/02/About-us.jpg'
-        },
-        content:[
-          {component:'content-static',anchor: 'what-we-do',title: 'What we do',text: 'IS-Wireless develops software-defined 4G and 5G mobile networks supporting more users with better performance at lower cost by applying cutting edge proprietary technologies. IS-Wireless participates in the Open RAN revolution and expects significant changes in the way networks are built and deployed in the coming years. The company is strongly rooted in R&D on 4G and 5G since its foundation in 2006, mainly through EU-funded collaborative research projects. IS-Wireless is a proud recipient of various local recognitions including Micro-Entrepreneur of the Year and Innovator of Mazovia.'},
-          {component:'content-static',anchor: 'leadership',title: 'Leadership',text: '2IS-Wireless develops software-defined 4G and 5G mobile networks supporting more users with better performance at lower cost by applying cutting edge proprietary technologies. IS-Wireless participates in the Open RAN revolution and expects significant changes in the way networks are built and deployed in the coming years. The company is strongly rooted in R&D on 4G and 5G since its foundation in 2006, mainly through EU-funded collaborative research projects. IS-Wireless is a proud recipient of various local recognitions including Micro-Entrepreneur of the Year and Innovator of Mazovia.'},
-        ]
-        
-    }
+  acf: {
+    banner: {
+      title: 'About Us',
+      bgUrl:
+        'https://www.is-wireless.com/wp-content/uploads/2021/02/About-us.jpg',
+    },
+    content: {
+      acf_fc_layout: 'sidebar_blocks_links',
+      title: 'Table of contents',
+      links: [
+        { link_title: 'What we do' },
+        { link_title: 'Leadership' },
+        { link_title: 'Business development' },
+        { link_title: 'Investor' },
+        { link_title: 'Team' },
+        { link_title: 'Values' },
+        { link_title: 'Inspirations' },
+        { link_title: 'Membership and associations' },
+        { link_title: 'Public funds' },
+      ],
+    },
+  },
 })
 
 const filterData = (obj) => {

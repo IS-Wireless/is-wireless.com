@@ -27,17 +27,18 @@
       </div>
     </div>
     <ul
-      class="flex flex-col items-center tablet:items-start absolute top-[61px] tablet:top-0 left-0 tablet:relative custom-scrollbar w-full tablet:max-w-[175px] bg-gray-light tablet:bg-transparent duration-300 transition-all z-20 tablet:max-h-full overflow-y-scroll"
+      class="flex flex-col items-center tablet:items-start absolute top-[61px] tablet:top-0 left-0 tablet:relative custom-scrollbar w-full tablet:max-w-[250px] tablet:pr-5 bg-gray-light tablet:bg-transparent duration-300 transition-all z-20 tablet:max-h-full overflow-y-scroll"
       :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
     >
       <li
         v-for="item in data.links"
         :key="item.link_title"
-        class="border-0 border-b border-solid block border-l-gray-light w-4/5"
+        class="border-0 border-b border-solid block border-l-gray-light w-4/5 tablet:w-full"
       >
-        <a
-          :href="'#' + item.link_title"
+        <nuxt-link
           class="px-10 py-[18px] tablet:px-0 tablet:py-3 text-basis text-gray-dark tablet:text-blue-main hover:text-blue-main tablet:hover:text-blue-main-hover transition w-full flex"
+          :to="{ hash: item.link_title }"
+          @click.native="switchMobileExpand"
         >
           <svg
             width="12px"
@@ -57,7 +58,7 @@
           <span class="ml-1 text-inherit">
             {{ item.link_title }}
           </span>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </div>

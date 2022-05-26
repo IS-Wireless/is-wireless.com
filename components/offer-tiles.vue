@@ -9,12 +9,14 @@
         class="group rounded-md bg-gray-light flex items-end h-full overflow-hidden"
         :url="item.link.url"
       >
-        <div class="relative mx-6 h-1/2 mb-4">
-          <h2
-            class="text-blue-main text-3xl transform transition duration-300 translate-y-full group-hover:translate-y-0"
-          >
-            {{ item.title }}
-          </h2>
+        <div class="relative mx-6 w-full h-1/2 mb-4">
+          <div class="relative">
+            <h2
+              class="text-blue-main text-3xl absolute left-0 -bottom-10 transform transition duration-300 translate-y-full group-hover:translate-y-0"
+            >
+              {{ item.title }}
+            </h2>
+          </div>
           <div
             class="absolute h-full top-8 left-0 text-blue-main transform transition duration-300 translate-y-full group-hover:translate-y-0"
           >

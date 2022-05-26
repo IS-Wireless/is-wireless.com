@@ -6,10 +6,10 @@
       class="p-[6px] basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
       :class="{ hidden: item.type != filterBy && filterBy != 'All' }"
     >
-      <a
+      <CustomLink
         class="group rounded-md border border-solid border-gray-light flex h-full overflow-hidden hover:border-blue-main transition"
-        :href="item.link"
-        target="_blank"
+        :url="item.link"
+        :isExternal="item.link ? true : false"
       >
         <div class="m-[30px] flex flex-col">
           <svgIcon :class="'w-[50px] h-[50px] mb-2.5 p-1'" :name="item.type" />
@@ -33,18 +33,20 @@
             {{ item.description }}
           </p>
         </div>
-      </a>
+      </CustomLink>
     </div>
   </div>
 </template>
 
 <script>
 import svgIcon from './svg-icon.vue'
+import CustomLink from './custom-link.vue'
 
 export default {
   name: 'FilterableTiles',
   components: {
     svgIcon,
+    CustomLink,
   },
   props: {
     tiles: {

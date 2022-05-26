@@ -40,16 +40,17 @@
             :key="item.id"
             class="navbar-item flex group text-white"
           >
-            <nuxt-link
+            <CustomLink
               class="p-4 flex h-full justify-center items-center text-base overflow-hidden relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition hover:after:-translate-y-1 transition duration-200"
               :class="
                 item.object == 'custom'
                   ? 'text-blue-main hover:text-blue-main'
                   : 'text-inherit hover:text-inherit'
               "
-              :to="item.url.slice(27)"
-              v-html="item.title.rendered"
-            ></nuxt-link>
+              :url="item.url"
+              :title="item.title.rendered"
+              :isExternal="item.object == 'custom' ? true : false"
+            ></CustomLink>
             <div
               class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#232323] cursor-default"
             >
@@ -60,21 +61,35 @@
                   class="basis-1/4 grow-0 flex"
                 >
                   <div class="menu-sub-col">
-                    <nuxt-link
+                    <CustomLink
                       class="text-base block uppercase text-white hover:text-blue-main font-bold transition duration-200 mt-7 mb-6"
-                      :to="subItem.url.slice(27)"
-                      v-html="subItem.title.rendered"
-                    ></nuxt-link>
+                      :class="
+                        subItem.object == 'custom'
+                          ? 'text-blue-main hover:text-blue-main'
+                          : 'text-inherit hover:text-inherit'
+                      "
+                      :url="subItem.url"
+                      :title="subItem.title.rendered"
+                      :isExternal="subItem.object == 'custom' ? true : false"
+                    ></CustomLink>
                     <ul class="flex flex-col mb-5">
                       <li
                         v-for="subSubItem in subItem.children"
                         :key="subSubItem.id"
                       >
-                        <nuxt-link
+                        <CustomLink
                           class="py-1.5 block text-sm text-white hover:text-blue-main transition duration-200"
-                          :to="subSubItem.url.slice(27)"
-                          v-html="subSubItem.title.rendered"
-                        ></nuxt-link>
+                          :class="
+                            subSubItem.object == 'custom'
+                              ? 'text-blue-main hover:text-blue-main'
+                              : 'text-inherit hover:text-inherit'
+                          "
+                          :url="subSubItem.url"
+                          :title="subSubItem.title.rendered"
+                          :isExternal="
+                            subSubItem.object == 'custom' ? true : false
+                          "
+                        ></CustomLink>
                       </li>
                     </ul>
                   </div>
@@ -282,10 +297,15 @@
 </template>
 
 <script>
+import CustomLink from './custom-link.vue'
+
 import { useFocus } from '@vueuse/core'
 import { ref } from '@vue/composition-api'
 export default {
   name: 'Navbar',
+  components: {
+    CustomLink,
+  },
   props: {
     mainMenu: {
       type: Array,

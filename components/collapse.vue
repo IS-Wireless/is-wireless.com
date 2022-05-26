@@ -11,17 +11,7 @@
           viewBox="-7 -20 48 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="
-            absolute
-            bottom-0
-            left-0
-            inline-block
-            stroke-gray-dark
-            group-hover:stroke-blue-main
-            transform
-            transition
-            duration-300
-          "
+          class="absolute bottom-0 left-0 inline-block stroke-gray-dark group-hover:stroke-blue-main transform transition duration-300"
           :class="{ 'rotate-180': !collapsed }"
         >
           <path
@@ -38,17 +28,7 @@
           viewBox="-7 -20 48 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="
-            absolute
-            bottom-0
-            left-0
-            inline-block
-            stroke-gray-dark
-            group-hover:stroke-blue-main
-            transform
-            transition
-            duration-300
-          "
+          class="absolute bottom-0 left-0 inline-block stroke-gray-dark group-hover:stroke-blue-main transform transition duration-300"
           :class="{ 'rotate-90': !collapsed }"
         >
           <path
@@ -60,16 +40,15 @@
         </svg>
       </span>
       <span class="text-2xl tablet:text-3xl ml-4 text-blue-main">
-        {{ title }}
+        {{ data.title }}
       </span>
     </div>
     <div
       ref="contentContainer"
       class="overflow-hidden transition-all duration-300"
       :style="{ height: contentHeight + 'px' }"
-    >
-      <slot />
-    </div>
+      v-html="data.content"
+    ></div>
   </div>
 </template>
 
@@ -77,8 +56,8 @@
 export default {
   name: 'Collapse',
   props: {
-    title: {
-      type: String,
+    data: {
+      type: Object,
       required: true,
     },
   },
@@ -96,7 +75,7 @@ export default {
       if (this.collapsed) {
         this.contentHeight = 0
       } else {
-        this.contentHeight = container.children[0].clientHeight
+        this.contentHeight = container.clientHeight
       }
     },
   },

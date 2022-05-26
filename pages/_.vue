@@ -54,6 +54,7 @@ import section_grid_links from '~/components/offer-tiles.vue'
 import section_list_links from '~/components/offer-menu.vue'
 import section_cta_background_color from '~/components/cta-funds.vue'
 import sidebar_blocks_links from '~/components/menu-left.vue'
+import section_person from '~/components/person.vue'
 
 export default {
   components: {
@@ -67,6 +68,7 @@ export default {
     section_list_links,
     section_cta_background_color,
     sidebar_blocks_links,
+    section_person,
   },
   data() {
     return {

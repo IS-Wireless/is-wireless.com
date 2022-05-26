@@ -35,10 +35,11 @@ export default Vue.extend({
   data() {
     return {
       testPerson: {
-        name: 'Sławomir Pietrzyk',
-        description: '<p>President and CEO</p>',
-        imgUrl:
-          'https://www.is-wireless.com/wp-content/uploads/2021/02/Slawomir-Pietrzyk-1.jpg',
+        person_name: 'Sławomir Pietrzyk',
+        person_description: '<p>President and CEO</p>',
+        person_image: {
+          url: 'https://www.is-wireless.com/wp-content/uploads/2021/02/Slawomir-Pietrzyk-1.jpg',
+        },
       },
       testLogos: {
         0: {

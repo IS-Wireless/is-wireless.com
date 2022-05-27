@@ -139,7 +139,7 @@
           <div class="mx-auto w-4/5 h-full flex overflow-hidden">
             <span class="w-[200px] shrink-0" />
             <form
-              class="flex flex-row h-full grow bg-[#111] transition duration-300 pointer-events-auto"
+              class="flex flex-row h-full grow bg-[#111] transition duration-[400ms] pointer-events-auto"
               action="/search/"
               :class="{ 'translate-x-full': !mainSearch }"
             >
@@ -206,12 +206,12 @@
       :class="{ 'pointer-events-none': !expanded }"
     >
       <div
-        class="w-full transition duration-300"
+        class="w-full transition duration-[400ms]"
         :class="{ 'bg-[#3F3F3F]/70': expanded }"
         @click="toggleExpanded"
       />
       <div
-        class="absolute z-50 top-0 left-full w-full tablet-wide:w-[300px] h-screen bg-[#242424] transform transition duration-300"
+        class="absolute z-50 top-0 left-full w-full tablet-wide:w-[300px] h-screen bg-[#242424] transform transition duration-[400ms]"
         :class="{ '-translate-x-full ': expanded }"
       >
         <div

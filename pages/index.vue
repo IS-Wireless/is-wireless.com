@@ -1,28 +1,21 @@
 <template>
   <div class="flex flex-col">
     <Banner
-      :images="frontPageData.acf.baner_slide[0].baner_images"
-      :logo-url="frontPageData.acf.baner_slide[0].baner_content[0].logo"
+      :images="[homepageData.baner_slide[0]]"
+      :logo-url="homepageData.baner_slide[0].baner_content[0].logo"
       :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
       :buttons="[
         {
-          text: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_first_text,
-          url: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_first_text,
+          text: homepageData.baner_slide[0].baner_content[0].button_second_text,
+          url: homepageData.baner_slide[0].baner_content[0].button_second_url,
         },
         {
-          text: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_second_text,
-          url: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_second_text,
+          text: homepageData.baner_slide[0].baner_content[0].button_second_text,
+          url: homepageData.baner_slide[0].baner_content[0].button_second_url,
         },
       ]"
     />
-    <Organisations
-      :swiper-logos="frontPageData.acf.organisations.swiper_logos"
-      :static-logos="frontPageData.acf.organisations.static_logos"
-    />
+    <Organisations :data="homepageData.sections[0]" />
     <ContentSection>
       <template #left>
         <SectionHeader
@@ -75,21 +68,7 @@
         />
       </template>
     </ContentSection>
-    <CtaJob
-      :title="frontPageData.acf.cta_job.title"
-      :background-url="frontPageData.acf.cta_job.bgUrl"
-    >
-      <template #default>
-        <p class="text-white text-center mb-5">
-          {{ frontPageData.acf.cta_job.text }}
-        </p>
-        <a
-          class="block object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
-          href="https://www.is-wireless.com/networks/"
-          >Explore careers</a
-        >
-      </template>
-    </CtaJob>
+    <CtaJob :data="homepageData.sections[4]" />
   </div>
 </template>
 
@@ -115,6 +94,9 @@ export default Vue.extend({
   computed: {
     frontPageData() {
       return this.$store.getters['homepage/getData']
+    },
+    homepageData() {
+      return this.$store.getters['homepage/getData'].homepageData
     },
   },
 })

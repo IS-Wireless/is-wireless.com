@@ -31,10 +31,7 @@ export default {
   },
   computed: {
     urlFormatted() {
-      let formattedUrl = this.url
-      if (!this.isExternal) {
-        formattedUrl = formattedUrl.replace('https://www.is-wireless.com', '')
-      }
+      let formattedUrl = this.url.replace('https://www.is-wireless.com', '')
       return formattedUrl
     },
   },

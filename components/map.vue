@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'Map',
+  name: 'section_map',
   props: {
     data: {
       type: Object,

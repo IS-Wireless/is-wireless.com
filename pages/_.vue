@@ -61,6 +61,7 @@ import section_cta_background_color from '~/components/cta-funds.vue'
 import sidebar_blocks_links from '~/components/menu-left.vue'
 import section_person from '~/components/person.vue'
 import section_cta_basic from '~/components/cta-basic.vue'
+import section_map from '~/components/map.vue'
 
 export default {
   components: {
@@ -76,6 +77,7 @@ export default {
     sidebar_blocks_links,
     section_person,
     section_cta_basic,
+    section_map,
   },
   data() {
     return {

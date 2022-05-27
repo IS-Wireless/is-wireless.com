@@ -136,7 +136,7 @@ export default {
     },
 
     increaseVisibleMonthsCount() {
-      this.visiblePostsCount += 5
+      this.visibleMonthsCount += 5
       Vue.nextTick(() => {
         this.setFullHeight()
       })

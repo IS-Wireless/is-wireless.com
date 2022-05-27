@@ -26,7 +26,6 @@
       </div>
     </div>
     <Table :data="testTableData" />
-    <ContactSales :data="testContactSales" />
     <Map :data="testMapMarker" />
     <Tabs :data="testTabsData" />
     <!-- <BlogTimeline :data="postsFromGeneral.posts" /> -->
@@ -43,7 +42,6 @@ import Person from '~/components/person.vue'
 import ProjectTiles from '../components/project-tiles.vue'
 import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
-import ContactSales from '~/components/contact-sales.vue'
 import Map from '../components/map.vue'
 import Tabs from '~/components/tabs.vue'
 

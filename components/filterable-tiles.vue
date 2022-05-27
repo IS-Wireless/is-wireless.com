@@ -9,7 +9,7 @@
       <CustomLink
         class="group rounded-md border border-solid border-gray-light flex h-full overflow-hidden hover:border-blue-main transition"
         :url="item.link"
-        :isExternal="item.link ? true : false"
+        :isExternal="isExternal(item.link)"
       >
         <div class="m-[30px] flex flex-col">
           <svgIcon :class="'w-[50px] h-[50px] mb-2.5 p-1'" :name="item.type" />
@@ -57,6 +57,20 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+  },
+  methods: {
+    isExternal(link) {
+      if (!link) {
+        return false
+      }
+      if (
+        link.includes('https://www.is-wireless.com/') &&
+        !link.includes('https://www.is-wireless.com/wp-content/')
+      ) {
+        return false
+      }
+      return true
     },
   },
 }

@@ -30,7 +30,7 @@
           data-month-group
         >
           <template
-            v-if="countPosts(yearIndex, monthIndex) < visiblePostsCount"
+            v-if="countMonths(yearIndex, monthIndex) < visibleMonthsCount"
           >
             <div
               class="w-full text-center hidden tablet-wide:block"
@@ -93,7 +93,7 @@ export default {
   },
   data() {
     return {
-      visiblePostsCount: 10,
+      visibleMonthsCount: 10,
     }
   },
   methods: {
@@ -124,7 +124,7 @@ export default {
       })
     },
 
-    countPosts(yearIdx, monthIdx) {
+    countMonths(yearIdx, monthIdx) {
       let count = 0
       if (yearIdx > 0) {
         for (let i = 0; i < yearIdx; i++) {
@@ -135,7 +135,7 @@ export default {
       return count
     },
 
-    increaseVisiblePostsCount() {
+    increaseVisibleMonthsCount() {
       this.visiblePostsCount += 5
       Vue.nextTick(() => {
         this.setFullHeight()

@@ -45,7 +45,7 @@
               :class="
                 item.object == 'custom'
                   ? 'text-blue-main hover:text-blue-main'
-                  : 'text-white'
+                  : 'text-white hover:text-white'
               "
               :url="item.url"
               :title="item.title.rendered"

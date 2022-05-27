@@ -16,18 +16,21 @@
         <div class="p-5 pb-1">
           <h2
             class="text-xl text-blue-main group-hover:text-blue-main-hover transition"
-          >
-            {{ data.title.rendered }}
-          </h2>
+            v-html="data.title.rendered"
+          ></h2>
         </div>
       </nuxt-link>
       <div class="flex flex-col p-5 pt-0">
-        <div class="pb-5 mb-5 border-b border-solid border-gray-default">
+        <div class="pb-5">
           <span class="text-sm">
             {{ getFormattedDate() }}
           </span>
         </div>
-        <p>{{ data.slug }}</p>
+        <p
+          v-if="data.excerpt.rendered"
+          class="pt-5 border-t border-solid border-gray-default"
+          v-html="data.excerpt.rendered"
+        ></p>
       </div>
     </div>
   </div>

@@ -60,18 +60,7 @@
         </li>
       </ul>
     </div>
-    <div class="w-full mt-14">
-      <FilterableTiles :tiles="posts" :filter-by="selectedFilter" />
-
-      <div v-if="posts.length > 9" class="text-center my-10">
-        <button
-          href="https://www.is-wireless.com/networks/"
-          class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mb-6"
-        >
-          Load More
-        </button>
-      </div>
-    </div>
+    <FilterableTiles :tiles="posts" :filter-by="selectedFilter" />
   </div>
 </template>
 

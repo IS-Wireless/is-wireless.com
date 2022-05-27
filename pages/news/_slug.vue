@@ -54,7 +54,7 @@ export default {
     postsRelated() {
       let data = this.$store.getters['general/getData']
       let postRelatedData = []
-      Object.values(data.posts).forEach((post) => {
+      Object.values(data.posts.slice(0, 10)).forEach((post) => {
         if (
           post.slug !==
           this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]

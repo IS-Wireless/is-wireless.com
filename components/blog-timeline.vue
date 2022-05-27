@@ -60,7 +60,7 @@
       <div class="w-full text-center">
         <button
           class="block w-full text-gray-dark appearance-none mt-20 p-5 bg-gray-light rounded-md my-5 uppercase font-semibold transition hover:bg-gray-default cursor-pointer"
-          @click="increaseVisiblePostsCount()"
+          @click="increaseVisibleMonthsCount()"
         >
           Load more posts
         </button>

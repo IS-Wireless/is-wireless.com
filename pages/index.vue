@@ -15,10 +15,7 @@
         },
       ]"
     />
-    <Organisations
-      :swiper-logos="frontPageData.acf.organisations.swiper_logos"
-      :static-logos="frontPageData.acf.organisations.static_logos"
-    />
+    <Organisations :data="homepageData.sections[0]" />
     <ContentSection>
       <template #left>
         <SectionHeader

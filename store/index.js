@@ -80,6 +80,7 @@ export const actions = {
         app.$wp
           .namespace('wp/v2')
           .posts()
+          .perPage(100)
           .then(function (data) {
             filterData(data)
             dispatch('general/init', { posts: data })

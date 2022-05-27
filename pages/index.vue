@@ -68,21 +68,7 @@
         />
       </template>
     </ContentSection>
-    <CtaJob
-      :title="frontPageData.acf.cta_job.title"
-      :background-url="frontPageData.acf.cta_job.bgUrl"
-    >
-      <template #default>
-        <p class="text-white text-center mb-5">
-          {{ frontPageData.acf.cta_job.text }}
-        </p>
-        <a
-          class="block object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
-          href="https://www.is-wireless.com/networks/"
-          >Explore careers</a
-        >
-      </template>
-    </CtaJob>
+    <CtaJob :data="homepageData.sections[4]" />
   </div>
 </template>
 

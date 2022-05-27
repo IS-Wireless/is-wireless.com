@@ -11,10 +11,9 @@
           class="swiper-slide h-full"
         >
           <nuxt-picture
-            :src="item.imgUrl"
+            :src="item.baner_image"
             width="1920px"
             height="768px"
-            :alt="item.alt"
             :loading="index ? 'lazy' : 'eager'"
           />
         </div>
@@ -42,14 +41,15 @@
           ref="content3"
           class="opacity-0 duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
         >
-          <nuxt-link
+          <CustomLink
+            class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
             v-for="(item, index) in buttons"
             :key="index"
-            class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
-            :to="item.url"
+            :url="item.url"
+            :isExternal="false"
+            :title="item.text"
           >
-            {{ item.text }}
-          </nuxt-link>
+          </CustomLink>
         </div>
       </div>
 
@@ -98,8 +98,12 @@
 </template>
 
 <script>
+import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',
+  components: {
+    CustomLink,
+  },
   props: {
     images: {
       type: Array,
@@ -140,7 +144,6 @@ export default {
         },
         speed: 300,
         loop: true,
-
         keyboard: {
           enabled: true,
           onlyInViewport: true,
@@ -148,7 +151,6 @@ export default {
       },
     }
   },
-
   mounted() {
     const content = [
       this.$refs.content1,
@@ -156,13 +158,13 @@ export default {
       this.$refs.content3,
     ]
 
-    Show(content.length)
+    Show(0)
 
     function Show(i) {
+      content[i].classList.remove('opacity-0')
       setTimeout(() => {
-        content[content.length - i].style.opacity = 1
-        if (i > 1) {
-          i--
+        if (i < content.length - 1) {
+          i++
           Show(i)
         }
       }, 600)

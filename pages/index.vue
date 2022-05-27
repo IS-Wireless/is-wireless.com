@@ -1,21 +1,17 @@
 <template>
   <div class="flex flex-col">
     <Banner
-      :images="frontPageData.acf.baner_slide[0].baner_images"
-      :logo-url="frontPageData.acf.baner_slide[0].baner_content[0].logo"
+      :images="[homepageData.baner_slide[0]]"
+      :logo-url="homepageData.baner_slide[0].baner_content[0].logo"
       :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
       :buttons="[
         {
-          text: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_first_text,
-          url: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_first_text,
+          text: homepageData.baner_slide[0].baner_content[0].button_second_text,
+          url: homepageData.baner_slide[0].baner_content[0].button_second_url,
         },
         {
-          text: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_second_text,
-          url: frontPageData.acf.baner_slide[0].baner_content[0]
-            .button_second_text,
+          text: homepageData.baner_slide[0].baner_content[0].button_second_text,
+          url: homepageData.baner_slide[0].baner_content[0].button_second_url,
         },
       ]"
     />
@@ -115,6 +111,9 @@ export default Vue.extend({
   computed: {
     frontPageData() {
       return this.$store.getters['homepage/getData']
+    },
+    homepageData() {
+      return this.$store.getters['homepage/getData'].homepageData
     },
   },
 })

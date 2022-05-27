@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="blog-post mt-20"
-    v-html="data"
-  />
+  <div class="content-html mt-20" v-html="data" />
 </template>
 
 <script>
@@ -18,15 +15,62 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.blog-post >>> h1,
-.blog-post >>> h2,
-.blog-post >>> h3 {
-  @apply text-2xl tablet:text-3xl;
+.content-html >>> h1,
+.content-html >>> h2,
+.content-html >>> h3,
+.content-html >>> h4,
+.content-html >>> h5,
+.content-html >>> h6,
+.content-html >>> li,
+.content-html >>> b,
+.content-html >>> u,
+.content-html >>> div,
+.content-html >>> code {
+  @apply text-gray-dark font-lato;
 }
-.blog-post >>> h4 {
-  @apply text-xl;
+.content-html >>> h1 {
+  @apply text-4xl tablet:text-[50px] mb-5;
 }
-.blog-post >>> p {
-  @apply text-gray-dark mb-5;
+.content-html >>> h2 {
+  @apply text-3xl tablet:text-4xl mb-5;
+}
+.content-html >>> h3 {
+  @apply text-2xl tablet:text-3xl mb-5;
+}
+.content-html >>> h4 {
+  @apply text-xl tablet:text-2xl mb-5;
+}
+.content-html >>> h5 {
+  @apply text-lg tablet:text-xl mb-5;
+}
+.content-html >>> h6 {
+  @apply text-base tablet:text-lg mb-5;
+}
+.content-html >>> p {
+  @apply text-base inline-block mb-5 w-full text-justify;
+}
+
+.content-html >>> li {
+  @apply text-gray-dark;
+}
+
+.content-html >>> ol li {
+  @apply list-disc ml-5;
+}
+
+.content-html >>> ul {
+  @apply mb-5;
+}
+
+.content-html >>> hr {
+  @apply block mx-[10%] mt-5 mb-10;
+}
+
+.content-html >>> code {
+  @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
+}
+
+.content-html >>> img {
+  @apply w-full h-auto;
 }
 </style>

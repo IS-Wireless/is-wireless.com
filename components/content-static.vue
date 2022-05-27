@@ -44,16 +44,16 @@ export default {
 
 <style lang="postcss" scoped>
 .content-html >>> h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-b,
-u,
-div,
-code {
+.content-html >>> h2,
+.content-html >>> h3,
+.content-html >>> h4,
+.content-html >>> h5,
+.content-html >>> h6,
+.content-html >>> li,
+.content-html >>> b,
+.content-html >>> u,
+.content-html >>> div,
+.content-html >>> code {
   @apply text-gray-dark font-lato;
 }
 .content-html >>> h1 {

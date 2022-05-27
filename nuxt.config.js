@@ -53,7 +53,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
-    { src: '~/plugins/vue-google-maps', mode: 'server' },
+    { src: '~/plugins/vue-google-maps', mode: 'client' },
     { src: '~/plugins/vue-composition-api', mode: 'server' },
   ],
 

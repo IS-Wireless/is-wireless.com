@@ -25,13 +25,18 @@
             ></component>
           </div>
         </div>
-        <div v-if="pageData.acf.sidebar" class="tablet:w-1/3">
-          <component
-            v-for="(component, index) in pageData.acf.sidebar"
-            :key="index"
-            :is="component.acf_fc_layout"
-            :data="component"
-          ></component>
+        <div
+          v-if="pageData.acf.sidebar"
+          class="tablet:w-1/3 sticky top-0 tablet:static"
+        >
+          <div class="sticky tablet:top-8">
+            <component
+              v-for="(component, index) in pageData.acf.sidebar"
+              :key="index"
+              :is="component.acf_fc_layout"
+              :data="component"
+            ></component>
+          </div>
         </div>
       </div>
       <div

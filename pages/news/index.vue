@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     postsGrouped() {
-      // For testing purpose data is stored via 'general'
+      // TODO: move from general
       let data = this.$store.getters['general/getData']
       var months = [
         'January',

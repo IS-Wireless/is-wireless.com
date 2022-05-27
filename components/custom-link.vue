@@ -3,13 +3,12 @@
     <slot></slot>
   </nuxt-link>
   <nuxt-link v-else-if="!isExternal && title" v-html="title" :to="urlFormatted">
-    <slot></slot>
   </nuxt-link>
 
   <a v-else-if="isExternal && !title" :href="url" target="_blank">
     <slot></slot>
   </a>
-  <a v-else :href="url" v-html="title" target="_blank"> <slot></slot> </a>
+  <a v-else :href="url" v-html="title" target="_blank"> </a>
 </template>
 
 <script>

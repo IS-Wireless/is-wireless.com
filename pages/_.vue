@@ -25,13 +25,18 @@
             ></component>
           </div>
         </div>
-        <div v-if="pageData.acf.sidebar" class="tablet:w-1/3">
-          <component
-            v-for="(component, index) in pageData.acf.sidebar"
-            :key="index"
-            :is="component.acf_fc_layout"
-            :data="component"
-          ></component>
+        <div
+          v-if="pageData.acf.sidebar"
+          class="tablet:w-1/3 sticky top-0 tablet:static"
+        >
+          <div class="sticky tablet:top-8">
+            <component
+              v-for="(component, index) in pageData.acf.sidebar"
+              :key="index"
+              :is="component.acf_fc_layout"
+              :data="component"
+            ></component>
+          </div>
         </div>
       </div>
       <div
@@ -55,6 +60,7 @@ import section_list_links from '~/components/offer-menu.vue'
 import section_cta_background_color from '~/components/cta-funds.vue'
 import sidebar_blocks_links from '~/components/menu-left.vue'
 import section_person from '~/components/person.vue'
+import section_cta_basic from '~/components/cta-basic.vue'
 
 export default {
   components: {
@@ -69,6 +75,7 @@ export default {
     section_cta_background_color,
     sidebar_blocks_links,
     section_person,
+    section_cta_basic,
   },
   data() {
     return {

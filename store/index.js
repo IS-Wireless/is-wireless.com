@@ -38,6 +38,17 @@ export const actions = {
       new Promise((resolve) => {
         app.$wp
           .namespace('wp/v2')
+          .pages()
+          .id(2)
+          .then(function (data) {
+            filterData(data)
+            dispatch('homepage/init', { homepageData: data.acf })
+            resolve()
+          })
+      }),
+      new Promise((resolve) => {
+        app.$wp
+          .namespace('wp/v2')
           .menus()
           .then(function (data) {
             filterData(data)
@@ -69,6 +80,7 @@ export const actions = {
         app.$wp
           .namespace('wp/v2')
           .posts()
+          .perPage(100)
           .then(function (data) {
             filterData(data)
             dispatch('general/init', { posts: data })
@@ -91,10 +103,10 @@ export const actions = {
           .namespace('acf/v2')
           .options()
           .then(function (data) {
-            dispatch('general/init', {options:data})
+            dispatch('general/init', { options: data })
             resolve()
           })
-      })
+      }),
     ])
   },
 }

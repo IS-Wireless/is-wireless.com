@@ -18,7 +18,7 @@
                 :imgAttrs="{ class: 'w-full' }"
                 width="300"
                 height="157"
-                src="https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg"
+                :src="post.featured_image_src"
               />
               <h4
                 v-if="post.title"

@@ -11,7 +11,7 @@
           class="img-full"
           width="300"
           height="157"
-          src="https://www.is-wireless.com/wp-content/uploads/2021/12/LinkedIn_1200x627_3-300x157.jpg"
+          :src="data.featured_image_src"
         />
         <div class="p-5 pb-1">
           <h2

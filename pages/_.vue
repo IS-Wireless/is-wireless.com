@@ -42,7 +42,7 @@
       <div
         v-else-if="pageData.content"
         v-html="pageData.content.rendered"
-        class="text-page mb-10"
+        class="text-page mb-10 px-[10%] tablet:px-0"
       ></div>
     </div>
   </div>

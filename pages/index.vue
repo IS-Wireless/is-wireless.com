@@ -1,21 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <Banner
-      :images="[homepageData.baner_slide[0]]"
-      :logo-url="homepageData.baner_slide[0].baner_content[0].logo"
-      :text="frontPageData.acf.baner_slide[0].baner_content[0].text"
-      :buttons="[
-        {
-          text: homepageData.baner_slide[0].baner_content[0].button_second_text,
-          url: homepageData.baner_slide[0].baner_content[0].button_second_url,
-        },
-        {
-          text: homepageData.baner_slide[0].baner_content[0].button_second_text,
-          url: homepageData.baner_slide[0].baner_content[0].button_second_url,
-        },
-      ]"
-    />
-    <Organisations :data="homepageData.sections[0]" />
+    <Banner :data="homepageData.sections[0]" />
+    <Organisations :data="homepageData.sections[1]" />
     <ContentSection>
       <template #left>
         <SectionHeader
@@ -68,7 +54,7 @@
         />
       </template>
     </ContentSection>
-    <CtaJob :data="homepageData.sections[4]" />
+    <CtaJob :data="homepageData.sections[5]" />
   </div>
 </template>
 

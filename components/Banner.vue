@@ -6,12 +6,14 @@
     >
       <div class="swiper-wrapper h-full">
         <div
-          v-for="(item, index) in images"
+          v-for="(item, index) in data.banner"
           :key="index"
           class="swiper-slide h-full"
         >
           <nuxt-picture
-            :src="item.baner_image"
+            :src="item.image.url"
+            :alt="item.image.alt"
+            :title="item.image.title"
             width="1920px"
             height="768px"
             :loading="index ? 'lazy' : 'eager'"
@@ -27,15 +29,16 @@
           width="550"
           height="160"
           class="opacity-0 duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
-          :src="logoUrl"
-          alt="5G logo"
+          :src="data.default.image.url"
+          :alt="data.default.image.alt"
+          :title="data.default.image.title"
         />
         <p
-          v-if="text"
+          v-if="data.default.content"
           ref="content2"
           class="opacity-0 duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10 h-10"
         >
-          {{ text }}
+          {{ data.default.content }}
         </p>
         <div
           ref="content3"
@@ -43,11 +46,11 @@
         >
           <CustomLink
             class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
-            v-for="(item, index) in buttons"
+            v-for="(item, index) in data.default.links"
             :key="index"
-            :url="item.url"
             :isExternal="false"
-            :title="item.text"
+            :url="item.url_link"
+            :title="item.title_link"
           >
           </CustomLink>
         </div>
@@ -105,21 +108,8 @@ export default {
     CustomLink,
   },
   props: {
-    images: {
-      type: Array,
-      required: true,
-    },
-    logoUrl: {
-      type: String,
-      required: true,
-    },
-    text: {
-      type: String,
-      rquired: false,
-      default: ' 4G and 5G Mobile Networks of the Future',
-    },
-    buttons: {
-      type: Array,
+    data: {
+      type: Object,
       required: true,
     },
   },

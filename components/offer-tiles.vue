@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in data.block"
       :key="index"
-      class="p-[6px] basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 h-full min-w-[220px] aspect-[4/3] max-h-80"
+      class="p-[6px] basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px] aspect-[4/3] min-h-[200px] max-h-80"
     >
       <CustomLink
         class="group rounded-md bg-gray-light flex items-end h-full overflow-hidden"
@@ -12,7 +12,7 @@
         <div class="relative mx-6 w-full h-1/2 mb-4">
           <div class="relative">
             <h2
-              class="text-blue-main text-3xl absolute left-0 -bottom-10 transform transition duration-300 translate-y-full group-hover:translate-y-0"
+              class="text-blue-main text-2xl tablet:text-3xl absolute left-0 -bottom-10 transform transition duration-300 translate-y-1/2 tablet:translate-y-full group-hover:translate-y-0"
             >
               {{ item.title }}
             </h2>

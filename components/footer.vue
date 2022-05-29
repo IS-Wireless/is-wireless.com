@@ -11,6 +11,12 @@
             class="block h-auto w-full max-w-[200px]"
             :src="imageUrl"
             :alt="'test alt'"
+            width="200"
+            height="67"
+            :title="item.image.title"
+            :imgAttrs="{
+              loading: 'lazy',
+            }"
           />
         </div>
         <div

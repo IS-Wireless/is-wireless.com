@@ -122,9 +122,6 @@ export default {
       })
     },
   },
-  render: {
-    injectScripts: true,
-  },
   generate: {
     dir: 'public',
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mt-15">
+  <div class="mx-[calc(-12.5%+10px)] tablet:mx-0 tablet:w-full mt-15">
     <div class="w-full mb-32 flex flex-wrap transition-all">
       <template v-for="(item, index) in tiles">
         <div

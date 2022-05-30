@@ -1,0 +1,97 @@
+<template>
+  <div
+    class="relative mb-[60px] mx-[calc(-12.5%+10px)] tablet:mx-0 overflow-hidden flex flex-col h-[780px] max-h-screen border-0 border-b-2 border-solid border-gray-light"
+    :class="
+      !isOverflow && data.head_of_department
+        ? 'rounded-md '
+        : 'rounded-t-md pb-[60px]'
+    "
+  >
+    <div v-if="isOverflow"></div>
+    <nuxt-picture
+      v-if="data.person_image.url"
+      class="flex-shrink-0"
+      :imgAttrs="{ class: 'h-[300px] w-full object-cover' }"
+      :src="data.person_image.url"
+    ></nuxt-picture>
+    <div
+      v-else
+      class="flex flex-shrink-0 justify-center items-center h-[300px] bg-gray-light"
+    >
+      <svg
+        width="175"
+        height="176"
+        viewBox="0 0 175 176"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M154.681 143.327C163.657 132.527 169.9 119.725 172.881 106.003C175.863 92.2805 175.496 78.042 171.811 64.4917C168.125 50.9414 161.231 38.478 151.71 28.1558C142.19 17.8336 130.323 9.95632 117.114 5.19026C103.905 0.424196 89.7428 -1.0904 75.8248 0.774601C61.9067 2.6396 48.6426 7.82933 37.1545 15.9048C25.6664 23.9802 16.2922 34.7038 9.82496 47.1683C3.35774 59.6328 -0.0122662 73.4717 3.35478e-05 87.5141C0.00475338 107.928 7.19844 127.688 20.3188 143.327L20.1938 143.433C20.6313 143.958 21.1313 144.408 21.5813 144.927C22.1438 145.57 22.75 146.177 23.3313 146.802C25.0813 148.702 26.8813 150.527 28.7688 152.239C29.3438 152.764 29.9375 153.252 30.5188 153.752C32.5188 155.477 34.575 157.114 36.7063 158.639C36.9813 158.827 37.2313 159.07 37.5063 159.264V159.189C52.1444 169.49 69.6069 175.019 87.5063 175.019C105.406 175.019 122.868 169.49 137.506 159.189V159.264C137.781 159.07 138.025 158.827 138.306 158.639C140.431 157.108 142.494 155.477 144.494 153.752C145.075 153.252 145.669 152.758 146.244 152.239C148.131 150.52 149.931 148.702 151.681 146.802C152.263 146.177 152.863 145.57 153.431 144.927C153.875 144.408 154.381 143.958 154.819 143.427L154.681 143.327ZM87.5 37.5141C93.0626 37.5141 98.5003 39.1636 103.125 42.254C107.751 45.3444 111.355 49.737 113.484 54.8761C115.613 60.0153 116.17 65.6703 115.085 71.126C113.999 76.5817 111.321 81.5931 107.387 85.5265C103.454 89.4598 98.4427 92.1385 92.987 93.2237C87.5312 94.3089 81.8762 93.7519 76.7371 91.6232C71.5979 89.4945 67.2054 85.8896 64.115 81.2645C61.0245 76.6394 59.375 71.2017 59.375 65.6391C59.375 58.1799 62.3382 51.0262 67.6127 45.7517C72.8871 40.4773 80.0408 37.5141 87.5 37.5141V37.5141ZM37.5438 143.327C37.6522 135.12 40.9872 127.286 46.8273 121.52C52.6673 115.754 60.5429 112.518 68.75 112.514H106.25C114.457 112.518 122.333 115.754 128.173 121.52C134.013 127.286 137.348 135.12 137.456 143.327C123.749 155.679 105.952 162.515 87.5 162.515C69.0484 162.515 51.251 155.679 37.5438 143.327V143.327Z"
+          fill="white"
+        />
+      </svg>
+    </div>
+    <div
+      class="overflow-hidden flex-grow"
+      :class="{ 'bg-gray-light': data.head_of_department }"
+    >
+      <div ref="contentContainer" class="px-[30px] pt-[50px]">
+        <div class="mb-[40px]">
+          <h3 class="text-2xl mb-4" v-html="data.person_name"></h3>
+          <p class="text-blue-main text-lg mb-5" v-html="data.person_title"></p>
+          <div v-if="data.person_linkedin" class="flex">
+            <a
+              class="block h-[30px] w-[30px] p-0.5 bg-[#D4D9DF] hover:bg-[#0077b5] rounded-md transition"
+              :href="data.person_linkedin"
+            >
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.33 21V8.87h3.805V21H3.329zm9.75-7.006V21H9.414V11.66s-.06-2.314-.06-2.724h3.604l.122 1.664c.732-1.168 1.833-2.054 3.3-2.054 2.566 0 4.399 1.945 4.399 5.449V21h-3.667v-6.617c0-1.946-.896-2.724-1.994-2.724-1.1 0-2.038.778-2.038 2.335zM7.614 5.383A2.381 2.381 0 112.85 5.38a2.381 2.381 0 014.763.003z"
+                  fill="rgb(255, 255, 255)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p
+          class="inline-block mb-5 w-full text-justify"
+          v-html="data.person_description"
+        ></p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'RndPerson',
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    isOverflow() {
+      this.checkOverflow()
+    },
+  },
+  methods: {
+    checkOverflow() {
+      const sectionHeight = this.$refs.contentContainer + 300
+      if (sectionHeight >= 780) {
+        return true
+      }
+      return false
+    },
+  },
+}
+</script>
+
+<style></style>

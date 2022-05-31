@@ -1,11 +1,11 @@
 <template>
   <!-- TODO: clean up the conditions -->
   <div
-    class="group relative mb-[60px] mx-[calc(-12.5%+10px)] overflow-hidden tablet:mx-0 flex flex-col border-0 border-b-2 border-solid border-gray-light transition duration-300"
+    class="group relative mb-[60px] tablet:mb-20 mx-[calc(-12.5%+10px)] tablet:mx-0 overflow-hidden flex flex-col tablet:flex-row border-0 border-b-2 border-solid border-gray-light transition duration-300"
     :class="
       !isOverflow && data.head_of_department
-        ? 'rounded-md  '
-        : 'rounded-t-md pb-[60px] ' +
+        ? 'rounded-md bg-gray-light'
+        : 'rounded-t-md pb-[60px] tablet:pb-0 ' +
           (isOverflow
             ? 'border-blue-main tablet:border-gray-light tablet:hover:border-blue-main '
             : '') +
@@ -56,7 +56,7 @@
       class="flex-shrink-0"
       :imgAttrs="{
         class:
-          'h-[300px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
+          'h-[300px] phone-wide:h-[600px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
       }"
       :src="data.person_image.url"
     ></nuxt-picture>
@@ -79,11 +79,15 @@
     </div>
     <div
       ref="descriptionContainer"
-      class="overflow-hidden flex-grow h-[405px] transition-all duration-300"
+      class="overflow-hidden flex-grow h-[405px] tablet:h-[300px] transition-all duration-300"
       :class="{ 'bg-gray-light': data.head_of_department }"
     >
-      <div class="px-[30px] pt-[50px]">
-        <div class="mb-[40px]">
+      <div
+        class="px-[30px] pt-[50px] tablet:pt-5 tablet:flex items-center gap-[50px] full-hd:gap-[100px] desktop:px-[50px] full-hd:px-[100px]"
+      >
+        <div
+          class="mb-[40px] tablet:mb-0 tablet:h-[300px] self-start flex flex-col justify-center shrink-0 desktop:basis-52"
+        >
           <h3 class="text-2xl mb-4" v-html="data.person_name"></h3>
           <p class="text-blue-main text-lg mb-5" v-html="data.person_title"></p>
           <div v-if="data.person_linkedin" class="flex">
@@ -116,6 +120,8 @@
 </template>
 
 <script>
+import { useMediaQuery } from '@vueuse/core'
+
 export default {
   name: 'RndPerson',
   props: {
@@ -129,6 +135,11 @@ export default {
       isOverflow: false,
       collapsed: true,
     }
+  },
+  computed: {
+    isTabletWidth() {
+      return useMediaQuery('(min-width: 768px)').value
+    },
   },
   methods: {
     handleCollapse() {
@@ -149,11 +160,17 @@ export default {
     setFullHeight() {
       const container = this.$refs.descriptionContainer
       const description_full = this.$refs.descriptionContainer.scrollHeight
+      let finalheight = 405
+      let offset = 0
+      if (this.isTabletWidth) {
+        finalheight = 300
+        offset = 30
+      }
       if (this.collapsed) {
-        container.style.height = description_full + 'px'
+        container.style.height = description_full + offset + 'px'
         this.collapsed = false
       } else {
-        container.style.height = 405 + 'px'
+        container.style.height = finalheight + 'px'
         this.collapsed = true
         this.isOverflow = true
       }

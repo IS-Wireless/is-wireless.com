@@ -3,13 +3,10 @@
   <div
     class="group relative mb-[60px] tablet:mb-20 mx-[calc(-12.5%+10px)] tablet:mx-0 overflow-hidden flex flex-col tablet:flex-row border-0 border-b-2 border-solid border-gray-light transition duration-300"
     :class="
-      !isOverflow && data.head_of_department
-        ? 'rounded-md bg-gray-light'
-        : 'rounded-t-md pb-[60px] tablet:pb-0 ' +
-          (isOverflow
-            ? 'border-blue-main tablet:border-gray-light tablet:hover:border-blue-main '
-            : '') +
-          (isOverflow && data.head_of_department ? 'bg-gray-light' : '')
+      isOverflow
+        ? 'rounded-t-md pb-[60px] tablet:pb-0 border-blue-main tablet:border-gray-light tablet:hover:border-blue-main ' +
+          (data.head_of_department ? ' bg-gray-light ' : '')
+        : 'rounded-md ' + (data.head_of_department ? ' bg-gray-light ' : '')
     "
   >
     <div
@@ -145,54 +142,53 @@ export default {
     }
   },
   computed: {
-    isTabletWidth() {
-      return useMediaQuery('(min-width: 768px)').value
+    defaultValues() {
+      let height = 405
+      let offset = 0
+
+      if (useMediaQuery('(min-width: 768px)').value) {
+        height = 300
+        offset = 30
+      }
+      return { height, offset }
     },
   },
   methods: {
     handleCollapse() {
       this.resetHeight()
       this.checkOverflow()
-      // if (!this.collapsed) {
-      //   this.setFullHeight()
-      // }
     },
+
     checkOverflow() {
-      const description_full = this.$refs.descriptionContainer.scrollHeight - 26
+      const description_full = this.$refs.descriptionContainer.scrollHeight - 21
       const description_visible = this.$refs.descriptionContainer.offsetHeight
+
       if (description_full >= description_visible) {
         this.isOverflow = true
       } else {
         this.isOverflow = false
       }
     },
+
     setFullHeight() {
       const container = this.$refs.descriptionContainer
       const description_full = this.$refs.descriptionContainer.scrollHeight
-      let start_height = 405
-      let offset = 0
-      if (this.isTabletWidth) {
-        start_height = 300
-        offset = 30
-      }
+
       if (this.collapsed) {
-        container.style.height = description_full + offset + 'px'
+        container.style.height =
+          description_full + this.defaultValues.offset + 'px'
         this.collapsed = false
       } else {
-        container.style.height = start_height + 'px'
+        container.style.height = this.defaultValues.height + 'px'
         this.collapsed = true
         this.isOverflow = true
       }
     },
+
     resetHeight() {
       const container = this.$refs.descriptionContainer
-      let start_height = 405
-      let offset = 0
-      if (this.isTabletWidth) {
-        start_height = 300
-        offset = 30
-      }
-      container.style.height = start_height + 'px'
+
+      container.style.height = this.defaultValues.height + 'px'
       this.collapsed = true
     },
   },

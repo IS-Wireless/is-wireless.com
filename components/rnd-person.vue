@@ -1,14 +1,15 @@
 <template>
+  <!-- TODO: clean up the conditions -->
   <div
-    ref="contentContainer"
-    class="group relative mb-[60px] mx-[calc(-12.5%+10px)] overflow-hidden tablet:mx-0 flex flex-col h-[780px] border-0 border-b-2 border-solid border-gray-light transition-all duration-300"
+    class="group relative mb-[60px] mx-[calc(-12.5%+10px)] overflow-hidden tablet:mx-0 flex flex-col border-0 border-b-2 border-solid border-gray-light transition duration-300"
     :class="
       !isOverflow && data.head_of_department
-        ? 'rounded-md '
+        ? 'rounded-md  '
         : 'rounded-t-md pb-[60px] ' +
           (isOverflow
-            ? 'border-blue-main tablet:border-gray-light tablet:hover:border-blue-main'
-            : '')
+            ? 'border-blue-main tablet:border-gray-light tablet:hover:border-blue-main '
+            : '') +
+          (isOverflow && data.head_of_department ? 'bg-gray-light' : '')
     "
   >
     <div
@@ -53,12 +54,15 @@
     <nuxt-picture
       v-if="data.person_image.url"
       class="flex-shrink-0"
-      :imgAttrs="{ class: 'h-[300px] w-full object-cover' }"
+      :imgAttrs="{
+        class:
+          'h-[300px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
+      }"
       :src="data.person_image.url"
     ></nuxt-picture>
     <div
       v-else
-      class="flex flex-shrink-0 justify-center items-center h-[300px] bg-gray-light"
+      class="flex flex-shrink-0 justify-center items-center h-[300px] tablet:h-[350px] w-full tablet:w-[300px] bg-gray-light"
     >
       <svg
         width="175"
@@ -75,7 +79,7 @@
     </div>
     <div
       ref="descriptionContainer"
-      class="overflow-hidden flex-grow"
+      class="overflow-hidden flex-grow h-[405px] transition-all duration-300"
       :class="{ 'bg-gray-light': data.head_of_department }"
     >
       <div class="px-[30px] pt-[50px]">
@@ -134,22 +138,22 @@ export default {
       }
     },
     checkOverflow() {
-      const description_full = this.$refs.descriptionContainer.scrollHeight - 14
+      const description_full = this.$refs.descriptionContainer.scrollHeight - 42
       const description_visible = this.$refs.descriptionContainer.offsetHeight
-      if (description_full > description_visible) {
+      if (description_full >= description_visible) {
         this.isOverflow = true
       } else {
         this.isOverflow = false
       }
     },
     setFullHeight() {
-      const container = this.$refs.contentContainer
-      const description_full = this.$refs.descriptionContainer.scrollHeight + 50
+      const container = this.$refs.descriptionContainer
+      const description_full = this.$refs.descriptionContainer.scrollHeight
       if (this.collapsed) {
-        container.style.height = description_full + 300 + 'px'
+        container.style.height = description_full + 'px'
         this.collapsed = false
       } else {
-        container.style.height = 780 + 'px'
+        container.style.height = 405 + 'px'
         this.collapsed = true
         this.isOverflow = true
       }

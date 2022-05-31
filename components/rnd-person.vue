@@ -14,7 +14,7 @@
   >
     <div
       v-if="isOverflow"
-      class="absolute cursor-pointer bottom-0 right-[30px] w-11 h-11 flex justify-center items-center rounded-t-md bg-blue-main tablet:bg-gray-light tablet:group-hover:bg-blue-main transition duration-300"
+      class="absolute cursor-pointer bottom-0 right-[30px] w-11 h-11 flex justify-center items-center rounded-t-md bg-blue-main tablet:bg-gray-light tablet:group-hover:bg-blue-main z-20 transition duration-300"
       @click="setFullHeight"
     >
       <svg
@@ -79,16 +79,24 @@
     </div>
     <div
       ref="descriptionContainer"
-      class="overflow-hidden flex-grow h-[405px] tablet:h-[300px] transition-all duration-300"
+      class="relative overflow-hidden flex-grow h-[405px] tablet:h-[300px] transition-all duration-300"
       :class="{ 'bg-gray-light': data.head_of_department }"
     >
       <div
-        class="px-[30px] pt-[50px] tablet:pt-5 tablet:flex items-center gap-[50px] full-hd:gap-[100px] desktop:px-[50px] full-hd:px-[100px]"
+        class="absolute bottom-0 left-0 h-10 w-full z-10 pointer-events-none transition duration-300 transform origin-bottom scale-y-0 bg-gradient-to-t to-transparent"
+        :class="data.head_of_department ? 'from-gray-light' : 'from-white'"
+        :style="isOverflow && collapsed ? 'transform:scaleY(1)' : ''"
+      ></div>
+      <div
+        class="px-[30px] pt-[50px] tablet:pt-5 tablet:flex flex-col desktop:flex-row items-center tablet:gap-5 desktop:gap-[50px] full-hd:gap-[100px] desktop:px-[50px] full-hd:px-[100px]"
       >
         <div
-          class="mb-[40px] tablet:mb-0 tablet:h-[300px] self-start flex flex-col justify-center shrink-0 desktop:basis-52"
+          class="mb-[40px] tablet:mb-0 desktop:h-[300px] self-start flex flex-col justify-center shrink-0 desktop:basis-52"
         >
-          <h3 class="text-2xl mb-4" v-html="data.person_name"></h3>
+          <h3
+            class="text-2xl mb-2 tablet:mb-0 desktop:mb-1"
+            v-html="data.person_name"
+          ></h3>
           <p class="text-blue-main text-lg mb-5" v-html="data.person_title"></p>
           <div v-if="data.person_linkedin" class="flex">
             <a
@@ -143,13 +151,14 @@ export default {
   },
   methods: {
     handleCollapse() {
+      this.resetHeight()
       this.checkOverflow()
-      if (!this.collapsed) {
-        this.setFullHeight()
-      }
+      // if (!this.collapsed) {
+      //   this.setFullHeight()
+      // }
     },
     checkOverflow() {
-      const description_full = this.$refs.descriptionContainer.scrollHeight - 42
+      const description_full = this.$refs.descriptionContainer.scrollHeight - 26
       const description_visible = this.$refs.descriptionContainer.offsetHeight
       if (description_full >= description_visible) {
         this.isOverflow = true
@@ -160,20 +169,31 @@ export default {
     setFullHeight() {
       const container = this.$refs.descriptionContainer
       const description_full = this.$refs.descriptionContainer.scrollHeight
-      let finalheight = 405
+      let start_height = 405
       let offset = 0
       if (this.isTabletWidth) {
-        finalheight = 300
+        start_height = 300
         offset = 30
       }
       if (this.collapsed) {
         container.style.height = description_full + offset + 'px'
         this.collapsed = false
       } else {
-        container.style.height = finalheight + 'px'
+        container.style.height = start_height + 'px'
         this.collapsed = true
         this.isOverflow = true
       }
+    },
+    resetHeight() {
+      const container = this.$refs.descriptionContainer
+      let start_height = 405
+      let offset = 0
+      if (this.isTabletWidth) {
+        start_height = 300
+        offset = 30
+      }
+      container.style.height = start_height + 'px'
+      this.collapsed = true
     },
   },
   mounted() {

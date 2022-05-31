@@ -134,7 +134,7 @@ export default {
       }
     },
     checkOverflow() {
-      const description_full = this.$refs.descriptionContainer.scrollHeight - 16
+      const description_full = this.$refs.descriptionContainer.scrollHeight - 14
       const description_visible = this.$refs.descriptionContainer.offsetHeight
       if (description_full > description_visible) {
         this.isOverflow = true

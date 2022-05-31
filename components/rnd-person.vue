@@ -1,13 +1,55 @@
 <template>
   <div
-    class="relative mb-[60px] mx-[calc(-12.5%+10px)] tablet:mx-0 overflow-hidden flex flex-col h-[780px] max-h-screen border-0 border-b-2 border-solid border-gray-light"
+    ref="contentContainer"
+    class="group relative mb-[60px] mx-[calc(-12.5%+10px)] overflow-hidden tablet:mx-0 flex flex-col h-[780px] border-0 border-b-2 border-solid border-gray-light transition-all duration-300"
     :class="
       !isOverflow && data.head_of_department
         ? 'rounded-md '
-        : 'rounded-t-md pb-[60px]'
+        : 'rounded-t-md pb-[60px] ' +
+          (isOverflow
+            ? 'border-blue-main tablet:border-gray-light tablet:hover:border-blue-main'
+            : '')
     "
   >
-    <div v-if="isOverflow"></div>
+    <div
+      v-if="isOverflow"
+      class="absolute cursor-pointer bottom-0 right-[30px] w-11 h-11 flex justify-center items-center rounded-t-md bg-blue-main tablet:bg-gray-light tablet:group-hover:bg-blue-main transition duration-300"
+      @click="setFullHeight"
+    >
+      <svg
+        width="20px"
+        height="20px"
+        viewBox="-7 -20 48 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="absolute inline-block stroke-white tablet:stroke-gray-default tablet:group-hover:stroke-white transform transition duration-300"
+        :class="{ 'rotate-180': !collapsed }"
+      >
+        <path
+          d="M 0 0 L 34 0"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
+      <svg
+        width="20px"
+        height="20px"
+        viewBox="-7 -20 48 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="absolute inline-block stroke-white tablet:stroke-gray-default tablet:group-hover:stroke-white transform transition duration-300"
+        :class="{ 'rotate-90': !collapsed }"
+      >
+        <path
+          d="M 17 -17 L 17 17"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
     <nuxt-picture
       v-if="data.person_image.url"
       class="flex-shrink-0"
@@ -32,10 +74,11 @@
       </svg>
     </div>
     <div
+      ref="descriptionContainer"
       class="overflow-hidden flex-grow"
       :class="{ 'bg-gray-light': data.head_of_department }"
     >
-      <div ref="contentContainer" class="px-[30px] pt-[50px]">
+      <div class="px-[30px] pt-[50px]">
         <div class="mb-[40px]">
           <h3 class="text-2xl mb-4" v-html="data.person_name"></h3>
           <p class="text-blue-main text-lg mb-5" v-html="data.person_title"></p>
@@ -77,19 +120,47 @@ export default {
       required: true,
     },
   },
-  computed: {
-    isOverflow() {
-      this.checkOverflow()
-    },
+  data() {
+    return {
+      isOverflow: false,
+      collapsed: true,
+    }
   },
   methods: {
-    checkOverflow() {
-      const sectionHeight = this.$refs.contentContainer + 300
-      if (sectionHeight >= 780) {
-        return true
+    handleCollapse() {
+      this.checkOverflow()
+      if (!this.collapsed) {
+        this.setFullHeight()
       }
-      return false
     },
+    checkOverflow() {
+      const description_full = this.$refs.descriptionContainer.scrollHeight - 16
+      const description_visible = this.$refs.descriptionContainer.offsetHeight
+      if (description_full > description_visible) {
+        this.isOverflow = true
+      } else {
+        this.isOverflow = false
+      }
+    },
+    setFullHeight() {
+      const container = this.$refs.contentContainer
+      const description_full = this.$refs.descriptionContainer.scrollHeight + 50
+      if (this.collapsed) {
+        container.style.height = description_full + 300 + 'px'
+        this.collapsed = false
+      } else {
+        container.style.height = 780 + 'px'
+        this.collapsed = true
+        this.isOverflow = true
+      }
+    },
+  },
+  mounted() {
+    this.checkOverflow()
+    window.addEventListener('resize', this.handleCollapse)
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.handleCollapse)
   },
 }
 </script>

@@ -4,7 +4,9 @@
       class="w-full bg-black z-30"
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
-      <div class="mx-auto w-4/5 flex justify-between">
+      <div
+        class="mx-auto w-4/5 flex justify-between h-[90px] tablet-wide:h-auto"
+      >
         <nuxt-link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +15,7 @@
             clip-rule="evenodd"
             stroke-linejoin="round"
             stroke-miterlimit="2"
-            class="block h-full py-4"
+            class="block h-full py-4 w-36 tablet-wide:w-auto"
             width="180px"
           >
             <g fill="#fff">
@@ -104,7 +106,7 @@
           </ul>
           <ul class="h-full flex items-center overflow-hidden">
             <li
-              class="navbar-item z-50 tablet-wide:z-20 flex p-4 justify-center items-center h-full text-base text-inherit hover:text-inherit relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition tablet:hover:after:-translate-y-1"
+              class="navbar-item z-50 tablet-wide:z-0 flex p-4 justify-center items-center h-full text-base text-inherit hover:text-inherit relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition tablet:hover:after:-translate-y-1"
               @click="toggleExpanded"
               :class="{ 'btn-active': expanded }"
             >
@@ -146,7 +148,7 @@
             <div class="mx-auto w-4/5 h-full flex overflow-hidden">
               <span class="w-[200px] shrink-0" />
               <form
-                class="flex flex-row h-full grow bg-[#111] transition duration-[400ms] pointer-events-auto"
+                class="flex flex-row h-full grow bg-gray-darkest transition duration-[400ms] pointer-events-auto"
                 action="/search/"
                 :class="{ 'translate-x-full': !mainSearch }"
               >
@@ -171,7 +173,7 @@
                   type="text"
                   name="q"
                   placeholder="Search here..."
-                  class="w-full px-5 bg-[#111] text-base text-white focus-visible:outline-none"
+                  class="w-full px-5 bg-gray-darkest text-base text-white focus-visible:outline-none"
                 />
                 <div
                   class="px-5 h-full flex justify-center items-center cursor-pointer text-white hover:text-white/70"
@@ -209,7 +211,7 @@
         </div>
       </div>
       <div
-        class="fixed flex z-40 top-[93px] tablet-wide:top-0 left-0 w-full bottom-0 h-full overflow-hidden"
+        class="fixed flex z-40 top-[90px] tablet-wide:top-0 left-0 w-full bottom-0 overflow-hidden"
         :class="{ 'pointer-events-none': !expanded }"
       >
         <div
@@ -218,7 +220,7 @@
           @click="toggleExpanded"
         />
         <div
-          class="absolute z-50 top-0 left-full w-full tablet-wide:w-[300px] h-full bg-[#111111] transform transition duration-[400ms]"
+          class="absolute flex flex-col z-50 top-0 left-full w-full tablet-wide:w-[300px] h-full bg-gray-darkest transform transition duration-[400ms]"
           :class="{ '-translate-x-full ': expanded }"
         >
           <div
@@ -251,25 +253,25 @@
               />
             </svg>
           </div>
-          <div class="px-7 tablet-wide:hidden">
+          <div class="tablet-wide:hidden">
             <form
-              class="mt-10 flex w-full border border-solid border-white focus-visible:outline-none"
+              class="flex items-center w- h-[70px] pl-14 pr-7 focus-visible:outline-none"
               action="/search/"
             >
               <input
                 type="search"
                 name="q"
                 placeholder="Search..."
-                class="px-5 grow bg-[#A7A7A7]/30 text-white focus-visible:outline-none focus:outline-none font-lato appearance-none"
+                class="grow h-full text-white bg-gray-darkest focus-visible:outline-none placeholder:text-[#BFBFBF] placeholder:italic focus:outline-none font-lato appearance-none"
               />
               <button
                 type="submit"
-                class="flex items-center justify-center w-[50px] h-[48px] bg-white text-[#555] hover:text-blue-main"
+                class="flex items-center justify-center w-[50px] h-[48px] text-[#BFBFBF] hover:text-blue-main"
               >
                 <svg
                   class="fill-current transition"
-                  width="18"
-                  height="18"
+                  width="26"
+                  height="26"
                   viewBox="0 0 25 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -281,28 +283,95 @@
               </button>
             </form>
           </div>
-          <ul class="flex flex-col px-7 mt-10">
-            <li
-              v-for="(item, index) in sideMenu"
-              :key="item.id"
-              class="mb-3"
-              :class="{
-                'tablet-wide:hidden': index < 4,
-              }"
-            >
-              <CustomLink
-                class="text-xl text-white hover:text-blue-main transition"
-                :url="item.url"
-                :title="item.title.rendered"
-                :isExternal="item.object == 'custom' ? true : false"
-                @click.native="toggleExpanded()"
-              ></CustomLink>
-            </li>
-          </ul>
+          <div class="grow flex flex-col justify-between">
+            <ul class="flex flex-col">
+              <li v-for="item in sideMenu" :key="item.id">
+                <CustomLink
+                  class="hover:text-blue-main transition pl-14 pr-7 block"
+                  :class="
+                    checkMain(item.url)
+                      ? 'tablet-wide:hidden text-xl text-white py-6 border-0 border-b border-solid border-gray-darkest bg-black'
+                      : ' text-[#BFBFBF] text-base py-[2px] mt-[14px]'
+                  "
+                  :url="item.url"
+                  :title="item.title.rendered"
+                  :isExternal="item.object == 'custom' ? true : false"
+                  @click.native="toggleExpanded()"
+                ></CustomLink>
+              </li>
+            </ul>
+            <div class="w-full pl-14 pr-7 pb-6 pt-3">
+              <ul class="flex">
+                <li
+                  class="flex-0 mr-[30px]"
+                  v-for="item in socials"
+                  :key="item.type"
+                >
+                  <a
+                    :href="item.link"
+                    class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md bg-[#BFBFBF]"
+                  >
+                    <svg
+                      v-if="item.type === 'facebook'"
+                      width="28"
+                      height="40"
+                      viewBox="-1 -16 26 65"
+                      fill="#111"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7.71094 26.4011V44.2499H16.793V26.4011H23.5641L24.8531 17.9999H16.793V12.5448C16.793 10.2468 17.9191 8.00615 21.5297 8.00615H25.1941V0.857716C25.1941 0.857716 21.8684 0.290527 18.6879 0.290527C12.0469 0.290527 7.71094 4.31357 7.71094 11.5968V17.9999H0.328125V26.4011H7.71094Z"
+                        fill="#111"
+                      />
+                    </svg>
+                    <svg
+                      v-if="item.type === 'twitter'"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M19.963 7.953v.53c0 5.419-4.12 11.669-11.667 11.669-2.314 0-4.493-.508-6.296-1.667.322.046.646.07.97.07 1.924 0 3.706-.833 5.096-1.945a4.085 4.085 0 01-3.821-2.847 4.267 4.267 0 001.851-.07 4.1 4.1 0 01-3.287-4.027v-.047c.556.3 1.18.485 1.851.51a4.085 4.085 0 01-1.828-3.404c0-.763.208-1.39.557-1.991 2.038 2.477 5.046 4.03 8.448 4.213a4.258 4.258 0 01-.09-.95A4.09 4.09 0 0115.841 3.9c1.182 0 2.245.51 3.011 1.297a8.352 8.352 0 002.592-.995c-.3.949-.95 1.76-1.807 2.27A8.103 8.103 0 0022 5.821a8.502 8.502 0 01-2.037 2.13"
+                        fill="#111"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                    <svg
+                      v-if="item.type === 'linkedin'"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.33 21V8.87h3.805V21H3.329zm9.75-7.006V21H9.414V11.66s-.06-2.314-.06-2.724h3.604l.122 1.664c.732-1.168 1.833-2.054 3.3-2.054 2.566 0 4.399 1.945 4.399 5.449V21h-3.667v-6.617c0-1.946-.896-2.724-1.994-2.724-1.1 0-2.038.778-2.038 2.335zM7.614 5.383A2.381 2.381 0 112.85 5.38a2.381 2.381 0 014.763.003z"
+                        fill="#111"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                    <svg
+                      v-if="item.type === 'mail'"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 60 60"
+                      fill="#111"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M55 15C55 12.25 52.75 10 50 10H10C7.25 10 5 12.25 5 15V45C5 47.75 7.25 50 10 50H50C52.75 50 55 47.75 55 45V15ZM50 15L30 27.5L10 15H50ZM50 45H10V20L30 32.5L50 20V45Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
-    <div v-if="expanded" class="h-[93px] tablet-wide:hidden"></div>
+    <div v-if="expanded" class="h-[90px] tablet-wide:hidden"></div>
   </div>
 </template>
 
@@ -324,6 +393,13 @@ export default {
     sideMenu: {
       type: Array,
       required: true,
+    },
+    socials: {
+      type: Array,
+      default: [
+        { type: 'linkedin', link: '/' },
+        { type: 'twitter', link: '/' },
+      ],
     },
   },
   data() {
@@ -354,6 +430,12 @@ export default {
       } else {
         this.focused = false
       }
+    },
+
+    checkMain(url) {
+      return this.mainMenu.some((item) => {
+        return item.url === url
+      })
     },
   },
 }

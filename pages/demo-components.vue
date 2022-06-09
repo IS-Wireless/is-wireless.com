@@ -56,7 +56,7 @@ export default {
     ProjectTiles,
     Sidebar,
     Table,
-    ContactSales,
+    // ContactSales,
     Map,
     Tabs,
   },

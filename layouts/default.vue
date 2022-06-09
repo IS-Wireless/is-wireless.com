@@ -1,6 +1,13 @@
 <template>
   <div>
-    <Navbar :main-menu="topMenuData" :side-menu="sideMenuData" />
+    <Navbar
+      :main-menu="topMenuData"
+      :side-menu="sideMenuData"
+      :socials="[
+        { type: 'linkedin', link: '/' },
+        { type: 'twitter', link: '/' },
+      ]"
+    />
     <Nuxt />
     <Footer
       :image-url="footerData.image"

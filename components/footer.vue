@@ -8,13 +8,13 @@
           class="w-full phablet:w-1/2 tablet:w-1/3 flex-initial flex mb-12 justify-center phablet:justify-start tablet:pr-12 dekstop:pr-0 items-center"
         >
           <nuxt-picture
-            v-if="item && item.image"
+            v-if="imageUrl"
             class="block h-auto w-full max-w-[200px]"
             :src="imageUrl"
             :alt="'test alt'"
             width="200"
             height="67"
-            :title="item.image.title"
+            :title="'is-wireless logo'"
             :imgAttrs="{
               loading: 'lazy',
             }"

@@ -300,7 +300,7 @@
                 ></CustomLink>
               </li>
             </ul>
-            <div class="w-full pl-14 pr-7 pb-6 pt-3">
+            <div v-if="socials" class="w-full pl-14 pr-7 pb-6 pt-3">
               <ul class="flex">
                 <li
                   class="flex-0 mr-[30px]"
@@ -396,10 +396,7 @@ export default {
     },
     socials: {
       type: Array,
-      default: [
-        { type: 'linkedin', link: '/' },
-        { type: 'twitter', link: '/' },
-      ],
+      required: false,
     },
   },
   data() {

@@ -56,7 +56,7 @@
                 :isExternal="item.object == 'custom' ? true : false"
               ></CustomLink>
               <div
-                class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#232323] cursor-default"
+                class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#111] cursor-default"
               >
                 <ul class="w-4/5 mx-auto flex">
                   <li

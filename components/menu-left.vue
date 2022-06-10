@@ -4,7 +4,6 @@
       class="w-full flex bg-gray-light tablet:bg-transparent cursor-pointer tablet:cursor-default mb-10 tablet:mb-0"
       @click="switchMobileExpand"
     >
-      <p class="hidden tablet:block">{{ data.title }}</p>
       <div class="tablet:hidden p-[18px] flex justify-between w-full">
         <span class="text-base ml-7">Select section:</span>
         <div
@@ -27,35 +26,20 @@
       </div>
     </div>
     <ul
-      class="flex flex-col items-center tablet:items-start absolute top-[61px] tablet:top-0 left-0 tablet:relative custom-scrollbar w-full tablet:max-w-[250px] tablet:pr-5 bg-gray-light tablet:bg-transparent duration-300 transition-all z-20 tablet:max-h-full overflow-y-scroll"
+      class="flex flex-col items-center tablet:items-start absolute top-[61px] tablet:top-0 left-0 tablet:relative custom-scrollbar w-full tablet:max-w-[350px] tablet:pr-5 bg-gray-light tablet:bg-transparent duration-300 transition-all z-20 tablet:max-h-full overflow-y-scroll"
       :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
     >
       <li
         v-for="item in data.links"
         :key="item.link_title"
-        class="border-0 border-b border-solid block border-l-gray-light w-4/5 tablet:w-full"
+        class="block w-4/5 tablet:w-full"
       >
         <nuxt-link
-          class="px-10 py-[18px] tablet:px-0 tablet:py-3 text-basis text-gray-dark tablet:text-blue-main hover:text-blue-main tablet:hover:text-blue-main-hover transition w-full flex"
+          class="menu-left-text px-10 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main transition w-full border-0 border-b border-solid border-l-gray-light"
           :to="{ hash: item.link_title }"
           @click.native="switchMobileExpand"
         >
-          <svg
-            width="12px"
-            height="12px"
-            viewBox="-2 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="stroke-blue-main transition hidden tablet:block transform -rotate-90 flex-shrink-0 mt-[7px]"
-          >
-            <path
-              d="M6 18L24 36L42 18"
-              stroke-width="6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          <span class="ml-1 text-inherit">
+          <span class="ml-[30px] text-inherit">
             {{ item.link_title }}
           </span>
         </nuxt-link>
@@ -86,4 +70,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.menu-left-text.nuxt-link-active {
+  @apply tablet:border-b-4 tablet:border-blue-main;
+}
+</style>

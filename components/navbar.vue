@@ -4,9 +4,7 @@
       class="w-full bg-black z-30"
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
-      <div
-        class="mx-auto w-4/5 flex justify-between h-[90px] tablet-wide:h-auto"
-      >
+      <div class="mx-auto w-4/5 flex justify-between h-[90px]">
         <nuxt-link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -216,42 +214,46 @@
       >
         <div
           class="w-full transition duration-[400ms]"
-          :class="{ 'bg-[#3F3F3F]/70': expanded }"
+          :class="{ 'bg-black/50': expanded }"
           @click="toggleExpanded"
         />
         <div
-          class="absolute flex flex-col z-50 top-0 left-full w-full tablet-wide:w-[300px] h-full bg-gray-darkest transform transition duration-[400ms]"
+          class="absolute flex flex-col z-50 top-0 left-full w-full tablet-wide:w-[375px] h-full bg-gray-darkest transform transition duration-[400ms]"
           :class="{ '-translate-x-full ': expanded }"
         >
           <div
-            class="w-8 ml-5 mt-3 cursor-pointer text-white hover:text-white/80 hidden tablet-wide:block"
-            @click="toggleExpanded"
+            class="w-full h-[90px] py-[30px] pr-10 bg-black hidden tablet-wide:block"
           >
-            <svg
-              class="text-inherit fill-current transition"
-              width="30"
-              height="30"
-              viewBox="0 0 52 52"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="ml-auto w-8 cursor-pointer text-white hover:text-white/80"
+              @click="toggleExpanded"
             >
-              <rect
-                x="17.0625"
-                y="15.0002"
-                width="28.1956"
-                height="2.91678"
-                rx="1"
-                transform="rotate(45 17.0625 15.0002)"
-              />
-              <rect
-                x="15"
-                y="34.9373"
-                width="28.1956"
-                height="2.91679"
-                rx="1"
-                transform="rotate(-45 15 34.9373)"
-              />
-            </svg>
+              <svg
+                class="text-inherit fill-current transition"
+                width="30"
+                height="30"
+                viewBox="10 10 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="17.0625"
+                  y="15.0002"
+                  width="28.1956"
+                  height="2.91678"
+                  rx="1"
+                  transform="rotate(45 17.0625 15.0002)"
+                />
+                <rect
+                  x="15"
+                  y="34.9373"
+                  width="28.1956"
+                  height="2.91679"
+                  rx="1"
+                  transform="rotate(-45 15 34.9373)"
+                />
+              </svg>
+            </div>
           </div>
           <div class="tablet-wide:hidden">
             <form
@@ -284,14 +286,14 @@
             </form>
           </div>
           <div class="grow flex flex-col justify-between">
-            <ul class="flex flex-col">
+            <ul class="flex flex-col tablet-wide:pt-1">
               <li v-for="item in sideMenu" :key="item.id">
                 <CustomLink
                   class="hover:text-blue-main transition pl-14 pr-7 block"
                   :class="
                     checkMain(item.url)
                       ? 'tablet-wide:hidden text-xl text-white py-6 border-0 border-b border-solid border-gray-darkest bg-black'
-                      : ' text-[#BFBFBF] text-base py-[2px] mt-[14px]'
+                      : ' text-[#BFBFBF] text-base py-[2px] tablet-wide:pl-[75px] mt-[14px] overflow-hidden tablet-wide:py-5 tablet-wide:text-xl tablet-wide:text-white tablet-wide:hover:bg-black transition tablet-wide:mt-0 relative after:hidden tablet-wide:after:block after:absolute after:h-full after:w-[10px] after:top-0 after:-left-[5px] after:bg-black hover:after:bg-blue-main hover:after:translate-x-[5px] after:transform after:transition duration-200 after:duration-200 after:content-[``] '
                   "
                   :url="item.url"
                   :title="item.title.rendered"
@@ -300,7 +302,10 @@
                 ></CustomLink>
               </li>
             </ul>
-            <div v-if="socials" class="w-full pl-14 pr-7 pb-6 pt-3">
+            <div
+              v-if="socials"
+              class="w-full pl-14 tablet-wide:pl-[75px] pr-7 pb-6 pt-3 tablet-wide:py-5 border-0 tablet-wide:border-t-2 border-solid border-black"
+            >
               <ul class="flex">
                 <li
                   class="flex-0 mr-[30px]"

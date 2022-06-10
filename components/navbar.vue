@@ -316,6 +316,7 @@
                 >
                   <a
                     :href="item.link"
+                    target="_blank"
                     class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md bg-[#BFBFBF]"
                   >
                     <svg

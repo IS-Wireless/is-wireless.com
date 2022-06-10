@@ -4,8 +4,11 @@
       :main-menu="topMenuData"
       :side-menu="sideMenuData"
       :socials="[
-        { type: 'linkedin', link: '/' },
-        { type: 'twitter', link: '/' },
+        {
+          type: 'linkedin',
+          link: 'https://www.linkedin.com/company/is-wireless',
+        },
+        { type: 'twitter', link: 'https://twitter.com/is_wireless' },
       ]"
     />
     <Nuxt />

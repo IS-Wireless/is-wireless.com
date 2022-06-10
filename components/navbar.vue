@@ -285,7 +285,9 @@
               </button>
             </form>
           </div>
-          <div class="grow flex flex-col justify-between">
+          <div
+            class="grow flex flex-col justify-between overflow-auto custom-scrollbar"
+          >
             <ul class="flex flex-col tablet-wide:pt-1">
               <li v-for="item in sideMenu" :key="item.id">
                 <CustomLink

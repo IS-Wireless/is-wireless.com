@@ -2,7 +2,9 @@ import { isEmpty as _isEmpty } from 'lodash'
 
 const filterWords = ['yoast_head', 'meta', '{}']
 
-export const state = () => ({})
+export const state = () => ({
+  menu: {},
+})
 
 const filterData = (obj) => {
   Object.keys(obj).forEach((key) => {
@@ -40,13 +42,24 @@ export const getters = {
 export const mutations = {
   save($state, data) {
     filterData(data)
-
     Object.assign($state, data)
+  },
+  menuAdd($state, data) {
+    filterData(data)
+
+    var obj = {
+      [data.ID.toString()]: data,
+    }
+
+    Object.assign($state.menu, { ...$state.menu, ...obj })
   },
 }
 
 export const actions = {
   init(context, data) {
     context.commit('save', data)
+  },
+  menuInit(context, data) {
+    context.commit('menuAdd', data.menu)
   },
 }

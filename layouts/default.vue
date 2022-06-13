@@ -36,32 +36,36 @@ export default {
       const topMenu = []
       let data = this.$store.getters['general/getData']
       let dataCopy = JSON.parse(JSON.stringify(data))
-      dataCopy.menu_items.forEach((item) => {
-        item['children'] = []
-        if (
-          item.menus === dataCopy.menu_locations.main_navigation.menu &&
-          !item.parent
-        ) {
-          topMenu.push(item)
-        } else if (item.parent) {
-          dataCopy.menu_items.forEach((parentItem) => {
-            if (parentItem['id'] === item.parent) {
-              parentItem.children.push(item)
-            }
-          })
-        }
-      })
+      if (dataCopy.menu_items) {
+        dataCopy.menu_items.forEach((item) => {
+          item['children'] = []
+          if (
+            item.menus === dataCopy.menu_locations.main_navigation.menu &&
+            !item.parent
+          ) {
+            topMenu.push(item)
+          } else if (item.parent) {
+            dataCopy.menu_items.forEach((parentItem) => {
+              if (parentItem['id'] === item.parent) {
+                parentItem.children.push(item)
+              }
+            })
+          }
+        })
+      }
       return topMenu
     },
 
     sideMenuData() {
       const sideMenu = []
       let data = this.$store.getters['general/getData']
-      Object.values(data.menu_items).forEach((item) => {
-        if (item.menus == 24) {
-          sideMenu.push(item)
-        }
-      })
+      if (data.menu_items) {
+        Object.values(data.menu_items).forEach((item) => {
+          if (item.menus == 24) {
+            sideMenu.push(item)
+          }
+        })
+      }
       return sideMenu
     },
 

@@ -8,6 +8,7 @@
         :to="$route.fullPath + data.slug + '/'"
       >
         <nuxt-picture
+          v-if="!data.featured_image_src.includes('images/media/default.png')"
           class="img-full"
           width="300"
           height="157"

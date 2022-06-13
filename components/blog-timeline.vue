@@ -17,9 +17,9 @@
           />
         </svg>
       </span>
-      <div class="h-full w-1 bg-gray-light" />
+      <div class="h-full w-1 bg-gray-light rounded-b-full mb-20" />
     </div>
-    <div class="relative z-10">
+    <div class="relative z-10 mb-32">
       <template v-for="(yearData, yearIndex) in data">
         <div
           v-for="(monthData, monthIndex) in yearData.posts"
@@ -57,12 +57,15 @@
           </template>
         </div>
       </template>
-      <div class="w-full text-center">
+      <div
+        v-if="allMonthsCount > visibleMonthsCount"
+        class="w-full text-center"
+      >
         <button
-          class="block w-full text-gray-dark appearance-none mt-20 p-5 bg-gray-light rounded-md my-5 uppercase font-semibold transition hover:bg-gray-default cursor-pointer"
+          class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mt-6"
           @click="increaseVisibleMonthsCount()"
         >
-          Load more posts
+          Load more
         </button>
       </div>
     </div>
@@ -86,6 +89,7 @@ export default {
   },
   mounted() {
     this.setFullHeight()
+    this.allMonthsCount = this.countAllMonths()
     window.addEventListener('resize', this.setFullHeight)
   },
   unmounted() {
@@ -94,6 +98,7 @@ export default {
   data() {
     return {
       visibleMonthsCount: 10,
+      allMonthsCount: 0,
     }
   },
   methods: {
@@ -133,6 +138,10 @@ export default {
       }
       count += monthIdx
       return count
+    },
+
+    countAllMonths() {
+      return this.$refs.monthGroup.length
     },
 
     increaseVisibleMonthsCount() {

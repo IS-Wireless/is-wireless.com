@@ -128,12 +128,13 @@ export default {
         fadeEffect: {
           crossFade: false,
         },
+        watchOverflow: true,
         navigation: {
           nextEl: '[data-slide-next]',
           prevEl: '[data-slide-prev]',
         },
         speed: 300,
-        loop: true,
+        loop: this.data.banner.length > 1 ? true : false,
         keyboard: {
           enabled: true,
           onlyInViewport: true,
@@ -142,6 +143,10 @@ export default {
     }
   },
   mounted() {
+    if (this.data.banner.length > 1) {
+      this.swiperOptionsObject.loop = true
+    }
+
     const content = [
       this.$refs.content1,
       this.$refs.content2,

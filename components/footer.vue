@@ -58,11 +58,13 @@
               :key="itemSocial.type"
               class="block mx-6 tablet:mx-4 desktop:mx-6"
             >
-              <a
+              <CustomLink
                 v-if="itemSocial.object_slug == 'twitter'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#1DA1F2] transition"
-                :href="itemSocial.url"
+                :url="itemSocial.url"
                 rel="external nofollow"
+                :title="item.title"
+                :isExternal="item.object == 'custom' ? true : false"
                 target="_blank"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -72,12 +74,14 @@
                     fill-rule="evenodd"
                   />
                 </svg>
-              </a>
-              <a
+              </CustomLink>
+              <CustomLink
                 v-if="itemSocial.object_slug == 'linkedin'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#0072b1] transition"
-                :href="itemSocial.url"
+                :url="itemSocial.url"
                 rel="external nofollow"
+                :title="item.title"
+                :isExternal="item.object == 'custom' ? true : false"
                 target="_blank"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -87,12 +91,14 @@
                     fill-rule="evenodd"
                   />
                 </svg>
-              </a>
-              <a
+              </CustomLink>
+              <CustomLink
                 v-if="itemSocial.object_slug == 'youtube'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#FF0000] transition"
-                :href="itemSocial.url"
+                :url="itemSocial.url"
                 rel="external nofollow"
+                :title="item.title"
+                :isExternal="item.object == 'custom' ? true : false"
                 target="_blank"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +108,7 @@
                     fill-rule="evenodd"
                   />
                 </svg>
-              </a>
+              </CustomLink>
             </li>
           </ul>
         </div>
@@ -117,12 +123,14 @@
               :key="item.title"
               class="mr-4 tablet:mx-0 tablet:mr-8 text-base"
             >
-              <a
+              <CustomLink
                 class="font-lato text-blue-main hover:text-blue-main-hover transition"
-                :href="item.url"
+                :url="item.url"
+                :title="item.title"
+                :isExternal="item.object == 'custom' ? true : false"
               >
                 {{ item.title }}
-              </a>
+              </CustomLink>
             </li>
           </ul>
         </div>
@@ -135,12 +143,14 @@
               :key="item.title"
               class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
             >
-              <a
+              <CustomLink
                 class="font-lato text-blue-main hover:text-blue-main-hover transition"
-                :href="item.url"
+                :url="item.url"
+                :title="item.title"
+                :isExternal="item.object == 'custom' ? true : false"
               >
                 {{ item.title }}
-              </a>
+              </CustomLink>
             </li>
           </ul>
         </div>

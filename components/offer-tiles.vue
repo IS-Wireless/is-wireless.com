@@ -18,7 +18,7 @@
             </h2>
           </div>
           <div
-            class="absolute h-full top-8 left-0 text-blue-main transform transition duration-300 translate-y-full group-hover:translate-y-0"
+            class="absolute bottom-1 left-0 text-blue-main transform transition duration-300 translate-y-16 group-hover:translate-y-0"
           >
             <span
               class="inline-block w-[15px] h-1 align-middle rounded-full bg-blue-main-hover group-hover:bg-blue-main transition"

@@ -3,15 +3,10 @@
     <nuxt-picture
       width="640"
       height="640"
-      class="
-        transform
-        img-full
-        group-hover:scale-110 group-hover:opacity-80
-        transition
-        duration-[1000ms]
-      "
+      class="transform img-full group-hover:scale-110 group-hover:opacity-80 transition duration-[1000ms]"
       :src="imageUrl"
       :alt="imageAlt"
+      sizes="sm:320px md:640px lg:720px"
     />
   </div>
 </template>

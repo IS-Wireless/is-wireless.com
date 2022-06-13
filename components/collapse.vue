@@ -39,10 +39,7 @@
           />
         </svg>
       </span>
-      <span
-        class="text-2xl tablet:text-3xl ml-4 text-blue-main"
-        v-if="typeof data.title !== 'undefined'"
-      >
+      <span v-if="data" class="text-2xl tablet:text-3xl ml-4 text-blue-main">
         {{ data.title }}
       </span>
     </div>

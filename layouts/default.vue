@@ -4,13 +4,7 @@
       <Navbar
         :main-menu="topMenuData"
         :side-menu="sideMenuData"
-        :socials="[
-          {
-            type: 'linkedin',
-            link: 'https://www.linkedin.com/company/is-wireless',
-          },
-          { type: 'twitter', link: 'https://twitter.com/is_wireless' },
-        ]"
+        :socials="socialMenuData"
       />
     </LazyHydrate>
     <Nuxt />
@@ -18,8 +12,8 @@
       <Footer
         :image-url="footerData.image"
         :copyright="footerData.copyright"
-        :menu="footerData.menu"
-        :socials="footerData.socials"
+        :menu="footerMenuData"
+        :socials="socialMenuData"
         :languages="footerData.language"
       />
     </LazyHydrate>
@@ -52,6 +46,31 @@ export default {
       let sideMenuID = data['menu_locations']['sidebar']['ID']
 
       return data['menu'][sideMenuID]['items']
+    },
+
+    socialMenuData() {
+      let data = this.$store.getters['general/getData']
+      let socialMenuID = data['menu_locations']['social-media']['ID']
+
+      return data['menu'][socialMenuID]['items']
+    },
+
+    footerMenuData() {
+      let data = this.$store.getters['general/getData']
+      let footerMenuLeftID = data['menu_locations']['footer-menu-left']['ID']
+      let footerMenuRightID = data['menu_locations']['footer-menu-right']['ID']
+
+      return {
+        menu_left: data['menu'][footerMenuLeftID]['items'],
+        menu_right: data['menu'][footerMenuRightID]['items'],
+      }
+    },
+
+    footerRightMenuData() {
+      let data = this.$store.getters['general/getData']
+      let footerMenuID = data['menu_locations']['footer-menu-right']['ID']
+
+      return data['menu'][footerMenuID]['items']
     },
 
     footerData() {

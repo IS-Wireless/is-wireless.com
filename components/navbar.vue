@@ -315,12 +315,12 @@
                   :key="item.type"
                 >
                   <a
-                    :href="item.link"
+                    :href="item.url"
                     target="_blank"
                     class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md bg-[#BFBFBF]"
                   >
                     <svg
-                      v-if="item.type === 'facebook'"
+                      v-if="item.object_slug === 'facebook'"
                       width="28"
                       height="40"
                       viewBox="-1 -16 26 65"
@@ -333,7 +333,7 @@
                       />
                     </svg>
                     <svg
-                      v-if="item.type === 'twitter'"
+                      v-if="item.object_slug === 'twitter'"
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -346,7 +346,7 @@
                       />
                     </svg>
                     <svg
-                      v-if="item.type === 'linkedin'"
+                      v-if="item.object_slug === 'linkedin'"
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -359,7 +359,7 @@
                       />
                     </svg>
                     <svg
-                      v-if="item.type === 'mail'"
+                      v-if="item.object_slug === 'mail'"
                       width="25"
                       height="25"
                       viewBox="0 0 60 60"

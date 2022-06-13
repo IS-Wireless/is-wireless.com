@@ -54,12 +54,14 @@
         >
           <ul class="flex items-center">
             <li
-              v-if="socials.twitter.url"
+              v-for="itemSocial in socials"
+              :key="itemSocial.type"
               class="block mx-6 tablet:mx-4 desktop:mx-6"
             >
               <a
+                v-if="itemSocial.object_slug == 'twitter'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#1DA1F2] transition"
-                :href="socials.twitter.url"
+                :href="itemSocial.url"
                 rel="external nofollow"
                 target="_blank"
               >
@@ -71,14 +73,10 @@
                   />
                 </svg>
               </a>
-            </li>
-            <li
-              v-if="socials.linkedin.url"
-              class="block mx-6 tablet:mx-4 desktop:mx-6"
-            >
               <a
+                v-if="itemSocial.object_slug == 'linkedin'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#0072b1] transition"
-                :href="socials.linkedin.url"
+                :href="itemSocial.url"
                 rel="external nofollow"
                 target="_blank"
               >
@@ -90,14 +88,10 @@
                   />
                 </svg>
               </a>
-            </li>
-            <li
-              v-if="socials.youtube.url"
-              class="block mx-6 tablet:mx-4 desktop:mx-6"
-            >
               <a
+                v-if="itemSocial.object_slug == 'youtube'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#FF0000] transition"
-                :href="socials.youtube.url"
+                :href="itemSocial.url"
                 rel="external nofollow"
                 target="_blank"
               >
@@ -123,12 +117,12 @@
               :key="item.title"
               class="mr-4 tablet:mx-0 tablet:mr-8 text-base"
             >
-              <nuxt-link
+              <a
                 class="font-lato text-blue-main hover:text-blue-main-hover transition"
-                :to="item.url"
+                :href="item.url"
               >
                 {{ item.title }}
-              </nuxt-link>
+              </a>
             </li>
           </ul>
         </div>
@@ -141,12 +135,12 @@
               :key="item.title"
               class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
             >
-              <nuxt-link
+              <a
                 class="font-lato text-blue-main hover:text-blue-main-hover transition"
-                :to="item.url"
+                :href="item.url"
               >
                 {{ item.title }}
-              </nuxt-link>
+              </a>
             </li>
           </ul>
         </div>

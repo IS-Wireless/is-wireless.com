@@ -5,7 +5,10 @@
       :key="item.text"
       class="group flex items-center my-5"
     >
-      <div class="relative w-10 h-10 flex-shrink-0 flex-grow-0 flex">
+      <div
+        class="relative w-10 h-10 flex-shrink-0 flex-grow-0 flex"
+        v-if="item.iconUrl"
+      >
         <nuxt-picture
           width="40px"
           height="40px"

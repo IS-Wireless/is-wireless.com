@@ -7,7 +7,7 @@
   >
     <div
       class="absolute w-full h-full top-0 left-0"
-      style="perspective: 5000px"
+      style="perspective: 5000px;"
       v-if="backgroundUrl"
     >
       <nuxt-picture

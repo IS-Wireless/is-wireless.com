@@ -3,21 +3,25 @@
     <div class="flex flex-col">
       <Banner :data="homepageData.sections[0]" />
       <Organisations :data="homepageData.sections[1]" />
-      <!-- <ContentSection>
+      <ContentSection>
         <template #left>
           <SectionHeader
             :class="'text-gray-dark'"
-            :title="frontPageData.acf.E2e.title"
+            :title="homepageData.sections[2].title"
           />
-          <p class="mb-14 text-gray-dark">
-            {{ frontPageData.acf.E2e.text }}
-          </p>
-          <List :class="'text-gray-dark'" :data="frontPageData.acf.E2e.list" />
+          <div
+            class="mb-14 text-gray-dark"
+            v-html="homepageData.sections[2].content"
+          ></div>
+          <List
+            :class="'text-gray-dark'"
+            :data="homepageData.sections[2].list"
+          />
         </template>
 
         <template #right>
           <SectionImage
-            :image-url="frontPageData.acf.baner_slide[0].baner_images[0].imgUrl"
+            :image-url="homepageData.sections[2].image"
             :image-alt="'test alt'"
           />
         </template>
@@ -25,14 +29,15 @@
 
       <ContentSection
         :class="'text-white'"
-        :background-url="frontPageData.acf.granularized.bgUrl"
+        :background-url="homepageData.sections[3].image"
       >
         <template #right>
-          <SectionHeader :title="frontPageData.acf.granularized.title" />
-          <p class="mb-14 text-inherit">
-            {{ frontPageData.acf.granularized.text }}
-          </p>
-          <List :data="frontPageData.acf.granularized.list" />
+          <SectionHeader :title="homepageData.sections[3].title" />
+          <div
+            class="mb-14 text-inherit"
+            v-html="homepageData.sections[3].content"
+          ></div>
+          <List :data="homepageData.sections[3].list" />
         </template>
       </ContentSection>
 
@@ -40,24 +45,26 @@
         <template #left>
           <SectionHeader
             :class="'text-gray-dark'"
-            :title="frontPageData.acf.radio.title"
+            :title="homepageData.sections[4].title"
           />
-          <p class="mb-14 text-gray-dark">
-            {{ frontPageData.acf.radio.text }}
-          </p>
+          <div
+            class="mb-14 text-gray-dark"
+            v-html="homepageData.sections[4].content"
+          ></div>
           <List
             :class="'text-gray-dark'"
-            :data="frontPageData.acf.radio.list"
+            :data="homepageData.sections[4].list"
           />
         </template>
 
         <template #right>
           <SectionImage
-            :image-url="'https://www.is-wireless.com/wp-content/uploads/2021/02/Radio-Resource-Management-800x800.jpg'"
+            :image-url="homepageData.sections[4].image"
             :image-alt="'test alt'"
           />
         </template>
-      </ContentSection> -->
+      </ContentSection>
+
       <CtaJob :data="homepageData.sections[5]" />
     </div>
   </LazyHydrate>

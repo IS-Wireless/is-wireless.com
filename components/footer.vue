@@ -183,7 +183,7 @@ export default {
       required: true,
     },
     socials: {
-      type: Object,
+      type: Array,
       required: false,
       default() {
         return {}

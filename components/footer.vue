@@ -166,6 +166,13 @@
 export default {
   name: 'Footer',
   props: {
+    item: {
+      type: String,
+      required: false,
+      default() {
+        return ''
+      },
+    },
     imageUrl: {
       type: String,
       required: true,

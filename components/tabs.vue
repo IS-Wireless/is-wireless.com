@@ -163,4 +163,8 @@ code {
 .content-html >>> code {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
 }
+
+.content-html >>> img {
+  @apply max-w-full w-auto h-auto;
+}
 </style>

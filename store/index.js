@@ -48,17 +48,7 @@ export const actions = {
       }),
       new Promise((resolve) => {
         app.$wp
-          .namespace('wp/v2')
-          .menus()
-          .then(function (data) {
-            filterData(data)
-            dispatch('general/init', { menu: data })
-            resolve()
-          })
-      }),
-      new Promise((resolve) => {
-        app.$wp
-          .namespace('wp/v2')
+          .namespace('wp-api-menus/v2')
           ['menu-locations']()
           .then(function (data) {
             filterData(data)
@@ -68,12 +58,32 @@ export const actions = {
       }),
       new Promise((resolve) => {
         app.$wp
-          .namespace('wp/v2')
-          ['menu-items']()
+          .namespace('wp-api-menus/v2')
+          .menus()
+          .get()
           .then(function (data) {
-            filterData(data)
-            dispatch('general/init', { menu_items: data })
-            resolve()
+            var promisesDynamicArray = []
+
+            data.forEach((single_menu) => {
+              promisesDynamicArray.push(
+                new Promise((resolve_child) => {
+                  app.$wp
+                    .namespace('wp-api-menus/v2')
+                    .menus()
+                    .id(`${single_menu.term_id}`)
+                    .get()
+                    .then(function (data) {
+                      filterData(data)
+                      dispatch('general/menuInit', { menu: data })
+                      resolve_child()
+                    })
+                })
+              )
+            })
+
+            Promise.allSettled(promisesDynamicArray).then(() => {
+              resolve()
+            })
           })
       }),
       new Promise((resolve) => {

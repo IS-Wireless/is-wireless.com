@@ -96,9 +96,13 @@ export default {
         discover: true,
         endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
         extensions: true,
-        username: `${process.env.WP_USER}`,
-        password: `${process.env.WP_PASSWORD}`,
-        auth: true,
+        customRoutes: [
+          {
+            extension: 'wp-api-menus/v2',
+            route: '/menus/(?P<id>\\d+)',
+            name: 'menuIdSelect',
+          },
+        ],
       },
     },
   ],
@@ -128,6 +132,7 @@ export default {
   },
   image: {
     domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],
+    isDev: true,
   },
   pwa: {
     meta: {

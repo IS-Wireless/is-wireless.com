@@ -38,6 +38,7 @@
     "wpapi-extensions": "^1.0.12"
   },
   "devDependencies": {
+    "@aceforth/nuxt-netlify": "^1.1.0",
     "@nuxt/image": "^0.6.2",
     "@nuxt/postcss8": "^1.1.3",
     "@nuxt/types": "^2.15.3",

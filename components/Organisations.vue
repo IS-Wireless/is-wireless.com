@@ -23,6 +23,7 @@
               :src="item.image.url"
               :alt="item.image.alt"
               :title="item.image.title"
+              sizes="sm:180px lg:360px"
               :imgAttrs="{
                 loading: index < 2 ? 'eager' : index > 3 ? 'lazy' : 'auto',
                 class: 'w-full object-contain custom-filter duration-300',

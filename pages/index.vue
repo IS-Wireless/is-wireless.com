@@ -3,7 +3,7 @@
     <div class="flex flex-col">
       <Banner :data="homepageData.sections[0]" />
       <Organisations :data="homepageData.sections[1]" />
-      <ContentSection>
+      <!-- <ContentSection>
         <template #left>
           <SectionHeader
             :class="'text-gray-dark'"
@@ -57,7 +57,7 @@
             :image-alt="'test alt'"
           />
         </template>
-      </ContentSection>
+      </ContentSection> -->
       <CtaJob :data="homepageData.sections[5]" />
     </div>
   </LazyHydrate>

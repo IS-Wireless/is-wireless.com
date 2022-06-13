@@ -17,18 +17,13 @@
           class="w-4/5 tablet:w-full mx-auto mb-10"
           :class="pageData.acf.sidebar ? 'tablet:w-2/3 has-sidebar' : 'w-full'"
         >
-          <LazyHydrate never>
-            <div
-              v-for="(component, index) in pageData.acf.sections"
-              :key="index"
-            >
-              <component
-                v-if="component.acf_fc_layout !== 'section_header'"
-                :is="component.acf_fc_layout"
-                :data="component"
-              ></component>
-            </div>
-          </LazyHydrate>
+          <div v-for="(component, index) in pageData.acf.sections" :key="index">
+            <component
+              v-if="component.acf_fc_layout !== 'section_header'"
+              :is="component.acf_fc_layout"
+              :data="component"
+            ></component>
+          </div>
         </div>
         <div
           v-if="pageData.acf.sidebar"

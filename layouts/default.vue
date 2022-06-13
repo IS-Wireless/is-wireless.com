@@ -1,28 +1,24 @@
 <template>
   <div>
-    <LazyHydrate when-idle>
-      <Navbar
-        :main-menu="topMenuData"
-        :side-menu="sideMenuData"
-        :socials="[
-          {
-            type: 'linkedin',
-            link: 'https://www.linkedin.com/company/is-wireless',
-          },
-          { type: 'twitter', link: 'https://twitter.com/is_wireless' },
-        ]"
-      />
-    </LazyHydrate>
+    <Navbar
+      :main-menu="topMenuData"
+      :side-menu="sideMenuData"
+      :socials="[
+        {
+          type: 'linkedin',
+          link: 'https://www.linkedin.com/company/is-wireless',
+        },
+        { type: 'twitter', link: 'https://twitter.com/is_wireless' },
+      ]"
+    />
     <Nuxt />
-    <LazyHydrate when-idle>
-      <Footer
-        :image-url="footerData.image"
-        :copyright="footerData.copyright"
-        :menu="footerData.menu"
-        :socials="footerData.socials"
-        :languages="footerData.language"
-      />
-    </LazyHydrate>
+    <Footer
+      :image-url="footerData.image"
+      :copyright="footerData.copyright"
+      :menu="footerData.menu"
+      :socials="footerData.socials"
+      :languages="footerData.language"
+    />
   </div>
 </template>
 

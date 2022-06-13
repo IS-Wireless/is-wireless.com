@@ -11,6 +11,7 @@
           height="40px"
           class="p-2 rounded-full bg-blue-main-hover group-hover:bg-blue-main transition duration-300 transform group-hover:scale-90 z-10"
           :src="item.iconUrl"
+          sizes="sm:40px lg:80px"
           :alt="'List item icon'"
         />
         <div

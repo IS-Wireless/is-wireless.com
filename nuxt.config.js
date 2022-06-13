@@ -1,4 +1,5 @@
 require('dotenv').config()
+const pkg = require('./package.json')
 export default {
   env: {
     CONTEXT: process.env.CONTEXT,
@@ -63,6 +64,16 @@ export default {
     '@nuxt/typescript-build',
     '@nuxt/image',
     '@nuxtjs/pwa',
+    [
+      '@aceforth/nuxt-netlify',
+      {
+        mergeSecurityHeaders: true,
+        headers: {
+          '/*': ['Access-Control-Allow-Origin: *', `X-Build: ${pkg.version}`],
+          '/favicon.ico': ['Cache-Control: public, max-age=86400'],
+        },
+      },
+    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -37,40 +37,21 @@ export default {
   },
   computed: {
     topMenuData() {
-      const topMenu = []
+      let topMenu = []
       let data = this.$store.getters['general/getData']
-      let dataCopy = JSON.parse(JSON.stringify(data))
-      if (dataCopy.menu_items) {
-        dataCopy.menu_items.forEach((item) => {
-          item['children'] = []
-          if (
-            item.menus === dataCopy.menu_locations.main_navigation.menu &&
-            !item.parent
-          ) {
-            topMenu.push(item)
-          } else if (item.parent) {
-            dataCopy.menu_items.forEach((parentItem) => {
-              if (parentItem['id'] === item.parent) {
-                parentItem.children.push(item)
-              }
-            })
-          }
-        })
+      let topMenuID = data['menu_locations']['main_navigation']['ID']
+
+      if (data['menu'][topMenuID]['items']) {
+        topMenu = data['menu'][topMenuID]['items']
       }
       return topMenu
     },
 
     sideMenuData() {
-      const sideMenu = []
       let data = this.$store.getters['general/getData']
-      if (data.menu_items) {
-        Object.values(data.menu_items).forEach((item) => {
-          if (item.menus == 24) {
-            sideMenu.push(item)
-          }
-        })
-      }
-      return sideMenu
+      let sideMenuID = data['menu_locations']['sidebar']['ID']
+
+      return data['menu'][sideMenuID]['items']
     },
 
     footerData() {

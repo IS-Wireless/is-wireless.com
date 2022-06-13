@@ -52,7 +52,7 @@
                     : 'text-white hover:text-white'
                 "
                 :url="item.url"
-                :title="item.title.rendered"
+                :title="item.title"
                 :isExternal="item.object == 'custom' ? true : false"
               ></CustomLink>
               <div
@@ -73,7 +73,7 @@
                             : 'text-white hover:text-blue-main'
                         "
                         :url="subItem.url"
-                        :title="subItem.title.rendered"
+                        :title="subItem.title"
                         :isExternal="subItem.object == 'custom' ? true : false"
                       ></CustomLink>
                       <ul class="flex flex-col mb-5">
@@ -89,7 +89,7 @@
                                 : 'text-white hover:text-blue-main'
                             "
                             :url="subSubItem.url"
-                            :title="subSubItem.title.rendered"
+                            :title="subSubItem.title"
                             :isExternal="
                               subSubItem.object == 'custom' ? true : false
                             "
@@ -298,7 +298,7 @@
                       : ' text-[#BFBFBF] text-base py-[2px] tablet-wide:pl-[75px] mt-[14px] overflow-hidden tablet-wide:py-5 tablet-wide:text-xl tablet-wide:text-white tablet-wide:hover:bg-black transition tablet-wide:mt-0 relative after:hidden tablet-wide:after:block after:absolute after:h-full after:w-[10px] after:top-0 after:-left-[5px] after:bg-black hover:after:bg-blue-main hover:after:translate-x-[5px] after:transform after:transition duration-200 after:duration-200 after:content-[``] '
                   "
                   :url="item.url"
-                  :title="item.title.rendered"
+                  :title="item.title"
                   :isExternal="item.object == 'custom' ? true : false"
                   @click.native="toggleExpanded()"
                 ></CustomLink>

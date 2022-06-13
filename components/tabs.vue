@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full">
+  <div class="w-full tablet:max-w-[75%]">
     <ul class="hidden tablet-wide:flex gap-1 w-full">
       <li
-        class="grow py-3 mb-5 text-center bg-gray-light transition cursor-pointer border border-solid"
+        class="grow py-3 mb-8 tablet-wide:mb-14 text-center bg-gray-light transition cursor-pointer border border-solid"
         :class="
           selected == index
             ? 'border-blue-main hover:border-blue-main'
@@ -141,7 +141,7 @@ code {
   @apply text-base tablet:text-lg mb-5;
 }
 .content-html >>> p {
-  @apply text-base inline-block mb-5 w-full;
+  @apply text-base inline-block mb-5 w-full text-justify;
 }
 
 .content-html >>> li {
@@ -162,9 +162,5 @@ code {
 
 .content-html >>> code {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
-}
-
-.content-html >>> img {
-  @apply w-full h-auto;
 }
 </style>

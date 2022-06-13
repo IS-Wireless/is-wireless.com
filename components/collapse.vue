@@ -44,6 +44,7 @@
       </span>
     </div>
     <div
+      v-if="data"
       ref="contentContainer"
       class="overflow-hidden transition-all duration-300"
       :style="{ height: contentHeight + 'px' }"

@@ -142,8 +142,7 @@ export default {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
   },
   image: {
-    domains: ['https://www.is-wireless.com/', 'https://e7.pngegg.com'],
-    isDev: true,
+    domains: ['https://www.is-wireless.com/'],
   },
   pwa: {
     meta: {

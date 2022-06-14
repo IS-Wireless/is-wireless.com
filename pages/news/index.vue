@@ -14,6 +14,7 @@ import Breadcrumb from '~/components/breadcrumb.vue'
 import { groupBy as _groupBy } from 'lodash'
 
 export default {
+  layout: 'scrollBtnAlways',
   name: 'BlogPage',
   components: {
     Breadcrumb,

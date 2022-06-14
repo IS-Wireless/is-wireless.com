@@ -17,7 +17,7 @@
         :languages="footerData.language"
       />
     </LazyHydrate>
-    <ScrollToTopBtn />
+    <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
     Footer,
     ScrollToTopBtn,
     LazyHydrate,
+  },
+  beforeUnmounted() {
+    alert('unmount z layouta')
   },
   computed: {
     topMenuData() {

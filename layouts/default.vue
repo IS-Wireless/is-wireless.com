@@ -71,12 +71,28 @@ export default {
 
     footerMenuData() {
       let data = this.$store.getters['general/getData']
-      let footerMenuLeftID = data['menu_locations']['footer-menu-left']['ID']
-      let footerMenuRightID = data['menu_locations']['footer-menu-right']['ID']
+      let menu_left = []
+      let menu_right = []
+
+      if (
+        data['menu_locations'] &&
+        data['menu_locations']['footer-menu-left']
+      ) {
+        let menuIDLeft = data['menu_locations']['footer-menu-left']['ID']
+        menu_left = data['menu'][menuIDLeft]['items']
+      }
+
+      if (
+        data['menu_locations'] &&
+        data['menu_locations']['footer-menu-right']
+      ) {
+        let menuIDRight = data['menu_locations']['footer-menu-right']['ID']
+        menu_right = data['menu'][menuIDRight]['items']
+      }
 
       return {
-        menu_left: data['menu'][footerMenuLeftID]['items'],
-        menu_right: data['menu'][footerMenuRightID]['items'],
+        menu_left: menu_left,
+        menu_right: menu_right,
       }
     },
 

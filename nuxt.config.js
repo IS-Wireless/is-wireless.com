@@ -166,7 +166,7 @@ export default {
           .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
           .map(
             (f) =>
-              `<${publicPath}${f.file}>; rel=preload; as=${f.asType}; crossOrigin="anonymous"`
+              `<${publicPath}${f.file}>; rel=preload; as=${f.asType}; crossorigin=anonymous`
           ),
     },
     compressor: { threshold: 9, level: 9 },

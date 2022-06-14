@@ -163,7 +163,10 @@ export default {
     Show(0)
 
     function Show(i) {
-      content[i].classList.remove('opacity-0')
+      if (content[i]) {
+        content[i].classList.remove('opacity-0')
+      }
+
       setTimeout(() => {
         if (i < content.length - 1) {
           i++

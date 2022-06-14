@@ -89,8 +89,8 @@ export default {
       {
         // Specify relative path to the dist directory and its content type
         resources: [
-          { path: '**/*.js', as: 'script' },
-          { path: '**/*.css', as: 'style' },
+          { path: '**/*modern.js', as: 'script', crossorigin: 'anonymous' },
+          { path: '**/*.css', as: 'style', crossorigin: 'anonymous' },
         ],
       },
     ],

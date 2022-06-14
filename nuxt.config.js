@@ -135,6 +135,18 @@ export default {
       })
     },
   },
+  render: {
+    asyncScripts: true,
+    resourceHints: true,
+    http2: {
+      push: true,
+      pushAssets: (req, res, publicPath, preloadFiles) =>
+        preloadFiles
+          .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
+          .map((f) => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`),
+    },
+    compressor: { threshold: 9, level: 9 },
+  },
   generate: {
     dir: 'public',
   },

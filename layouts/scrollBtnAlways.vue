@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <LazyHydrate :on-interaction="['click', 'touchstart']">
+    <LazyHydrate when-idle>
       <Navbar
         :main-menu="topMenuData"
         :side-menu="sideMenuData"
@@ -8,7 +8,7 @@
       />
     </LazyHydrate>
     <Nuxt />
-    <LazyHydrate never>
+    <LazyHydrate when-idle>
       <Footer
         :image-url="footerData.image"
         :copyright="footerData.copyright"
@@ -17,82 +17,60 @@
         :languages="footerData.language"
       />
     </LazyHydrate>
-    <ScrollToTopBtn />
+    <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
+import Navbar from '@/components/navbar.vue'
+import Footer from '@/components/footer.vue'
+import ScrollToTopBtn from '@/components/scroll-to-top.vue'
 
 export default {
   components: {
+    Navbar,
+    Footer,
+    ScrollToTopBtn,
     LazyHydrate,
-    ScrollToTopBtn: () => import('@/components/scroll-to-top.vue'),
-    Navbar: () => import('@/components/navbar.vue'),
-    Footer: () => import('@/components/footer.vue'),
+  },
+  beforeUnmounted() {
+    alert('unmount z layouta')
   },
   computed: {
     topMenuData() {
-      let menu = []
+      let topMenu = []
       let data = this.$store.getters['general/getData']
-      if (data['menu_locations'] && data['menu_locations']['main_navigation']) {
-        let topMenuID = data['menu_locations']['main_navigation']['ID']
+      let topMenuID = data['menu_locations']['main_navigation']['ID']
 
-        if (data['menu'][topMenuID]['items']) {
-          menu = data['menu'][topMenuID]['items']
-        }
+      if (data['menu'][topMenuID]['items']) {
+        topMenu = data['menu'][topMenuID]['items']
       }
-      return menu
+      return topMenu
     },
 
     sideMenuData() {
-      let menu = []
       let data = this.$store.getters['general/getData']
+      let sideMenuID = data['menu_locations']['sidebar']['ID']
 
-      if (data['menu_locations'] && data['menu_locations']['sidebar']) {
-        let sideMenuID = data['menu_locations']['sidebar']['ID']
-        menu = data['menu'][sideMenuID]['items']
-      }
-
-      return menu
+      return data['menu'][sideMenuID]['items']
     },
 
     socialMenuData() {
-      let menu = []
       let data = this.$store.getters['general/getData']
+      let socialMenuID = data['menu_locations']['social-media']['ID']
 
-      if (data['menu_locations'] && data['menu_locations']['social-media']) {
-        let socialMenuID = data['menu_locations']['social-media']['ID']
-        menu = data['menu'][socialMenuID]['items']
-      }
-
-      return menu
+      return data['menu'][socialMenuID]['items']
     },
 
     footerMenuData() {
       let data = this.$store.getters['general/getData']
-      let menu_left = []
-      let menu_right = []
-
-      if (
-        data['menu_locations'] &&
-        data['menu_locations']['footer-menu-left']
-      ) {
-        let menuIDLeft = data['menu_locations']['footer-menu-left']['ID']
-        menu_left = data['menu'][menuIDLeft]['items']
-      }
-
-      if (
-        data['menu_locations'] &&
-        data['menu_locations']['footer-menu-right']
-      ) {
-        let menuIDRight = data['menu_locations']['footer-menu-right']['ID']
-        menu_right = data['menu'][menuIDRight]['items']
-      }
+      let footerMenuLeftID = data['menu_locations']['footer-menu-left']['ID']
+      let footerMenuRightID = data['menu_locations']['footer-menu-right']['ID']
 
       return {
-        menu_left: menu_left,
-        menu_right: menu_right,
+        menu_left: data['menu'][footerMenuLeftID]['items'],
+        menu_right: data['menu'][footerMenuRightID]['items'],
       }
     },
 

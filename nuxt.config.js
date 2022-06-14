@@ -193,4 +193,8 @@ export default {
   router: {
     trailingSlash: true,
   },
+  layoutTransition: {
+    name: 'page',
+    mode: 'out-in',
+  },
 }

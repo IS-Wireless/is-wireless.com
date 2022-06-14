@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bottom-0 right-16 tablet-wide:right-24 rounded-t-md bg-gray-darkest/90 z-20 p-2.5 transform transition duration-300 cursor-pointer"
+    class="fixed bottom-0 right-16 tablet-wide:right-24 rounded-t-md bg-gray-darkest/80 z-20 p-3 px-4 hover:bg-blue-main transform transition duration-300 cursor-pointer"
     :class="{
       'hidden tablet-wide:block': !mobileVisible,
       'translate-y-full': !visible,
@@ -8,7 +8,7 @@
     @click="scrollToTop()"
   >
     <svg
-      width="26"
+      width="16"
       height="14"
       viewBox="0 0 17 9"
       fill="none"

@@ -12,7 +12,7 @@
     "lint:vue": "eslint --ext vue --ignore-path \".gitignore\" --ignore-pattern \"**/package/**\" .",
     "lint": "npm run lint:js && npm run lint:vue",
     "test": "jest --silent",
-    "deploy": "nuxt generate --modern"
+    "deploy": "nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",

@@ -167,7 +167,7 @@ export const state = () => ({
     },
   },
   homepageData: {
-    sections: [],
+    sections: ['', '', '', '', '', ''],
   },
 })
 

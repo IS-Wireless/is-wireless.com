@@ -137,7 +137,7 @@ export default {
   },
   generate: {
     dir: 'public',
-    // crawler: false,
+    crawler: false,
   },
   wp: {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,

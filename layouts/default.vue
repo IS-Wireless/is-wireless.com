@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import LazyHydrate from 'vue-lazy-hydration'
 import Navbar from '@/components/navbar.vue'
 import Footer from '@/components/footer.vue'
 
@@ -28,6 +29,7 @@ export default {
   components: {
     Navbar,
     Footer,
+    LazyHydrate,
   },
   computed: {
     topMenuData() {

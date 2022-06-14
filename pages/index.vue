@@ -79,6 +79,7 @@ import ContentSection from '~/components/content-section.vue'
 import SectionHeader from '~/components/section-header.vue'
 import SectionImage from '~/components/section-image.vue'
 import CtaJob from '~/components/cta-job.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default Vue.extend({
   components: {
@@ -88,6 +89,7 @@ export default Vue.extend({
     SectionHeader,
     SectionImage,
     CtaJob,
+    LazyHydrate,
   },
   computed: {
     frontPageData() {

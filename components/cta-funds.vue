@@ -14,11 +14,13 @@
       <div v-if="data.link" class="flex shrink-0">
         <CustomLink
           v-if="data.link.url"
-          class="block mt-auto tablet-wide:mx-2.5 object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
+          class="block mt-auto tablet-wide:mx-2.5 text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
           :url="data.link.url"
           :title="data.link.title"
           :isExternal="
-            data.link.url.includes('mailto:') || data.link.url.includes('tel:')
+            data.link.url.includes('mailto:') ||
+            data.link.url.includes('tel:') ||
+            !data.link.url.includes('www.is-wireless.com')
           "
         ></CustomLink>
         <span

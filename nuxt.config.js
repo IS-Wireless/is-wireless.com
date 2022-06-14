@@ -155,22 +155,22 @@ export default {
       })
     },
   },
-  render: {
-    asyncScripts: true,
-    resourceHints: true,
-    crossorigin: 'anonymous',
-    http2: {
-      push: true,
-      pushAssets: (req, res, publicPath, preloadFiles) =>
-        preloadFiles
-          .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
-          .map(
-            (f) =>
-              `<${publicPath}${f.file}>; rel=preload; as=${f.asType}; crossorigin=anonymous`
-          ),
-    },
-    compressor: { threshold: 9, level: 9 },
-  },
+  // render: {
+  //   asyncScripts: true,
+  //   resourceHints: true,
+  //   crossorigin: 'anonymous',
+  //   http2: {
+  //     push: true,
+  //     pushAssets: (req, res, publicPath, preloadFiles) =>
+  //       preloadFiles
+  //         .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
+  //         .map(
+  //           (f) =>
+  //             `<${publicPath}${f.file}>; rel=preload; as=${f.asType}; crossorigin=anonymous`
+  //         ),
+  //   },
+  //   compressor: { threshold: 9, level: 9 },
+  // },
   generate: {
     dir: 'public',
   },

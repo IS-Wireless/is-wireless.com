@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --modern",
     "dev:external": "dotenv -- cross-var nuxt --hostname %IP_LAN% --port 8000",
     "build": "nuxt build",
     "start": "nuxt start",

@@ -57,6 +57,8 @@
 import SectionHeader from '~/components/section-header.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 import section_content from '~/components/content-static.vue'
+import section_two_column from '~/components/content-section.vue'
+import section_two_column_bg from '~/components/content-section-bg.vue'
 import section_list_links_alternative from '~/components/more-solutions.vue'
 import section_tabs from '~/components/tabs.vue'
 import section_links_list from '~/components/filters.vue'
@@ -73,6 +75,8 @@ export default {
     SectionHeader,
     Breadcrumb,
     section_content,
+    section_two_column,
+    section_two_column_bg,
     section_list_links_alternative,
     section_tabs,
     section_links_list,

@@ -11,6 +11,7 @@
           class="swiper-slide h-full"
         >
           <nuxt-picture
+            v-if="item"
             :src="item.image.url"
             :alt="item.image.alt"
             :title="item.image.title"
@@ -25,6 +26,7 @@
         class="absolute h-full w-full flex justify-center items-center flex-col text-5xl bg-black bg-opacity-40 z-10 top-0 select-none"
       >
         <img
+          v-if="data.default"
           ref="content1"
           width="550"
           height="160"
@@ -34,13 +36,14 @@
           :title="data.default.image.title"
         />
         <p
-          v-if="data.default.content"
+          v-if="data.default && data.default.content"
           ref="content2"
           class="opacity-0 duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10 h-10"
         >
           {{ data.default.content }}
         </p>
         <div
+          v-if="data.default"
           ref="content3"
           class="opacity-0 duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
         >
@@ -134,7 +137,11 @@ export default {
           prevEl: '[data-slide-prev]',
         },
         speed: 300,
-        loop: this.data.banner.length > 1 ? true : false,
+        loop: this.data.banner
+          ? this.data.banner.length > 1
+            ? true
+            : false
+          : false,
         keyboard: {
           enabled: true,
           onlyInViewport: true,
@@ -143,7 +150,7 @@ export default {
     }
   },
   mounted() {
-    if (this.data.banner.length > 1) {
+    if (this.data.banner && this.data.banner.length > 1) {
       this.swiperOptionsObject.loop = true
     }
 

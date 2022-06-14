@@ -97,14 +97,15 @@ export default {
       let logosSwiper = []
       let logosPinned = []
 
-      this.data.logo.forEach((item) => {
-        if (item.pin) {
-          logosPinned.push(item)
-        } else {
-          logosSwiper.push(item)
-        }
-      })
-
+      if (this.data.logo) {
+        this.data.logo.forEach((item) => {
+          if (item.pin) {
+            logosPinned.push(item)
+          } else {
+            logosSwiper.push(item)
+          }
+        })
+      }
       return { swiper: logosSwiper, pinned: logosPinned }
     },
   },

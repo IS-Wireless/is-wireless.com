@@ -8,7 +8,7 @@
       />
     </LazyHydrate>
     <Nuxt />
-    <LazyHydrate when-idle>
+    <LazyHydrate never>
       <Footer
         :image-url="footerData.image"
         :copyright="footerData.copyright"
@@ -22,14 +22,12 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import Navbar from '@/components/navbar.vue'
-import Footer from '@/components/footer.vue'
 
 export default {
   components: {
-    Navbar,
-    Footer,
     LazyHydrate,
+    Navbar: () => import('@/components/navbar.vue'),
+    Footer: () => import('@/components/footer.vue'),
   },
   computed: {
     topMenuData() {

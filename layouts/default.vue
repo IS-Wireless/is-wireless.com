@@ -33,28 +33,40 @@ export default {
   },
   computed: {
     topMenuData() {
-      let topMenu = []
+      let menu = []
       let data = this.$store.getters['general/getData']
-      let topMenuID = data['menu_locations']['main_navigation']['ID']
+      if (data['menu_locations'] && data['menu_locations']['main_navigation']) {
+        let topMenuID = data['menu_locations']['main_navigation']['ID']
 
-      if (data['menu'][topMenuID]['items']) {
-        topMenu = data['menu'][topMenuID]['items']
+        if (data['menu'][topMenuID]['items']) {
+          menu = data['menu'][topMenuID]['items']
+        }
       }
-      return topMenu
+      return menu
     },
 
     sideMenuData() {
+      let menu = []
       let data = this.$store.getters['general/getData']
-      let sideMenuID = data['menu_locations']['sidebar']['ID']
 
-      return data['menu'][sideMenuID]['items']
+      if (data['menu_locations'] && data['menu_locations']['sidebar']) {
+        let sideMenuID = data['menu_locations']['sidebar']['ID']
+        menu = data['menu'][sideMenuID]['items']
+      }
+
+      return menu
     },
 
     socialMenuData() {
+      let menu = []
       let data = this.$store.getters['general/getData']
-      let socialMenuID = data['menu_locations']['social-media']['ID']
 
-      return data['menu'][socialMenuID]['items']
+      if (data['menu_locations'] && data['menu_locations']['social-media']) {
+        let socialMenuID = data['menu_locations']['social-media']['ID']
+        menu = data['menu'][socialMenuID]['items']
+      }
+
+      return menu
     },
 
     footerMenuData() {

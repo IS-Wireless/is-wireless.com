@@ -53,7 +53,7 @@
                 "
                 :url="item.url"
                 :title="item.title"
-                :isExternal="item.object == 'custom' ? true : false"
+                :is-external="item.object == 'custom' ? true : false"
               ></CustomLink>
               <div
                 class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#111] cursor-default"
@@ -74,7 +74,7 @@
                         "
                         :url="subItem.url"
                         :title="subItem.title"
-                        :isExternal="subItem.object == 'custom' ? true : false"
+                        :is-external="subItem.object == 'custom' ? true : false"
                       ></CustomLink>
                       <ul class="flex flex-col mb-5">
                         <li
@@ -90,7 +90,7 @@
                             "
                             :url="subSubItem.url"
                             :title="subSubItem.title"
-                            :isExternal="
+                            :is-external="
                               subSubItem.object == 'custom' ? true : false
                             "
                           ></CustomLink>
@@ -105,8 +105,8 @@
           <ul class="h-full flex items-center overflow-hidden">
             <li
               class="navbar-item z-50 tablet-wide:z-0 flex p-4 justify-center items-center h-full text-base text-inherit hover:text-inherit relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition tablet:hover:after:-translate-y-1"
-              @click="toggleExpanded"
               :class="{ 'btn-active': expanded }"
+              @click="toggleExpanded"
             >
               <div
                 class="h-[21px] w-[25px] flex flex-col justify-between items-center"
@@ -312,7 +312,7 @@
                 <li
                   class="flex-0 mr-[30px]"
                   v-for="item in socials"
-                  :key="item.type"
+                  :key="item.id"
                 >
                   <CustomLink
                     :url="item.url"

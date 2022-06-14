@@ -55,7 +55,7 @@
           <ul class="flex items-center">
             <li
               v-for="itemSocial in socials"
-              :key="itemSocial.type"
+              :key="itemSocial.id"
               class="block mx-6 tablet:mx-4 desktop:mx-6"
             >
               <CustomLink
@@ -120,7 +120,7 @@
           <ul class="list-none m-0 p-0 flex">
             <li
               v-for="item in menu.menu_left"
-              :key="item.title"
+              :key="item.id"
               class="mr-4 tablet:mx-0 tablet:mr-8 text-base"
             >
               <CustomLink
@@ -140,7 +140,7 @@
           <ul class="list-none m-0 p-0 flex">
             <li
               v-for="item in menu.menu_right"
-              :key="item.title"
+              :key="item.id"
               class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
             >
               <CustomLink

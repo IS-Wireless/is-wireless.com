@@ -63,8 +63,8 @@
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#1DA1F2] transition"
                 :url="itemSocial.url"
                 rel="external nofollow"
-                :title="item.title"
-                :isExternal="item.object == 'custom' ? true : false"
+                :title="itemSocial.title"
+                :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -80,8 +80,8 @@
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#0072b1] transition"
                 :url="itemSocial.url"
                 rel="external nofollow"
-                :title="item.title"
-                :isExternal="item.object == 'custom' ? true : false"
+                :title="itemSocial.title"
+                :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -97,8 +97,8 @@
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#FF0000] transition"
                 :url="itemSocial.url"
                 rel="external nofollow"
-                :title="item.title"
-                :isExternal="item.object == 'custom' ? true : false"
+                :title="itemSocial.title"
+                :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

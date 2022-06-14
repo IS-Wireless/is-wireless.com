@@ -314,9 +314,12 @@
                   v-for="item in socials"
                   :key="item.type"
                 >
-                  <a
-                    :href="item.url"
+                  <CustomLink
+                    :url="item.url"
                     target="_blank"
+                    rel="external nofollow"
+                    :title="item.title"
+                    :isExternal="item.object == 'custom' ? true : false"
                     class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md bg-[#BFBFBF]"
                   >
                     <svg
@@ -371,7 +374,7 @@
                         fill="white"
                       />
                     </svg>
-                  </a>
+                  </CustomLink>
                 </li>
               </ul>
             </div>

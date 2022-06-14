@@ -71,8 +71,10 @@ export default {
         headers: {
           '/*': [
             'Access-Control-Allow-Origin: *',
-            `X-Build: ${pkg.version}``X-Robots-Tag: ${
-              process.env.CF_PAGES_URL.includes('pages.dev') ||
+            `X-Build: ${pkg.version}`,
+            `X-Robots-Tag: ${
+              (process.env.CF_PAGES_URL &&
+                process.env.CF_PAGES_URL.includes('pages.dev')) ||
               process.env.CONTEXT !== 'production'
                 ? 'noindex'
                 : 'index'
@@ -80,6 +82,16 @@ export default {
           ],
           '/favicon.ico': ['Cache-Control: public, max-age=86400'],
         },
+      },
+    ],
+    [
+      'nuxt-netlify-http2-server-push',
+      {
+        // Specify relative path to the dist directory and its content type
+        resources: [
+          { path: '**/*.js', as: 'script' },
+          { path: '**/*.css', as: 'style' },
+        ],
       },
     ],
   ],

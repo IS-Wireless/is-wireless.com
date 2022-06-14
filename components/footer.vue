@@ -63,24 +63,24 @@
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#1DA1F2] transition"
                 :url="itemSocial.url"
                 rel="external nofollow"
-                :title="itemSocial.title"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
               >
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M19.963 7.953v.53c0 5.419-4.12 11.669-11.667 11.669-2.314 0-4.493-.508-6.296-1.667.322.046.646.07.97.07 1.924 0 3.706-.833 5.096-1.945a4.085 4.085 0 01-3.821-2.847 4.267 4.267 0 001.851-.07 4.1 4.1 0 01-3.287-4.027v-.047c.556.3 1.18.485 1.851.51a4.085 4.085 0 01-1.828-3.404c0-.763.208-1.39.557-1.991 2.038 2.477 5.046 4.03 8.448 4.213a4.258 4.258 0 01-.09-.95A4.09 4.09 0 0115.841 3.9c1.182 0 2.245.51 3.011 1.297a8.352 8.352 0 002.592-.995c-.3.949-.95 1.76-1.807 2.27A8.103 8.103 0 0022 5.821a8.502 8.502 0 01-2.037 2.13"
-                    fill="rgb(255, 255, 255)"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                <template #default>
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M19.963 7.953v.53c0 5.419-4.12 11.669-11.667 11.669-2.314 0-4.493-.508-6.296-1.667.322.046.646.07.97.07 1.924 0 3.706-.833 5.096-1.945a4.085 4.085 0 01-3.821-2.847 4.267 4.267 0 001.851-.07 4.1 4.1 0 01-3.287-4.027v-.047c.556.3 1.18.485 1.851.51a4.085 4.085 0 01-1.828-3.404c0-.763.208-1.39.557-1.991 2.038 2.477 5.046 4.03 8.448 4.213a4.258 4.258 0 01-.09-.95A4.09 4.09 0 0115.841 3.9c1.182 0 2.245.51 3.011 1.297a8.352 8.352 0 002.592-.995c-.3.949-.95 1.76-1.807 2.27A8.103 8.103 0 0022 5.821a8.502 8.502 0 01-2.037 2.13"
+                      fill="rgb(255, 255, 255)"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </template>
               </CustomLink>
               <CustomLink
                 v-if="itemSocial.object_slug == 'linkedin'"
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#0072b1] transition"
                 :url="itemSocial.url"
                 rel="external nofollow"
-                :title="itemSocial.title"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
               >
@@ -97,7 +97,6 @@
                 class="block bg-gray-200 rounded h-10 w-10 hover:bg-[#FF0000] transition"
                 :url="itemSocial.url"
                 rel="external nofollow"
-                :title="itemSocial.title"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
               >
@@ -167,8 +166,13 @@
 </template>
 
 <script>
+import CustomLink from './custom-link.vue'
+
 export default {
   name: 'Footer',
+  components: {
+    CustomLink,
+  },
   props: {
     item: {
       type: String,

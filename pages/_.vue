@@ -64,7 +64,6 @@ import sidebar_blocks_links from '~/components/menu-left.vue'
 import section_person from '~/components/person.vue'
 import section_cta_basic from '~/components/cta-basic.vue'
 import section_map from '~/components/map.vue'
-import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
   components: {
@@ -83,7 +82,6 @@ export default {
     section_person,
     section_cta_basic,
     section_map,
-    LazyHydrate,
   },
   data() {
     return {

@@ -6,30 +6,27 @@
       :socials="socialMenuData"
     />
     <Nuxt />
-    <LazyHydrate never>
-      <Footer
-        :image-url="footerData.image"
-        :copyright="footerData.copyright"
-        :menu="footerMenuData"
-        :socials="socialMenuData"
-        :languages="footerData.language"
-      />
-    </LazyHydrate>
     <ScrollToTopBtn />
+    <Footer
+      :image-url="footerData.image"
+      :copyright="footerData.copyright"
+      :menu="footerMenuData"
+      :socials="socialMenuData"
+      :languages="footerData.language"
+    />
   </div>
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
 import Navbar from '@/components/navbar.vue'
 import ScrollToTopBtn from '@/components/scroll-to-top.vue'
+import Footer from '@/components/footer.vue'
 
 export default {
   components: {
-    LazyHydrate,
     Navbar,
-    Footer: () => import('@/components/footer.vue'),
     ScrollToTopBtn,
+    Footer,
   },
   computed: {
     topMenuData() {

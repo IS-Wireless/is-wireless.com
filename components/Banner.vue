@@ -30,7 +30,7 @@
           ref="content1"
           width="550"
           height="160"
-          class="opacity-0 duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
+          class="duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
           :src="data.default.image.url"
           :alt="data.default.image.alt"
           :title="data.default.image.title"
@@ -38,14 +38,14 @@
         <p
           v-if="data.default && data.default.content"
           ref="content2"
-          class="opacity-0 duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10 h-10"
+          class="duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10 h-10"
         >
           {{ data.default.content }}
         </p>
         <div
           v-if="data.default"
           ref="content3"
-          class="opacity-0 duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
+          class="duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
         >
           <CustomLink
             class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"

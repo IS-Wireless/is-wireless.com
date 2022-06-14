@@ -2,38 +2,35 @@
   <div class="flex flex-col">
     <Banner :data="frontPageData.homepageData.sections[0]" />
     <Organisations :data="frontPageData.homepageData.sections[1]" />
-    <LazyHydrate never>
-      <section_two_column :data="frontPageData.homepageData.sections[2]" />
-    </LazyHydrate>
-    <LazyHydrate never>
-      <section_two_column_bg
-        :textClr="'text-white'"
-        :data="frontPageData.homepageData.sections[3]"
-      />
-    </LazyHydrate>
-    <LazyHydrate never>
-      <section_two_column :data="frontPageData.homepageData.sections[4]" />
-    </LazyHydrate>
-    <LazyHydrate never>
-      <CtaJob :data="frontPageData.homepageData.sections[5]" />
-    </LazyHydrate>
+
+    <section_two_column :data="frontPageData.homepageData.sections[2]" />
+
+    <section_two_column_bg
+      :textClr="'text-white'"
+      :data="frontPageData.homepageData.sections[3]"
+    />
+
+    <section_two_column :data="frontPageData.homepageData.sections[4]" />
+
+    <CtaJob :data="frontPageData.homepageData.sections[5]" />
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import LazyHydrate from 'vue-lazy-hydration'
 import Banner from '~/components/Banner.vue'
 import Organisations from '~/components/Organisations.vue'
+import section_two_column from '~/components/content-section.vue'
+import section_two_column_bg from '~/components/content-section-bg.vue'
+import CtaJob from '~/components/cta-job.vue'
 
 export default Vue.extend({
   components: {
-    LazyHydrate,
     Banner,
     Organisations,
-    CtaJob: () => import('~/components/cta-job.vue'),
-    section_two_column: () => import('~/components/content-section.vue'),
-    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
+    section_two_column,
+    section_two_column_bg,
+    CtaJob,
   },
   computed: {
     frontPageData() {

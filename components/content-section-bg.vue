@@ -1,12 +1,29 @@
 <template>
   <section
-    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16"
+    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 overflow-hidden"
     :class="textClr"
   >
     <div
+      class="absolute w-full h-full top-0 left-0"
+      style="perspective: 5000px"
+      v-if="data.image"
+    >
+      <nuxt-picture
+        class="absolute -inset-7 tablet-wide:-inset-16 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
+        :imgAttrs="{
+          class:
+            'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
+        }"
+        ref="parallaxTarget"
+        :style="parallaxStyle"
+        :src="data.image"
+      ></nuxt-picture>
+    </div>
+    <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto"
     >
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8">
+      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8"></div>
+      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
         <SectionHeader v-if="data.title" :title="data.title" />
         <div
           v-if="data.content"
@@ -15,24 +32,21 @@
         ></div>
         <List v-if="data.list" :data="data.list" />
       </div>
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
-        <SectionImage v-if="data.image" :url="data.image" />
-      </div>
     </div>
   </section>
 </template>
 
 <script>
 import SectionHeader from './section-header.vue'
-import SectionImage from './section-image.vue'
-
 import List from './list.vue'
 
+import { useParallax } from '@vueuse/core'
+import { ref, reactive, computed } from '@vue/composition-api'
+
 export default {
-  name: 'section_two_column',
+  name: 'section_two_column_bg',
   components: {
     SectionHeader,
-    SectionImage,
     List,
   },
   props: {
@@ -46,6 +60,23 @@ export default {
       required: false,
       default: '',
     },
+  },
+  setup() {
+    const parallaxTarget = ref(null)
+    const parallax = reactive(useParallax(parallaxTarget))
+    const layerBase = {
+      transition: '.3s ease-out all',
+    }
+
+    const parallaxStyle = computed(() => ({
+      ...layerBase,
+      transform: `rotateX(${parallax.roll * 20}deg) rotateY(${
+        parallax.tilt * 20
+      }deg)
+      `,
+    }))
+
+    return { parallaxStyle, parallaxTarget }
   },
 }
 </script>

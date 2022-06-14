@@ -1,28 +1,23 @@
 <template>
   <div class="relative">
-    <LazyHydrate when-idle>
-      <Navbar
-        :main-menu="topMenuData"
-        :side-menu="sideMenuData"
-        :socials="socialMenuData"
-      />
-    </LazyHydrate>
+    <Navbar
+      :main-menu="topMenuData"
+      :side-menu="sideMenuData"
+      :socials="socialMenuData"
+    />
     <Nuxt />
-    <LazyHydrate when-idle>
-      <Footer
-        :image-url="footerData.image"
-        :copyright="footerData.copyright"
-        :menu="footerMenuData"
-        :socials="socialMenuData"
-        :languages="footerData.language"
-      />
-    </LazyHydrate>
+    <Footer
+      :image-url="footerData.image"
+      :copyright="footerData.copyright"
+      :menu="footerMenuData"
+      :socials="socialMenuData"
+      :languages="footerData.language"
+    />
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
 import Navbar from '@/components/navbar.vue'
 import Footer from '@/components/footer.vue'
 import ScrollToTopBtn from '@/components/scroll-to-top.vue'
@@ -32,7 +27,6 @@ export default {
     Navbar,
     Footer,
     ScrollToTopBtn,
-    LazyHydrate,
   },
   beforeUnmounted() {
     alert('unmount z layouta')

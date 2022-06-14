@@ -166,7 +166,9 @@ export const state = () => ({
         'https://www.is-wireless.com/wp-content/uploads/2021/02/5G-job-IS-Wireless.jpg',
     },
   },
-  homepageData: {},
+  homepageData: {
+    sections: [],
+  },
 })
 
 export const mutations = {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    test
     <LazyHydrate when-idle>
       <Navbar
         :main-menu="topMenuData"

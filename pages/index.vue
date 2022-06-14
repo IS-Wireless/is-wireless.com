@@ -3,7 +3,7 @@
     <div class="flex flex-col">
       <Banner :data="homepageData.sections[0]" />
       <Organisations :data="homepageData.sections[1]" />
-      <ContentSection>
+      <!-- <ContentSection>
         <template #left>
           <SectionHeader
             :class="'text-gray-dark'"
@@ -25,23 +25,22 @@
             :image-alt="'test alt'"
           />
         </template>
-      </ContentSection>
+      </ContentSection> -->
 
-      <ContentSection
+      <section_two_columb_bg
         :class="'text-white'"
-        :background-url="homepageData.sections[3].image"
+        :data="homepageData.sections[3]"
       >
-        <template #right>
-          <SectionHeader :title="homepageData.sections[3].title" />
-          <div
-            class="mb-14 text-inherit"
-            v-html="homepageData.sections[3].content"
-          ></div>
-          <List :data="homepageData.sections[3].list" />
-        </template>
-      </ContentSection>
+        <!-- <template #right>
+          <SectionHeader :title="frontPageData.acf.granularized.title" />
+          <p class="mb-14 text-inherit">
+            {{ frontPageData.acf.granularized.text }}
+          </p>
+          <List :data="frontPageData.acf.granularized.list" />
+        </template> -->
+      </section_two_columb_bg>
 
-      <ContentSection>
+      <!-- <ContentSection>
         <template #left>
           <SectionHeader
             :class="'text-gray-dark'"
@@ -63,8 +62,7 @@
             :image-alt="'test alt'"
           />
         </template>
-      </ContentSection>
-
+      </ContentSection> -->
       <CtaJob :data="homepageData.sections[5]" />
     </div>
   </LazyHydrate>
@@ -75,7 +73,7 @@ import Vue from 'vue'
 
 import Banner from '~/components/Banner.vue'
 import Organisations from '~/components/Organisations.vue'
-import ContentSection from '~/components/content-section.vue'
+import section_two_columb_bg from '~/components/content-section-bg.vue'
 import SectionHeader from '~/components/section-header.vue'
 import SectionImage from '~/components/section-image.vue'
 import CtaJob from '~/components/cta-job.vue'
@@ -84,10 +82,10 @@ export default Vue.extend({
   components: {
     Organisations,
     Banner,
-    ContentSection,
     SectionHeader,
     SectionImage,
     CtaJob,
+    section_two_columb_bg,
   },
   computed: {
     frontPageData() {

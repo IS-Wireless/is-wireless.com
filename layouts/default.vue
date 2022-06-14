@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LazyHydrate when-idle>
+    <LazyHydrate :on-interaction="['click', 'touchstart']">
       <Navbar
         :main-menu="topMenuData"
         :side-menu="sideMenuData"

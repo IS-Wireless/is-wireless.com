@@ -1,12 +1,10 @@
 <template>
   <div>
-    <LazyHydrate :on-interaction="['click', 'touchstart']">
-      <Navbar
-        :main-menu="topMenuData"
-        :side-menu="sideMenuData"
-        :socials="socialMenuData"
-      />
-    </LazyHydrate>
+    <Navbar
+      :main-menu="topMenuData"
+      :side-menu="sideMenuData"
+      :socials="socialMenuData"
+    />
     <Nuxt />
     <LazyHydrate never>
       <Footer
@@ -22,11 +20,12 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
+import Navbar from '@/components/navbar.vue'
 
 export default {
   components: {
     LazyHydrate,
-    Navbar: () => import('@/components/navbar.vue'),
+    Navbar,
     Footer: () => import('@/components/footer.vue'),
   },
   computed: {

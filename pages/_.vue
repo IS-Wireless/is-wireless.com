@@ -96,11 +96,12 @@ export default {
       return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
     },
     pageData() {
-      let storeData = this.$store.getters['general/getData']
+      const storeData = this.$store.getters['general/getData']
+      const pagesArray = Object.values(storeData.pages)
       let pageData = false
-      for (let i = 0; i < storeData.pages.length; i++) {
-        if (storeData.pages[i].slug == this.currentRouteName) {
-          pageData = storeData.pages[i]
+      for (let i = 0; i < pagesArray.length; i++) {
+        if (pagesArray[i].slug == this.currentRouteName) {
+          pageData = pagesArray[i]
         }
       }
       return pageData

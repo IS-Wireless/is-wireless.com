@@ -111,7 +111,9 @@ export const actions = {
       new Promise((resolve) => {
         getAll(app.$wp.namespace('wp/v2').pages()).then(function (data) {
           filterData(data)
-          dispatch('general/init', { pages: data })
+          data.forEach((pageData) => {
+            dispatch('general/pagesInit', { pages: pageData })
+          })
           resolve()
         })
       }),

@@ -4,6 +4,7 @@ const filterWords = ['yoast_head', 'meta', '{}']
 
 export const state = () => ({
   menu: {},
+  pages: {},
 })
 
 const filterData = (obj) => {
@@ -53,6 +54,14 @@ export const mutations = {
 
     Object.assign($state.menu, { ...$state.menu, ...obj })
   },
+  pageAdd($state, data) {
+    filterData(data)
+    var obj = {
+      [data.id.toString()]: data,
+    }
+
+    Object.assign($state.pages, { ...$state.pages, ...obj })
+  },
 }
 
 export const actions = {
@@ -61,5 +70,8 @@ export const actions = {
   },
   menuInit(context, data) {
     context.commit('menuAdd', data.menu)
+  },
+  pagesInit(context, data) {
+    context.commit('pageAdd', data.pages)
   },
 }

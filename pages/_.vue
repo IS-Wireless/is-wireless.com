@@ -91,14 +91,18 @@ export default {
   },
   computed: {
     currentRouteName() {
-      return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+      return this.$route.fullPath
     },
     pageData() {
       const storeData = this.$store.getters['general/getData']
       const pagesArray = Object.values(storeData.pages)
       let pageData = false
       for (let i = 0; i < pagesArray.length; i++) {
-        if (pagesArray[i].slug == this.currentRouteName) {
+        let pageFullPath = pagesArray[i].link.replace(
+          'https://www.is-wireless.com',
+          ''
+        )
+        if (pageFullPath === this.currentRouteName) {
           pageData = pagesArray[i]
         }
       }

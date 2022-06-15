@@ -38,6 +38,9 @@ export const getters = {
   getOptionsData: ($state) => {
     return $state.options.acf
   },
+  getPagesData: ($state) => {
+    return $state.pages
+  },
 }
 
 export const mutations = {

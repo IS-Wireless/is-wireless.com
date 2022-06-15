@@ -1,48 +1,35 @@
 <template>
-  <div class="w-full mb-32 flex flex-wrap">
+  <div class="tiles-container w-full tablet:max-w-[75%] mb-32 flex flex-wrap">
     <div
-      v-for="item in data"
-      :key="item.title"
+      v-for="(item, index) in data.selected"
+      :key="index"
       class="p-[6px] basis-full tablet-small:basis-full tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0"
     >
-      <CustomLink
-        class="group rounded-md bg-gray-light flex flex-col h-full p-2 overflow-hidden"
-        :url="item.url"
-        ><h2 class="text-blue-main text-3xl pt-0.5">
-          {{ item.title }}
-        </h2>
-        <nuxt-picture class="w-1/2 py-5" :src="item.imgUrl" />
-        <p>
-          {{ item.text }}
-        </p>
-        <div
-          class="text-blue-main pt-2.5 mt-auto transform tablet:translate-y-full group-hover:translate-y-0 transition duration-300"
-        >
-          <span
-            class="inline-block w-[15px] h-1 align-middle rounded-full bg-blue-main transition"
-          />
-          <span class="text-blue-main">More details</span>
-        </div>
-      </CustomLink>
+      <ProjectTile :data="subpagesData[item.ID]" />
     </div>
   </div>
 </template>
 
 <script>
 import CustomLink from './custom-link.vue'
+import ProjectTile from './project-tile.vue'
 
 export default {
-  name: 'ProjectTiles',
+  name: 'section_block_subpages',
   components: {
     CustomLink,
+    ProjectTile,
   },
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
+  data() {
+    return {
+      subpagesData: this.$store.getters['general/getPagesData'],
+    }
+  },
 }
 </script>
-
-<style></style>

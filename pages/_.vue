@@ -64,6 +64,7 @@ import sidebar_blocks_links from '~/components/menu-left.vue'
 import section_person from '~/components/person.vue'
 import section_cta_basic from '~/components/cta-basic.vue'
 import section_map from '~/components/map.vue'
+import section_block_subpages from '~/components/project-tiles.vue'
 
 export default {
   components: {
@@ -82,20 +83,15 @@ export default {
     section_person,
     section_cta_basic,
     section_map,
-  },
-  data() {
-    return {
-      content:
-        '<p><strong>1.Collection of Your Personal Information</strong></p><p>We will inform you of the purpose for collecting personal information when we collect it from you and keep it to fulfill the purposes for which it was collected, as required by applicable laws or for legitimate purposes.</p><p><strong>2.Uses of Your Personal Information</strong></p><p>We will only use your personal information in the way we specified when it was collected. We will not subsequently change the way your personal information is used without first asking for your permission. Some of the ways we may use personal information include: delivering or supporting products, services or information you have requested, contacting you for customer satisfaction surveys, personalizing websites and newsletters to your preferences, communicating for marketing purposes.</p><p><strong>3.Access to and Accuracy of Your Personal Information</strong></p><p>We need your help in keeping your personal information accurate and up to date, so please notify us of any changes to your personal information. To update your personal information and communication preferences, please contact us on <a href="mailto:info@is-wireless.com">info@is-wireless.com</a></p><p><strong>4.Sharing Your Personal Information</strong></p><p>We do not sell or share your personal information to third parties for marketing purposes unless you have granted us permission to do so. We may share personal information with business partners, service vendors, authorized third-party agents, or contractors to provide a requested service or transaction. This includes processing orders, hosting seminar registration, and providing customer support. We only provide these third parties with the minimum amount of personal information necessary to complete or provide the requested service or transaction. We do not allow third parties to use your personal information for a different purpose.</p><p><strong>5.Security of Your Personal Information</strong></p><p>We are committed to protecting the personal information you share with us. We will only retain your personal information to fulfill the purposes for which it was collected or as required for legitimate purposes or permitted by law.</p><p><strong>6.Updates to this Privacy Statement</strong></p><p>We may update this Privacy Statement at any time, so please review it frequently. If we change our Privacy Statement, we will post the revised version here, with an updated revision date. If we make significant changes to our Privacy Statement, we may also notify you by other means prior to the changes taking effect, such as sending an email or posting a notice on our website.</p>',
-    }
+    section_block_subpages,
   },
   computed: {
     currentRouteName() {
       return this.$route.fullPath
     },
     pageData() {
-      const storeData = this.$store.getters['general/getData']
-      const pagesArray = Object.values(storeData.pages)
+      const pagesData = this.$store.getters['general/getPagesData']
+      const pagesArray = Object.values(pagesData)
       let pageData = false
       for (let i = 0; i < pagesArray.length; i++) {
         let pageFullPath = pagesArray[i].link.replace(

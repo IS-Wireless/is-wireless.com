@@ -22,7 +22,7 @@
         <!-- <ProjectTiles :data="testProjcts" /> -->
       </div>
       <div class="basis-1/3">
-        <Sidebar :data="testSidebar" />
+        <!-- <sidebar_blocks_list :data="testSidebar" /> -->
       </div>
     </div>
     <Table :data="testTableData" />
@@ -40,7 +40,7 @@ import Collapse from '~/components/collapse.vue'
 import CtaFunds from '~/components/cta-funds.vue'
 import Person from '~/components/person.vue'
 // import ProjectTiles from '../components/project-tiles.vue'
-import Sidebar from '~/components/sidebar.vue'
+import sidebar_blocks_list from '~/components/menu-right.vue'
 import Table from '~/components/table.vue'
 import Map from '../components/map.vue'
 import Tabs from '~/components/tabs.vue'
@@ -53,7 +53,7 @@ export default {
     Collapse,
     CtaFunds,
     Person,
-    Sidebar,
+    sidebar_blocks_list,
     // ProjectTiles,
     Table,
     // ContactSales,

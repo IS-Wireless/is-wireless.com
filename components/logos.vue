@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mb-10">
+  <div class="logos-container w-full max-w-[75%] mb-10">
     <div class="flex flex-wrap">
       <div
         v-for="(item, index) in data.galeria"
@@ -36,4 +36,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.has-sidebar .logos-container {
+  @apply max-w-full;
+}
+</style>

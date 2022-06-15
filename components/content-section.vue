@@ -109,4 +109,12 @@ export default {
 .content-html >>> img {
   @apply w-full h-auto;
 }
+
+.content-html >>> iframe {
+  @apply max-w-full h-auto;
+}
+
+.content-html >>> iframe[src*='www.youtu'] {
+  @apply w-full aspect-video;
+}
 </style>

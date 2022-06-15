@@ -167,4 +167,12 @@ code {
 .content-html >>> img {
   @apply max-w-full w-auto h-auto;
 }
+
+.content-html >>> iframe {
+  @apply max-w-full h-auto;
+}
+
+.content-html >>> iframe[src*='www.youtu'] {
+  @apply w-full aspect-video;
+}
 </style>

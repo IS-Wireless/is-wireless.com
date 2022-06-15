@@ -4,73 +4,34 @@
       <thead>
         <tr>
           <th
-            v-for="(item, index) in data.head"
+            v-for="(col, index) in data.header"
             :key="index"
             class="p-5 font-bold hidden first:table-cell phablet:table-cell"
-          >
-            {{ item }}
-          </th>
+            v-html="col.c"
+          ></th>
         </tr>
       </thead>
       <tbody class="border-y-4 border-solid border-gray-light">
         <tr
-          v-for="(item, indexRow) in data.content"
+          v-for="(row, indexRow) in data.body"
           :key="indexRow"
           ref="row"
-          class="
-            flex flex-col
-            phablet:table-row
-            w-full
-            border-b border-solid border-gray-light
-            last:border-b-0
-            overflow-hidden
-            transition-all
-            duration-300
-          "
+          class="flex flex-col phablet:table-row w-full border-b border-solid border-gray-light last:border-b-0 overflow-hidden transition-all duration-300"
           data-mobile-expanded="false"
         >
           <td
-            v-for="(text, indexCol) in item"
+            v-for="(cell, indexCol) in row"
             :key="indexCol"
-            :data-id="data.head[indexCol]"
-            class="
-              phablet:px-5
-              py-2.5
-              ml-[40px]
-              first-of-type:ml-0
-              flex
-              phablet:table-cell
-              first-of-type:before:hidden
-              phablet:before:hidden
-              before:content-[attr(data-id)]
-              before:relative
-              before:text-gray-dark
-              before:font-lato
-              before:block
-              before:font-bold
-              before:basis-[100px]
-              before:shrink-0
-              border-b
-              last:border-b-0
-              border-gray-light
-              phablet:border-b-0
-            "
+            :data-id="data.header[indexCol].c"
+            class="phablet:px-5 py-2.5 ml-[40px] first-of-type:ml-0 flex phablet:table-cell first-of-type:before:hidden phablet:before:hidden before:content-[attr(data-id)] before:relative before:text-gray-dark before:font-lato before:block before:font-bold before:basis-[100px] before:shrink-0 border-b last:border-b-0 border-gray-light phablet:border-b-0"
+            @click="indexCol === 0 ? toggleRowExpand(indexRow) : false"
           >
             <div
-              v-if="indexCol == 0"
-              class="
-                phablet:hidden
-                p-2.5
-                w-[40px]
-                flex
-                justify-center
-                items-center
-                cursor-pointer
-              "
-              @click="toggleRowExpand($event, indexRow)"
+              v-if="indexCol === 0"
+              class="phablet:hidden p-2.5 w-[40px] flex justify-center items-center cursor-pointer"
             >
               <svg
-                class="fill-current text-gray-default transition duration-300"
+                class="collapse-icon fill-current text-gray-default transition duration-300"
                 width="17"
                 height="9"
                 viewBox="0 0 17 9"
@@ -82,9 +43,7 @@
                 />
               </svg>
             </div>
-            <span class="block">
-              {{ text }}
-            </span>
+            <span class="block" v-html="cell.c"> </span>
           </td>
         </tr>
       </tbody>
@@ -93,8 +52,10 @@
 </template>
 
 <script>
+import { useMediaQuery } from '@vueuse/core'
+
 export default {
-  name: 'Table',
+  name: 'section_table',
   props: {
     data: {
       type: Object,
@@ -103,31 +64,51 @@ export default {
   },
   mounted() {
     this.collapseAll()
+    window.addEventListener('resize', this.collapseAll)
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.collapseAll)
+  },
+
+  computed: {
+    isTablet() {
+      return useMediaQuery('(min-width: 768px)').value
+    },
   },
   methods: {
-    toggleRowExpand(e, indexRow) {
-      let row = this.$refs.row[indexRow]
-      let icon = e.currentTarget.firstChild
-      let expandedHeight = row.scrollHeight
+    toggleRowExpand(indexRow) {
+      if (!this.isTablet) {
+        let row = this.$refs.row[indexRow]
+        let expandedHeight = row.scrollHeight
 
-      if (row.getAttribute('data-mobile-expanded') === 'true') {
-        row.style.height = row.firstChild.clientHeight + 'px'
-        icon.classList.toggle('rotate-180')
-        row.setAttribute('data-mobile-expanded', 'false')
-      } else {
-        row.style.height = expandedHeight + 'px'
-        icon.classList.toggle('rotate-180')
-        row.setAttribute('data-mobile-expanded', 'true')
+        if (row.getAttribute('data-mobile-expanded') === 'true') {
+          row.style.height = row.firstChild.clientHeight + 'px'
+          row.setAttribute('data-mobile-expanded', 'false')
+        } else {
+          row.style.height = expandedHeight + 'px'
+          row.setAttribute('data-mobile-expanded', 'true')
+        }
       }
     },
 
     collapseAll() {
-      this.$refs.row.forEach((item) => {
-        item.style.height = item.firstChild.clientHeight + 'px'
-      })
+      if (this.$refs.row) {
+        this.$refs.row.forEach((row) => {
+          if (this.isTablet) {
+            row.style.removeProperty('height')
+          } else {
+            row.style.height = row.firstChild.clientHeight + 'px'
+          }
+          row.setAttribute('data-mobile-expanded', 'false')
+        })
+      }
     },
   },
 }
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+[data-mobile-expanded='true'] .collapse-icon {
+  @apply -rotate-180;
+}
+</style>

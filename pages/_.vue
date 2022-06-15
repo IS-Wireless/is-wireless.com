@@ -65,6 +65,7 @@ import section_person from '~/components/person.vue'
 import section_cta_basic from '~/components/cta-basic.vue'
 import section_map from '~/components/map.vue'
 import section_block_subpages from '~/components/project-tiles.vue'
+import section_table from '~/components/table.vue'
 
 export default {
   components: {
@@ -84,6 +85,7 @@ export default {
     section_cta_basic,
     section_map,
     section_block_subpages,
+    section_table,
   },
   computed: {
     currentRouteName() {

@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in data.selected"
       :key="index"
-      class="p-[6px] basis-full tablet-small:basis-full tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0"
+      class="p-[6px] basis-full tablet-small:basis-full tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 overflow-hidden"
     >
       <ProjectTile :data="subpagesData[item.ID]" />
     </div>

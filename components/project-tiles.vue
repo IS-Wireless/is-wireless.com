@@ -33,3 +33,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.has-sidebar .tiles-container {
+  @apply max-w-full;
+}
+</style>

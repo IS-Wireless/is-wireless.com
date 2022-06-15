@@ -11,7 +11,12 @@
     <div class="tablet:w-4/5 mx-auto py-10">
       <div
         v-if="pageData.acf"
-        class="flex flex-col-reverse tablet:flex-row-reverse"
+        class="flex"
+        :class="
+          pageData.acf.sidebar_right && pageData.acf.sidebar
+            ? 'flex-col tablet:flex-row'
+            : 'flex-col-reverse tablet:flex-row-reverse'
+        "
       >
         <div
           class="w-4/5 tablet:w-full mx-auto mb-10"
@@ -28,6 +33,7 @@
         <div
           v-if="pageData.acf.sidebar"
           class="tablet:w-1/3 sticky top-0 tablet:static"
+          :class="pageData.acf.sidebar_right ? 'tablet:ml-5' : 'tablet:mr-5'"
         >
           <div class="sticky tablet:top-8">
             <component
@@ -61,6 +67,7 @@ import section_grid_links from '~/components/offer-tiles.vue'
 import section_list_links from '~/components/offer-menu.vue'
 import section_cta_background_color from '~/components/cta-funds.vue'
 import sidebar_blocks_links from '~/components/menu-left.vue'
+import sidebar_blocks_list from '~/components/menu-right.vue'
 import section_person from '~/components/person.vue'
 import section_cta_basic from '~/components/cta-basic.vue'
 import section_map from '~/components/map.vue'
@@ -80,6 +87,7 @@ export default {
     section_list_links,
     section_cta_background_color,
     sidebar_blocks_links,
+    sidebar_blocks_list,
     section_person,
     section_cta_basic,
     section_map,

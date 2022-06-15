@@ -18,7 +18,7 @@ export default {
     url: {
       type: String,
       required: true,
-      default: '',
+      default: '/',
     },
     title: {
       type: String,

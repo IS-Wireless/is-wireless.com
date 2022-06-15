@@ -1,27 +1,32 @@
 <template>
-  <div class="w-full">
+  <div class="w-full mb-10">
     <div class="flex flex-wrap">
       <div
-        v-for="item in data"
-        :key="item.imgUrl"
-        class="basis-1/2 tablet-wide:basis-1/3 flex justify-center items-center p-[5%]"
+        v-for="(item, index) in data.galeria"
+        :key="index"
+        class="basis-1/2 tablet-wide:basis-1/3 flex justify-center items-center p-[5%] tablet-wide:p-[2.5%]"
       >
-        <nuxt-link
-          v-if="item.url != ''"
-          :to="item.url"
+        <CustomLink
+          v-if="item.url"
+          :url="item.url"
+          :isExternal="true"
           class="block w-full p-1"
         >
-          <nuxt-picture :src="item.imgUrl" class="w-full img-full" />
-        </nuxt-link>
-        <nuxt-picture v-else :src="item.imgUrl" class="w-full img-full p-1" />
+          <nuxt-picture :src="item.img_url" class="w-full img-full" />
+        </CustomLink>
+        <nuxt-picture v-else :src="item.img_url" class="w-full img-full p-1" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import CustomLink from '@/components/custom-link.vue'
 export default {
   name: 'logo_static',
+  components: {
+    CustomLink,
+  },
   props: {
     data: {
       type: Object,

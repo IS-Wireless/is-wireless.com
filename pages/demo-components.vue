@@ -15,11 +15,11 @@
     </Collapse>
     <CtaFunds :data="testTitleText" />
     <Person :data="testPerson" />
-    <ProjectTiles :data="testProjcts" />
+    <!-- <ProjectTiles :data="testProjcts" /> -->
     <h1 class="p-8">2/3 layout test</h1>
     <div class="flex flex-col tablet-wide:flex-row">
       <div class="basis-2/3 tablet-wide:pr-[5%]">
-        <ProjectTiles :data="testProjcts" />
+        <!-- <ProjectTiles :data="testProjcts" /> -->
       </div>
       <div class="basis-1/3">
         <Sidebar :data="testSidebar" />
@@ -39,7 +39,7 @@ import MoreSolutions from '~/components/more-solutions.vue'
 import Collapse from '~/components/collapse.vue'
 import CtaFunds from '~/components/cta-funds.vue'
 import Person from '~/components/person.vue'
-import ProjectTiles from '../components/project-tiles.vue'
+// import ProjectTiles from '../components/project-tiles.vue'
 import Sidebar from '~/components/sidebar.vue'
 import Table from '~/components/table.vue'
 import Map from '../components/map.vue'
@@ -53,8 +53,8 @@ export default {
     Collapse,
     CtaFunds,
     Person,
-    ProjectTiles,
     Sidebar,
+    // ProjectTiles,
     Table,
     // ContactSales,
     Map,

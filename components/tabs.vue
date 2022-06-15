@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full tablet:max-w-[75%]">
+  <div class="w-full tablet-wide:max-w-[75%]">
     <ul class="hidden tablet-wide:flex gap-1 w-full">
       <li
         class="grow py-3 mb-8 tablet-wide:mb-14 text-center bg-gray-light transition cursor-pointer border border-solid"

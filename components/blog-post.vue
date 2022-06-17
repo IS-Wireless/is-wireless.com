@@ -14,7 +14,7 @@
           height="157"
           :src="data.featured_image_src"
         />
-        <div class="p-5 pb-1">
+        <div v-if="data.title" class="p-5 pb-1">
           <h2
             class="text-xl text-blue-main group-hover:text-blue-main-hover transition"
             v-html="data.title.rendered"
@@ -28,7 +28,7 @@
           </span>
         </div>
         <p
-          v-if="data.excerpt.rendered"
+          v-if="data.excerpt"
           class="pt-5 border-t border-solid border-gray-default"
           v-html="data.excerpt.rendered"
         ></p>

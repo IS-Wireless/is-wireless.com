@@ -155,17 +155,17 @@ export default {
       })
     },
   },
-  render: {
-    asyncScripts: false,
-    resourceHints: false,
-    // injectScripts: false, #need optimisation
-    crossorigin: 'anonymous',
-    http2: {
-      push: true,
-      pushAssets: (req, res, publicPath, preloadFiles) => (preloadFiles = []),
-    },
-    compressor: { threshold: 9, level: 9 },
-  },
+  // render: {
+  //   asyncScripts: false,
+  //   resourceHints: false,
+  //   // injectScripts: false, #need optimisation
+  //   crossorigin: 'anonymous',
+  //   http2: {
+  //     push: true,
+  //     pushAssets: (req, res, publicPath, preloadFiles) => (preloadFiles = []),
+  //   },
+  //   compressor: { threshold: 9, level: 9 },
+  // },
   generate: {
     dir: 'public',
   },

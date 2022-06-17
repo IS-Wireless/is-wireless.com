@@ -155,7 +155,7 @@ export default {
       })
     },
   },
-  // render: {
+  // render: { #issue on http agent if enabled
   //   asyncScripts: false,
   //   resourceHints: false,
   //   // injectScripts: false, #need optimisation
@@ -184,9 +184,6 @@ export default {
       lang: 'en',
       theme_color: '#00A2DF',
     },
-  },
-  router: {
-    trailingSlash: true,
   },
   layoutTransition: {
     name: 'page',

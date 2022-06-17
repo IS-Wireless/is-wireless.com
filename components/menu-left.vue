@@ -34,15 +34,15 @@
         :key="item.link_title"
         class="block w-4/5 tablet:w-full"
       >
-        <nuxt-link
+        <a
           class="menu-left-text px-10 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main transition w-full border-0 border-b border-solid border-l-gray-light"
-          :to="{ hash: item.link_title }"
+          :href="`/${item.link_title}`"
           @click.native="switchMobileExpand"
         >
           <span class="ml-[30px] text-inherit">
             {{ item.link_title }}
           </span>
-        </nuxt-link>
+        </a>
       </li>
     </ul>
   </div>

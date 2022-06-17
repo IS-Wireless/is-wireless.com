@@ -48,8 +48,6 @@ export default {
   name: 'section_content_columns_center_image',
   components: {
     SectionHeader,
-    SectionImage,
-    List,
   },
   props: {
     data: {

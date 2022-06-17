@@ -39,12 +39,15 @@
           />
         </svg>
       </span>
-      <span v-if="data" class="text-2xl tablet:text-3xl ml-4 text-blue-main">
-        {{ data.title }}
+      <span
+        v-if="data.title"
+        class="text-2xl tablet:text-3xl ml-4 text-blue-main"
+        v-html="data.title"
+      >
       </span>
     </div>
     <div
-      v-if="data"
+      v-if="data.content"
       ref="contentContainer"
       class="overflow-hidden transition-all duration-300"
       :style="{ height: contentHeight + 'px' }"
@@ -55,7 +58,7 @@
 
 <script>
 export default {
-  name: 'Collapse',
+  name: 'section_collapse',
   props: {
     data: {
       type: Object,

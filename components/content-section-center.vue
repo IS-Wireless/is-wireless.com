@@ -15,21 +15,28 @@
         <List v-if="data.list" :data="data.list" />
       </div>
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
-        <CustomLink
-          v-if="data.image && data.image_url"
-          :url="data.image_url"
-          :isExternal="true"
-        >
-          <SectionImage
-            :url="data.image"
-            :imageDecoration="data.image_decoration"
-          />
-        </CustomLink>
-        <SectionImage
-          v-else-if="data.image"
-          :url="data.image"
-          :imageDecoration="data.image_decoration"
-        />
+        <div class="flex h-full items-center mt-10 tablet-wide:mt-0">
+          <CustomLink
+            v-if="data.image && data.url"
+            :url="data.url"
+            :isExternal="true"
+            :class="'w-full'"
+          >
+            <nuxt-picture
+              :imgAttrs="{
+                class: 'w-full max-w-[75%] tablet:max-w-[50%] max-h-[100px]',
+              }"
+              :src="data.image"
+            ></nuxt-picture>
+          </CustomLink>
+          <nuxt-picture
+            v-else-if="data.image"
+            :imgAttrs="{
+              class: 'w-full max-w-[75%] tablet:max-w-[50%] max-h-[100px]',
+            }"
+            :src="data.image"
+          ></nuxt-picture>
+        </div>
       </div>
     </div>
   </section>
@@ -42,7 +49,7 @@ import SectionImage from './section-image.vue'
 import List from './list.vue'
 
 export default {
-  name: 'section_two_column',
+  name: 'section_content_columns_center_image',
   components: {
     SectionHeader,
     SectionImage,

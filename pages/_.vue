@@ -73,6 +73,7 @@ import section_cta_basic from '~/components/cta-basic.vue'
 import section_map from '~/components/map.vue'
 import section_block_subpages from '~/components/project-tiles.vue'
 import section_table from '~/components/table.vue'
+import section_content_columns_center_image from '~/components/content-section-center.vue'
 
 export default {
   components: {
@@ -94,6 +95,7 @@ export default {
     section_map,
     section_block_subpages,
     section_table,
+    section_content_columns_center_image,
   },
   computed: {
     currentRouteName() {

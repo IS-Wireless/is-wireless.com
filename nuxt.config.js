@@ -161,7 +161,6 @@ export default {
   },
   wp: {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
-    sitemap: false,
   },
   image: {
     domains: ['https://www.is-wireless.com/'],

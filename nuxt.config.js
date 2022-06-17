@@ -158,7 +158,7 @@ export default {
   render: {
     asyncScripts: false,
     resourceHints: false,
-    injectScripts: false,
+    // injectScripts: false, #need optimisation
     crossorigin: 'anonymous',
     http2: {
       push: true,

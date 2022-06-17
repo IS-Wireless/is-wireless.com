@@ -158,11 +158,12 @@ export default {
   // },
   generate: {
     dir: 'public',
-    crawler: true,
   },
   wp: {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
-    sitemap: false,
+    sitemap: {
+      hostname: 'https://www.is-wireless.com',
+    },
   },
   image: {
     domains: ['https://www.is-wireless.com/'],

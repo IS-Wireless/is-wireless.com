@@ -3,7 +3,10 @@
     <nuxt-picture
       width="640"
       height="640"
-      class="transform w-full img-full group-hover:scale-110 group-hover:opacity-80 transition duration-[1000ms]"
+      class="transform max-w-full w-auto transition duration-[1000ms]"
+      :class="{
+        'group-hover:scale-110 group-hover:opacity-80': imageDecoration,
+      }"
       :src="url"
       :alt="alt"
       :title="title"
@@ -29,6 +32,10 @@ export default {
       type: String,
       required: false,
       default: 'IS-Wireless Image',
+    },
+    imageDecoration: {
+      type: Boolean,
+      default: false,
     },
   },
 }

@@ -3,14 +3,20 @@
     <Banner :data="frontPageData.homepageData.sections[0]" />
     <Organisations :data="frontPageData.homepageData.sections[1]" />
 
-    <section_two_column :data="frontPageData.homepageData.sections[2]" />
+    <section_two_column
+      :class="'px-[10%]'"
+      :data="frontPageData.homepageData.sections[2]"
+    />
 
     <section_two_column_bg
       :textClr="'text-white'"
       :data="frontPageData.homepageData.sections[3]"
     />
 
-    <section_two_column :data="frontPageData.homepageData.sections[4]" />
+    <section_two_column
+      :class="'px-[10%]'"
+      :data="frontPageData.homepageData.sections[4]"
+    />
 
     <CtaJob :data="frontPageData.homepageData.sections[5]" />
   </div>

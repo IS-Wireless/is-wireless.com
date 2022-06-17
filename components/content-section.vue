@@ -4,7 +4,7 @@
     :class="textClr"
   >
     <div
-      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto"
+      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
     >
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8">
         <SectionHeader v-if="data.title" :title="data.title" />
@@ -16,7 +16,21 @@
         <List v-if="data.list" :data="data.list" />
       </div>
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
-        <SectionImage v-if="data.image" :url="data.image" />
+        <CustomLink
+          v-if="data.image && data.image_url"
+          :url="data.image.url"
+          :isExternal="true"
+        >
+          <SectionImage
+            :url="data.image"
+            :imageDecoration="data.image_decoration"
+          />
+        </CustomLink>
+        <SectionImage
+          v-else-if="data.image"
+          :url="data.image"
+          :imageDecoration="data.image_decoration"
+        />
       </div>
     </div>
   </section>

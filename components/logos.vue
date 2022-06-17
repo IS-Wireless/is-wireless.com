@@ -1,6 +1,6 @@
 <template>
-  <div class="logos-container w-full max-w-[75%] mb-10">
-    <div class="flex flex-wrap">
+  <div class="logos-container w-full tablet:max-w-[75%] mb-10">
+    <div class="flex flex-wrap tablet:max-w-[50vw]">
       <div
         v-for="(item, index) in data.galeria"
         :key="index"

@@ -23,11 +23,12 @@
           :class="pageData.acf.sidebar ? 'tablet:w-2/3 has-sidebar' : 'w-full'"
         >
           <div v-for="(component, index) in pageData.acf.sections" :key="index">
-            <component
+            {{ component.component.acf_fc_layout }}
+            <!-- <component
               v-if="component.acf_fc_layout !== 'section_header'"
               :is="component.acf_fc_layout"
               :data="component"
-            ></component>
+            ></component> -->
           </div>
         </div>
         <div

@@ -185,9 +185,6 @@ export default {
       theme_color: '#00A2DF',
     },
   },
-  router: {
-    trailingSlash: true,
-  },
   layoutTransition: {
     name: 'page',
     mode: 'out-in',

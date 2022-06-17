@@ -84,16 +84,6 @@ export default {
         },
       },
     ],
-    [
-      'nuxt-netlify-http2-server-push',
-      {
-        // Specify relative path to the dist directory and its content type
-        resources: [
-          { path: '**/*modern.js', as: 'script', crossorigin: 'anonymous' },
-          { path: '**/*.css', as: 'style', crossorigin: 'anonymous' },
-        ],
-      },
-    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -168,6 +158,7 @@ export default {
   // },
   generate: {
     dir: 'public',
+    crawler: true,
   },
   wp: {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,

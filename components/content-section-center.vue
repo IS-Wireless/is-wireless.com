@@ -12,7 +12,6 @@
           class="content-html text-inherit"
           v-html="data.content"
         ></div>
-        <List v-if="data.list" :data="data.list" />
       </div>
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
         <div class="flex h-full items-center mt-10 tablet-wide:mt-0">
@@ -44,9 +43,6 @@
 
 <script>
 import SectionHeader from './section-header.vue'
-import SectionImage from './section-image.vue'
-
-import List from './list.vue'
 
 export default {
   name: 'section_content_columns_center_image',

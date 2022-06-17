@@ -14,6 +14,7 @@
               :to="'/' + routeStart + '/' + post.slug + '/'"
             >
               <nuxt-picture
+                v-if="post.featured_image_src"
                 class="mb-3"
                 :imgAttrs="{ class: 'w-full' }"
                 width="300"
@@ -23,9 +24,8 @@
               <h4
                 v-if="post.title"
                 class="mb-2 text-blue-main group-hover:text-blue-main-hover transition text-xs tablet:text-sm whitespace-nowrap overflow-hidden overflow-ellipsis"
-              >
-                {{ post.title.rendered }}
-              </h4>
+                v-html="post.title.rendered"
+              ></h4>
               <span class="mb-2 text-sm">{{
                 getFormattedDate(post.date)
               }}</span>

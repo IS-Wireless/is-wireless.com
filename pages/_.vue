@@ -1,12 +1,14 @@
 <template>
   <div v-if="pageData">
-    <template v-if="pageData.acf">
-      <StaticBanner
-        v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
-        :title="pageData.acf.sections[0].title"
-        :background-url="pageData.acf.sections[0].background.url"
-      />
-    </template>
+    <div>
+      <div v-if="pageData.acf">
+        <StaticBanner
+          v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
+          :title="pageData.acf.sections[0].title"
+          :background-url="pageData.acf.sections[0].background.url"
+        />
+      </div>
+    </div>
     <Breadcrumb />
     <div class="tablet:w-4/5 mx-auto py-10">
       <div

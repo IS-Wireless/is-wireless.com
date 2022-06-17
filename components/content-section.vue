@@ -1,7 +1,6 @@
 <template>
   <section
-    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16"
-    :class="textClr"
+    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 text-gray-dark"
   >
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
@@ -50,11 +49,6 @@ export default {
     List,
   },
   props: {
-    textClr: {
-      type: String,
-      required: false,
-      default: 'text-gray-dark',
-    },
     data: {
       type: Object,
       required: false,

@@ -1,12 +1,10 @@
 <template>
   <div class="tiles-container w-full tablet:max-w-[75%] mb-32 flex flex-wrap">
-    <div
+    <ProjectTile
       v-for="(item, index) in data.selected"
       :key="index"
-      class="p-[6px] basis-full tablet-small:basis-full tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 overflow-hidden"
-    >
-      <ProjectTile :data="subpagesData[item.ID]" />
-    </div>
+      :data="subpagesData[item.ID]"
+    />
   </div>
 </template>
 

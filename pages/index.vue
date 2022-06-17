@@ -1,18 +1,18 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" />
-    <Organisations :data="frontPageData.homepageData.sections[1]" />
+    <Banner :data="frontPageData.sections[0]" />
+    <Organisations :data="frontPageData.sections[1]" />
 
-    <section_two_column :data="frontPageData.homepageData.sections[2]" />
+    <section_two_column :data="frontPageData.sections[2]" />
 
     <section_two_column_bg
       :textClr="'text-white'"
-      :data="frontPageData.homepageData.sections[3]"
+      :data="frontPageData.sections[3]"
     />
 
-    <section_two_column :data="frontPageData.homepageData.sections[4]" />
+    <section_two_column :data="frontPageData.sections[4]" />
 
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    <CtaJob :data="frontPageData.sections[5]" />
   </div>
 </template>
 
@@ -32,18 +32,27 @@ export default Vue.extend({
     section_two_column_bg,
     CtaJob,
   },
+  head() {
+    return this.headTag
+  },
   computed: {
+    headTag() {
+      let data = {}
+
+      this.$store.getters['homepage/getData'].head_tags.forEach((element) => {
+        if (!Array.isArray(data[element.tag])) {
+          data[element.tag] = []
+        }
+        data[element.tag].push(element.attributes)
+
+        console.log(data)
+      })
+
+      return data
+    },
     frontPageData() {
       return this.$store.getters['homepage/getData']
     },
   },
 })
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-</style>

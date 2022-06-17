@@ -1,6 +1,6 @@
 import { isEmpty as _isEmpty } from 'lodash'
 
-const filterWords = ['yoast_head', 'meta', '{}']
+const filterWords = ['{}']
 
 // http://wp-api.org/node-wpapi/collection-pagination/
 function getAll(request) {
@@ -57,7 +57,7 @@ export const actions = {
           .id(2)
           .then(function (data) {
             filterData(data)
-            dispatch('homepage/init', { homepageData: data.acf })
+            dispatch('homepage/init', { homepageData: data })
             resolve()
           })
       }),

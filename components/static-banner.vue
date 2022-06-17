@@ -4,9 +4,11 @@
     :style="{ backgroundImage: 'url(' + backgroundUrl + ')' }"
   >
     <div class="w-4/5 h-full mx-auto flex items-end">
-      <h1 class="text-[40px] tablet:text-[60px] text-white mb-5 tablet:mb-12">
-        {{ title }}
-      </h1>
+      <h1
+        v-if="title"
+        class="text-[40px] tablet:text-[60px] text-white mb-5 tablet:mb-12"
+        v-html="title"
+      ></h1>
     </div>
   </div>
 </template>
@@ -22,6 +24,7 @@ export default {
     backgroundUrl: {
       type: String,
       required: true,
+      default: '',
     },
   },
 }

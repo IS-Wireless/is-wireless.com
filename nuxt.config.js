@@ -155,7 +155,7 @@ export default {
       })
     },
   },
-  // render: {
+  // render: { #issue on http agent if enabled
   //   asyncScripts: false,
   //   resourceHints: false,
   //   // injectScripts: false, #need optimisation

@@ -18,7 +18,7 @@
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
         <CustomLink
           v-if="data.image && data.image_url"
-          :url="data.image.url"
+          :url="data.image_url"
           :isExternal="true"
         >
           <SectionImage

@@ -4,7 +4,9 @@
       class="w-full flex bg-gray-light tablet:bg-transparent cursor-pointer tablet:cursor-default mb-10 tablet:mb-0"
       @click="switchMobileExpand"
     >
-      <div class="tablet:hidden p-[18px] flex justify-between w-full">
+      <div
+        class="tablet:hidden p-[18px] flex justify-between w-full border-0 border-b border-solid border-white"
+      >
         <span class="text-base ml-7">Select section:</span>
         <div
           class="tablet-wide:hidden inset-y-0 right-0 flex items-center px-4 transform transition"

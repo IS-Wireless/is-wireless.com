@@ -1,7 +1,11 @@
 <template>
   <div class="mx-auto w-4/5 tablet:w-full">
     <div class="p-4 bg-gray-light rounded-md">
-      <h3 class="text-2xl text-blue-main pb-4" v-html="data.title"></h3>
+      <h3
+        v-if="data.title"
+        class="text-2xl text-blue-main pb-4"
+        v-html="data.title"
+      ></h3>
       <ul>
         <li v-for="(item, index) in data.list" :key="index" class="mb-2">
           <span class="flex">
@@ -16,7 +20,7 @@
                 <path d="M 0 0 L 0 6 L 3 3 Z" />
               </svg>
             </div>
-            <p class="text-sm" v-html="item.point"></p>
+            <p v-if="item.point" class="text-sm" v-html="item.point"></p>
           </span>
         </li>
       </ul>

@@ -3,19 +3,25 @@
     <h2 class="block text-blue-main text-2xl tablet:text-3xl mb-10">
       More solutions
     </h2>
-    <ul class="flex flex-col tablet-wide:flex-row tablet-wide:justify-between">
+    <ul
+      v-if="data.block"
+      class="flex flex-col tablet-wide:flex-row tablet-wide:justify-between"
+    >
       <li
-        v-for="item in data.block"
-        :key="item.title"
+        v-for="(item, index) in data.block"
+        :key="index"
         class="mb-2.5 tablet-wide:basis-1/3 tablet-wide:pr-8 tablet-wide:last:pr-0"
       >
         <CustomLink
+          v-if="item.link.url"
           class="p-7 flex rounded-md border border-solid border-gray-200 hover:border-blue-main transition"
           :url="item.link.url"
         >
-          <p class="text-gray-dark transition text-xl">
-            {{ item.title }}
-          </p>
+          <p
+            v-if="item.title"
+            class="text-gray-dark transition text-xl"
+            v-html="item.title"
+          ></p>
         </CustomLink>
       </li>
     </ul>

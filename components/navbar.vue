@@ -37,6 +37,7 @@
         </nuxt-link>
         <div class="grow flex items-center justify-end">
           <ul
+            v-if="mainMenu"
             class="h-full flex-shrink-0 hidden tablet-wide:flex items-center justify-end"
           >
             <li
@@ -51,14 +52,14 @@
                     ? 'text-blue-main hover:text-blue-main'
                     : 'text-white hover:text-white'
                 "
-                :url="item.url"
-                :title="item.title"
+                :url="item.url ? item.url : ''"
+                :title="item.title ? item.title : ''"
                 :is-external="item.object == 'custom' ? true : false"
               ></CustomLink>
               <div
                 class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#111] cursor-default"
               >
-                <ul class="w-4/5 mx-auto flex">
+                <ul v-if="item.children" class="w-4/5 mx-auto flex">
                   <li
                     v-for="subItem in item.children"
                     :key="subItem.id"
@@ -72,24 +73,25 @@
                             ? 'text-blue-main hover:text-blue-main'
                             : 'text-white hover:text-blue-main'
                         "
-                        :url="subItem.url"
-                        :title="subItem.title"
+                        :url="subItem.url ? subItem.url : ''"
+                        :title="subItem.title ? subItem.title : ''"
                         :is-external="subItem.object == 'custom' ? true : false"
                       ></CustomLink>
-                      <ul class="flex flex-col mb-5">
+                      <ul v-if="subItem.children" class="flex flex-col mb-5">
                         <li
                           v-for="subSubItem in subItem.children"
                           :key="subSubItem.id"
                         >
                           <CustomLink
+                            v-if="subSubItem.object"
                             class="py-1.5 block text-sm transition duration-200"
                             :class="
                               subSubItem.object == 'custom'
                                 ? 'text-blue-main hover:text-blue-main'
                                 : 'text-white hover:text-blue-main'
                             "
-                            :url="subSubItem.url"
-                            :title="subSubItem.title"
+                            :url="subSubItem.url ? subSubItem.url : ''"
+                            :title="subSubItem.title ? subSubItem.title : ''"
                             :is-external="
                               subSubItem.object == 'custom' ? true : false
                             "
@@ -216,7 +218,7 @@
           class="w-full transition duration-[400ms]"
           :class="{ 'bg-black/50': expanded }"
           @click="toggleExpanded"
-        />
+        ></div>
         <div
           class="absolute flex flex-col z-50 top-0 left-full w-full tablet-wide:w-[375px] h-full bg-gray-darkest transform transition duration-[400ms]"
           :class="{ '-translate-x-full ': expanded }"
@@ -288,7 +290,7 @@
           <div
             class="grow flex flex-col justify-between overflow-auto custom-scrollbar"
           >
-            <ul class="flex flex-col tablet-wide:pt-1">
+            <ul v-if="sideMenu" class="flex flex-col tablet-wide:pt-1">
               <li v-for="item in sideMenu" :key="item.id">
                 <CustomLink
                   class="hover:text-blue-main transition pl-14 pr-7 block"
@@ -297,8 +299,8 @@
                       ? 'tablet-wide:hidden text-xl text-white py-6 border-0 border-b border-solid border-gray-darkest bg-black'
                       : ' text-[#BFBFBF] text-base py-[2px] tablet-wide:pl-[75px] mt-[14px] overflow-hidden tablet-wide:py-5 tablet-wide:text-xl tablet-wide:text-white tablet-wide:hover:bg-black transition tablet-wide:mt-0 relative after:hidden tablet-wide:after:block after:absolute after:h-full after:w-[10px] after:top-0 after:-left-[5px] after:bg-black hover:after:bg-blue-main hover:after:translate-x-[5px] after:transform after:transition duration-200 after:duration-200 after:content-[``] '
                   "
-                  :url="item.url"
-                  :title="item.title"
+                  :url="item.url ? item.url : ''"
+                  :title="item.title ? item.title : ''"
                   :isExternal="item.object == 'custom' ? true : false"
                   @click.native="toggleExpanded()"
                 ></CustomLink>
@@ -311,8 +313,8 @@
               <ul class="flex">
                 <li
                   class="flex-0 mr-[30px]"
-                  v-for="item in socials"
-                  :key="item.id"
+                  v-for="(item, index) in socials"
+                  :key="index"
                 >
                   <CustomLink
                     :url="item.url"

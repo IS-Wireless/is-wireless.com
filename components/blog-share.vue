@@ -3,12 +3,13 @@
     <div
       class="flex flex-col tablet:flex-row tablet:items-center justify-between"
     >
-      <h4 class="text-xl text-gray-darkest">
+      <h4 v-if="data.text" class="text-xl text-gray-darkest">
         {{ data.text }}
       </h4>
-      <ul class="flex tablet:p-5 tablet:pr-0">
+      <ul v-if="data.socials" class="flex tablet:p-5 tablet:pr-0">
         <li v-for="item in data.socials" :key="item.type" class="block m-1.5">
           <a
+            v-if="item.link && item.type"
             :href="item.link"
             class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md"
             :class="{

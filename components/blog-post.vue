@@ -17,7 +17,7 @@
         <div v-if="data.title" class="p-5 pb-1">
           <h2
             class="text-xl text-blue-main group-hover:text-blue-main-hover transition"
-            v-html="data.title.rendered"
+            v-html="data.title.rendered ? data.title.rendered : ''"
           ></h2>
         </div>
       </nuxt-link>
@@ -30,7 +30,7 @@
         <p
           v-if="data.excerpt"
           class="pt-5 border-t border-solid border-gray-default"
-          v-html="data.excerpt.rendered"
+          v-html="data.excerpt.rendered ? data.excerpt.rendered : ''"
         ></p>
       </div>
     </div>

@@ -24,9 +24,9 @@
               <h4
                 v-if="post.title"
                 class="mb-2 text-blue-main group-hover:text-blue-main-hover transition text-xs tablet:text-sm whitespace-nowrap overflow-hidden overflow-ellipsis"
-                v-html="post.title.rendered"
+                v-html="post.title.rendered ? post.title.rendered : ''"
               ></h4>
-              <span class="mb-2 text-sm">{{
+              <span v-if="post.date" class="mb-2 text-sm">{{
                 getFormattedDate(post.date)
               }}</span>
             </nuxt-link>

@@ -1,5 +1,5 @@
 <template>
-  <div class="content-html mt-20" v-html="data" />
+  <div class="content-html mt-20" v-html="data"></div>
 </template>
 
 <script>

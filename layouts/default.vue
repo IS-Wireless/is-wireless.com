@@ -23,6 +23,7 @@ import ScrollToTopBtn from '@/components/scroll-to-top.vue'
 import Footer from '@/components/footer.vue'
 
 export default {
+  name: 'Default',
   components: {
     Navbar,
     ScrollToTopBtn,

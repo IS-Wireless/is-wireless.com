@@ -11,8 +11,8 @@
           {{ data.person_name }}
         </h3>
         <div
-          v-html="data.person_description"
           v-if="data.person_description"
+          v-html="data.person_description"
         ></div>
       </div>
     </div>

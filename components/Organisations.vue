@@ -13,16 +13,18 @@
           class="swiper-slide h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
         >
           <a
+            v-if="item.link"
             class="py-3 px-5 flex items-center tablet-small:pr-10"
             :href="item.link"
           >
             <nuxt-picture
+              v-if="item.image"
               width="200"
               height="200"
               fit="outside"
-              :src="item.image.url"
-              :alt="item.image.alt"
-              :title="item.image.title"
+              :src="item.image.url ? item.image.url : ''"
+              :alt="item.image.alt ? item.image.alt : ''"
+              :title="item.image.title ? item.image.title : ''"
               sizes="sm:180px lg:360px"
               :imgAttrs="{
                 loading: index < 2 ? 'eager' : index > 3 ? 'lazy' : 'auto',
@@ -43,13 +45,14 @@
       >
         <a class="block h-full" :href="item.link">
           <nuxt-picture
+            v-if="item.image"
             loading="eager"
             class="h-full img-h-full"
             width="200"
             height="200"
-            :src="item.image.url"
-            :alt="item.image.alt"
-            :title="item.image.title"
+            :src="item.image.url ? item.image.url : ''"
+            :alt="item.image.alt ? item.image.alt : ''"
+            :title="item.image.title ? item.image.title : ''"
           />
         </a>
       </div>

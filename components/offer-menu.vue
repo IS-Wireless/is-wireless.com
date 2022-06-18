@@ -1,17 +1,19 @@
 <template>
   <div class="w-full">
-    <ul class="flex flex-col">
+    <ul v-if="data.block" class="flex flex-col">
       <li v-for="(item, index) in data.block" :key="index" class="mb-4 group">
         <CustomLink
+          v-if="item.link.url"
           class="p-7 bg-gray-light flex justify-between items-center rounded-md"
           :url="item.link.url"
         >
           <p
+            v-if="item.title"
             class="text-gray-dark group-hover:text-blue-main transition text-xl"
-          >
-            {{ item.title }}
-          </p>
+            v-html="item.title"
+          ></p>
           <span
+            v-if="item.link.link_title"
             class="hidden tablet-wide:inline-block text-blue-main text-base"
           >
             {{ item.link.link_title }}

@@ -2,7 +2,7 @@
   <div class="w-full">
     <table class="block phablet:table relative">
       <thead>
-        <tr>
+        <tr v-if="data.header">
           <th
             v-for="(col, index) in data.header"
             :key="index"
@@ -11,7 +11,7 @@
           ></th>
         </tr>
       </thead>
-      <tbody class="border-y-4 border-solid border-gray-light">
+      <tbody v-if="data.body" class="border-y-4 border-solid border-gray-light">
         <tr
           v-for="(row, indexRow) in data.body"
           :key="indexRow"
@@ -22,7 +22,7 @@
           <td
             v-for="(cell, indexCol) in row"
             :key="indexCol"
-            :data-id="data.header[indexCol].c"
+            :data-id="data.header[indexCol].c ? data.header[indexCol].c : ''"
             class="phablet:px-5 py-2.5 ml-[40px] first-of-type:ml-0 flex phablet:table-cell first-of-type:before:hidden phablet:before:hidden before:content-[attr(data-id)] before:relative before:text-gray-dark before:font-lato before:block before:font-bold before:basis-[100px] before:shrink-0 border-b last:border-b-0 border-gray-light phablet:border-b-0"
             @click="indexCol === 0 ? toggleRowExpand(indexRow) : false"
           >
@@ -43,7 +43,7 @@
                 />
               </svg>
             </div>
-            <span class="block" v-html="cell.c"> </span>
+            <span v-if="cell.c" class="block" v-html="cell.c"> </span>
           </td>
         </tr>
       </tbody>

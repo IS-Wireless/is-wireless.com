@@ -91,10 +91,15 @@
           class="mb-[40px] tablet:mb-0 desktop:h-[300px] self-start flex flex-col justify-center shrink-0 desktop:basis-52"
         >
           <h3
+            v-if="data.person_name"
             class="text-2xl mb-2 tablet:mb-0 desktop:mb-1"
             v-html="data.person_name"
           ></h3>
-          <p class="text-blue-main text-lg mb-5" v-html="data.person_title"></p>
+          <p
+            v-if="data.person_title"
+            class="text-blue-main text-lg mb-5"
+            v-html="data.person_title"
+          ></p>
           <div v-if="data.person_linkedin" class="flex">
             <a
               class="block h-[30px] w-[30px] p-0.5 bg-[#D4D9DF] hover:bg-[#0077b5] rounded-md transition"
@@ -116,6 +121,7 @@
           </div>
         </div>
         <p
+          v-if="data.person_description"
           class="inline-block mb-5 w-full text-justify"
           v-html="data.person_description"
         ></p>

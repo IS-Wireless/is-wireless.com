@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full tablet-wide:max-w-[75%]">
+  <div v-if="data.tab" class="w-full tablet-wide:max-w-[75%]">
     <ul class="hidden tablet-wide:flex gap-1 w-full">
       <li
         class="grow py-3 mb-8 tablet-wide:mb-14 text-center bg-gray-light transition cursor-pointer border border-solid"
@@ -12,9 +12,7 @@
         :key="index"
         @click="setSelectedTab(index)"
       >
-        <h4 class="text-xl">
-          {{ item.title }}
-        </h4>
+        <h4 v-if="item.title" class="text-xl" v-html="item.title"></h4>
       </li>
     </ul>
     <div class="w-full">
@@ -31,12 +29,16 @@
             :style="rctvTabletWide.value ? 'height: auto;' : ''"
           >
             <h4
+              v-if="item.title"
               class="tablet-wide:hidden text-xl w-full py-2 mb-5 text-center bg-gray-light transition cursor-pointer border border-solid border-transparent"
               @click="collapseTab($event)"
-            >
-              {{ item.title }}
-            </h4>
-            <div class="content-html mb-10 w-full" v-html="item.content"></div>
+              v-html="item.title"
+            ></h4>
+            <div
+              v-if="item.content"
+              class="content-html mb-10 w-full"
+              v-html="item.content"
+            ></div>
           </div>
         </transition>
       </div>

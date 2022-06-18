@@ -1,10 +1,11 @@
 <template>
-  <div class="w-full">
+  <div v-if="data.default" class="w-full">
     <h3
+      v-if="data.default.title"
       class="text-center pt-8 pb-[60px] text-2xl tablet:text-3xl"
       v-html="data.default.title"
     ></h3>
-    <div class="flex flex-col">
+    <div v-if="data.team" class="flex flex-col">
       <RndPerson
         v-for="person in data.team"
         :key="person.name"

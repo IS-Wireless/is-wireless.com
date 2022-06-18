@@ -1,20 +1,24 @@
 <template>
   <div class="logos-container w-full tablet:max-w-[75%] mb-10">
-    <div class="flex flex-wrap tablet:max-w-[50vw]">
+    <div v-if="data.galeria" class="flex flex-wrap tablet:max-w-[50vw]">
       <div
         v-for="(item, index) in data.galeria"
         :key="index"
         class="basis-1/2 tablet-wide:basis-1/3 flex justify-center items-center p-[5%] tablet-wide:p-[2.5%]"
       >
         <CustomLink
-          v-if="item.url"
+          v-if="item.url && item.img_url"
           :url="item.url"
           :isExternal="true"
           class="block w-full p-1"
         >
           <nuxt-picture :src="item.img_url" class="w-full img-full" />
         </CustomLink>
-        <nuxt-picture v-else :src="item.img_url" class="w-full img-full p-1" />
+        <nuxt-picture
+          v-else-if="item.img_url"
+          :src="item.img_url"
+          class="w-full img-full p-1"
+        />
       </div>
     </div>
   </div>

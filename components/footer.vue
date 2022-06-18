@@ -52,7 +52,7 @@
         <div
           class="w-full tablet:w-1/3 flex-auto flex justify-center mb-12 order-last tablet:order-none"
         >
-          <ul class="flex items-center">
+          <ul v-if="socials" class="flex items-center">
             <li
               v-for="itemSocial in socials"
               :key="itemSocial.id"
@@ -116,16 +116,17 @@
         <div
           class="w-full phablet:w-1/2 my-2 mb-4 flex justify-center phablet:justify-start"
         >
-          <ul class="list-none m-0 p-0 flex">
+          <ul v-if="menu.menu_left" class="list-none m-0 p-0 flex">
             <li
               v-for="item in menu.menu_left"
               :key="item.id"
               class="mr-4 tablet:mx-0 tablet:mr-8 text-base"
             >
               <CustomLink
+                v-if="item.url"
                 class="font-lato text-blue-main hover:text-blue-main-hover transition"
                 :url="item.url"
-                :title="item.title"
+                :title="item.title ? item.title : ''"
                 :isExternal="item.object == 'custom' ? true : false"
               >
                 {{ item.title }}
@@ -136,19 +137,19 @@
         <div
           class="w-full phablet:w-1/2 my-2 mb-4 flex justify-center phablet:justify-end"
         >
-          <ul class="list-none m-0 p-0 flex">
+          <ul v-if="menu.menu_right" class="list-none m-0 p-0 flex">
             <li
               v-for="item in menu.menu_right"
               :key="item.id"
               class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
             >
               <CustomLink
+                v-if="item.url"
                 class="font-lato text-blue-main hover:text-blue-main-hover transition"
                 :url="item.url"
-                :title="item.title"
+                :title="item.title ? item.title : ''"
                 :isExternal="item.object == 'custom' ? true : false"
               >
-                {{ item.title }}
               </CustomLink>
             </li>
           </ul>

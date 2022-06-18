@@ -19,9 +19,11 @@
           class="absolute w-8 h-8 m-1 top-0 left-0 border-[5px] border-solid border-blue-main rounded-full transform group-hover:animate-[ping_1s_cubic-bezier(0,0,0.2,1)_forwards_100ms] transition duration-700"
         />
       </div>
-      <p class="mx-5 group-hover:text-blue-main text-inherit transition">
-        {{ item.point }}
-      </p>
+      <p
+        v-if="item.point"
+        class="mx-5 group-hover:text-blue-main text-inherit transition"
+        v-html="item.point"
+      ></p>
     </li>
   </ul>
 </template>

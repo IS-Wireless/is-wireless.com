@@ -4,17 +4,17 @@
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container relative w-full h-full bg-black/5 overflow-hidden"
     >
-      <div class="swiper-wrapper h-full">
+      <div v-if="data.banner" class="swiper-wrapper h-full">
         <div
           v-for="(item, index) in data.banner"
           :key="index"
           class="swiper-slide h-full"
         >
           <nuxt-picture
-            v-if="item"
-            :src="item.image.url"
-            :alt="item.image.alt"
-            :title="item.image.title"
+            v-if="item.image"
+            :src="item.image.url ? item.image.url : ''"
+            :alt="item.image.alt ? item.image.alt : ''"
+            :title="item.image.title ? item.image.title : ''"
             width="1920px"
             height="768px"
             :loading="index ? 'lazy' : 'eager'"
@@ -23,17 +23,18 @@
       </div>
 
       <div
+        v-if="data.default"
         class="absolute h-full w-full flex justify-center items-center flex-col text-5xl bg-black bg-opacity-40 z-10 top-0 select-none"
       >
         <img
-          v-if="data.default"
+          v-if="data.default.image"
           ref="content1"
           width="550"
           height="160"
           class="duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
-          :src="data.default.image.url"
-          :alt="data.default.image.alt"
-          :title="data.default.image.title"
+          :src="data.default.image.url ? data.default.image.url : ''"
+          :alt="data.default.image.alt ? data.default.image.alt : ''"
+          :title="data.default.image.title ? data.default.image.title : ''"
         />
         <p
           v-if="data.default && data.default.content"
@@ -43,7 +44,7 @@
           {{ data.default.content }}
         </p>
         <div
-          v-if="data.default"
+          v-if="data.default.links"
           ref="content3"
           class="duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
         >
@@ -52,8 +53,8 @@
             v-for="(item, index) in data.default.links"
             :key="index"
             :isExternal="false"
-            :url="item.url_link"
-            :title="item.title_link"
+            :url="item.url_link ? item.url_link : ''"
+            :title="item.title_link ? item.title_link : ''"
           >
           </CustomLink>
         </div>

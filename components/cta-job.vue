@@ -18,13 +18,13 @@
       "
     ></div>
     <div class="flex flex-col justify-center items-center w-4/5 mx-auto">
-      <h2 class="text-white mb-5">
-        {{ data.title }}
-      </h2>
+      <h2 v-if="data.title" class="text-white mb-5" v-html="data.title"></h2>
       <hr class="w-[100px] h-0 border-0 border-t-4 border-white mb-5" />
-      <p class="text-white text-center mb-5">
-        {{ data.subtitle }}
-      </p>
+      <p
+        v-if="data.subtitle"
+        class="text-white text-center mb-5"
+        v-html="data.subtitle"
+      ></p>
       <CustomLink
         :class="'block object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6'"
         :url="data.link.url"

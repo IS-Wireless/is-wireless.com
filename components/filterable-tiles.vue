@@ -1,13 +1,13 @@
 <template>
   <div class="mx-[calc(-12.5%+10px)] tablet:mx-0 tablet:w-full mt-15">
     <div class="w-full mb-32 flex flex-wrap transition-all">
-      <template v-for="(item, index) in tiles">
-        <div
-          class="p-[6px] basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
-          :class="{ hidden: item.type != filterBy && filterBy != 'All' }"
-          :key="index"
-          v-if="index < visibleTilesCount"
-        >
+      <div
+        v-for="(item, index) in tiles"
+        :key="index"
+        class="basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
+        :class="{ hidden: item.type != filterBy && filterBy != 'All' }"
+      >
+        <div v-if="index < visibleTilesCount" class="h-full p-[6px]">
           <CustomLink
             class="group rounded-md border border-solid border-gray-light flex h-full overflow-hidden hover:border-blue-main transition"
             :url="item.link"
@@ -15,6 +15,7 @@
           >
             <div class="m-[30px] flex flex-col">
               <svgIcon
+                v-if="item.type"
                 :class="'w-[50px] h-[50px] mb-2.5 p-1'"
                 :name="item.type"
               />
@@ -22,25 +23,25 @@
               <h2
                 v-if="item.title"
                 class="text-lg tablet:text-2xl transform transition block my-[30px]"
-              >
-                {{ item.title }}
-              </h2>
+                v-html="item.title"
+              ></h2>
               <h2
                 v-if="item.name"
                 class="text-lg tablet:text-2xl transform transition block my-[30px]"
-              >
-                {{ item.name }}
-              </h2>
+                v-html="item.name"
+              ></h2>
               <span
                 class="inline-block mb-2.5 w-10 tablet:w-[75px] h-0.5 tablet:h-1 align-middle rounded-full bg-blue-main"
               />
-              <p class="mt-[30px] text-sm tablet:text-base">
-                {{ item.description }}
-              </p>
+              <p
+                v-if="item.description"
+                class="mt-[30px] text-sm tablet:text-base"
+                v-html="item.description"
+              ></p>
             </div>
           </CustomLink>
         </div>
-      </template>
+      </div>
     </div>
     <div v-if="visibleTilesCount < tiles.length" class="text-center my-10">
       <button

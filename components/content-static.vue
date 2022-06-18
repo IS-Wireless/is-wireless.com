@@ -5,27 +5,31 @@
     </span>
 
     <div class="content-html" v-if="data.content" v-html="data.content"></div>
-    <p
-      v-for="item in data.text"
-      :key="item"
-      class="mb-5 tablet-wide:w-3/4 text-justify"
-    >
-      {{ item }}
-    </p>
-    <div
-      v-for="(item, index) in data.image"
-      :key="index"
-      class="flex flex-col justify-center items-center tablet-wide:w-3/4 tablet-wide:mr-10"
-    >
-      <nuxt-picture
-        fit="contain"
-        class="mb-5"
-        :src="item.url"
-        :title="item.title"
-      />
-      <p v-if="item.title" class="grow-0 italic text-center mb-5">
-        {{ item.title }}
+    <div v-if="data.text" class="w-full">
+      <p
+        v-for="item in data.text"
+        :key="item"
+        class="mb-5 tablet-wide:w-3/4 text-justify"
+      >
+        {{ item }}
       </p>
+    </div>
+    <div v-if="data.image">
+      <div
+        v-for="(item, index) in data.image"
+        :key="index"
+        class="flex flex-col justify-center items-center tablet-wide:w-3/4 tablet-wide:mr-10"
+      >
+        <nuxt-picture
+          fit="contain"
+          class="mb-5"
+          :src="item.url ? item.url : ''"
+          :title="item.title ? item.title : ''"
+        />
+        <p v-if="item.title" class="grow-0 italic text-center mb-5">
+          {{ item.title }}
+        </p>
+      </div>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div v-if="pageData">
-    <div v-if="pageData.acf">
-      <div v-if="pageData.acf.sections">
+    <div>
+      <div v-if="pageData.acf">
         <StaticBanner
           v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
           :title="pageData.acf.sections[0].title"

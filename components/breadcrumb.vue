@@ -59,15 +59,17 @@ export default {
   methods: {
     getTitleBySlug(slug) {
       if (this.routesNames[0] !== 'news') {
-        for (let i = 0; i < this.pagesData.length; i++) {
-          if (this.pagesData[i].slug === slug) {
-            return this.pagesData[i].title.rendered
+        const pagesArray = Object.values(this.pagesData)
+        for (let i = 0; i < pagesArray.length; i++) {
+          if (pagesArray[i].slug === slug) {
+            return pagesArray[i].title.rendered
           }
         }
       } else {
-        for (let i = 0; i < this.postsData.length; i++) {
-          if (this.postsData[i].slug === slug) {
-            return this.postsData[i].title.rendered
+        const postsArray = Object.values(this.postsData)
+        for (let i = 0; i < postsArray.length; i++) {
+          if (postsArray[i].slug === slug) {
+            return postsArray[i].title.rendered
           }
         }
       }

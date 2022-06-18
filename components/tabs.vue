@@ -39,6 +39,14 @@
               class="content-html mb-10 w-full"
               v-html="item.content"
             ></div>
+            <div v-if="item.collapse_title && item.collapse_content">
+              <section_collapse
+                :data="{
+                  title: item.collapse_title,
+                  content: item.collapse_content,
+                }"
+              />
+            </div>
           </div>
         </transition>
       </div>
@@ -47,10 +55,15 @@
 </template>
 
 <script>
+import section_collapse from '@/components/collapse.vue'
+
 import { useMediaQuery } from '@vueuse/core'
 import { computed, reactive } from '@vue/composition-api'
 export default {
   name: 'section_tabs',
+  components: {
+    section_collapse,
+  },
   props: {
     data: {
       type: Object,
@@ -82,11 +95,11 @@ export default {
 
       if (collapseState) {
         container.style.height =
-          container.clientHeight + content.clientHeight + 50 + 'px'
+          container.scrollHeight + content.scrollHeight + 50 + 'px'
         container.setAttribute('data-mobile-collapsed', false)
       } else {
-        container.style.height = container.clientHeight + 'px'
-        container.style.height = titleBar.clientHeight + 10 + 'px'
+        container.style.height = container.scrollHeight + 'px'
+        container.style.height = titleBar.scrollHeight + 10 + 'px'
         container.setAttribute('data-mobile-collapsed', true)
       }
     },
@@ -176,5 +189,9 @@ code {
 
 .content-html >>> iframe[src*='www.youtu'] {
   @apply w-full aspect-video;
+}
+
+.content-html >>> div {
+  @apply max-w-full;
 }
 </style>

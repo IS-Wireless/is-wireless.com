@@ -3,7 +3,10 @@
     <Breadcrumb />
     <div class="w-full px-[10%]">
       <div class="tablet:w-2/3" v-if="pageData">
-        <BlogPostContent :data="pageData.content.rendered" />
+        <BlogPostContent
+          v-if="pageData.content"
+          :data="pageData.content.rendered"
+        />
         <BlogShare :data="testBlogShare" />
         <BlogRelated :data="postsRelated" />
       </div>
@@ -26,10 +29,10 @@ export default {
     BlogRelated,
   },
   async asyncData({ route, payload, store }) {
-    if (Object.keys(payload).length) {
+    if (payload && Object.keys(payload).length) {
       return { pageData: payload }
     } else {
-      const pagesData = store.getters['general/getData'].posts
+      const pagesData = store.getters['general/getPostsData']
       const pagesArray = Object.values(pagesData)
       for (let i = 0; i < pagesArray.length; i++) {
         let pageFullPath = pagesArray[i].link.replace(

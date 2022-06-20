@@ -3,10 +3,7 @@
     class="w-full flex flex-col bg-gray-light mb-5 overflow-hidden rounded-md"
   >
     <div class="w-full">
-      <nuxt-link
-        class="group flex flex-col"
-        :to="$route.fullPath + '/' + data.slug"
-      >
+      <nuxt-link class="group flex flex-col" :to="$route.fullPath + data.slug">
         <nuxt-picture
           v-if="!data.featured_image_src.includes('images/media/default.png')"
           class="img-full"

@@ -41,6 +41,9 @@ export const getters = {
   getPagesData: ($state) => {
     return $state.pages
   },
+  getPostsData: ($state) => {
+    return $state.posts
+  },
 }
 
 export const mutations = {

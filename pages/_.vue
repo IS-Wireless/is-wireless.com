@@ -28,14 +28,6 @@
             <div v-if="component.acf_fc_layout">
               <component
                 v-if="
-                  component.acf_fc_layout !== 'section_header' ||
-                  component.acf_fc_layout !== 'section_tabs'
-                "
-                :is="component.acf_fc_layout"
-                :data="component"
-              ></component>
-              <component
-                v-if="
                   component.acf_fc_layout === 'section_tabs' &&
                   pageData.acf.section_table
                 "
@@ -45,6 +37,11 @@
                     table: pageData.acf.section_table,
                   })
                 "
+              ></component>
+              <component
+                v-else-if="component.acf_fc_layout !== 'section_header'"
+                :is="component.acf_fc_layout"
+                :data="component"
               ></component>
             </div>
           </div>

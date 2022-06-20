@@ -68,7 +68,6 @@ export default {
   data() {
     return {
       collapsed: true,
-      collapsing: false,
       contentHeight: 0,
     }
   },
@@ -81,18 +80,14 @@ export default {
   methods: {
     toggleExpandedHeight() {
       let container = this.$refs.contentContainer
-      if (!this.collapsing) {
-        this.collapsed = !this.collapsed
-        this.collapsing = true
-        if (this.collapsed && container) {
-          this.$emit('collapse', -this.contentHeight)
-          this.contentHeight = 0
-          this.collapsingReset()
-        } else if (container) {
-          this.contentHeight = container.scrollHeight
-          this.$emit('collapse', this.contentHeight)
-          this.collapsingReset()
-        }
+      this.collapsed = !this.collapsed
+      if (this.collapsed && container) {
+        this.$emit('collapse_change')
+
+        this.contentHeight = 0
+      } else if (container) {
+        this.contentHeight = container.scrollHeight
+        this.$emit('collapse_change')
       }
     },
     setExpandedHeight() {
@@ -100,14 +95,6 @@ export default {
       if (!this.collapsed && container) {
         this.contentHeight = container.scrollHeight
       }
-    },
-    collapsingReset() {
-      setTimeout(
-        function () {
-          this.collapsing = false
-        }.bind(this),
-        300
-      )
     },
   },
 }

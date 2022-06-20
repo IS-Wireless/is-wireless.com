@@ -41,7 +41,10 @@
                 v-html="item.content"
               ></div>
               <div v-if="data.table && index === 0">
-                <section_table :data="data.table" />
+                <section_table
+                  :data="data.table"
+                  @collapse_change="setTabHeightAuto(index)"
+                />
               </div>
               <div v-if="item.collapse_title && item.collapse_content">
                 <section_collapse
@@ -49,7 +52,7 @@
                     title: item.collapse_title,
                     content: item.collapse_content,
                   }"
-                  @collapse="updateTabHeightByClps($event, index)"
+                  @collapse_change="setTabHeightAuto(index)"
                 />
               </div>
             </div>
@@ -102,28 +105,24 @@ export default {
         container.getAttribute('data-mobile-collapsed') === 'true'
 
       if (collapseState) {
+        container.style.height = titleBar.scrollHeight + 10 + 'px'
         container.style.height =
           titleBar.scrollHeight + content.scrollHeight + 50 + 'px'
         container.setAttribute('data-mobile-collapsed', false)
       } else {
         // container.style.height = container.scrollHeight + 'px'
+        container.style.height =
+          titleBar.scrollHeight + content.scrollHeight + 50 + 'px'
         container.style.height = titleBar.scrollHeight + 10 + 'px'
         container.setAttribute('data-mobile-collapsed', true)
       }
     },
-    updateTabHeightByClps(collapseHeight, index) {
+    setTabHeightAuto(index) {
       const container = document.querySelectorAll('[data-mobile-collapsed]')[
         index
       ]
-      const titleBar = container.firstElementChild
-      const content = container.lastElementChild
       if (container.getAttribute('data-mobile-collapsed') === 'false') {
-        container.style.height =
-          titleBar.scrollHeight +
-          content.scrollHeight +
-          collapseHeight +
-          50 +
-          'px'
+        container.style.height = 'auto'
       }
     },
   },

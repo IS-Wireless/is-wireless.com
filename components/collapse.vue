@@ -2,7 +2,7 @@
   <div class="w-full flex flex-col">
     <div
       class="flex group items-center mb-5 cursor-pointer"
-      @click="setExpandedHeight()"
+      @click="toggleExpandedHeight()"
     >
       <span class="shrink-0 grow-0 h-5 w-5 relative">
         <svg
@@ -49,7 +49,7 @@
     <div
       v-if="data.content"
       ref="contentContainer"
-      class="overflow-hidden transition-all duration-300"
+      class="content-html overflow-hidden transition-all duration-300"
       :style="{ height: contentHeight + 'px' }"
       v-html="data.content"
     ></div>
@@ -71,19 +71,103 @@ export default {
       contentHeight: 0,
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.setExpandedHeight)
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.setExpandedHeight)
+  },
   methods: {
-    setExpandedHeight() {
+    toggleExpandedHeight() {
       let container = this.$refs.contentContainer
       this.collapsed = !this.collapsed
+      if (this.collapsed && container) {
+        this.$emit('collapse_change')
 
-      if (this.collapsed) {
         this.contentHeight = 0
-      } else {
-        this.contentHeight = container.clientHeight
+      } else if (container) {
+        this.contentHeight = container.scrollHeight
+        this.$emit('collapse_change')
+      }
+    },
+    setExpandedHeight() {
+      let container = this.$refs.contentContainer
+      if (!this.collapsed && container) {
+        this.contentHeight = container.scrollHeight
       }
     },
   },
 }
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.content-html >>> h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+b,
+u,
+div,
+code {
+  @apply text-gray-dark font-lato;
+}
+.content-html >>> h1 {
+  @apply text-4xl tablet:text-[50px] mb-5;
+}
+.content-html >>> h2 {
+  @apply text-3xl tablet:text-4xl mb-5;
+}
+.content-html >>> h3 {
+  @apply text-2xl tablet:text-3xl mb-5;
+}
+.content-html >>> h4 {
+  @apply text-xl tablet:text-2xl mb-5;
+}
+.content-html >>> h5 {
+  @apply text-lg tablet:text-xl mb-5;
+}
+.content-html >>> h6 {
+  @apply text-base tablet:text-lg mb-5;
+}
+.content-html >>> p {
+  @apply text-base inline-block mb-5 w-full text-justify;
+}
+
+.content-html >>> li {
+  @apply text-gray-dark;
+}
+
+.content-html >>> ol li {
+  @apply list-disc ml-5;
+}
+
+.content-html >>> ul {
+  @apply mb-5;
+}
+
+.content-html >>> hr {
+  @apply block mx-[10%] mt-5 mb-10;
+}
+
+.content-html >>> code {
+  @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
+}
+
+.content-html >>> img {
+  @apply max-w-full w-auto h-auto;
+}
+
+.content-html >>> iframe {
+  @apply max-w-full h-auto;
+}
+
+.content-html >>> iframe[src*='www.youtu'] {
+  @apply w-full aspect-video;
+}
+.content-html >>> div {
+  @apply max-w-full;
+}
+</style>

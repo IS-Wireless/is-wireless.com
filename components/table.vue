@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full mb-10">
     <table class="block phablet:table relative">
       <thead>
         <tr v-if="data.header">
@@ -80,6 +80,7 @@ export default {
       if (!this.isTablet) {
         let row = this.$refs.row[indexRow]
         let expandedHeight = row.scrollHeight
+        this.$emit('collapse_change')
 
         if (row.getAttribute('data-mobile-expanded') === 'true') {
           row.style.height = row.firstChild.clientHeight + 'px'

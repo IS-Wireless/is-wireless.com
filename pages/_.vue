@@ -27,7 +27,19 @@
           <div v-for="(component, index) in pageData.acf.sections" :key="index">
             <div v-if="component.acf_fc_layout">
               <component
-                v-if="component.acf_fc_layout !== 'section_header'"
+                v-if="
+                  component.acf_fc_layout === 'section_tabs' &&
+                  pageData.acf.section_table
+                "
+                :is="component.acf_fc_layout"
+                :data="
+                  Object.assign(component, {
+                    table: pageData.acf.section_table,
+                  })
+                "
+              ></component>
+              <component
+                v-else-if="component.acf_fc_layout !== 'section_header'"
                 :is="component.acf_fc_layout"
                 :data="component"
               ></component>

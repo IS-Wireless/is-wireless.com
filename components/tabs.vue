@@ -34,11 +34,28 @@
               @click="collapseTab($event)"
               v-html="item.title"
             ></h4>
-            <div
-              v-if="item.content"
-              class="content-html mb-10 w-full"
-              v-html="item.content"
-            ></div>
+            <div class="w-full">
+              <div
+                v-if="item.content"
+                class="content-html mb-10 w-full"
+                v-html="item.content"
+              ></div>
+              <div v-if="data.table && index === 0">
+                <section_table
+                  :data="data.table"
+                  @collapse_change="setTabHeightAuto(index)"
+                />
+              </div>
+              <div v-if="item.collapse_title && item.collapse_content">
+                <section_collapse
+                  :data="{
+                    title: item.collapse_title,
+                    content: item.collapse_content,
+                  }"
+                  @collapse_change="setTabHeightAuto(index)"
+                />
+              </div>
+            </div>
           </div>
         </transition>
       </div>
@@ -47,10 +64,17 @@
 </template>
 
 <script>
+import section_collapse from '@/components/collapse.vue'
+import section_table from '@/components/table.vue'
+
 import { useMediaQuery } from '@vueuse/core'
 import { computed, reactive } from '@vue/composition-api'
 export default {
   name: 'section_tabs',
+  components: {
+    section_collapse,
+    section_table,
+  },
   props: {
     data: {
       type: Object,
@@ -68,27 +92,52 @@ export default {
       selected: 0,
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.setExpandedHeight)
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.setExpandedHeight)
+  },
   methods: {
     setSelectedTab(index) {
       this.selected = index
     },
 
     collapseTab(event) {
-      let container = event.currentTarget.parentNode
-      let titleBar = event.currentTarget
-      let content = container.lastChild
+      const container = event.currentTarget.parentNode
+      const titleBar = event.currentTarget
+      const content = container.lastElementChild
       let collapseState =
         container.getAttribute('data-mobile-collapsed') === 'true'
 
       if (collapseState) {
+        container.style.height = titleBar.scrollHeight + 10 + 'px'
         container.style.height =
-          container.clientHeight + content.clientHeight + 50 + 'px'
+          titleBar.scrollHeight + content.scrollHeight + 50 + 'px'
         container.setAttribute('data-mobile-collapsed', false)
       } else {
-        container.style.height = container.clientHeight + 'px'
-        container.style.height = titleBar.clientHeight + 10 + 'px'
+        // container.style.height = container.scrollHeight + 'px'
+        container.style.height =
+          titleBar.scrollHeight + content.scrollHeight + 50 + 'px'
+        container.style.height = titleBar.scrollHeight + 10 + 'px'
         container.setAttribute('data-mobile-collapsed', true)
       }
+    },
+    setTabHeightAuto(index) {
+      const container = document.querySelectorAll('[data-mobile-collapsed]')[
+        index
+      ]
+      if (container.getAttribute('data-mobile-collapsed') === 'false') {
+        container.style.height = 'auto'
+      }
+    },
+    setExpandedHeight() {
+      const expandedTabs = document.querySelectorAll(
+        '[data-mobile-collapsed = false]'
+      )
+      expandedTabs.forEach((tab) => {
+        tab.style.height = 'auto'
+      })
     },
   },
 }
@@ -176,5 +225,9 @@ code {
 
 .content-html >>> iframe[src*='www.youtu'] {
   @apply w-full aspect-video;
+}
+
+.content-html >>> div {
+  @apply max-w-full;
 }
 </style>

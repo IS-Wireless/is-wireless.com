@@ -40,6 +40,9 @@
                 class="content-html mb-10 w-full"
                 v-html="item.content"
               ></div>
+              <div v-if="data.table && index === 0">
+                <section_table :data="data.table" />
+              </div>
               <div v-if="item.collapse_title && item.collapse_content">
                 <section_collapse
                   :data="{
@@ -59,6 +62,7 @@
 
 <script>
 import section_collapse from '@/components/collapse.vue'
+import section_table from '@/components/table.vue'
 
 import { useMediaQuery } from '@vueuse/core'
 import { computed, reactive } from '@vue/composition-api'
@@ -66,6 +70,7 @@ export default {
   name: 'section_tabs',
   components: {
     section_collapse,
+    section_table,
   },
   props: {
     data: {

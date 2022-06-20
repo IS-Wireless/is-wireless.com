@@ -158,7 +158,7 @@ export default {
   // },
   generate: {
     dir: 'public',
-    crawler: true,
+    crawler: false,
   },
   wp: {
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
@@ -178,5 +178,8 @@ export default {
   layoutTransition: {
     name: 'page',
     mode: 'out-in',
+  },
+  router: {
+    trailingSlash: true,
   },
 }

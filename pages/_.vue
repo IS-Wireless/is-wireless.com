@@ -107,28 +107,30 @@ export default {
     section_table,
     section_content_columns_center_image,
   },
-  async asyncData({ params, error, payload }) {
+  async asyncData({ route, payload, store }) {
+    const pagesData = store.getters['general/getPagesData']
+    const pagesArray = Object.values(pagesData)
+    for (let i = 0; i < pagesArray.length; i++) {
+      let pageFullPath = pagesArray[i].link.replace(
+        'https://www.is-wireless.com',
+        ''
+      )
+      if (pageFullPath === route.fullPath) {
+        return { pageData: pagesArray[i] }
+      }
+    }
+
     if (payload) return { page: payload }
     else return { page: false }
+  },
+  data() {
+    return {
+      pageData: {},
+    }
   },
   computed: {
     currentRouteName() {
       return this.$route.fullPath
-    },
-    pageData() {
-      const pagesData = this.$store.getters['general/getPagesData']
-      const pagesArray = Object.values(pagesData)
-      let pageData = false
-      for (let i = 0; i < pagesArray.length; i++) {
-        let pageFullPath = pagesArray[i].link.replace(
-          'https://www.is-wireless.com',
-          ''
-        )
-        if (pageFullPath === this.currentRouteName) {
-          pageData = pagesArray[i]
-        }
-      }
-      return pageData
     },
   },
 }

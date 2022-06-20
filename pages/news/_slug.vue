@@ -8,7 +8,7 @@
           :data="pageData.content.rendered"
         />
         <BlogShare :data="testBlogShare" />
-        <BlogRelated :data="postsRelated" />
+        <BlogRelated v-if="postsRelated" :data="postsRelated" />
       </div>
     </div>
   </div>
@@ -21,6 +21,18 @@ import BlogPostContent from '~/components/blog-post-content.vue'
 import BlogRelated from '~/components/blog-related.vue'
 import { isSamePath } from 'ufo'
 
+const getRelatedPosts = function (pagesData, thisRoute) {
+  const postRelatedData = []
+  Object.values(pagesData.slice(0, 10)).forEach((post) => {
+    let postFullPath = post.link.replace('https://www.is-wireless.com', '')
+    if (!isSamePath(postFullPath, thisRoute)) {
+      console.log(postFullPath, thisRoute)
+      postRelatedData.push(post)
+    }
+  })
+  return postRelatedData
+}
+
 export default {
   name: 'BlogPost',
   components: {
@@ -29,11 +41,15 @@ export default {
     BlogShare,
     BlogRelated,
   },
+
   async asyncData({ route, payload, store }) {
+    const pagesData = store.getters['general/getPostsData']
     if (payload && Object.keys(payload).length) {
-      return { pageData: payload }
+      return {
+        pageData: payload,
+        postsRelated: getRelatedPosts(pagesData, route.fullPath),
+      }
     } else {
-      const pagesData = store.getters['general/getPostsData']
       const pagesArray = Object.values(pagesData)
       for (let i = 0; i < pagesArray.length; i++) {
         let pageFullPath = pagesArray[i].link.replace(
@@ -41,12 +57,17 @@ export default {
           ''
         )
         if (isSamePath(pageFullPath, route.fullPath)) {
-          return { pageData: pagesArray[i] }
+          return {
+            pageData: pagesArray[i],
+            postsRelated: getRelatedPosts(pagesData, route.fullPath),
+          }
         }
       }
     }
-    return { pageData: {} }
+
+    return { pageData: {}, postsRelated: [] }
   },
+
   data() {
     return {
       testBlogShare: {
@@ -59,36 +80,6 @@ export default {
         ],
       },
     }
-  },
-
-  computed: {
-    postContent() {
-      let data = this.$store.getters['general/getData']
-      let postData = null
-      Object.values(data.posts).forEach((post) => {
-        if (
-          false ||
-          post.slug == this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
-        ) {
-          postData = post
-        }
-      })
-      return postData
-    },
-    postsRelated() {
-      let data = this.$store.getters['general/getData']
-      let postRelatedData = []
-      Object.values(data.posts.slice(0, 10)).forEach((post) => {
-        if (
-          false ||
-          post.slug !==
-            this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
-        ) {
-          postRelatedData.push(post)
-        }
-      })
-      return postRelatedData
-    },
   },
 }
 </script>

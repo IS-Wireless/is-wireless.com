@@ -96,6 +96,7 @@ import section_map from '~/components/map.vue'
 import section_block_subpages from '~/components/project-tiles.vue'
 import section_table from '~/components/table.vue'
 import section_content_columns_center_image from '~/components/content-section-center.vue'
+import { isSamePath } from 'ufo'
 
 export default {
   components: {
@@ -130,7 +131,7 @@ export default {
           'https://www.is-wireless.com',
           ''
         )
-        if (pageFullPath.includes(route.fullPath)) {
+        if (isSamePath(pageFullPath, route.fullPath)) {
           return { pageData: pagesArray[i] }
         }
       }

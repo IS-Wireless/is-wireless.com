@@ -121,7 +121,7 @@ export default {
     section_content_columns_center_image,
   },
   async asyncData({ route, payload, store }) {
-    if (Object.keys(payload).length) {
+    if (payload && Object.keys(payload).length) {
       return { pageData: payload }
     } else {
       const pagesData = store.getters['general/getPagesData']

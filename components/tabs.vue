@@ -120,7 +120,6 @@ export default {
           50 +
           'px'
       }
-      console.log(titleBar.scrollHeight, content.scrollHeight, collapseHeight)
     },
   },
 }

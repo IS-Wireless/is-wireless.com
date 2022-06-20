@@ -92,6 +92,12 @@ export default {
       selected: 0,
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.setExpandedHeight)
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.setExpandedHeight)
+  },
   methods: {
     setSelectedTab(index) {
       this.selected = index
@@ -124,6 +130,14 @@ export default {
       if (container.getAttribute('data-mobile-collapsed') === 'false') {
         container.style.height = 'auto'
       }
+    },
+    setExpandedHeight() {
+      const expandedTabs = document.querySelectorAll(
+        '[data-mobile-collapsed = false]'
+      )
+      expandedTabs.forEach((tab) => {
+        tab.style.height = 'auto'
+      })
     },
   },
 }

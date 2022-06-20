@@ -26,7 +26,6 @@ const getRelatedPosts = function (pagesData, thisRoute) {
   Object.values(pagesData.slice(0, 10)).forEach((post) => {
     let postFullPath = post.link.replace('https://www.is-wireless.com', '')
     if (!isSamePath(postFullPath, thisRoute)) {
-      console.log(postFullPath, thisRoute)
       postRelatedData.push(post)
     }
   })

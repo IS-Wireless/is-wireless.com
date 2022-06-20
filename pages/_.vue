@@ -107,26 +107,28 @@ export default {
     section_table,
     section_content_columns_center_image,
   },
-  async asyncData({ route, payload, store }) {
-    const pagesData = store.getters['general/getPagesData']
-    const pagesArray = Object.values(pagesData)
-    for (let i = 0; i < pagesArray.length; i++) {
-      let pageFullPath = pagesArray[i].link.replace(
-        'https://www.is-wireless.com',
-        ''
-      )
-      if (pageFullPath === route.fullPath) {
-        return { pageData: pagesArray[i] }
+  asyncData({ route, payload, store }) {
+    if (payload) {
+      return { pageData: payload }
+    } else {
+      const pagesData = store.getters['general/getPagesData']
+      const pagesArray = Object.values(pagesData)
+      for (let i = 0; i < pagesArray.length; i++) {
+        let pageFullPath = pagesArray[i].link.replace(
+          'https://www.is-wireless.com',
+          ''
+        )
+
+        pageFullPath = pageFullPath.endsWith('/')
+          ? pageFullPath.slice(0, -1)
+          : pageFullPath
+
+        if (pageFullPath === route.fullPath) {
+          return { pageData: pagesArray[i] }
+        }
       }
     }
-
-    if (payload) return { page: payload }
-    else return { page: false }
-  },
-  data() {
-    return {
-      pageData: {},
-    }
+    return { pageData: {} }
   },
   computed: {
     currentRouteName() {

@@ -82,15 +82,17 @@ export default {
       let container = this.$refs.contentContainer
       this.collapsed = !this.collapsed
 
-      if (this.collapsed) {
+      if (this.collapsed && container) {
+        this.$emit('collapse', -this.contentHeight)
         this.contentHeight = 0
-      } else {
+      } else if (container) {
         this.contentHeight = container.scrollHeight
+        this.$emit('collapse', this.contentHeight)
       }
     },
     setExpandedHeight() {
-      if (!this.collapsed) {
-        let container = this.$refs.contentContainer
+      let container = this.$refs.contentContainer
+      if (!this.collapsed && container) {
         this.contentHeight = container.scrollHeight
       }
     },

@@ -34,18 +34,21 @@
               @click="collapseTab($event)"
               v-html="item.title"
             ></h4>
-            <div
-              v-if="item.content"
-              class="content-html mb-10 w-full"
-              v-html="item.content"
-            ></div>
-            <div v-if="item.collapse_title && item.collapse_content">
-              <section_collapse
-                :data="{
-                  title: item.collapse_title,
-                  content: item.collapse_content,
-                }"
-              />
+            <div class="w-full">
+              <div
+                v-if="item.content"
+                class="content-html mb-10 w-full"
+                v-html="item.content"
+              ></div>
+              <div v-if="item.collapse_title && item.collapse_content">
+                <section_collapse
+                  :data="{
+                    title: item.collapse_title,
+                    content: item.collapse_content,
+                  }"
+                  @collapse="updateTabHeightByClps($event, index)"
+                />
+              </div>
             </div>
           </div>
         </transition>
@@ -87,20 +90,35 @@ export default {
     },
 
     collapseTab(event) {
-      let container = event.currentTarget.parentNode
-      let titleBar = event.currentTarget
-      let content = container.lastChild
+      const container = event.currentTarget.parentNode
+      const titleBar = event.currentTarget
+      const content = container.lastElementChild
       let collapseState =
         container.getAttribute('data-mobile-collapsed') === 'true'
 
       if (collapseState) {
         container.style.height =
-          container.scrollHeight + content.scrollHeight + 50 + 'px'
+          titleBar.scrollHeight + content.scrollHeight + 50 + 'px'
         container.setAttribute('data-mobile-collapsed', false)
       } else {
-        container.style.height = container.scrollHeight + 'px'
+        // container.style.height = container.scrollHeight + 'px'
         container.style.height = titleBar.scrollHeight + 10 + 'px'
         container.setAttribute('data-mobile-collapsed', true)
+      }
+    },
+    updateTabHeightByClps(collapseHeight, index) {
+      const container = document.querySelectorAll('[data-mobile-collapsed]')[
+        index
+      ]
+      const titleBar = container.firstElementChild
+      const content = container.lastElementChild
+      if (container.getAttribute('data-mobile-collapsed') === 'false') {
+        container.style.height =
+          titleBar.scrollHeight +
+          content.scrollHeight +
+          collapseHeight +
+          50 +
+          'px'
       }
     },
   },

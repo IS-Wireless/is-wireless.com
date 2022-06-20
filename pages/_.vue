@@ -107,6 +107,10 @@ export default {
     section_table,
     section_content_columns_center_image,
   },
+  async asyncData({ params, error, payload }) {
+    if (payload) return { page: payload }
+    else return { page: false }
+  },
   computed: {
     currentRouteName() {
       return this.$route.fullPath

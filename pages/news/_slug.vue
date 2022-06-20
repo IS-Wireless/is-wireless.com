@@ -2,7 +2,7 @@
   <div>
     <Breadcrumb />
     <div class="w-full px-[10%]">
-      <div class="tablet:w-2/3">
+      <div class="tablet:w-2/3" v-if="postContent.content">
         <BlogPostContent :data="postContent.content.rendered" />
         <BlogShare :data="testBlogShare" />
         <BlogRelated :data="postsRelated" />

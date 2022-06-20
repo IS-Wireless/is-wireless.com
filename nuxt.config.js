@@ -1,5 +1,6 @@
 require('dotenv').config()
 const pkg = require('./package.json')
+
 export default {
   env: {
     CONTEXT: process.env.CONTEXT,
@@ -113,18 +114,6 @@ export default {
     },
     {
       src: 'wp-nuxt',
-      options: {
-        discover: true,
-        endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
-        extensions: true,
-        customRoutes: [
-          {
-            extension: 'wp-api-menus/v2',
-            route: '/menus/(?P<id>\\d+)',
-            name: 'menuIdSelect',
-          },
-        ],
-      },
     },
   ],
 
@@ -158,10 +147,7 @@ export default {
   // },
   generate: {
     dir: 'public',
-    crawler: false,
-  },
-  wp: {
-    endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
+    crawler: true,
   },
   image: {
     domains: ['https://www.is-wireless.com/'],
@@ -175,11 +161,21 @@ export default {
       theme_color: '#00A2DF',
     },
   },
+  wp: {
+    discover: true,
+    endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
+    extensions: true,
+    customRoutes: [
+      {
+        extension: 'wp-api-menus/v2',
+        route: '/menus/(?P<id>\\d+)',
+        name: 'menuIdSelect',
+      },
+    ],
+    sitemap: false,
+  },
   layoutTransition: {
     name: 'page',
     mode: 'out-in',
-  },
-  router: {
-    trailingSlash: true,
   },
 }

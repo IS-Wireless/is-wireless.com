@@ -2,8 +2,8 @@
   <div>
     <Breadcrumb />
     <div class="w-full px-[10%]">
-      <div class="tablet:w-2/3" v-if="postContent">
-        <BlogPostContent :data="postContent.content.rendered" />
+      <div class="tablet:w-2/3" v-if="pageData">
+        <BlogPostContent :data="pageData.content.rendered" />
         <BlogShare :data="testBlogShare" />
         <BlogRelated :data="postsRelated" />
       </div>
@@ -25,6 +25,24 @@ export default {
     BlogShare,
     BlogRelated,
   },
+  async asyncData({ route, payload, store }) {
+    if (Object.keys(payload).length) {
+      return { pageData: payload }
+    } else {
+      const pagesData = store.getters['general/getData'].posts
+      const pagesArray = Object.values(pagesData)
+      for (let i = 0; i < pagesArray.length; i++) {
+        let pageFullPath = pagesArray[i].link.replace(
+          'https://www.is-wireless.com',
+          ''
+        )
+        if (pageFullPath.includes(route.fullPath)) {
+          return { pageData: pagesArray[i] }
+        }
+      }
+    }
+    return { pageData: {} }
+  },
   data() {
     return {
       testBlogShare: {
@@ -38,6 +56,7 @@ export default {
       },
     }
   },
+
   computed: {
     postContent() {
       let data = this.$store.getters['general/getData']

@@ -17,9 +17,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:vue/recommended',
     'plugin:tailwind/recommended',
-    'plugin:jest/recommended',
   ],
-  plugins: ['vue', 'jest'],
+  plugins: ['vue'],
   rules: {
     'vue/no-v-html': 'off',
     'no-unexpected-multiline': 'off',
@@ -29,9 +28,6 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.spec.js', '**/*.spec.jsx'],
-      env: {
-        jest: true,
-      },
     },
   ],
 }

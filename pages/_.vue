@@ -107,8 +107,8 @@ export default {
     section_table,
     section_content_columns_center_image,
   },
-  asyncData({ route, payload, store }) {
-    if (payload) {
+  async asyncData({ route, payload, store }) {
+    if (Object.keys(payload).length) {
       return { pageData: payload }
     } else {
       const pagesData = store.getters['general/getPagesData']
@@ -118,12 +118,7 @@ export default {
           'https://www.is-wireless.com',
           ''
         )
-
-        pageFullPath = pageFullPath.endsWith('/')
-          ? pageFullPath.slice(0, -1)
-          : pageFullPath
-
-        if (pageFullPath === route.fullPath) {
+        if (pageFullPath.includes(route.fullPath)) {
           return { pageData: pagesArray[i] }
         }
       }

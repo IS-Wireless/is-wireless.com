@@ -2,7 +2,7 @@
   <div>
     <Breadcrumb />
     <div class="w-full px-[10%]">
-      <div class="tablet:w-2/3" v-if="postContent.content">
+      <div class="tablet:w-2/3" v-if="postContent">
         <BlogPostContent :data="postContent.content.rendered" />
         <BlogShare :data="testBlogShare" />
         <BlogRelated :data="postsRelated" />
@@ -44,6 +44,7 @@ export default {
       let postData = null
       Object.values(data.posts).forEach((post) => {
         if (
+          false ||
           post.slug == this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
         ) {
           postData = post
@@ -56,8 +57,9 @@ export default {
       let postRelatedData = []
       Object.values(data.posts.slice(0, 10)).forEach((post) => {
         if (
+          false ||
           post.slug !==
-          this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+            this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
         ) {
           postRelatedData.push(post)
         }

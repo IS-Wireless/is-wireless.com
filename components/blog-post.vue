@@ -5,7 +5,7 @@
     <div class="w-full">
       <nuxt-link
         class="group flex flex-col"
-        :to="$route.fullPath + data.slug + '/'"
+        :to="$route.fullPath + '/' + data.slug"
       >
         <nuxt-picture
           v-if="!data.featured_image_src.includes('images/media/default.png')"

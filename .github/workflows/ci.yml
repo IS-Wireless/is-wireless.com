@@ -1,37 +1,37 @@
-name: ci
+# name: ci
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
+# jobs:
+#   ci:
+#     runs-on: ${{ matrix.os }}
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest]
 
-    steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@master
+#     steps:
+#       - name: Checkout 🛎
+#         uses: actions/checkout@master
 
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-          check-latest: true
+#       - name: Setup node env 🏗
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
+#           cache: 'npm'
+#           check-latest: true
 
-      - name: Install dependencies 👨🏻‍💻
-        run: npm ci
+#       - name: Install dependencies 👨🏻‍💻
+#         run: npm ci
 
-      - name: Run linter 👀
-        run: npm run lint
+#       - name: Run linter 👀
+#         run: npm run lint
 
-      # - name: Run tests 🧪
-      #   run: npm run test
+#       # - name: Run tests 🧪
+#       #   run: npm run test

@@ -25,6 +25,7 @@
           class="mb-5"
           :src="item.url ? item.url : ''"
           :title="item.title ? item.title : ''"
+          :alt="item.alt ? item.alt : ''"
         />
         <p v-if="item.title" class="grow-0 italic text-center mb-5">
           {{ item.title }}

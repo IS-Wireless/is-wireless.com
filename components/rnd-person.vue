@@ -56,6 +56,8 @@
           'h-[300px] phone-wide:h-[600px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
       }"
       :src="data.person_image.url"
+      :title="data.person_image.title ? data.person_image.title : ''"
+      :alt="data.person_image.alt ? data.person_image.alt : ''"
     ></nuxt-picture>
     <div
       v-else

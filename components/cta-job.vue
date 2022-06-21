@@ -3,9 +3,10 @@
     <nuxt-picture
       v-if="data.image"
       class="block absolute tablet-wide:fixed w-full h-full inset-0 -z-20"
-      :src="data.image"
+      :src="data.image.url ? data.image.url : ''"
+      :title="data.image.title ? data.image.title : ''"
+      :alt="data.image.alt ? data.image.alt : ''"
       :imgAttrs="{
-        alt: 'test alt',
         class: 'w-full h-full object-cover',
         loading: 'lazy',
       }"
@@ -26,6 +27,7 @@
         v-html="data.subtitle"
       ></p>
       <CustomLink
+        v-if="data.link"
         :class="'block object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6'"
         :url="data.link.url"
         :title="data.link.title"

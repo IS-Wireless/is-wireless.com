@@ -25,7 +25,9 @@
               :imgAttrs="{
                 class: 'w-full max-w-[75%] tablet:max-w-[50%] max-h-[100px]',
               }"
-              :src="data.image"
+              :src="data.image.url ? data.image.url : ''"
+              :title="data.image.title ? data.image.title : ''"
+              :alt="data.image.alt ? data.image.alt : ''"
             ></nuxt-picture>
           </CustomLink>
           <nuxt-picture
@@ -33,7 +35,9 @@
             :imgAttrs="{
               class: 'w-full max-w-[75%] tablet:max-w-[50%] max-h-[100px]',
             }"
-            :src="data.image"
+            :src="data.image.url ? data.image.url : ''"
+            :title="data.image.title ? data.image.title : ''"
+            :alt="data.image.alt ? data.image.alt : ''"
           ></nuxt-picture>
         </div>
       </div>

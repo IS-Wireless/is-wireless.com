@@ -2,10 +2,14 @@
   <div>
     <div class="w-full flex flex-col tablet-wide:flex-row my-10">
       <div class="tablet-wide:basis-1/3" v-if="data.person_image">
-        <nuxt-picture :src="data.person_image.url" />
+        <nuxt-picture
+          :src="data.person_image.url"
+          :title="data.person_image.title ? data.person_image.title : ''"
+          :alt="data.person_image.alt ? data.person_image.alt : ''"
+        />
       </div>
       <div
-        class="tablet-wide:basis-2/3 text-base block mt-5 tablet:mt-0 tablet:ml-6 mb-6"
+        class="tablet-wide:basis-2/3 text-base block mt-5 tablet-wide:mt-0 tablet-wide:ml-6 mb-6"
       >
         <h3 class="text-2xl mb-5" v-if="data.person_name">
           {{ data.person_name }}

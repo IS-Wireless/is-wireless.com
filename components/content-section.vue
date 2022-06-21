@@ -21,13 +21,17 @@
           :isExternal="true"
         >
           <SectionImage
-            :url="data.image"
+            :url="data.image.url ? data.image.url : ''"
+            :title="data.image.title ? data.image.title : ''"
+            :alt="data.image.alt ? data.image.alt : ''"
             :imageDecoration="data.image_decoration"
           />
         </CustomLink>
         <SectionImage
           v-else-if="data.image"
-          :url="data.image"
+          :url="data.image.url ? data.image.url : ''"
+          :title="data.image.title ? data.image.title : ''"
+          :alt="data.image.alt ? data.image.alt : ''"
           :imageDecoration="data.image_decoration"
         />
       </div>

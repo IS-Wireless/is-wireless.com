@@ -6,6 +6,7 @@ export default {
     CONTEXT: process.env.CONTEXT,
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
+    COMMIT: process.env.CF_PAGES_COMMIT_SHA,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -159,6 +160,12 @@ export default {
     manifest: {
       lang: 'en',
       theme_color: '#00A2DF',
+    },
+    workbox: {
+      cleanupOutdatedCaches: true,
+      cacheOptions: {
+        revision: process.env.CF_PAGES_COMMIT_SHA,
+      },
     },
   },
   wp: {

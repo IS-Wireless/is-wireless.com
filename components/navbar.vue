@@ -5,7 +5,7 @@
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
       <div class="mx-auto w-4/5 flex justify-between h-[90px]">
-        <nuxt-link to="/">
+        <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1367 463"
@@ -297,7 +297,7 @@
                   :class="
                     checkMain(item.url)
                       ? 'tablet-wide:hidden text-xl text-white py-6 border-0 border-b border-solid border-gray-darkest bg-black'
-                      : ' text-[#BFBFBF] text-base py-[2px] tablet-wide:pl-[75px] mt-[14px] overflow-hidden tablet-wide:py-5 tablet-wide:text-xl tablet-wide:text-white tablet-wide:hover:bg-black transition tablet-wide:mt-0 relative after:hidden tablet-wide:after:block after:absolute after:h-full after:w-[10px] after:top-0 after:-left-[5px] after:bg-black hover:after:bg-blue-main hover:after:translate-x-[5px] after:transform after:transition duration-200 after:duration-200 after:content-[``] '
+                      : ' text-[#BFBFBF] text-base py-[2px] tablet-wide:pl-[75px] mt-7 overflow-hidden tablet-wide:py-5 tablet-wide:text-xl tablet-wide:text-white tablet-wide:hover:bg-black transition tablet-wide:mt-0 relative after:hidden tablet-wide:after:block after:absolute after:h-full after:w-[10px] after:top-0 after:-left-[5px] after:bg-black hover:after:bg-blue-main hover:after:translate-x-[5px] after:transform after:transition duration-200 after:duration-200 after:content-[``] '
                   "
                   :url="item.url ? item.url : ''"
                   :title="item.title ? item.title : ''"
@@ -308,7 +308,7 @@
             </ul>
             <div
               v-if="socials"
-              class="w-full pl-14 tablet-wide:pl-[75px] pr-7 pb-6 pt-3 tablet-wide:py-5 border-0 tablet-wide:border-t-2 border-solid border-black"
+              class="w-full pl-14 tablet-wide:pl-[75px] pr-7 mb-6 mt-20 tablet-wide:my-0 tablet-wide:py-5 border-0 tablet-wide:border-t-2 border-solid border-black"
             >
               <ul class="flex">
                 <li

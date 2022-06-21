@@ -19,6 +19,7 @@ import Breadcrumb from '~/components/breadcrumb.vue'
 import BlogShare from '~/components/blog-share.vue'
 import BlogPostContent from '~/components/blog-post-content.vue'
 import BlogRelated from '~/components/blog-related.vue'
+import { isSamePath } from 'ufo'
 
 export default {
   name: 'BlogPost',
@@ -39,7 +40,7 @@ export default {
           'https://www.is-wireless.com',
           ''
         )
-        if (pageFullPath.includes(route.fullPath)) {
+        if (isSamePath(pageFullPath, route.fullPath)) {
           return { pageData: pagesArray[i] }
         }
       }
@@ -59,22 +60,7 @@ export default {
       },
     }
   },
-  head() {
-    let tags = {}
-    this.$data.pageData.head_tags.forEach(function (item) {
-      if (item.attributes) {
-        tags[item.tag] = item.attributes
-      }
 
-      if (item.content) {
-        tags[item.tag]['content'] = item.content
-      }
-    })
-    return {
-      title: this.$data.pageData.head_tags,
-      meta: tags,
-    }
-  },
   computed: {
     postContent() {
       let data = this.$store.getters['general/getData']

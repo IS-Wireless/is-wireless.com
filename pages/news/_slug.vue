@@ -30,7 +30,7 @@ export default {
     BlogRelated,
   },
   async asyncData({ route, payload, store }) {
-    if (payload && Object.keys(payload).length) {
+    if (typeof payload !== 'undefined' && Object.keys(payload).length) {
       return { pageData: payload }
     } else {
       const pagesData = store.getters['general/getPostsData']

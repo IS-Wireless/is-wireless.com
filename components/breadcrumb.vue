@@ -12,12 +12,12 @@
         >
           <nuxt-link
             :to="routesComputed[index] + '/'"
-            v-html="getTitleBySlug(route)"
+            v-html="getTitleByRoute(routesComputed[index])"
           >
           </nuxt-link>
         </li>
         <li class="text-base text-gray-dark">
-          <p v-html="getTitleBySlug(currentRouteName)"></p>
+          <p v-html="getTitleByRoute(currentRoute)"></p>
         </li>
       </ul>
     </div>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { isSamePath } from 'ufo'
+
 export default {
   name: 'Breadcrumb',
   computed: {
@@ -44,8 +46,8 @@ export default {
       return routesNames
     },
 
-    currentRouteName() {
-      return this.$route.fullPath.slice(1, -1).split('/').slice(-1)[0]
+    currentRoute() {
+      return this.$route.fullPath
     },
 
     pagesData() {
@@ -57,23 +59,34 @@ export default {
     },
   },
   methods: {
-    getTitleBySlug(slug) {
+    getTitleByRoute(link) {
+      if (isSamePath('/news', link)) {
+        return 'News'
+      }
       if (this.routesNames[0] !== 'news') {
         const pagesArray = Object.values(this.pagesData)
         for (let i = 0; i < pagesArray.length; i++) {
-          if (pagesArray[i].slug === slug) {
+          let pageFullPath = pagesArray[i].link.replace(
+            'https://www.is-wireless.com',
+            ''
+          )
+          if (isSamePath(pageFullPath, link)) {
             return pagesArray[i].title.rendered
           }
         }
       } else {
         const postsArray = Object.values(this.postsData)
         for (let i = 0; i < postsArray.length; i++) {
-          if (postsArray[i].slug === slug) {
+          let pageFullPath = postsArray[i].link.replace(
+            'https://www.is-wireless.com',
+            ''
+          )
+          if (isSamePath(pageFullPath, link)) {
             return postsArray[i].title.rendered
           }
         }
       }
-      return slug
+      return link
     },
   },
 }

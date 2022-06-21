@@ -96,7 +96,6 @@ import section_map from '~/components/map.vue'
 import section_block_subpages from '~/components/project-tiles.vue'
 import section_table from '~/components/table.vue'
 import section_content_columns_center_image from '~/components/content-section-center.vue'
-import { isSamePath } from 'ufo'
 
 export default {
   components: {
@@ -121,7 +120,7 @@ export default {
     section_content_columns_center_image,
   },
   async asyncData({ route, payload, store }) {
-    if (Object.keys(payload).length) {
+    if (typeof payload !== 'undefined' && Object.keys(payload).length) {
       return { pageData: payload }
     } else {
       const pagesData = store.getters['general/getPagesData']
@@ -131,12 +130,57 @@ export default {
           'https://www.is-wireless.com',
           ''
         )
-        if (isSamePath(pageFullPath, route.fullPath)) {
+        if (pageFullPath.includes(route.fullPath)) {
           return { pageData: pagesArray[i] }
         }
       }
     }
     return { pageData: {} }
+  },
+  head() {
+    return {
+      title: this.$data.pageData.head_tags.filter(function (item) {
+        return item.tag == 'title'
+      })[0].content,
+      description: this.$data.pageData.head_tags.filter(function (item) {
+        return item.tag == 'description'
+      })[0],
+      // meta: this.$data.pageData.head_tags.filter(function (item) {
+      //   return item.tag == 'meta'
+      // }),
+
+      // item
+      //   .filter(function (attribute) {
+      //     return attribute.tag == 'meta'
+      //   })
+      //   .forEach(function (tag) {
+      //     metaTags.push([
+      //       {
+      //         hid:
+      //           tag.tag +
+      //           '_' +
+      //           (tag.attributes && tag.attributes.name
+      //             ? tag.attributes.name + '_'
+      //             : '') +
+      //           (tag.attributes && tag.attributes.property
+      //             ? tag.attributes.property + '_'
+      //             : ''),
+      //         ...tag.content,
+      //         ...tag.attributes,
+      //       },
+      //     ])
+      //   })
+
+      // console.log(tags)
+      // if (item.attributes) {
+      //   tags[item.tag] = { ...item.attributes, ...tags[item.tag] }
+      // }
+      // console.log(tags)
+      // if (item.content) {
+      //   tags[item.tag]['content'] = item.content
+      // }
+      // })
+    }
   },
   computed: {
     currentRouteName() {

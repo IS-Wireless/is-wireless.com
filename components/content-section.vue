@@ -115,7 +115,7 @@ export default {
 }
 
 .content-html >>> img {
-  @apply w-full h-auto;
+  @apply @apply max-w-full w-auto h-auto;
 }
 
 .content-html >>> iframe {

@@ -22,8 +22,9 @@
             :class="'w-full'"
           >
             <nuxt-picture
+              class="w-full"
               :imgAttrs="{
-                class: 'w-full max-w-[75%] tablet:max-w-[50%] max-h-[100px]',
+                class: 'w-full max-w-[75%] tablet:max-w-[50%] object-contain',
               }"
               :src="data.image.url ? data.image.url : ''"
               :title="data.image.title ? data.image.title : ''"
@@ -32,8 +33,9 @@
           </CustomLink>
           <nuxt-picture
             v-else-if="data.image"
+            class="w-full"
             :imgAttrs="{
-              class: 'w-full max-w-[75%] tablet:max-w-[50%] max-h-[100px]',
+              class: 'w-full max-w-[75%] tablet:max-w-[50%] object-contain',
             }"
             :src="data.image.url ? data.image.url : ''"
             :title="data.image.title ? data.image.title : ''"

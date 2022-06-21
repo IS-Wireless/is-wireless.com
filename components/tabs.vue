@@ -23,8 +23,9 @@
       >
         <transition name="fade" mode="out-in">
           <div
-            v-if="index == selected || !rctvTabletWide.value"
+            v-if="index === selected || !rctvTabletWide.value"
             class="overflow-hidden transition-all duration-300"
+            :class="index === selected ? 'tablet:block' : 'tablet:hidden'"
             data-mobile-collapsed="false"
             :style="rctvTabletWide.value ? 'height: auto;' : ''"
           >

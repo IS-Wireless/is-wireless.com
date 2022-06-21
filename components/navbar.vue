@@ -5,7 +5,7 @@
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
       <div class="mx-auto w-4/5 flex justify-between h-[90px]">
-        <nuxt-link to="/">
+        <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1367 463"

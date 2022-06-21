@@ -41,13 +41,13 @@ export default {
     },
 
     routesNames() {
-      let routesNames = this.$route.fullPath.slice(1, -1).split('/')
+      let routesNames = this.$route.path.slice(1, -1).split('/')
       routesNames.pop()
       return routesNames
     },
 
     currentRoute() {
-      return this.$route.fullPath
+      return this.$route.path
     },
 
     pagesData() {

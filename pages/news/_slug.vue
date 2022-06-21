@@ -46,7 +46,7 @@ export default {
     if (typeof payload !== 'undefined' && Object.keys(payload).length) {
       return {
         pageData: payload,
-        postsRelated: getRelatedPosts(pagesData, route.fullPath),
+        postsRelated: getRelatedPosts(pagesData, route.path),
       }
     } else {
       const pagesArray = Object.values(pagesData)
@@ -55,10 +55,10 @@ export default {
           'https://www.is-wireless.com',
           ''
         )
-        if (isSamePath(pageFullPath, route.fullPath)) {
+        if (isSamePath(pageFullPath, route.path)) {
           return {
             pageData: pagesArray[i],
-            postsRelated: getRelatedPosts(pagesData, route.fullPath),
+            postsRelated: getRelatedPosts(pagesData, route.path),
           }
         }
       }

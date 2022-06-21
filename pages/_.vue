@@ -131,7 +131,7 @@ export default {
           'https://www.is-wireless.com',
           ''
         )
-        if (isSamePath(pageFullPath, route.fullPath)) {
+        if (isSamePath(pageFullPath, route.path)) {
           return { pageData: pagesArray[i] }
         }
       }
@@ -140,7 +140,7 @@ export default {
   },
   computed: {
     currentRouteName() {
-      return this.$route.fullPath
+      return this.$route.path
     },
   },
 }

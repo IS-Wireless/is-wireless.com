@@ -32,20 +32,22 @@
       :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
     >
       <li
-        v-for="item in data.links"
-        :key="item.link_title"
+        v-for="(item, index) in data.links"
+        :key="index"
         class="block w-4/5 tablet:w-full"
       >
-        <a
-          v-if="item.link_title"
-          class="menu-left-text px-10 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main transition w-full border-0 border-b border-solid border-l-gray-light"
-          :href="`/about-us#${item.link_title}`"
-          @click="switchMobileExpand"
+        <nuxt-link
+          v-if="item.link_url"
+          class="menu-left-text overflow-hidden px-10 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main w-full border-0 border-b border-solid border-l-gray-light relative after:hidden tablet:after:block after:absolute after:h-1 after:w-full after:bg-blue-main after:-bottom-1 after:left-0 after:transition after:duration-200"
+          :to="{ hash: item.link_url }"
+          @click.native="switchMobileExpand"
         >
-          <span class="ml-[30px] text-inherit">
-            {{ item.link_title }}
+          <span
+            class="ml-[30px] text-inherit"
+            v-html="item.link_title ? item.link_title : item.link_url"
+          >
           </span>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </div>
@@ -75,6 +77,6 @@ export default {
 
 <style>
 .menu-left-text.nuxt-link-active {
-  @apply tablet:border-b-4 tablet:border-blue-main;
+  @apply after:-translate-y-1;
 }
 </style>

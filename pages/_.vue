@@ -138,6 +138,103 @@ export default {
     }
     return { pageData: {} }
   },
+  head() {
+    let tags = {
+      script: [],
+      meta: [],
+      link: [],
+      __dangerouslyDisableSanitizers: ['script'],
+    }
+    if (this.pageData) {
+      if (this.pageData.schema) {
+        tags.script.push({
+          vmid: 'ldjson-schema',
+          type: 'application/ld+json',
+          innerHTML: this.pageData.schema,
+        })
+      }
+
+      if (this.pageData.schema_basic) {
+        tags.title = this.pageData.schema_basic.title
+        tags.description = this.pageData.schema_basic.description
+
+        tags.meta.push({
+          name: 'robots',
+          content: new Array(
+            this.pageData.schema_basic.robots.index,
+            this.pageData.schema_basic.robots.follow,
+            this.pageData.schema_basic.robots['max-snippet'],
+            this.pageData.schema_basic.robots['max-image-preview'],
+            this.pageData.schema_basic.robots['max-video-preview']
+          ).join(', '),
+        })
+
+        tags.link.push({
+          rel: 'canonical',
+          href: this.pageData.schema_basic.canonical,
+        })
+
+        tags.meta.push({
+          property: 'og_locale',
+          content: this.pageData.schema_basic.og_locale,
+        })
+
+        tags.meta.push({
+          property: 'og_type',
+          content: this.pageData.schema_basic.og_type,
+        })
+
+        tags.meta.push({
+          property: 'og_title',
+          content: this.pageData.schema_basic.og_title,
+        })
+
+        tags.meta.push({
+          property: 'og_description',
+          content: this.pageData.schema_basic.og_description,
+        })
+
+        tags.meta.push({
+          property: 'og_url',
+          content: this.pageData.schema_basic.og_url,
+        })
+
+        tags.meta.push({
+          property: 'og_site_name',
+          content: this.pageData.schema_basic.og_site_name,
+        })
+
+        tags.meta.push({
+          property: 'article_modified_time',
+          content: this.pageData.schema_basic.article_modified_time,
+        })
+
+        tags.meta.push({
+          name: 'twitter_card',
+          content: this.pageData.schema_basic.twitter_card,
+        })
+
+        if (this.pageData.schema_basic.twitter_misc) {
+          let $i = 1
+          for (const [key, value] of Object.entries(
+            this.pageData.schema_basic.twitter_misc
+          )) {
+            tags.meta.push({
+              name: 'twitter:label' + $i,
+              content: key,
+            })
+            tags.meta.push({
+              name: 'twitter:data' + $i,
+              content: value,
+            })
+            $i++
+          }
+        }
+      }
+    }
+
+    return tags
+  },
   computed: {
     currentRouteName() {
       return this.$route.path

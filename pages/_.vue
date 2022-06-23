@@ -159,6 +159,7 @@ export default {
         tags.description = this.pageData.schema_basic.description
 
         tags.meta.push({
+          hid: 'robots',
           name: 'robots',
           content: new Array(
             this.pageData.schema_basic.robots.index,

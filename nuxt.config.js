@@ -156,6 +156,14 @@ export default {
   pwa: {
     meta: {
       theme_color: '#00A2DF',
+      ogTitle: false,
+      ogDescription: false,
+      ogType: false,
+      ogSiteName: false,
+      twitterCard: false,
+      twitterSite: false,
+      twitterCreator: false,
+      ogUrl: false,
     },
     manifest: {
       lang: 'en',

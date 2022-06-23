@@ -1,5 +1,4 @@
 import { isEmpty as _isEmpty } from 'lodash'
-import { forEach } from '~/package/vue-awesome-swiper/abc.config'
 
 const filterWords = ['meta', '{}']
 

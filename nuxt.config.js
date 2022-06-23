@@ -3,10 +3,11 @@ const pkg = require('./package.json')
 
 export default {
   env: {
+    HOST: process.env.CF_PAGES_URL,
+    COMMIT: process.env.CF_PAGES_COMMIT_SHA,
     CONTEXT: process.env.CONTEXT,
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
-    COMMIT: process.env.CF_PAGES_COMMIT_SHA,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -159,11 +160,12 @@ export default {
       ogTitle: false,
       ogDescription: false,
       ogType: false,
-      ogSiteName: false,
-      twitterCard: false,
-      twitterSite: false,
-      twitterCreator: false,
+      ogSiteName: 'IS-Wireless',
+      ogHost: process.env.CF_PAGES_URL,
       ogUrl: false,
+      twitterCard: 'summary',
+      twitterSite: '@is_wireless',
+      twitterCreator: 'Sławomir Pietrzyk',
     },
     manifest: {
       lang: 'en',

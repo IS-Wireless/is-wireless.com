@@ -156,7 +156,12 @@ export default {
 
       if (this.pageData.schema_basic) {
         tags.title = this.pageData.schema_basic.title
-        tags.description = this.pageData.schema_basic.description
+
+        tags.meta.push({
+          hid: 'description',
+          property: 'description',
+          content: this.pageData.schema_basic.description,
+        })
 
         tags.meta.push({
           hid: 'robots',
@@ -241,6 +246,14 @@ export default {
             })
             $i++
           }
+        }
+
+        if (this.pageData.acf.sections[0].acf_fc_layout === 'section_header') {
+          tags.meta.push({
+            hid: 'og:url',
+            property: 'og:url',
+            content: this.pageData.acf.sections[0].background.url,
+          })
         }
       }
     }

@@ -248,10 +248,16 @@ export default {
           }
         }
 
+        tags.meta.push({
+          hid: 'og:url',
+          property: 'og:url',
+          content: this.pageData.link,
+        })
+
         if (this.pageData.acf.sections[0].acf_fc_layout === 'section_header') {
           tags.meta.push({
-            hid: 'og:url',
-            property: 'og:url',
+            hid: 'og:image',
+            property: 'og:image',
             content: this.pageData.acf.sections[0].background.url,
           })
         }

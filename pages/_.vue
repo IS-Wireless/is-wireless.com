@@ -96,6 +96,7 @@ import section_map from '~/components/map.vue'
 import section_block_subpages from '~/components/project-tiles.vue'
 import section_table from '~/components/table.vue'
 import section_content_columns_center_image from '~/components/content-section-center.vue'
+import section_person_list from '~/components/rnd-team.vue'
 import { isSamePath } from 'ufo'
 
 export default {
@@ -119,6 +120,7 @@ export default {
     section_block_subpages,
     section_table,
     section_content_columns_center_image,
+    section_person_list,
   },
   async asyncData({ route, payload, store }) {
     if (typeof payload !== 'undefined' && Object.keys(payload).length) {

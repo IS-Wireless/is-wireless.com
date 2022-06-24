@@ -1,13 +1,13 @@
 <template>
-  <div v-if="data.default" class="w-full">
+  <div v-if="data" class="w-full">
     <h3
-      v-if="data.default.title"
+      v-if="data.title"
       class="text-center pt-8 pb-[60px] text-2xl tablet:text-3xl"
-      v-html="data.default.title"
+      v-html="data.title"
     ></h3>
-    <div v-if="data.team" class="flex flex-col">
+    <div v-if="data.person" class="flex flex-col">
       <RndPerson
-        v-for="person in data.team"
+        v-for="person in data.person"
         :key="person.name"
         :data="person"
       />
@@ -19,7 +19,7 @@
 import RndPerson from './rnd-person.vue'
 
 export default {
-  name: 'RndTeam',
+  name: 'section_person_list',
   components: {
     RndPerson,
   },

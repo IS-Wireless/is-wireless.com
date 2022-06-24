@@ -1,12 +1,11 @@
 <template>
-  <!-- TODO: clean up the conditions -->
   <div
     class="group relative mb-[60px] tablet:mb-20 mx-[calc(-12.5%+10px)] tablet:mx-0 overflow-hidden flex flex-col tablet:flex-row border-0 border-b-2 border-solid border-gray-light transition duration-300"
     :class="
       isOverflow
         ? 'rounded-t-md pb-[60px] tablet:pb-0 border-blue-main tablet:border-gray-light tablet:hover:border-blue-main ' +
-          (data.head_of_department ? ' bg-gray-light ' : '')
-        : 'rounded-md ' + (data.head_of_department ? ' bg-gray-light ' : '')
+          (data.higlight ? ' bg-gray-light ' : '')
+        : 'rounded-md ' + (data.higlight ? ' bg-gray-light ' : '')
     "
   >
     <div
@@ -49,15 +48,15 @@
       </svg>
     </div>
     <nuxt-picture
-      v-if="data.person_image.url"
+      v-if="data.image"
       class="flex-shrink-0"
       :imgAttrs="{
         class:
           'h-[300px] phone-wide:h-[600px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
       }"
-      :src="data.person_image.url"
-      :title="data.person_image.title ? data.person_image.title : ''"
-      :alt="data.person_image.alt ? data.person_image.alt : ''"
+      :src="data.image.url ? data.image.url : ''"
+      :title="data.image.title ? data.image.title : ''"
+      :alt="data.image.alt ? data.image.alt : ''"
     ></nuxt-picture>
     <div
       v-else
@@ -79,11 +78,11 @@
     <div
       ref="descriptionContainer"
       class="relative overflow-hidden flex-grow h-[405px] tablet:h-[300px] transition-all duration-300"
-      :class="{ 'bg-gray-light': data.head_of_department }"
+      :class="{ 'bg-gray-light': data.higlight }"
     >
       <div
         class="absolute bottom-0 left-0 h-10 w-full z-10 pointer-events-none transition duration-300 transform origin-bottom scale-y-0 bg-gradient-to-t to-transparent"
-        :class="data.head_of_department ? 'from-gray-light' : 'from-white'"
+        :class="data.higlight ? 'from-gray-light' : 'from-white'"
         :style="isOverflow && collapsed ? 'transform:scaleY(1)' : ''"
       ></div>
       <div
@@ -93,14 +92,14 @@
           class="mb-[40px] tablet:mb-0 desktop:h-[300px] self-start flex flex-col justify-center shrink-0 desktop:basis-52"
         >
           <h3
-            v-if="data.person_name"
+            v-if="data.name"
             class="text-2xl mb-2 tablet:mb-0 desktop:mb-1"
-            v-html="data.person_name"
+            v-html="data.name"
           ></h3>
           <p
-            v-if="data.person_title"
+            v-if="data.position"
             class="text-blue-main text-lg mb-5"
-            v-html="data.person_title"
+            v-html="data.position"
           ></p>
           <div v-if="data.person_linkedin" class="flex">
             <a
@@ -123,9 +122,9 @@
           </div>
         </div>
         <p
-          v-if="data.person_description"
+          v-if="data.description"
           class="inline-block mb-5 w-full text-justify"
-          v-html="data.person_description"
+          v-html="data.description"
         ></p>
       </div>
     </div>

@@ -9,7 +9,9 @@ export default {
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
-
+  publicRuntimeConfig: {
+    baseURL: process.env.CF_PAGES_URL || 'http://localhost:3000/',
+  },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -150,6 +152,8 @@ export default {
   generate: {
     dir: 'public',
     crawler: true,
+    routes: ['/rd-team'],
+    fallback: '404.html',
   },
   image: {
     domains: ['https://www.is-wireless.com/'],

@@ -10,7 +10,7 @@
       <ul v-if="data.socials" class="flex tablet:p-5 tablet:pr-0">
         <li v-for="item in data.socials" :key="item.type" class="block m-1.5">
           <share-it
-            :url="$route.path"
+            :url="$config.baseURL + $route.fullPath"
             icons
             :targets="[item.type.replace('mail', 'email')]"
             class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md"

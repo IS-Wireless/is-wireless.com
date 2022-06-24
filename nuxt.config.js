@@ -127,7 +127,7 @@ export default {
         autoprefixer: {},
       },
     },
-    transpile: [/^vue2-google-maps($|\/)/],
+    transpile: ['vue-share-it', /^vue2-google-maps($|\/)/],
     extend(config) {
       config.module.rules.push({
         test: /\.mjs$/,

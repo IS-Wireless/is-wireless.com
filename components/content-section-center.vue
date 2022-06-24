@@ -4,6 +4,7 @@
   >
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
+      :class="{ 'tablet-wide:flex-row-reverse': !(data.title || data.content) }"
     >
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8">
         <SectionHeader v-if="data.title" :title="data.title" />

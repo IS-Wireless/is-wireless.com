@@ -8,6 +8,7 @@
           v-if="data.title"
           class="text-2xl tablet:text-3xl block mb-5"
           v-html="data.title"
+          :id="convertToId(data.title)"
         ></h3>
         <p
           v-if="data.subtitle"
@@ -45,6 +46,11 @@ export default {
     data: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    convertToId: function (text) {
+      return text.replace(' ', '-').toLowerCase()
     },
   },
 }

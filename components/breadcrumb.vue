@@ -63,6 +63,9 @@ export default {
       if (isSamePath('/news', link)) {
         return 'News'
       }
+      if (isSamePath('/search', link)) {
+        return 'Search'
+      }
       if (this.routesNames[0] !== 'news') {
         const pagesArray = Object.values(this.pagesData)
         for (let i = 0; i < pagesArray.length; i++) {

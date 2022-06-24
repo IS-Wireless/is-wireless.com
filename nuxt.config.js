@@ -24,7 +24,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Mobile Networks of the Future',
+        content: '4G and 5G Mobile Networks of the Future',
       },
       {
         src: 'https://cse.google.com/cse.js?cx=4a61290bc618cbfe1',

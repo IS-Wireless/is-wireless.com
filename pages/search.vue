@@ -22,7 +22,7 @@
           </svg>
         </div>
         <span
-          class="text-2xl text-gray-dark ml-5 font-normal font-lato whitespace-nowrap"
+          class="text-2xl tablet:text-[40px] text-gray-dark ml-5 font-normal font-lato whitespace-nowrap"
         >
           Search results</span
         >
@@ -66,19 +66,19 @@ export default {
 }
 
 .search_wrapper >>> .gsc-control-cse {
-  @apply pt-[66px] relative;
+  @apply pt-[66px] tablet:pt-[96px] relative;
 }
 
 .search_wrapper >>> .gsc-above-wrapper-area {
-  @apply border-0 absolute top-7 left-[70px] z-10;
+  @apply border-0 absolute top-7 left-[70px] tablet:top-11 tablet:left-[96px] z-10;
 }
 
 .search_wrapper >>> .gsc-webResult.gsc-result .gsc-thumbnail-inside a {
-  @apply inline-block text-blue-main hover:text-blue-main-hover visited:text-blue-main-hover font-lato font-normal text-lg mb-7 transition duration-200;
+  @apply inline-block text-blue-main hover:text-blue-main-hover visited:text-blue-main-hover font-lato font-normal text-lg tablet:text-2xl mb-7 transition duration-200;
 }
 
 .search_wrapper >>> .gsc-webResult.gsc-result .gsc-thumbnail-inside a * {
-  @apply text-inherit font-normal font-lato text-lg;
+  @apply text-inherit font-normal font-lato text-lg tablet:text-2xl;
 }
 
 .search_wrapper
@@ -92,7 +92,7 @@ export default {
 .search_wrapper >>> .gs-webResult .gsc-table-result .gs-snippet,
 .search_wrapper >>> .gs-webResult .gsc-table-result .gs-snippet b,
 .search_wrapper >>> .gsc-above-wrapper-area .gsc-result-info {
-  @apply text-base font-lato font-normal text-gray-dark;
+  @apply text-base tablet:text-lg font-lato font-normal text-gray-dark;
 }
 
 .search_wrapper >>> .gs-webResult.gs-result {
@@ -100,11 +100,11 @@ export default {
 }
 
 .search_wrapper >>> .gsc-cursor {
-  @apply flex gap-[15px] flex-wrap justify-center tablet-wide:justify-start py-14;
+  @apply flex gap-[15px] flex-wrap justify-center tablet-wide:justify-end py-14;
 }
 
 .search_wrapper >>> .gsc-cursor .gsc-cursor-page {
-  @apply hidden justify-center items-center w-11 h-11 border border-solid rounded-full hover:no-underline  text-base font-lato;
+  @apply hidden justify-center items-center w-11 h-11 tablet:w-[55px] tablet:h-[55px] border border-solid rounded-full hover:no-underline  text-base tablet:text-lg font-lato;
 }
 
 .search_wrapper >>> .gsc-cursor .gsc-cursor-page.gsc-cursor-current-page {

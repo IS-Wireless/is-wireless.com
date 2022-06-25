@@ -16,6 +16,7 @@ export default {
   },
   publicRuntimeConfig: {
     baseURL: process.env.CF_PAGES_URL || 'http://localhost:3000/',
+    version: appVersionCacheBuster,
   },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -69,7 +70,6 @@ export default {
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '~/plugins/vue-google-maps', mode: 'client' },
     { src: '~/plugins/vue-composition-api', mode: 'server' },
-    { src: '~/plugins/pwa-update.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -188,7 +188,9 @@ export default {
         'IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.',
     },
     workbox: {
+      enabled: true,
       cleanupOutdatedCaches: true,
+      offlineStrategy: 'StaleWhileRevalidate',
       cacheOptions: {
         revision: appVersionCacheBuster,
       },

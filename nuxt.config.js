@@ -1,6 +1,11 @@
 require('dotenv').config()
 const pkg = require('./package.json')
 
+let appVersionCacheBuster =
+  process.env.CONTEXT === 'production'
+    ? process.env.CF_PAGES_COMMIT_SHA
+    : pkg.version + '_' + Date.now()
+
 export default {
   env: {
     HOST: process.env.CF_PAGES_URL,
@@ -33,7 +38,11 @@ export default {
       },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico?v=' + appVersionCacheBuster,
+      },
       {
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
@@ -60,6 +69,7 @@ export default {
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '~/plugins/vue-google-maps', mode: 'client' },
     { src: '~/plugins/vue-composition-api', mode: 'server' },
+    { src: '~/plugins/pwa-update.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -179,6 +189,9 @@ export default {
     },
     workbox: {
       cleanupOutdatedCaches: true,
+      cacheOptions: {
+        revision: appVersionCacheBuster,
+      },
     },
     icon: {
       fileName: 'symbol.png',

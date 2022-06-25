@@ -3,7 +3,11 @@
     <Breadcrumb />
     <div class="w-full px-[10%]">
       <div class="tablet:w-2/3" v-if="pageData">
-        <BlogPostContent v-if="pageData.content" :data="contentFiltered" />
+        <BlogPostContent
+          v-if="pageData.content"
+          :data="contentFiltered"
+          class="postContent"
+        />
         <BlogShare :data="testBlogShare" />
         <BlogRelated v-if="postsRelated" :data="postsRelated" />
       </div>
@@ -213,7 +217,14 @@ export default {
       const HtmlFilter = require('html-filter')
       const htmlFilter = new HtmlFilter()
       htmlFilter.allowedTags = {
-        img: { src: 1, alt: 1, width: 1, height: 1 }, // not support attr
+        img: {
+          src: 1,
+          alt: 1,
+          width: 1,
+          height: 1,
+          srcset: 1,
+          'data-orig-src': 1,
+        }, // not support attr
         h1: { id: 1 }, // support id and style attr
         h2: { id: 1 }, // support id and style attr
         h3: { id: 1 }, // support id and style attr
@@ -227,11 +238,28 @@ export default {
         i: null,
         span: null,
         strong: null,
-        a: { href: 1 },
+        a: { href: 1, rel: 1, 'data-rel': 1, 'aria-label': 1 },
         div: null,
       }
-      return htmlFilter.filter(this.pageData.content.rendered)
+      let filteredContent = htmlFilter.filter(this.pageData.content.rendered)
+      if (filteredContent.includes('data-orig-src')) {
+        filteredContent = filteredContent.replace(/ src=/g, ' data-test=')
+        filteredContent = filteredContent.replace(
+          / data-orig-/g,
+          ' ref="imageFix" '
+        )
+      }
+      return filteredContent
     },
+  },
+  mounted() {
+    console.log(this.$refs.imageFix)
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.postContent /deep/ [rel='gallery'] {
+  @apply inline-block;
+}
+</style>

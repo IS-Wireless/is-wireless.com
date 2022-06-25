@@ -17,7 +17,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'IS-Wireless',
+    title: 'IS-Wireless #5GMadeTogether',
+    description: '4G and 5G Mobile Networks of the Future',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -102,19 +103,12 @@ export default {
       },
     },
     // https://go.nuxtjs.dev/pwa
-    {
-      src: '@nuxtjs/pwa',
-      options: {},
-    },
+    '@nuxtjs/pwa',
     {
       src: '@nuxtjs/dotenv',
       options: {
         only: ['API_URL', 'API_AFFIX', 'CONTEXT'],
       },
-    },
-    {
-      src: '@nuxtjs/axios',
-      // options: {}
     },
     {
       src: 'wp-nuxt',
@@ -160,6 +154,7 @@ export default {
   },
   pwa: {
     meta: {
+      name: 'IS-Wireless',
       theme_color: '#00A2DF',
       ogTitle: false,
       ogDescription: false,
@@ -174,12 +169,21 @@ export default {
     manifest: {
       lang: 'en',
       theme_color: '#00A2DF',
+      id: '/?standalone=true',
+      title: 'IS-Wireless',
+      name: 'IS-Wireless',
+      shortName: 'IS-Wireless',
+      orientation: 'any',
+      description:
+        'IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.',
     },
     workbox: {
       cleanupOutdatedCaches: true,
-      cacheOptions: {
-        revision: process.env.CF_PAGES_COMMIT_SHA,
-      },
+    },
+    icon: {
+      fileName: 'symbol.png',
+      sizes: [64, 120, 144, 152, 192, 384, 512],
+      purpose: ['any'],
     },
   },
   wp: {

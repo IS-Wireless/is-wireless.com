@@ -1,5 +1,6 @@
 {
   "name": "is-wireless",
+  "description": "4G and 5G Mobile Networks of the Future",
   "version": "1.0.0",
   "private": true,
   "scripts": {

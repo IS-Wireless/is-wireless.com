@@ -224,8 +224,11 @@ export default {
         p: { id: 1 }, // support id and style attr
         iframe: { id: 1 }, // support id and style attr
         br: null,
+        i: null,
+        span: null,
         strong: null,
         a: { href: 1 },
+        div: null,
       }
       return htmlFilter.filter(this.pageData.content.rendered)
     },

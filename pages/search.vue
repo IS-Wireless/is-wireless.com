@@ -50,7 +50,7 @@ export default {
       link: [],
       __dangerouslyDisableSanitizers: ['script'],
     }
-    this.pageData = this.frontPageData.homepageData
+
     if (this.pageData) {
       if (this.pageData.schema) {
         tags.script.push({

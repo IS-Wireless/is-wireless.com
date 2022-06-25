@@ -222,7 +222,6 @@ export default {
           alt: 1,
           width: 1,
           height: 1,
-          srcset: 1,
           'data-orig-src': 1,
         }, // not support attr
         h1: { id: 1 }, // support id and style attr

@@ -261,4 +261,8 @@ export default {
 .postContent /deep/ [rel='gallery'] {
   @apply inline-block;
 }
+
+.postContent /deep/ a[data-rel|='lightbox-image'] {
+  pointer-events: none;
+}
 </style>

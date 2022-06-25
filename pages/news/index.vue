@@ -14,12 +14,12 @@ import Breadcrumb from '~/components/breadcrumb.vue'
 import { groupBy as _groupBy } from 'lodash'
 
 export default {
-  layout: 'scrollBtnAlways',
   name: 'BlogPage',
   components: {
     Breadcrumb,
     BlogTimeline,
   },
+  layout: 'scrollBtnAlways',
   head() {
     let tags = {
       script: [],
@@ -27,7 +27,7 @@ export default {
       link: [],
       __dangerouslyDisableSanitizers: ['script'],
     }
-    this.pageData = this.frontPageData.homepageData
+
     if (this.pageData) {
       if (this.pageData.schema) {
         tags.script.push({

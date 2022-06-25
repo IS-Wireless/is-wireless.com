@@ -3,10 +3,7 @@
     <Breadcrumb />
     <div class="w-full px-[10%]">
       <div class="tablet:w-2/3" v-if="pageData">
-        <BlogPostContent
-          v-if="pageData.content"
-          :data="pageData.content.rendered"
-        />
+        <BlogPostContent v-if="pageData.content" :data="contentFiltered" />
         <BlogShare :data="testBlogShare" />
         <BlogRelated v-if="postsRelated" :data="postsRelated" />
       </div>
@@ -66,7 +63,6 @@ export default {
 
     return { pageData: {}, postsRelated: [] }
   },
-
   data() {
     return {
       testBlogShare: {
@@ -80,6 +76,7 @@ export default {
       },
     }
   },
+
   head() {
     let tags = {
       script: [],
@@ -196,7 +193,10 @@ export default {
           content: this.pageData.link,
         })
 
-        if (this.pageData.acf.sections[0].acf_fc_layout === 'section_header') {
+        if (
+          this.pageData.acf &&
+          this.pageData.acf.sections[0].acf_fc_layout === 'section_header'
+        ) {
           tags.meta.push({
             hid: 'og:image',
             property: 'og:image',
@@ -207,6 +207,28 @@ export default {
     }
 
     return tags
+  },
+  computed: {
+    contentFiltered() {
+      const HtmlFilter = require('html-filter')
+      const htmlFilter = new HtmlFilter()
+      htmlFilter.allowedTags = {
+        img: { src: 1, alt: 1, width: 1, height: 1 }, // not support attr
+        h1: { id: 1 }, // support id and style attr
+        h2: { id: 1 }, // support id and style attr
+        h3: { id: 1 }, // support id and style attr
+        h4: { id: 1 }, // support id and style attr
+        h5: { id: 1 }, // support id and style attr
+        h6: { id: 1 }, // support id and style attr
+        h7: { id: 1 }, // support id and style attr
+        p: { id: 1 }, // support id and style attr
+        iframe: { id: 1 }, // support id and style attr
+        br: null,
+        strong: null,
+        a: { href: 1 },
+      }
+      return htmlFilter.filter(this.pageData.content.rendered)
+    },
   },
 }
 </script>

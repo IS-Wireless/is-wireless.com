@@ -69,7 +69,7 @@
       </div>
       <div
         v-else-if="pageData.content"
-        v-html="pageData.content.rendered"
+        v-html="contentFiltered"
         class="text-page mb-10 px-[10%] tablet:px-0"
       ></div>
     </div>
@@ -271,6 +271,43 @@ export default {
   computed: {
     currentRouteName() {
       return this.$route.path
+    },
+    contentFiltered() {
+      const HtmlFilter = require('html-filter')
+      const htmlFilter = new HtmlFilter()
+      htmlFilter.allowedTags = {
+        img: {
+          src: 1,
+          alt: 1,
+          width: 1,
+          height: 1,
+          'data-orig-src': 1,
+        }, // not support attr
+        h1: { id: 1 }, // support id and style attr
+        h2: { id: 1 }, // support id and style attr
+        h3: { id: 1 }, // support id and style attr
+        h4: { id: 1 }, // support id and style attr
+        h5: { id: 1 }, // support id and style attr
+        h6: { id: 1 }, // support id and style attr
+        h7: { id: 1 }, // support id and style attr
+        p: { id: 1 }, // support id and style attr
+        iframe: { id: 1 }, // support id and style attr
+        br: null,
+        i: null,
+        span: null,
+        strong: null,
+        a: { href: 1, rel: 1, 'data-rel': 1, 'aria-label': 1 },
+        div: null,
+      }
+      let filteredContent = htmlFilter.filter(this.pageData.content.rendered)
+      if (filteredContent.includes('data-orig-src')) {
+        filteredContent = filteredContent.replace(/ src=/g, ' data-test=')
+        filteredContent = filteredContent.replace(
+          / data-orig-/g,
+          ' ref="imageFix" '
+        )
+      }
+      return filteredContent
     },
   },
 }

@@ -62,6 +62,10 @@ export const actions = {
             }
             filterData(data)
             data.schema = tmp
+            if (data.acf && data.acf.section) {
+              data.content = ''
+            }
+
             dispatch('homepage/init', { homepageData: data.acf })
             resolve()
           })
@@ -189,6 +193,14 @@ export const actions = {
                 twitter_card: item.yoast_head_json.twitter_card,
                 twitter_misc: item.yoast_head_json.twitter_misc,
               }
+            }
+
+            if (
+              item.acf &&
+              item.acf.section &&
+              Object.keys(item.acf.section).length
+            ) {
+              data.content = ''
             }
           })
           filterData(data)

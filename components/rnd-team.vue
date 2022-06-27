@@ -7,8 +7,8 @@
     ></h3>
     <div v-if="data.person" class="flex flex-col">
       <RndPerson
-        v-for="person in data.person"
-        :key="person.name"
+        v-for="(person, index) in data.person"
+        :key="index"
         :data="person"
       />
     </div>

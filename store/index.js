@@ -1,6 +1,6 @@
 import { isEmpty as _isEmpty } from 'lodash'
 
-const filterWords = ['meta', '{}']
+const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
 
 // http://wp-api.org/node-wpapi/collection-pagination/
 function getAll(request) {

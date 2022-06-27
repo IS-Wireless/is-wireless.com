@@ -36,8 +36,8 @@
           :src="data.default.image.url ? data.default.image.url : ''"
           :alt="data.default.image.alt ? data.default.image.alt : ''"
           :title="data.default.image.title ? data.default.image.title : ''"
-          :loading="index ? 'lazy' : 'eager'"
-          :preload="index ? false : true"
+          loading="eager"
+          preload
         />
         <p
           v-if="data.default && data.default.content"

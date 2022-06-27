@@ -1,42 +1,51 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" />
-    <Organisations :data="frontPageData.homepageData.sections[1]" />
+    <LazyHydrate when-visible>
+      <Banner :data="frontPageData.homepageData.sections[0]" />
+    </LazyHydrate>
+    <LazyHydrate when-visible>
+      <Organisations :data="frontPageData.homepageData.sections[1]" />
+    </LazyHydrate>
 
-    <section_two_column
-      :class="'px-[10%]'"
-      :data="frontPageData.homepageData.sections[2]"
-    />
+    <LazyHydrate never>
+      <section_two_column
+        :class="'px-[10%]'"
+        :data="frontPageData.homepageData.sections[2]"
+      />
+    </LazyHydrate>
 
-    <section_two_column_bg
-      :textClr="'text-white'"
-      :data="frontPageData.homepageData.sections[3]"
-    />
+    <LazyHydrate never>
+      <section_two_column_bg
+        :textClr="'text-white'"
+        :data="frontPageData.homepageData.sections[3]"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      :class="'px-[10%]'"
-      :data="frontPageData.homepageData.sections[4]"
-    />
+    <LazyHydrate when-idle>
+      <section_two_column
+        :class="'px-[10%]'"
+        :data="frontPageData.homepageData.sections[4]"
+      />
+    </LazyHydrate>
 
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    <LazyHydrate never>
+      <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Banner from '~/components/Banner.vue'
-import Organisations from '~/components/Organisations.vue'
-import section_two_column from '~/components/content-section.vue'
-import section_two_column_bg from '~/components/content-section-bg.vue'
-import CtaJob from '~/components/cta-job.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default Vue.extend({
   components: {
-    Banner,
-    Organisations,
-    section_two_column,
-    section_two_column_bg,
-    CtaJob,
+    LazyHydrate,
+    Banner: () => import('~/components/Banner.vue'),
+    Organisations: () => import('~/components/Organisations.vue'),
+    section_two_column: () => import('~/components/content-section.vue'),
+    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
+    CtaJob: () => import('~/components/cta-job.vue'),
   },
   head() {
     let tags = {

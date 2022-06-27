@@ -188,9 +188,8 @@ export default {
         'IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.',
     },
     workbox: {
-      enabled: true,
       cleanupOutdatedCaches: true,
-      offlineStrategy: 'StaleWhileRevalidate',
+      // offlineStrategy: 'StaleWhileRevalidate',
       cacheOptions: {
         revision: appVersionCacheBuster,
       },

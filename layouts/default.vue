@@ -1,33 +1,38 @@
 <template>
   <div>
-    <Navbar
-      :main-menu="topMenuData"
-      :side-menu="sideMenuData"
-      :socials="socialMenuData"
-    />
+    <LazyHydrate on-interaction="click">
+      <Navbar
+        :main-menu="topMenuData"
+        :side-menu="sideMenuData"
+        :socials="socialMenuData"
+      />
+    </LazyHydrate>
     <Nuxt />
-    <ScrollToTopBtn />
-    <Footer
-      :image-url="footerData.image"
-      :copyright="footerData.copyright"
-      :menu="footerMenuData"
-      :socials="socialMenuData"
-      :languages="footerData.language"
-    />
+    <LazyHydrate when-visible>
+      <ScrollToTopBtn />
+    </LazyHydrate>
+    <LazyHydrate when-visible>
+      <Footer
+        :image-url="footerData.image"
+        :copyright="footerData.copyright"
+        :menu="footerMenuData"
+        :socials="socialMenuData"
+        :languages="footerData.language"
+      />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/navbar.vue'
-import ScrollToTopBtn from '@/components/scroll-to-top.vue'
-import Footer from '@/components/footer.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
   name: 'Default',
   components: {
-    Navbar,
-    ScrollToTopBtn,
-    Footer,
+    LazyHydrate,
+    Navbar: () => import('@/components/navbar.vue'),
+    ScrollToTopBtn: () => import('@/components/scroll-to-top.vue'),
+    Footer: () => import('@/components/footer.vue'),
   },
   computed: {
     topMenuData() {

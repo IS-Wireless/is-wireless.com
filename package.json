@@ -33,6 +33,7 @@
     "typescript": "^4.4.4",
     "ufo": "^0.8.4",
     "vue-awesome-swiper": "file:package/vue-awesome-swiper",
+    "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-share-it": "^1.1.6",
     "vue2-google-maps": "^0.10.7",
     "wp-nuxt": "1.0.30",

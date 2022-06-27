@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col">
-    <LazyHydrate when-visible>
+    <LazyHydrate :on-interaction="['click', 'touchstart']">
       <Banner :data="frontPageData.homepageData.sections[0]" />
     </LazyHydrate>
-    <LazyHydrate when-visible>
+    <LazyHydrate :on-interaction="['click', 'touchstart']">
       <Organisations :data="frontPageData.homepageData.sections[1]" />
     </LazyHydrate>
 
@@ -14,14 +14,14 @@
       />
     </LazyHydrate>
 
-    <LazyHydrate never>
+    <LazyHydrate when-idle>
       <section_two_column_bg
         :textClr="'text-white'"
         :data="frontPageData.homepageData.sections[3]"
       />
     </LazyHydrate>
 
-    <LazyHydrate when-idle>
+    <LazyHydrate never>
       <section_two_column
         :class="'px-[10%]'"
         :data="frontPageData.homepageData.sections[4]"
@@ -183,11 +183,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-</style>

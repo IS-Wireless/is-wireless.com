@@ -7,14 +7,12 @@
         class="block transform max-w-full w-auto transition duration-[1000ms]"
         :class="{
           'group-hover:scale-110 group-hover:opacity-80': imageDecoration,
-          'opacity-100': imgLoaded,
-          'opacity-0': !imgLoaded,
         }"
         :src="url"
         :alt="alt"
         :title="title"
         sizes="sm:320px md:640px lg:720px"
-        @load="changeLoadState()"
+        loading="lazy"
       />
     </div>
   </div>
@@ -41,16 +39,6 @@ export default {
     imageDecoration: {
       type: Boolean,
       default: false,
-    },
-  },
-  data() {
-    return {
-      imgLoaded: false,
-    }
-  },
-  methods: {
-    changeLoadState() {
-      this.imgLoaded = true
     },
   },
 }

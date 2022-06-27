@@ -8,10 +8,10 @@
       />
     </LazyHydrate>
     <Nuxt />
-    <LazyHydrate when-visible>
+    <LazyHydrate when-idle>
       <ScrollToTopBtn />
     </LazyHydrate>
-    <LazyHydrate when-visible>
+    <LazyHydrate never>
       <Footer
         :image-url="footerData.image"
         :copyright="footerData.copyright"

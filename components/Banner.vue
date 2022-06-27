@@ -18,6 +18,7 @@
             width="1920px"
             height="768px"
             :loading="index ? 'lazy' : 'eager'"
+            :preload="index ? false : true"
           />
         </div>
       </div>
@@ -35,6 +36,8 @@
           :src="data.default.image.url ? data.default.image.url : ''"
           :alt="data.default.image.alt ? data.default.image.alt : ''"
           :title="data.default.image.title ? data.default.image.title : ''"
+          :loading="index ? 'lazy' : 'eager'"
+          :preload="index ? false : true"
         />
         <p
           v-if="data.default && data.default.content"

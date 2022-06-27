@@ -28,9 +28,6 @@ export default {
     Footer,
     ScrollToTopBtn,
   },
-  beforeUnmounted() {
-    alert('unmount z layouta')
-  },
   computed: {
     topMenuData() {
       let topMenu = []

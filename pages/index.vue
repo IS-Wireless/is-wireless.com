@@ -1,36 +1,25 @@
 <template>
   <div class="flex flex-col">
-    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
-      <Banner :data="frontPageData.homepageData.sections[0]" />
-    </LazyHydrate>
-    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
-      <Organisations :data="frontPageData.homepageData.sections[1]" />
-    </LazyHydrate>
+    <Banner :data="frontPageData.homepageData.sections[0]" />
 
-    <LazyHydrate never>
-      <section_two_column
-        :class="'px-[10%]'"
-        :data="frontPageData.homepageData.sections[2]"
-      />
-    </LazyHydrate>
+    <Organisations :data="frontPageData.homepageData.sections[1]" />
 
-    <LazyHydrate when-idle>
-      <section_two_column_bg
-        :textClr="'text-white'"
-        :data="frontPageData.homepageData.sections[3]"
-      />
-    </LazyHydrate>
+    <section_two_column
+      :class="'px-[10%]'"
+      :data="frontPageData.homepageData.sections[2]"
+    />
 
-    <LazyHydrate never>
-      <section_two_column
-        :class="'px-[10%]'"
-        :data="frontPageData.homepageData.sections[4]"
-      />
-    </LazyHydrate>
+    <section_two_column_bg
+      :textClr="'text-white'"
+      :data="frontPageData.homepageData.sections[3]"
+    />
 
-    <LazyHydrate never>
-      <CtaJob :data="frontPageData.homepageData.sections[5]" />
-    </LazyHydrate>
+    <section_two_column
+      :class="'px-[10%]'"
+      :data="frontPageData.homepageData.sections[4]"
+    />
+
+    <CtaJob :data="frontPageData.homepageData.sections[5]" />
   </div>
 </template>
 

@@ -2,18 +2,16 @@
   <div v-if="pageData">
     <div>
       <div v-if="pageData.acf">
-        <LazyHydrate never>
-          <StaticBanner
-            v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
-            :title="pageData.acf.sections[0].title"
-            :background-url="pageData.acf.sections[0].background.url"
-          />
-        </LazyHydrate>
+        <StaticBanner
+          v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
+          :title="pageData.acf.sections[0].title"
+          :background-url="pageData.acf.sections[0].background.url"
+        />
       </div>
     </div>
-    <LazyHydrate when-visible>
-      <Breadcrumb />
-    </LazyHydrate>
+
+    <Breadcrumb />
+
     <div class="tablet:w-4/5 mx-auto py-10">
       <div
         v-if="pageData.acf"
@@ -30,25 +28,23 @@
         >
           <div v-for="(component, index) in pageData.acf.sections" :key="index">
             <div v-if="component.acf_fc_layout">
-              <LazyHydrate when-visible>
-                <component
-                  v-if="
-                    component.acf_fc_layout === 'section_tabs' &&
-                    pageData.acf.section_table
-                  "
-                  :is="component.acf_fc_layout"
-                  :data="
-                    Object.assign(component, {
-                      table: pageData.acf.section_table,
-                    })
-                  "
-                ></component>
-                <component
-                  v-else-if="component.acf_fc_layout !== 'section_header'"
-                  :is="component.acf_fc_layout"
-                  :data="component"
-                ></component>
-              </LazyHydrate>
+              <component
+                v-if="
+                  component.acf_fc_layout === 'section_tabs' &&
+                  pageData.acf.section_table
+                "
+                :is="component.acf_fc_layout"
+                :data="
+                  Object.assign(component, {
+                    table: pageData.acf.section_table,
+                  })
+                "
+              ></component>
+              <component
+                v-else-if="component.acf_fc_layout !== 'section_header'"
+                :is="component.acf_fc_layout"
+                :data="component"
+              ></component>
             </div>
           </div>
         </div>

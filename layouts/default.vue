@@ -27,7 +27,7 @@ import speedkitHydrate from 'nuxt-speedkit/hydrate'
 export default {
   name: 'Default',
   components: {
-    Navbar: speedkitHydrate(() => import('@/components/navbar.vue')),
+    Navbar: import('@/components/navbar.vue'),
     ScrollToTopBtn: speedkitHydrate(() =>
       import('@/components/scroll-to-top.vue')
     ),

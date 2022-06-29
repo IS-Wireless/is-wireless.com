@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar
-      critical="true"
+      :critical="true"
       :main-menu="topMenuData"
       :side-menu="sideMenuData"
       :socials="socialMenuData"

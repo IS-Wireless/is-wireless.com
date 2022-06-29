@@ -22,17 +22,16 @@
 </template>
 
 <script>
-import speedkitHydrate from 'nuxt-speedkit/hydrate'
 import NavbarComponent from '@/components/navbar.vue'
+import CScrollToTopBtn from '@/components/scroll-to-top.vue'
+import CFooter from '@/components/navbar.vue'
 
 export default {
   name: 'Default',
   components: {
     Navbar: NavbarComponent,
-    ScrollToTopBtn: speedkitHydrate(() =>
-      import('@/components/scroll-to-top.vue')
-    ),
-    Footer: speedkitHydrate(() => import('@/components/footer.vue')),
+    ScrollToTopBtn: CScrollToTopBtn,
+    Footer: CFooter,
   },
   computed: {
     topMenuData() {

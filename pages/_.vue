@@ -113,7 +113,6 @@ export default {
     section_person_list: () => import('~/components/rnd-team.vue'),
   },
   async asyncData({ route, payload, store }) {
-    console.log(typeof payload !== 'undefined')
     if (
       typeof payload !== 'undefined' &&
       typeof payload === 'object' &&

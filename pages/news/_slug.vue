@@ -251,9 +251,6 @@ export default {
       return filteredContent
     },
   },
-  mounted() {
-    console.log(this.$refs.imageFix)
-  },
 }
 </script>
 

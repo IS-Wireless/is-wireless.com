@@ -27,8 +27,11 @@
     "dotenv-cli": "^5.1.0",
     "eslint-gitignore": "^0.1.0",
     "eslint-plugin-tailwind": "^0.2.1",
+    "file-system-cache": "^2.0.0",
     "html-filter": "^4.3.3",
+    "node-cache": "^5.1.2",
     "nuxt": "^2.15.3",
+    "superagent-cache": "^3.1.1",
     "swiper": "^6.8.4",
     "typescript": "^4.4.4",
     "ufo": "^0.8.4",
@@ -36,7 +39,7 @@
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-share-it": "^1.1.6",
     "vue2-google-maps": "^0.10.7",
-    "wp-nuxt": "1.0.30",
+    "wp-nuxt": "file:package/wp-nuxt",
     "wpapi": "^1.2.2",
     "wpapi-extensions": "^1.0.12"
   },
@@ -60,5 +63,10 @@
     "postcss": "^8.4.8",
     "prettier": "^2.2.1",
     "tailwindcss": "^3.0.23"
+  },
+  "browser": {
+    "fs": false,
+    "fs-extra": false,
+    "file-system-cache": false
   }
 }

@@ -140,6 +140,11 @@ export default {
         include: /node_modules/,
         type: 'javascript/auto',
       })
+
+      config.node = {
+        fs: 'empty',
+        'fs-extra': 'empty',
+      }
     },
   },
   // render: {
@@ -216,6 +221,7 @@ export default {
       },
     ],
     sitemap: false,
+    // transport: require('./utils/superagent-cache.js'),
   },
   layoutTransition: {
     name: 'page',

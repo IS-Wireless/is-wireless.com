@@ -292,7 +292,7 @@ export default {
 
     targetFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
 
-    componentAutoImport: true,
+    componentAutoImport: false,
     componentPrefix: undefined,
 
     /**

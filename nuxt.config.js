@@ -123,6 +123,7 @@ export default {
     {
       src: 'wp-nuxt',
     },
+    'nuxt-speedkit',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -170,7 +171,16 @@ export default {
     fallback: '404.html',
   },
   image: {
-    domains: ['https://www.is-wireless.com/'],
+    domains: [
+      'https://www.is-wireless.com/',
+      'www.is-wireless.com',
+      'img.youtube.com',
+      'i.vimeocdn.com',
+    ],
+    alias: {
+      youtube: 'https://img.youtube.com',
+      vimeo: 'https://i.vimeocdn.com',
+    },
   },
   pwa: {
     meta: {
@@ -225,5 +235,79 @@ export default {
   layoutTransition: {
     name: 'page',
     mode: 'out-in',
+  },
+
+  speedkit: {
+    detection: {
+      performance: true,
+      browserSupport: true,
+    },
+
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: { min: 2, max: 48 },
+        deviceMemory: { min: 2 },
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200,
+      },
+    },
+
+    // fonts: [
+    //   {//@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    //     family: 'Lato',
+    //     locals: ['Lato'],
+    //     fallback: ['Arial', 'sans-serif'],
+    //     variances: [
+    //       {
+    //         style: 'normal',
+    //         weight: 400,
+    //         sources: [
+    //           { src: '@/assets/fonts/font-a-regular.woff', type: 'woff' },
+    //           { src: '@/assets/fonts/font-a-regular.woff2', type: 'woff2' },
+    //         ],
+    //       },
+    //       {
+    //         style: 'italic',
+    //         weight: 400,
+    //         sources: [
+    //           { src: '@/assets/fonts/font-a-regularItalic.woff', type: 'woff' },
+    //           {
+    //             src: '@/assets/fonts/font-a-regularItalic.woff2',
+    //             type: 'woff2',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         style: 'normal',
+    //         weight: 700,
+    //         sources: [
+    //           { src: '@/assets/fonts/font-a-700.woff', type: 'woff' },
+    //           { src: '@/assets/fonts/font-a-700.woff2', type: 'woff2' },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // ],
+
+    pictureFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
+
+    componentAutoImport: false,
+    componentPrefix: undefined,
+
+    /**
+     * IntersectionObserver rootMargin for Compoennts and Assets
+     */
+    lazyOffset: {
+      component: '0%',
+      asset: '0%',
+    },
+
+    loader: {
+      dataUri: null,
+      size: '100px',
+      backgroundColor: 'grey',
+    },
   },
 }

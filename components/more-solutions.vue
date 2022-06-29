@@ -1,7 +1,10 @@
 <template>
   <div>
-    <h2 class="block text-blue-main text-2xl tablet:text-3xl mb-10">
-      More solutions
+    <h2
+      v-if="data.title"
+      class="block text-blue-main text-2xl tablet:text-3xl mb-10"
+    >
+      {{ title }}
     </h2>
     <ul
       v-if="data.block"
@@ -10,7 +13,8 @@
       <li
         v-for="(item, index) in data.block"
         :key="index"
-        class="mb-2.5 tablet-wide:basis-1/3 tablet-wide:pr-8 tablet-wide:last:pr-0"
+        class="mb-2.5 tablet-wide:pr-8 tablet-wide:last:pr-0"
+        :class="(data.block.length == 1 ? 'tablet-wide:basis-full' : (data.block.length == 2 ? 'tablet-wide:basis-1/2' : 'tablet-wide:basis-1/3'))"
       >
         <CustomLink
           v-if="item.link.url"

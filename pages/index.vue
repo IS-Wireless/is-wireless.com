@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col">
-    <LazyHydrate :on-interaction="['click', 'touchstart']">
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
       <Banner :data="frontPageData.homepageData.sections[0]" />
     </LazyHydrate>
-    <LazyHydrate :on-interaction="['click', 'touchstart']">
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
       <Organisations :data="frontPageData.homepageData.sections[1]" />
     </LazyHydrate>
 

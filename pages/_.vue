@@ -151,13 +151,17 @@ export default {
       }
 
       if (this.pageData.schema_basic) {
-        tags.title = this.pageData.schema_basic.title
+        if (this.pageData.schema_basic.title) {
+          tags.title = this.pageData.schema_basic.title
+        }
 
-        tags.meta.push({
-          hid: 'description',
-          property: 'description',
-          content: this.pageData.schema_basic.description,
-        })
+        if (this.pageData.schema_basic.description) {
+          tags.meta.push({
+            hid: 'description',
+            property: 'description',
+            content: this.pageData.schema_basic.description,
+          })
+        }
 
         tags.meta.push({
           hid: 'robots',

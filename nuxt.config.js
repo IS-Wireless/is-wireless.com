@@ -167,7 +167,6 @@ export default {
   generate: {
     dir: 'public',
     crawler: true,
-    routes: ['/rd-team'],
     fallback: '404.html',
   },
   image: {

@@ -1,43 +1,51 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" />
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
+      <Banner :data="frontPageData.homepageData.sections[0]" />
+    </LazyHydrate>
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
+      <Organisations :data="frontPageData.homepageData.sections[1]" />
+    </LazyHydrate>
 
-    <Organisations :data="frontPageData.homepageData.sections[1]" />
+    <LazyHydrate never>
+      <section_two_column
+        :class="'px-[10%]'"
+        :data="frontPageData.homepageData.sections[2]"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      :class="'px-[10%]'"
-      :data="frontPageData.homepageData.sections[2]"
-    />
+    <LazyHydrate when-idle>
+      <section_two_column_bg
+        :textClr="'text-white'"
+        :data="frontPageData.homepageData.sections[3]"
+      />
+    </LazyHydrate>
 
-    <section_two_column_bg
-      :textClr="'text-white'"
-      :data="frontPageData.homepageData.sections[3]"
-    />
+    <LazyHydrate never>
+      <section_two_column
+        :class="'px-[10%]'"
+        :data="frontPageData.homepageData.sections[4]"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      :class="'px-[10%]'"
-      :data="frontPageData.homepageData.sections[4]"
-    />
-
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    <LazyHydrate never>
+      <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import CBanner from '~/components/Banner.vue'
-import COrganisations from '~/components/Organisations.vue'
-import Csection_two_column from '~/components/content-section.vue'
-import Csection_two_column_bg from '~/components/content-section-bg.vue'
-import CCtaJob from '~/components/cta-job.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default Vue.extend({
   components: {
-    Banner: CBanner,
-    Organisations: COrganisations,
-    section_two_column: Csection_two_column,
-    section_two_column_bg: Csection_two_column_bg,
-    CtaJob: CCtaJob,
+    LazyHydrate,
+    Banner: () => import('~/components/Banner.vue'),
+    Organisations: () => import('~/components/Organisations.vue'),
+    section_two_column: () => import('~/components/content-section.vue'),
+    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
+    CtaJob: () => import('~/components/cta-job.vue'),
   },
   head() {
     let tags = {

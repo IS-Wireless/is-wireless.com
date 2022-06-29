@@ -123,7 +123,7 @@ export default {
     {
       src: 'wp-nuxt',
     },
-    'nuxt-speedkit',
+    // 'nuxt-speedkit',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -236,21 +236,21 @@ export default {
 
   speedkit: {
     detection: {
-      performance: true,
-      browserSupport: true,
+      performance: false,
+      browserSupport: false,
     },
 
-    performanceMetrics: {
-      device: {
-        hardwareConcurrency: { min: 2, max: 48 },
-        deviceMemory: { min: 2 },
-      },
-      timing: {
-        fcp: 800,
-        dcl: 1200,
-      },
-    },
-
+    // performanceMetrics: {
+    //   device: {
+    //     hardwareConcurrency: { min: 2, max: 48 },
+    //     deviceMemory: { min: 2 },
+    //   },
+    //   timing: {
+    //     fcp: 800,
+    //     dcl: 1200,
+    //   },
+    // },
+    fonts: false,
     // fonts: [
     //   {//@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
     //     family: 'Lato',
@@ -290,7 +290,7 @@ export default {
 
     targetFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
 
-    componentAutoImport: false,
+    componentAutoImport: true,
     componentPrefix: undefined,
 
     /**

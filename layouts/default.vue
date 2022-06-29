@@ -24,7 +24,7 @@
 <script>
 import NavbarComponent from '@/components/navbar.vue'
 import CScrollToTopBtn from '@/components/scroll-to-top.vue'
-import CFooter from '@/components/navbar.vue'
+import CFooter from '@/components/footer.vue'
 
 export default {
   name: 'Default',

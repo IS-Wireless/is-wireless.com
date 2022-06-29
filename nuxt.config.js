@@ -250,7 +250,7 @@ export default {
     //     dcl: 1200,
     //   },
     // },
-    fonts: false,
+    fonts: [],
     // fonts: [
     //   {//@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
     //     family: 'Lato',

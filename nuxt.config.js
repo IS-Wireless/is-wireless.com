@@ -141,11 +141,6 @@ export default {
         include: /node_modules/,
         type: 'javascript/auto',
       })
-
-      config.node = {
-        fs: 'empty',
-        'fs-extra': 'empty',
-      }
     },
   },
   // render: {

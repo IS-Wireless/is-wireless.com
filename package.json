@@ -65,9 +65,12 @@
     "prettier": "^2.2.1",
     "tailwindcss": "^3.0.23"
   },
-  "browser": {
-    "fs": false,
-    "fs-extra": false,
-    "file-system-cache": false
+  "overrides": {
+    "nuxt-speedkit": {
+      "@nuxt/image": "latest"
+    },
+    "@nuxt/image": {
+      "ipx": "0.8.1"
+    }
   }
 }

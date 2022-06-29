@@ -101,10 +101,10 @@
             class="text-blue-main text-lg mb-5"
             v-html="data.position"
           ></p>
-          <div v-if="data.person_linkedin" class="flex">
+          <div v-if="data.linkedin" class="flex">
             <a
               class="block h-[30px] w-[30px] p-0.5 bg-[#D4D9DF] hover:bg-[#0077b5] rounded-md transition"
-              :href="data.person_linkedin"
+              :href="data.linkedin"
             >
               <svg
                 width="26"

@@ -83,6 +83,7 @@ export default {
         direction: 'horizontal',
         speed: 600,
         loop: true,
+        loopedSlides: 3,
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,

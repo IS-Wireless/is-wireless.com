@@ -25,14 +25,19 @@
 
 <script>
 import Vue from 'vue'
+import Banner from '~/components/Banner.vue'
+import Organisations from '~/components/Organisations.vue'
+import section_two_column from '~/components/content-section.vue'
+import section_two_column_bg from '~/components/content-section-bg.vue'
+import CtaJob from '~/components/cta-job.vue'
 
 export default Vue.extend({
   components: {
-    Banner: import('~/components/Banner.vue'),
-    Organisations: import('~/components/Organisations.vue'),
-    section_two_column: import('~/components/content-section.vue'),
-    section_two_column_bg: import('~/components/content-section-bg.vue'),
-    CtaJob: import('~/components/cta-job.vue'),
+    Banner: Banner,
+    Organisations: Organisations,
+    section_two_column: section_two_column,
+    section_two_column_bg: section_two_column_bg,
+    CtaJob: CtaJob,
   },
   head() {
     let tags = {

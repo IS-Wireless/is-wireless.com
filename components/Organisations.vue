@@ -2,7 +2,7 @@
   <section
     class="w-full px-[10%] bg-white mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
   >
-    <div
+    <!-- <div
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
     >
@@ -56,7 +56,7 @@
           />
         </a>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 

@@ -208,6 +208,8 @@ export default {
       cacheOptions: {
         revision: appVersionCacheBuster,
       },
+      offlineStrategy: 'NetworkOnly',
+      cacheAssets: false,
     },
     icon: {
       fileName: 'symbol.png',

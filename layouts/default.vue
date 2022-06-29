@@ -1,26 +1,23 @@
 <template>
   <div>
-    <LazyHydrate :on-interaction="['click', 'touchstart']">
-      <Navbar
-        :critical="true"
-        :main-menu="topMenuData"
-        :side-menu="sideMenuData"
-        :socials="socialMenuData"
-      />
-    </LazyHydrate>
+    <Navbar
+      critical="true"
+      :main-menu="topMenuData"
+      :side-menu="sideMenuData"
+      :socials="socialMenuData"
+    />
+
     <Nuxt />
-    <LazyHydrate when-idle>
-      <ScrollToTopBtn />
-    </LazyHydrate>
-    <LazyHydrate never>
-      <Footer
-        :image-url="footerData.image"
-        :copyright="footerData.copyright"
-        :menu="footerMenuData"
-        :socials="socialMenuData"
-        :languages="footerData.language"
-      />
-    </LazyHydrate>
+
+    <ScrollToTopBtn />
+
+    <Footer
+      :image-url="footerData.image"
+      :copyright="footerData.copyright"
+      :menu="footerMenuData"
+      :socials="socialMenuData"
+      :languages="footerData.language"
+    />
   </div>
 </template>
 

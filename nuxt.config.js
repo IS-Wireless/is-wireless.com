@@ -286,7 +286,7 @@ export default {
     //   },
     // ],
 
-    pictureFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
+    targetFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
 
     componentAutoImport: false,
     componentPrefix: undefined,

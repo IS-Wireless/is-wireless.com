@@ -36,16 +36,21 @@
 
 <script>
 import Vue from 'vue'
-import LazyHydrate from 'vue-lazy-hydration'
+import speedkitHydrate from 'nuxt-speedkit/hydrate'
 
 export default Vue.extend({
   components: {
-    LazyHydrate,
-    Banner: () => import('~/components/Banner.vue'),
-    Organisations: () => import('~/components/Organisations.vue'),
-    section_two_column: () => import('~/components/content-section.vue'),
-    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
-    CtaJob: () => import('~/components/cta-job.vue'),
+    Banner: speedkitHydrate(() => import('~/components/Banner.vue')),
+    Organisations: speedkitHydrate(() =>
+      import('~/components/Organisations.vue')
+    ),
+    section_two_column: speedkitHydrate(() =>
+      import('~/components/content-section.vue')
+    ),
+    section_two_column_bg: speedkitHydrate(() =>
+      import('~/components/content-section-bg.vue')
+    ),
+    CtaJob: speedkitHydrate(() => import('~/components/cta-job.vue')),
   },
   head() {
     let tags = {

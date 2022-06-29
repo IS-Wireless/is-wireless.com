@@ -25,15 +25,16 @@
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
+import speedkitHydrate from 'nuxt-speedkit/hydrate'
 
 export default {
   name: 'Default',
   components: {
-    LazyHydrate,
-    Navbar: () => import('@/components/navbar.vue'),
-    ScrollToTopBtn: () => import('@/components/scroll-to-top.vue'),
-    Footer: () => import('@/components/footer.vue'),
+    Navbar: speedkitHydrate(() => import('@/components/navbar.vue')),
+    ScrollToTopBtn: speedkitHydrate(() =>
+      import('@/components/scroll-to-top.vue')
+    ),
+    Footer: speedkitHydrate(() => import('@/components/footer.vue')),
   },
   computed: {
     topMenuData() {

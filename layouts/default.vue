@@ -2,6 +2,7 @@
   <div>
     <LazyHydrate :on-interaction="['click', 'touchstart']">
       <Navbar
+        :critical="true"
         :main-menu="topMenuData"
         :side-menu="sideMenuData"
         :socials="socialMenuData"

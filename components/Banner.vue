@@ -154,6 +154,7 @@ export default {
     }
   },
   mounted() {
+    this.$nextTick()
     if (this.data.banner && this.data.banner.length > 1) {
       this.swiperOptionsObject.loop = true
     }
@@ -165,13 +166,14 @@ export default {
     ]
 
     Show(0)
-
+    this.$nextTick()
     function Show(i) {
       if (content[i]) {
         content[i].classList.remove('opacity-0')
       }
 
       setTimeout(() => {
+        this.$nextTick()
         if (i < content.length - 1) {
           i++
           Show(i)

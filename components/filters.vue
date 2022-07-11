@@ -9,7 +9,7 @@
         @click="switchMobileExpand"
       >
         <span
-          class="flex-grow h-full flex items-center justify-center text-gray-dark capitalize"
+          class="flex-grow h-full flex items-center justify-center text-gray-dark"
           >{{ selectedFilter }}</span
         >
         <div
@@ -53,7 +53,7 @@
         >
           <svgIcon :class="'w-12 mx-2 p-1'" :name="filter.value" />
           <span
-            class="flex-grow h-full flex items-center justify-center text-gray-dark transition capitalize"
+            class="flex-grow h-full flex items-center justify-center text-gray-dark transition"
             :class="{ 'text-blue-main': selectedFilter == filter.value }"
             >{{ filter.label }}</span
           >

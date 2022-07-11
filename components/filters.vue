@@ -51,11 +51,11 @@
           class="h-[70px] w-full tablet-wide:w-[200px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 bg-gray-light tablet-wide:rounded-md tablet-wide:border-0 border-0 border-t border-t-gray-200 cursor-pointer"
           @click="filterItems(filter), switchMobileExpand()"
         >
-          <svgIcon :class="'w-12 mx-2 p-1'" :name="filter" />
+          <svgIcon :class="'w-12 mx-2 p-1'" :name="filter.value" />
           <span
             class="flex-grow h-full flex items-center justify-center text-gray-dark transition capitalize"
-            :class="{ 'text-blue-main': selectedFilter == filter }"
-            >{{ filter }}</span
+            :class="{ 'text-blue-main': selectedFilter == filter.value }"
+            >{{ filter.label }}</span
           >
         </li>
       </ul>
@@ -93,12 +93,14 @@ export default {
     },
     createdFilters() {
       let filters = []
+      let filtersData = []
       this.downloadedData.forEach((item) => {
-        if (filters.indexOf(item.type) === -1) {
-          filters.push(item.type)
+        if (filters.indexOf(item.type.value) === -1) {
+          filters.push(item.type.value)
+          filtersData.push(item.type)
         }
       })
-      return filters
+      return filtersData
     },
   },
   methods: {

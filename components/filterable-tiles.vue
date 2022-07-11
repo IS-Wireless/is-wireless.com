@@ -15,9 +15,9 @@
           >
             <div class="m-[30px] flex flex-col">
               <svgIcon
-                v-if="item.type"
+                v-if="item.type && item.type.value"
                 :class="'w-[50px] h-[50px] mb-2.5 p-1'"
-                :name="item.type"
+                :name="item.type.value"
               />
 
               <h2

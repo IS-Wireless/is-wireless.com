@@ -1,17 +1,17 @@
 <template>
   <div class="flex justify-center group">
-    <div :class="{ 'rounded-md overflow-hidden w-full': imageDecoration }">
+    <div :class="{ 'rounded-md overflow-hidden': imageDecoration }">
       <nuxt-picture
-        width="736"
-        height="552"
-        class="block transform max-w-full w-auto transition duration-[1000ms] max-h-[552]"
+        width="640"
+        height="640"
+        class="block transform max-w-full w-auto transition duration-[1000ms]"
         :class="{
           'group-hover:scale-110 group-hover:opacity-80': imageDecoration,
         }"
         :src="url"
         :alt="alt"
         :title="title"
-        sizes="sm:320px md:552px lg:552px"
+        sizes="sm:320px md:640px lg:720px"
         loading="lazy"
       />
     </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'SectionImage',
+  name: 'HomepageImage',
   props: {
     url: {
       type: String,

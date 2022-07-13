@@ -11,6 +11,7 @@
       <section_two_column
         :class="'px-[10%]'"
         :data="frontPageData.homepageData.sections[2]"
+        :full-img="true"
       />
     </LazyHydrate>
 
@@ -25,6 +26,7 @@
       <section_two_column
         :class="'px-[10%]'"
         :data="frontPageData.homepageData.sections[4]"
+        :full-img="true"
       />
     </LazyHydrate>
 

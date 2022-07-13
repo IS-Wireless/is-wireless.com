@@ -20,15 +20,17 @@
           :url="data.image_url"
           :isExternal="true"
         >
-          <SectionImage
+          <component
+            :is="fullImg ? 'HomepageImage' : 'SectionImage'"
             :url="data.image.url ? data.image.url : ''"
             :title="data.image.title ? data.image.title : ''"
             :alt="data.image.alt ? data.image.alt : ''"
             :imageDecoration="data.image_decoration"
           />
         </CustomLink>
-        <SectionImage
+        <component
           v-else-if="data.image"
+          :is="fullImg ? 'HomepageImage' : 'SectionImage'"
           :url="data.image.url ? data.image.url : ''"
           :title="data.image.title ? data.image.title : ''"
           :alt="data.image.alt ? data.image.alt : ''"
@@ -42,6 +44,7 @@
 <script>
 import SectionHeader from './section-header.vue'
 import SectionImage from './section-image.vue'
+import HomepageImage from './section-image.vue'
 
 import List from './list.vue'
 
@@ -50,6 +53,7 @@ export default {
   components: {
     SectionHeader,
     SectionImage,
+    HomepageImage,
     List,
   },
   props: {
@@ -57,6 +61,11 @@ export default {
       type: Object,
       required: false,
       default: '',
+    },
+    fullImg: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 }

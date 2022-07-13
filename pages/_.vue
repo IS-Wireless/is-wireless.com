@@ -294,6 +294,7 @@ export default {
         i: null,
         span: null,
         strong: null,
+        em: null,
         a: { href: 1, rel: 1, 'data-rel': 1, 'aria-label': 1 },
         div: null,
       }
@@ -371,5 +372,13 @@ code {
 
 .text-page >>> img {
   @apply w-full h-auto;
+}
+
+.text-page >>> em {
+  font-weight: 400;
+  text-align: center;
+  font-style: italic;
+  color: #768894;
+  font-size: 16px;
 }
 </style>

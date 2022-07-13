@@ -61,6 +61,7 @@
             <div
               v-for="(component, index) in pageData.acf.sidebar"
               :key="index"
+              class="mb-2"
             >
               <div v-if="component.acf_fc_layout">
                 <component
@@ -103,6 +104,7 @@ export default {
     section_cta_background_color: () => import('~/components/cta-funds.vue'),
     sidebar_blocks_links: () => import('~/components/menu-left.vue'),
     sidebar_blocks_list: () => import('~/components/menu-right.vue'),
+    sidebar_cta: () => import('~/components/cta-block.vue'),
     section_person: () => import('~/components/person.vue'),
     section_cta_basic: () => import('~/components/cta-basic.vue'),
     section_map: () => import('~/components/map.vue'),

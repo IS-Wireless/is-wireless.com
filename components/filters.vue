@@ -36,11 +36,11 @@
       >
         <li
           class="h-[70px] w-full tablet-wide:w-[100px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 bg-gray-light tablet-wide:rounded-md border-0 cursor-pointer"
-          @click="filterItems('All'), switchMobileExpand()"
+          @click="filterItems({ value: 'All' }), switchMobileExpand()"
         >
           <span
             class="flex-grow h-full flex items-center justify-center text-gray-dark"
-            :class="{ 'text-blue-main': selectedFilter == 'All' }"
+            :class="{ 'text-blue-main': selectedFilter.value == 'All' }"
             >All</span
           >
         </li>
@@ -54,7 +54,7 @@
           <svgIcon :class="'w-12 mx-2 p-1'" :name="filter.value" />
           <span
             class="flex-grow h-full flex items-center justify-center text-gray-dark transition"
-            :class="{ 'text-blue-main': selectedFilter == filter.value }"
+            :class="{ 'text-blue-main': selectedFilter.value == filter.value }"
             >{{ filter.label }}</span
           >
         </li>
@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       mobileExpanded: false,
-      selectedFilter: 'All',
+      selectedFilter: { value: 'All' },
       posts: this.getData(),
     }
   },
@@ -119,8 +119,8 @@ export default {
     },
 
     filterItems(filter) {
-      this.selectedFilter = filter.value
-      if (filter !== 'All') {
+      this.selectedFilter = filter
+      if (filter.value !== 'All') {
         let filteredTiles = []
         this.downloadedData.filter((item) => {
           if (item.type.value.includes(filter.value)) {

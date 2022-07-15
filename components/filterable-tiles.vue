@@ -5,7 +5,9 @@
         v-for="(item, index) in tiles"
         :key="index"
         class="basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
-        :class="{ hidden: item.type.value != filterBy && filterBy != 'All' }"
+        :class="{
+          hidden: item.type.value != filterBy.value && filterBy.value != 'All',
+        }"
       >
         <div v-if="index < visibleTilesCount" class="h-full p-[6px]">
           <CustomLink
@@ -65,21 +67,23 @@ export default {
     svgIcon,
     CustomLink,
   },
-  data() {
-    return {
-      visibleTilesCount: 21,
-    }
-  },
   props: {
     tiles: {
       type: Array,
       required: true,
     },
     filterBy: {
-      type: String,
+      type: Object,
       required: false,
-      default: '',
+      default: () => {
+        return { value: 'All' }
+      },
     },
+  },
+  data() {
+    return {
+      visibleTilesCount: 21,
+    }
   },
   methods: {
     isExternal(link) {

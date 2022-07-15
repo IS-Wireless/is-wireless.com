@@ -114,4 +114,13 @@ export default {
 .content-html >>> iframe[src*='www.youtu'] {
   @apply w-full aspect-video;
 }
+
+.content-html >>> em,
+.content-html >>> .wp-caption-text {
+  font-weight: 400;
+  text-align: center;
+  font-style: italic;
+  color: #768894;
+  font-size: 16px;
+}
 </style>

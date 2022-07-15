@@ -119,11 +119,11 @@ export default {
     },
 
     filterItems(filter) {
-      this.selectedFilter = filter
+      this.selectedFilter = filter.value
       if (filter !== 'All') {
         let filteredTiles = []
         this.downloadedData.filter((item) => {
-          if (item.type.includes(filter)) {
+          if (item.type.value.includes(filter.value)) {
             filteredTiles.push(item)
           }
         })

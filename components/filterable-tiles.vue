@@ -5,7 +5,7 @@
         v-for="(item, index) in tiles"
         :key="index"
         class="basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
-        :class="{ hidden: item.type != filterBy && filterBy != 'All' }"
+        :class="{ hidden: item.type.value != filterBy && filterBy != 'All' }"
       >
         <div v-if="index < visibleTilesCount" class="h-full p-[6px]">
           <CustomLink

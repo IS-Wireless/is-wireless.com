@@ -35,12 +35,19 @@
         :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
       >
         <li
-          class="h-[70px] w-full tablet-wide:w-[100px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 bg-gray-light tablet-wide:rounded-md border-0 cursor-pointer"
+          class="h-[70px] w-full tablet-wide:w-[100px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 tablet-wide:rounded-md border-0 cursor-pointer"
           @click="filterItems({ value: 'All' }), switchMobileExpand()"
+          :class="{
+            ' bg-blue-main': selectedFilter.value == 'All',
+            ' bg-gray-light': selectedFilter.value != 'All',
+          }"
         >
           <span
-            class="flex-grow h-full flex items-center justify-center text-gray-dark"
-            :class="{ 'text-blue-main': selectedFilter.value == 'All' }"
+            class="flex-grow h-full flex items-center justify-center"
+            :class="{
+              'text-white ': selectedFilter.value == 'All',
+              'text-gray-dark ': selectedFilter.value != 'All',
+            }"
             >All</span
           >
         </li>
@@ -48,13 +55,26 @@
         <li
           v-for="(filter, index) in createdFilters"
           :key="index"
-          class="h-[70px] w-full tablet-wide:w-[200px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 bg-gray-light tablet-wide:rounded-md tablet-wide:border-0 border-0 border-t border-t-gray-200 cursor-pointer"
+          class="h-[70px] w-full tablet-wide:w-[200px] flex flex-shrink-0 tablet-wide:flex-shrink items-center tablet-wide:mr-2 tablet-wide:rounded-md tablet-wide:border-0 border-0 border-t border-t-gray-200 cursor-pointer"
           @click="filterItems(filter), switchMobileExpand()"
+          :class="{
+            'bg-blue-main': selectedFilter.value == filter.value,
+            'bg-gray-light': selectedFilter.value != filter.value,
+          }"
         >
-          <svgIcon :class="'w-12 mx-2 p-1'" :name="filter.value" />
+          <svgIcon
+            class="'w-12 mx-2 p-1'"
+            :name="filter.value"
+            :class="{
+              'path-active': selectedFilter.value == filter.value,
+            }"
+          />
           <span
-            class="flex-grow h-full flex items-center justify-center text-gray-dark transition"
-            :class="{ 'text-blue-main': selectedFilter.value == filter.value }"
+            class="flex-grow h-full flex items-center justify-center transition"
+            :class="{
+              'text-white': selectedFilter.value == filter.value,
+              'text-gray-dark': selectedFilter.value != filter.value,
+            }"
             >{{ filter.label }}</span
           >
         </li>
@@ -134,4 +154,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.path-active /deep/ path {
+  fill: #fff;
+}
+</style>

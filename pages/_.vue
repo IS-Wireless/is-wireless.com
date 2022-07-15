@@ -376,7 +376,8 @@ code {
   @apply w-full h-auto;
 }
 
-.text-page >>> em {
+.text-page >>> em,
+.text-page >>> .wp-caption-text {
   font-weight: 400;
   text-align: center;
   font-style: italic;

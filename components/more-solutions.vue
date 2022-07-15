@@ -4,7 +4,7 @@
       v-if="data.title"
       class="block text-blue-main text-2xl tablet:text-3xl mb-10"
     >
-      {{ title }}
+      {{ data.title }}
     </h2>
     <ul
       v-if="data.block"

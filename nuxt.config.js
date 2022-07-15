@@ -16,6 +16,7 @@ export default {
   },
   publicRuntimeConfig: {
     baseURL: process.env.CF_PAGES_URL || 'http://localhost:3000/',
+    GMAP_KEY: process.env.API_GMAPS,
     version: appVersionCacheBuster,
   },
   // Target: https://go.nuxtjs.dev/config-target

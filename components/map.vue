@@ -7,11 +7,14 @@
       class="map-custom w-full h-[600px]"
     >
       <GmapMarker
-        :position="data.position"
+        title="Hello World!"
+        :position="{ lat: data.map.lat, lng: data.map.lng }"
+        :clickable="true"
         :icon="{
-          url: '../_ipx/static/Marker.svg',
+          url: require('/static/Marker.svg'),
           scaledSize: { width: 30, height: 35, f: 'px', b: 'px' },
         }"
+        @click="openLocationMarker"
       />
     </GmapMap>
   </div>
@@ -29,11 +32,18 @@ export default {
   data() {
     return {
       mapOptions: {
-        disableDefaultUI: false,
-        streetViewControl: true,
+        center: { lat: this.data.map.lat, lng: this.data.map.lng },
+        disableDefaultUI: true,
+        streetViewControl: false,
         mapId: 'bc1bc9eaa1e9b00c',
+        placeId: 'ChIJcc2mlRouGUcRB-PNbG60ar4',
       },
     }
+  },
+  methods: {
+    openLocationMarker: function () {
+      window.location.href = 'https://goo.gl/maps/pky2oTRWzc5HnFaz8'
+    },
   },
 }
 </script>

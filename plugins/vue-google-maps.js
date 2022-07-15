@@ -7,6 +7,7 @@ export default ({ $config: { GMAP_KEY } }) => {
       key: GMAP_KEY,
       language: 'en',
     },
+    libraries: 'places',
     installComponents: true,
   })
 }

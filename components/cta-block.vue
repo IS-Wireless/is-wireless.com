@@ -31,7 +31,7 @@
         :class="'block object-cover object- text-sm text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6'"
         :url="data.link.url"
         :title="data.link.title"
-        :isExternal="true"
+        :isExternal="false"
       />
     </div>
   </div>

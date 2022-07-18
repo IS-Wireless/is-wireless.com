@@ -10,7 +10,7 @@
       >
         <span
           class="flex-grow h-full flex items-center justify-center text-gray-dark"
-          >{{ selectedFilter }}</span
+          >{{ selectedFilter.value }}</span
         >
         <div
           class="tablet-wide:hidden inset-y-0 right-0 flex items-center px-4 transform transition"

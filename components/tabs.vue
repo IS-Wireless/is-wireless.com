@@ -228,6 +228,14 @@ code {
   @apply w-full aspect-video;
 }
 
+.content-html >>> * {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.content-html >>> .wp-caption-text {
+  width: 100% !important;
+}
 .content-html >>> div {
   @apply max-w-full;
 }

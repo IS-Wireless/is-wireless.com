@@ -81,6 +81,14 @@ export default {
 .content-html >>> li,
 .content-html >>> b,
 .content-html >>> u,
+.content-html >>> * {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.content-html >>> .wp-caption-text {
+  width: 100% !important;
+}
 .content-html >>> div,
 .content-html >>> code {
   @apply text-inherit font-lato;

@@ -76,7 +76,7 @@ export default {
 .content-html >>> li,
 .content-html >>> b,
 .content-html >>> u,
-.content-html >>> *:not(p) {
+.content-html >>> *:not(p):not(iframe) {
   width: auto !important;
   max-width: 100% !important;
 }

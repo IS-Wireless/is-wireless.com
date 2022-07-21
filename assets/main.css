@@ -63,4 +63,17 @@
   .has-sidebar .section-content {
     @apply max-w-full;
   }
+
+  .img-no-click a[href$='.jpg'],
+  .img-no-click a[href$='.jpeg'],
+  .img-no-click a[href$='.png'],
+  .img-no-click a[href$='.gif'],
+  .img-no-click a[href$='.svg'],
+  .content-html a[href$='.jpg'],
+  .content-html a[href$='.jpeg'],
+  .content-html a[href$='.png'],
+  .content-html a[href$='.gif'],
+  .content-html a[href$='.svg'] {
+    pointer-events: none;
+  }
 }

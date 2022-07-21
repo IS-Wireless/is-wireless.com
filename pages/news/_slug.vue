@@ -6,7 +6,7 @@
         <BlogPostContent
           v-if="pageData.content"
           :data="contentFiltered"
-          class="postContent"
+          class="postContent img-no-click"
         />
         <BlogShare :data="testBlogShare" />
         <BlogRelated v-if="postsRelated" :data="postsRelated" />

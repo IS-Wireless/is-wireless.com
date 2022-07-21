@@ -209,6 +209,7 @@ export default {
       cleanupOutdatedCaches: true,
       // offlineStrategy: 'StaleWhileRevalidate',
       cacheOptions: {
+        cacheId: appVersionCacheBuster,
         revision: appVersionCacheBuster,
       },
       offlineStrategy: 'NetworkOnly',

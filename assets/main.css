@@ -83,4 +83,10 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  @media (max-width: 768px) {
+    .content-html .wp-caption-text {
+      max-width: 100% !important;
+    }
+  }
 }

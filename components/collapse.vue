@@ -167,7 +167,7 @@ code {
 .content-html >>> iframe[src*='www.youtu'] {
   @apply w-full aspect-video;
 }
-.content-html >>> * {
+.content-html >>> *:not(p) {
   width: auto !important;
   max-width: 100% !important;
 }

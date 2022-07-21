@@ -76,4 +76,11 @@
   .content-html a[href$='.svg'] {
     pointer-events: none;
   }
+
+  .content-html .wp-caption-text {
+    max-width: 50% !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

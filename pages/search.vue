@@ -32,11 +32,11 @@
   </div>
 </template>
 <script>
-import speedkitHydrate from 'nuxt-speedkit/hydrate'
+import Breadcrumb from '@/components/breadcrumb.vue'
 
 export default {
   components: {
-    Breadcrumb: speedkitHydrate(() => import('~/components/breadcrumb.vue')),
+    Breadcrumb,
   },
   head() {
     let tags = {

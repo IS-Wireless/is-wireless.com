@@ -8,17 +8,16 @@
 </template>
 
 <script>
-import speedkitHydrate from 'nuxt-speedkit/hydrate'
+import BlogTimeline from '~/components/blog-timeline.vue'
+import Breadcrumb from '~/components/breadcrumb.vue'
 
 import { groupBy as _groupBy } from 'lodash'
 
 export default {
   name: 'BlogPage',
   components: {
-    Breadcrumb: speedkitHydrate(() => import('~/components/breadcrumb.vue')),
-    BlogTimeline: speedkitHydrate(() =>
-      import('~/components/blog-timeline.vue')
-    ),
+    Breadcrumb,
+    BlogTimeline,
   },
   layout: 'scrollBtnAlways',
   head() {

@@ -2,14 +2,14 @@
   <div v-if="data.tab" class="w-full tablet-wide:max-w-[75%]">
     <ul class="hidden tablet-wide:flex gap-1 w-full">
       <li
-        v-for="(item, index) in data.tab"
-        :key="index"
         class="grow py-3 mb-8 tablet-wide:mb-14 text-center bg-gray-light transition cursor-pointer border border-solid"
         :class="
           selected == index
             ? 'border-blue-main hover:border-blue-main'
             : 'border-transparent hover:border-blue-main-hover/30'
         "
+        v-for="(item, index) in data.tab"
+        :key="index"
         @click="setSelectedTab(index)"
       >
         <h4 v-if="item.title" class="text-xl" v-html="item.title"></h4>
@@ -17,9 +17,9 @@
     </ul>
     <div class="w-full">
       <div
+        class="w-full relative"
         v-for="(item, index) in data.tab"
         :key="index"
-        class="w-full relative"
       >
         <transition name="fade" mode="out-in">
           <div
@@ -80,7 +80,6 @@ export default {
     data: {
       type: Object,
       required: true,
-      default: () => {},
     },
   },
   setup() {

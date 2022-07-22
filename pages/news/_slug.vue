@@ -16,8 +16,10 @@
 </template>
 
 <script>
-import speedkitHydrate from 'nuxt-speedkit/hydrate'
-
+import Breadcrumb from '~/components/breadcrumb.vue'
+import BlogShare from '~/components/blog-share.vue'
+import BlogPostContent from '~/components/blog-post-content.vue'
+import BlogRelated from '~/components/blog-related.vue'
 import { isSamePath } from 'ufo'
 
 const getRelatedPosts = function (pagesData, thisRoute) {
@@ -34,12 +36,10 @@ const getRelatedPosts = function (pagesData, thisRoute) {
 export default {
   name: 'BlogPost',
   components: {
-    Breadcrumb: speedkitHydrate(() => import('~/components/breadcrumb.vue')),
-    BlogPostContent: speedkitHydrate(() =>
-      import('~/components/blog-post-content.vue')
-    ),
-    BlogShare: speedkitHydrate(() => import('~/components/blog-share.vue')),
-    BlogRelated: speedkitHydrate(() => import('~/components/blog-related.vue')),
+    Breadcrumb,
+    BlogPostContent,
+    BlogShare,
+    BlogRelated,
   },
 
   async asyncData({ route, payload, store }) {

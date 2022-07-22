@@ -1,46 +1,53 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" />
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
+      <Banner :data="frontPageData.homepageData.sections[0]" />
+    </LazyHydrate>
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
+      <Organisations :data="frontPageData.homepageData.sections[1]" />
+    </LazyHydrate>
 
-    <Organisations :data="frontPageData.homepageData.sections[1]" />
+    <LazyHydrate never>
+      <section_two_column
+        :class="'px-[10%]'"
+        :data="frontPageData.homepageData.sections[2]"
+        :full-img="true"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      :class="'px-[10%]'"
-      :data="frontPageData.homepageData.sections[2]"
-      :full-img="true"
-    />
+    <LazyHydrate when-idle>
+      <section_two_column_bg
+        :textClr="'text-white'"
+        :data="frontPageData.homepageData.sections[3]"
+      />
+    </LazyHydrate>
 
-    <section_two_column_bg
-      :textClr="'text-white'"
-      :data="frontPageData.homepageData.sections[3]"
-    />
+    <LazyHydrate never>
+      <section_two_column
+        :class="'px-[10%]'"
+        :data="frontPageData.homepageData.sections[4]"
+        :full-img="true"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      :class="'px-[10%]'"
-      :data="frontPageData.homepageData.sections[4]"
-      :full-img="true"
-    />
-
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    <LazyHydrate never>
+      <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
-import speedkitHydrate from 'nuxt-speedkit/hydrate'
+import Vue from 'vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
-export default {
+export default Vue.extend({
   components: {
-    Banner: speedkitHydrate(() => import('~/components/Banner.vue')),
-    Organisations: speedkitHydrate(() =>
-      import('~/components/Organisations.vue')
-    ),
-    section_two_column: speedkitHydrate(() =>
-      import('~/components/content-section.vue')
-    ),
-    section_two_column_bg: speedkitHydrate(() =>
-      import('~/components/content-section-bg.vue')
-    ),
-    CtaJob: speedkitHydrate(() => import('~/components/cta-job.vue')),
+    LazyHydrate,
+    Banner: () => import('~/components/Banner.vue'),
+    Organisations: () => import('~/components/Organisations.vue'),
+    section_two_column: () => import('~/components/content-section.vue'),
+    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
+    CtaJob: () => import('~/components/cta-job.vue'),
   },
   head() {
     let tags = {
@@ -176,5 +183,5 @@ export default {
       return this.$store.getters['homepage/getData']
     },
   },
-}
+})
 </script>

@@ -10,9 +10,8 @@
           :key="index"
           class="swiper-slide h-full"
         >
-          <speedkit-picture
+          <nuxt-picture
             v-if="item.image"
-            v-bind="picCompute(item.image)"
             :src="item.image.url ? item.image.url : ''"
             :alt="item.image.alt ? item.image.alt : ''"
             :title="item.image.title ? item.image.title : ''"
@@ -109,12 +108,10 @@
 </template>
 
 <script>
-import SpeedkitPicture from 'nuxt-speedkit/components/SpeedkitPicture'
 import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',
   components: {
-    SpeedkitPicture,
     CustomLink,
   },
   props: {
@@ -161,16 +158,20 @@ export default {
     if (this.data.banner && this.data.banner.length > 1) {
       this.swiperOptionsObject.loop = true
     }
+
     const content = [
       this.$refs.content1,
       this.$refs.content2,
       this.$refs.content3,
     ]
+
     Show(0)
+
     function Show(i) {
       if (content[i]) {
         content[i].classList.remove('opacity-0')
       }
+
       setTimeout(() => {
         if (i < content.length - 1) {
           i++
@@ -178,32 +179,6 @@ export default {
         }
       }, 600)
     }
-  },
-  methods: {
-    picCompute: function (image) {
-      return {
-        sources: [
-          {
-            src: image.url,
-            sizes: {
-              sm: '100vw',
-              md: '100vw',
-              lg: '100vw',
-              xl: '100vw',
-              xxl: '100vw',
-            },
-            media: '(orientation: landscape)',
-          },
-          {
-            src: image.url,
-            sizes: { default: '100vw', xxs: '100vw', xs: '100vw' },
-            media: '(orientation: portrait)',
-          },
-        ],
-        title: image.title,
-        alt: image.alt,
-      }
-    },
   },
 }
 </script>

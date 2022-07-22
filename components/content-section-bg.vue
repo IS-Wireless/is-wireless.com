@@ -1,5 +1,6 @@
 <template>
   <section
+    v-bind="$attrs"
     class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 overflow-hidden"
     :class="textClr"
   >

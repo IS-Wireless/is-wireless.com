@@ -81,6 +81,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxt/image',
     '@nuxtjs/pwa',
+    'nuxt-speedkit',
     [
       '@aceforth/nuxt-netlify',
       {
@@ -169,11 +170,21 @@ export default {
     fallback: '404.html',
   },
   image: {
+    screens: {
+      default: 320,
+      xxs: 480,
+      xs: 576,
+      sm: 768,
+      md: 996,
+      lg: 1200,
+      xl: 1367,
+      xxl: 1600,
+      '4k': 1921,
+    },
     domains: [
       'https://www.is-wireless.com/',
       'www.is-wireless.com',
       'img.youtube.com',
-      'i.vimeocdn.com',
     ],
     alias: {
       youtube: 'https://img.youtube.com',
@@ -240,20 +251,21 @@ export default {
 
   speedkit: {
     detection: {
-      performance: false,
-      browserSupport: false,
+      performance: true,
+      browserSupport: true,
     },
 
-    // performanceMetrics: {
-    //   device: {
-    //     hardwareConcurrency: { min: 2, max: 48 },
-    //     deviceMemory: { min: 2 },
-    //   },
-    //   timing: {
-    //     fcp: 800,
-    //     dcl: 1200,
-    //   },
-    // },
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: { min: 2, max: 48 },
+        deviceMemory: { min: 2 },
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200,
+      },
+    },
+
     fonts: [],
     // fonts: [
     //   {//@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');

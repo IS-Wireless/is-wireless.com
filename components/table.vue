@@ -60,6 +60,7 @@ export default {
     data: {
       type: Object,
       required: true,
+      default: () => {},
     },
   },
   mounted() {

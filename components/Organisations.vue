@@ -27,7 +27,12 @@
               :title="item.image.title ? item.image.title : ''"
               sizes="sm:180px lg:360px"
               :img-attrs="{
-                loading: index < 2 ? 'eager' : index > 3 ? 'lazy' : 'auto',
+                loading:
+                  index < loadEager
+                    ? 'eager'
+                    : index > loadEager - 1
+                    ? 'lazy'
+                    : 'auto',
                 class:
                   'w-full object-contain custom-filter duration-300 opacity-0 transition',
               }"
@@ -76,6 +81,7 @@ export default {
       url: '/about-us/#membership-and-associations',
       iframeYoutubeSrc: '',
       liveURL: '',
+      loadEager: 5,
       swiperOptionsObject: {
         slidesPerView: 'auto',
         spaceBetween: 0,
@@ -134,6 +140,7 @@ export default {
   filter: saturate(1);
 }
 
+.swiper-duplicate-load-fix /deep/ .opacity-0[loading='eager'],
 .swiper-duplicate-load-fix.swiper-slide-duplicate /deep/ .opacity-0 {
   opacity: 1;
 }

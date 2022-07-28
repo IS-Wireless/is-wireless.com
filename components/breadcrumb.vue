@@ -2,22 +2,28 @@
   <div class="w-full">
     <div class="w-4/5 mx-auto">
       <ul class="flex flex-row flex-wrap my-4">
-        <li class="breadcrumb-item">
-          <nuxt-link to="/"> Home </nuxt-link>
-        </li>
         <li
-          v-for="(route, index) in routesNames"
+          v-for="(route, index) in routesComputed"
           :key="index"
           class="breadcrumb-item"
         >
-          <nuxt-link
-            :to="routesComputed[index] + '/'"
-            v-html="getTitleByRoute(routesComputed[index])"
-          >
-          </nuxt-link>
-        </li>
-        <li class="text-base text-gray-dark">
-          <p v-html="getTitleByRoute(currentRoute)"></p>
+          <div v-if="route.item">
+            <nuxt-link
+              :to="
+                route.item
+                  .replace('https://api.is-wireless.com', '')
+                  .replace('https://www.is-wireless.com', '')
+                  .replace('/category', '')
+              "
+              v-html="route.name"
+            />
+          </div>
+
+          <div
+            v-else
+            class="text-base text-gray-dark"
+            v-html="route.name"
+          ></div>
         </li>
       </ul>
     </div>
@@ -29,14 +35,28 @@ import { isSamePath } from 'ufo'
 
 export default {
   name: 'Breadcrumb',
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default: () => {},
+    },
+  },
   computed: {
     routesComputed() {
       let routes = []
-      let routesSplitted = this.$route.fullPath.split('/')
-      routes[0] = '/' + routesSplitted[1]
-      for (let i = 1; i < routesSplitted.length - 2; i++) {
-        routes[i] = routes[i - 1] + '/' + routesSplitted[i + 1]
+      if (this.data) {
+        for (let i = 0; i < this.data.itemListElement.length; i++) {
+          routes[i] = this.data.itemListElement[i]
+        }
       }
+
+      // let routes = []
+      // let routesSplitted = this.$route.fullPath.split('/')
+      // routes[0] = '/' + routesSplitted[1]
+      // for (let i = 1; i < routesSplitted.length - 2; i++) {
+      //   routes[i] = routes[i - 1] + '/' + routesSplitted[i + 1]
+      // }
       return routes
     },
 

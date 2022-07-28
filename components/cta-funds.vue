@@ -25,7 +25,8 @@
           :isExternal="
             data.link.url.includes('mailto:') ||
             data.link.url.includes('tel:') ||
-            !data.link.url.includes('www.is-wireless.com')
+            !data.link.url.includes('www.is-wireless.com') ||
+            !data.link.url.includes(this.$config.API_URL)
           "
         ></CustomLink>
         <span

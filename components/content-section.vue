@@ -1,8 +1,5 @@
 <template>
-  <section
-    v-bind="$attrs"
-    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 text-gray-dark"
-  >
+  <section :class="mergeClass">
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
     >
@@ -61,12 +58,26 @@ export default {
     data: {
       type: Object,
       required: false,
+      default: () => {},
+    },
+    staticClass: {
+      type: String,
+      required: false,
       default: '',
     },
     fullImg: {
       type: Boolean,
       required: false,
       default: false,
+    },
+  },
+  computed: {
+    mergeClass: function () {
+      return (
+        'bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 text-gray-dark' +
+        ' ' +
+        this.staticClass
+      )
     },
   },
 }

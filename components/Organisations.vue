@@ -10,7 +10,7 @@
         <div
           v-for="(item, index) in logos.swiper"
           :key="index"
-          class="swiper-slide h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
+          class="swiper-slide swiper-duplicate-load-fix h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
         >
           <a
             v-if="item.link"
@@ -26,10 +26,12 @@
               :alt="item.image.alt ? item.image.alt : ''"
               :title="item.image.title ? item.image.title : ''"
               sizes="sm:180px lg:360px"
-              :imgAttrs="{
+              :img-attrs="{
                 loading: index < 2 ? 'eager' : index > 3 ? 'lazy' : 'auto',
-                class: 'w-full object-contain custom-filter duration-300',
+                class:
+                  'w-full object-contain custom-filter duration-300 opacity-0 transition',
               }"
+              @load="imageAnimateLoad($event)"
             />
           </a>
         </div>
@@ -43,7 +45,7 @@
         :key="index"
         class="py-3 px-4 desktop:px-10 h-full flex items-center"
       >
-        <a class="block h-full" :href="item.link">
+        <a class="block h-full" :href="linkFilter(item.link)">
           <nuxt-picture
             v-if="item.image"
             loading="eager"
@@ -72,9 +74,6 @@ export default {
   data() {
     return {
       url: '/about-us/#membership-and-associations',
-
-      swiperIndex: 1,
-      swiperCount: 0,
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
@@ -83,7 +82,6 @@ export default {
         direction: 'horizontal',
         speed: 600,
         loop: true,
-        loopedSlides: 3,
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,
@@ -91,6 +89,7 @@ export default {
         },
         preloadImages: false,
         lazy: {
+          loadOnTransitionStart: true,
           loadPrevNext: true,
         },
       },
@@ -113,6 +112,17 @@ export default {
       return { swiper: logosSwiper, pinned: logosPinned }
     },
   },
+  methods: {
+    linkFilter(link) {
+      return link
+        .toString()
+        .replace(this.$config.API_URL, '')
+        .replace('https://www.is-wireless.com', '')
+    },
+    imageAnimateLoad(e) {
+      e.currentTarget.classList.remove('opacity-0')
+    },
+  },
 }
 </script>
 
@@ -122,5 +132,9 @@ export default {
 }
 >>> .custom-filter:hover {
   filter: saturate(1);
+}
+
+.swiper-duplicate-load-fix.swiper-slide-duplicate /deep/ .opacity-0 {
+  opacity: 1;
 }
 </style>

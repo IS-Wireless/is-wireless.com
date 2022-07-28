@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Breadcrumb />
+    <Breadcrumb v-if="pageData" :data="pageData.breadcrumb" />
     <div class="w-full px-[10%]">
       <div class="tablet:w-2/3" v-if="pageData">
         <BlogPostContent
@@ -16,16 +16,16 @@
 </template>
 
 <script>
-import Breadcrumb from '~/components/breadcrumb.vue'
-import BlogShare from '~/components/blog-share.vue'
-import BlogPostContent from '~/components/blog-post-content.vue'
-import BlogRelated from '~/components/blog-related.vue'
+import speedkitHydrate from 'nuxt-speedkit/hydrate'
+
 import { isSamePath } from 'ufo'
 
-const getRelatedPosts = function (pagesData, thisRoute) {
+const getRelatedPosts = function (pagesData, thisRoute, $config) {
   const postRelatedData = []
   Object.values(pagesData.slice(0, 10)).forEach((post) => {
-    let postFullPath = post.link.replace('https://www.is-wireless.com', '')
+    let postFullPath = post.link
+      .replace($config.API_URL, '')
+      .replace('https://www.is-wireless.com', '')
     if (!isSamePath(postFullPath, thisRoute)) {
       postRelatedData.push(post)
     }
@@ -36,30 +36,31 @@ const getRelatedPosts = function (pagesData, thisRoute) {
 export default {
   name: 'BlogPost',
   components: {
-    Breadcrumb,
-    BlogPostContent,
-    BlogShare,
-    BlogRelated,
+    Breadcrumb: speedkitHydrate(() => import('~/components/breadcrumb.vue')),
+    BlogPostContent: speedkitHydrate(() =>
+      import('~/components/blog-post-content.vue')
+    ),
+    BlogShare: speedkitHydrate(() => import('~/components/blog-share.vue')),
+    BlogRelated: speedkitHydrate(() => import('~/components/blog-related.vue')),
   },
 
-  async asyncData({ route, payload, store }) {
+  async asyncData({ route, payload, store, $config }) {
     const pagesData = store.getters['general/getPostsData']
     if (typeof payload !== 'undefined' && Object.keys(payload).length) {
       return {
         pageData: payload,
-        postsRelated: getRelatedPosts(pagesData, route.path),
+        postsRelated: getRelatedPosts(pagesData, route.path, $config),
       }
     } else {
       const pagesArray = Object.values(pagesData)
       for (let i = 0; i < pagesArray.length; i++) {
-        let pageFullPath = pagesArray[i].link.replace(
-          'https://www.is-wireless.com',
-          ''
-        )
+        let pageFullPath = pagesArray[i].link
+          .replace($config.API_URL, '')
+          .replace('https://www.is-wireless.com', '')
         if (isSamePath(pageFullPath, route.path)) {
           return {
             pageData: pagesArray[i],
-            postsRelated: getRelatedPosts(pagesData, route.path),
+            postsRelated: getRelatedPosts(pagesData, route.path, $config),
           }
         }
       }

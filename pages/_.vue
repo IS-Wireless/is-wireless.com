@@ -2,18 +2,16 @@
   <div v-if="pageData">
     <div>
       <div v-if="pageData.acf">
-        <LazyHydrate never>
-          <StaticBanner
-            v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
-            :title="pageData.acf.sections[0].title"
-            :background-url="pageData.acf.sections[0].background.url"
-          />
-        </LazyHydrate>
+        <StaticBanner
+          v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
+          :title="pageData.acf.sections[0].title"
+          :background-url="pageData.acf.sections[0].background.url"
+        />
       </div>
     </div>
-    <LazyHydrate when-visible>
-      <Breadcrumb />
-    </LazyHydrate>
+
+    <Breadcrumb :data="pageData.breadcrumb" />
+
     <div class="tablet:w-4/5 mx-auto py-10">
       <div
         v-if="pageData.acf"
@@ -30,25 +28,23 @@
         >
           <div v-for="(component, index) in pageData.acf.sections" :key="index">
             <div v-if="component.acf_fc_layout">
-              <LazyHydrate when-visible>
-                <component
-                  v-if="
-                    component.acf_fc_layout === 'section_tabs' &&
-                    pageData.acf.section_table
-                  "
-                  :is="component.acf_fc_layout"
-                  :data="
-                    Object.assign(component, {
-                      table: pageData.acf.section_table,
-                    })
-                  "
-                ></component>
-                <component
-                  v-else-if="component.acf_fc_layout !== 'section_header'"
-                  :is="component.acf_fc_layout"
-                  :data="component"
-                ></component>
-              </LazyHydrate>
+              <component
+                v-if="
+                  component.acf_fc_layout === 'section_tabs' &&
+                  pageData.acf.section_table
+                "
+                :is="component.acf_fc_layout"
+                :data="
+                  Object.assign(component, {
+                    table: pageData.acf.section_table,
+                  })
+                "
+              ></component>
+              <component
+                v-else-if="component.acf_fc_layout !== 'section_header'"
+                :is="component.acf_fc_layout"
+                :data="component"
+              ></component>
             </div>
           </div>
         </div>
@@ -84,37 +80,64 @@
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
+import speedkitHydrate from 'nuxt-speedkit/hydrate'
 import { isSamePath } from 'ufo'
 
 export default {
   components: {
-    LazyHydrate,
-    SectionHeader: () => import('~/components/section-header.vue'),
-    Breadcrumb: () => import('~/components/breadcrumb.vue'),
-    section_content: () => import('~/components/content-static.vue'),
-    section_two_column: () => import('~/components/content-section.vue'),
-    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
-    section_list_links_alternative: () =>
-      import('~/components/more-solutions.vue'),
-    section_tabs: () => import('~/components/tabs.vue'),
-    section_links_list: () => import('~/components/filters.vue'),
-    section_grid_links: () => import('~/components/offer-tiles.vue'),
-    section_list_links: () => import('~/components/offer-menu.vue'),
-    section_cta_background_color: () => import('~/components/cta-funds.vue'),
-    sidebar_blocks_links: () => import('~/components/menu-left.vue'),
-    sidebar_blocks_list: () => import('~/components/menu-right.vue'),
-    sidebar_cta: () => import('~/components/cta-block.vue'),
-    section_person: () => import('~/components/person.vue'),
-    section_cta_basic: () => import('~/components/cta-basic.vue'),
-    section_map: () => import('~/components/map.vue'),
-    section_block_subpages: () => import('~/components/project-tiles.vue'),
-    section_table: () => import('~/components/table.vue'),
-    section_content_columns_center_image: () =>
-      import('~/components/content-section-center.vue'),
-    section_person_list: () => import('~/components/rnd-team.vue'),
+    SectionHeader: speedkitHydrate(() =>
+      import('~/components/section-header.vue')
+    ),
+    Breadcrumb: speedkitHydrate(() => import('~/components/breadcrumb.vue')),
+    section_content: speedkitHydrate(() =>
+      import('~/components/content-static.vue')
+    ),
+    section_two_column: speedkitHydrate(() =>
+      import('~/components/content-section.vue')
+    ),
+    section_two_column_bg: speedkitHydrate(() =>
+      import('~/components/content-section-bg.vue')
+    ),
+    section_list_links_alternative: speedkitHydrate(() =>
+      import('~/components/more-solutions.vue')
+    ),
+    section_tabs: speedkitHydrate(() => import('~/components/tabs.vue')),
+    section_links_list: speedkitHydrate(() =>
+      import('~/components/filters.vue')
+    ),
+    section_grid_links: speedkitHydrate(() =>
+      import('~/components/offer-tiles.vue')
+    ),
+    section_list_links: speedkitHydrate(() =>
+      import('~/components/offer-menu.vue')
+    ),
+    section_cta_background_color: speedkitHydrate(() =>
+      import('~/components/cta-funds.vue')
+    ),
+    sidebar_blocks_links: speedkitHydrate(() =>
+      import('~/components/menu-left.vue')
+    ),
+    sidebar_blocks_list: speedkitHydrate(() =>
+      import('~/components/menu-right.vue')
+    ),
+    sidebar_cta: speedkitHydrate(() => import('~/components/cta-block.vue')),
+    section_person: speedkitHydrate(() => import('~/components/person.vue')),
+    section_cta_basic: speedkitHydrate(() =>
+      import('~/components/cta-basic.vue')
+    ),
+    section_map: speedkitHydrate(() => import('~/components/map.vue')),
+    section_block_subpages: speedkitHydrate(() =>
+      import('~/components/project-tiles.vue')
+    ),
+    section_table: speedkitHydrate(() => import('~/components/table.vue')),
+    section_content_columns_center_image: speedkitHydrate(() =>
+      import('~/components/content-section-center.vue')
+    ),
+    section_person_list: speedkitHydrate(() =>
+      import('~/components/rnd-team.vue')
+    ),
   },
-  async asyncData({ route, payload, store }) {
+  async asyncData({ route, payload, store, $config }) {
     if (
       typeof payload !== 'undefined' &&
       typeof payload === 'object' &&
@@ -125,10 +148,9 @@ export default {
       const pagesData = store.getters['general/getPagesData']
       const pagesArray = Object.values(pagesData)
       for (let i = 0; i < pagesArray.length; i++) {
-        let pageFullPath = pagesArray[i].link.replace(
-          'https://www.is-wireless.com',
-          ''
-        )
+        let pageFullPath = pagesArray[i].link
+          .replace($config.API_URL, '')
+          .replace('https://www.is-wireless.com', '')
         if (isSamePath(pageFullPath, route.path)) {
           return { pageData: pagesArray[i] }
         }

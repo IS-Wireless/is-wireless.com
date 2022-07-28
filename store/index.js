@@ -212,6 +212,20 @@ export const actions = {
                 item.yoast_head_json.schema
               )
 
+              for (
+                var i = 0;
+                i < item.yoast_head_json.schema['@graph'].length;
+                i++
+              ) {
+                if (
+                  item.yoast_head_json.schema['@graph'][i]['@type'] ==
+                  'BreadcrumbList'
+                ) {
+                  data[index]['breadcrumb'] =
+                    item.yoast_head_json.schema['@graph'][i]
+                }
+              }
+
               data[index]['schema_basic'] = {
                 title: item.yoast_head_json.title,
                 description: item.yoast_head_json.description,
@@ -314,6 +328,20 @@ export const actions = {
               data[index]['schema'] = JSON.stringify(
                 item.yoast_head_json.schema
               )
+
+              for (
+                var i = 0;
+                i < item.yoast_head_json.schema['@graph'].length;
+                i++
+              ) {
+                if (
+                  item.yoast_head_json.schema['@graph'][i]['@type'] ==
+                  'BreadcrumbList'
+                ) {
+                  data[index]['breadcrumb'] =
+                    item.yoast_head_json.schema['@graph'][i]
+                }
+              }
 
               data[index]['schema_basic'] = {
                 title: item.yoast_head_json.title,

@@ -31,7 +31,9 @@ export default {
   },
   computed: {
     urlFormatted() {
-      let formattedUrl = this.url.replace('https://www.is-wireless.com', '')
+      let formattedUrl = this.url
+        .replace(this.$config.API_URL, '')
+        .replace('https://www.is-wireless.com', '')
       return formattedUrl
     },
   },

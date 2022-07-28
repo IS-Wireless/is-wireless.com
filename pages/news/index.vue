@@ -1,25 +1,50 @@
 <template>
   <div>
-    <Breadcrumb />
+    <Breadcrumb :data="pageData.breadcrumb" />
     <div class="px-[10%]">
       <BlogTimeline :data="postsGrouped" />
     </div>
+    <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
 
 <script>
-import BlogTimeline from '~/components/blog-timeline.vue'
-import Breadcrumb from '~/components/breadcrumb.vue'
-
+import speedkitHydrate from 'nuxt-speedkit/hydrate'
+import { isSamePath } from 'ufo'
 import { groupBy as _groupBy } from 'lodash'
 
 export default {
   name: 'BlogPage',
   components: {
-    Breadcrumb,
-    BlogTimeline,
+    Breadcrumb: speedkitHydrate(() => import('~/components/breadcrumb.vue')),
+    BlogTimeline: speedkitHydrate(() =>
+      import('~/components/blog-timeline.vue')
+    ),
+    ScrollToTopBtn: speedkitHydrate(() =>
+      import('@/components/scroll-to-top.vue')
+    ),
   },
-  layout: 'scrollBtnAlways',
+  async asyncData({ route, payload, store, $config }) {
+    if (
+      typeof payload !== undefined &&
+      typeof payload === Object &&
+      Object.keys(payload).length
+    ) {
+      return { pageData: payload }
+    } else {
+      const pagesData = store.getters['general/getPagesData']
+      const pagesArray = Object.values(pagesData)
+      for (let i = 0; i < pagesArray.length; i++) {
+        let pageFullPath = pagesArray[i].link
+          .replace($config.API_URL, '')
+          .replace('https://www.is-wireless.com', '')
+        if (isSamePath(pageFullPath, route.path)) {
+          return { pageData: pagesArray[i] }
+        }
+      }
+    }
+    return { pageData: {} }
+  },
   head() {
     let tags = {
       script: [],

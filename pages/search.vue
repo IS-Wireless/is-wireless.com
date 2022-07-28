@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Breadcrumb />
     <div
       class="search_wrapper px-[10%] tablet-wide:pr-0 tablet-wide:w-2/3 relative mt-[70px]"
     >
@@ -32,12 +31,7 @@
   </div>
 </template>
 <script>
-import Breadcrumb from '@/components/breadcrumb.vue'
-
 export default {
-  components: {
-    Breadcrumb,
-  },
   head() {
     let tags = {
       script: [

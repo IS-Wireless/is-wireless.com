@@ -2,7 +2,7 @@
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <div
       v-swiper="swiperOptionsObject"
-      class="swiper swiper-container relative w-full h-full bg-black/5 overflow-hidden"
+      class="swiper swiper-container relative w-full h-full bg-white overflow-hidden"
     >
       <div v-if="data.banner" class="swiper-wrapper h-full">
         <div

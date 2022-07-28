@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        lato: ['Lato', 'ui-serif'],
+        lato: ['Lato', 'sans-serif'],
       },
     },
   },

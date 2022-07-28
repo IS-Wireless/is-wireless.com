@@ -21,6 +21,7 @@
             class="h-full"
             :loading="index ? 'lazy' : 'eager'"
             :preload="index ? false : true"
+            :critical="index ? false : true"
           />
         </div>
       </div>
@@ -39,6 +40,7 @@
           :alt="data.default.image.alt ? data.default.image.alt : ''"
           :title="data.default.image.title ? data.default.image.title : ''"
           loading="eager"
+          :critical="true"
           preload
         />
         <p

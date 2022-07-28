@@ -18,6 +18,7 @@
             :title="item.image.title ? item.image.title : ''"
             width="1920px"
             height="768px"
+            class="h-full"
             :loading="index ? 'lazy' : 'eager'"
             :preload="index ? false : true"
           />
@@ -43,7 +44,7 @@
         <p
           v-if="data.default && data.default.content"
           ref="content2"
-          class="duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10 h-10"
+          class="duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10"
         >
           {{ data.default.content }}
         </p>

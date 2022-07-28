@@ -4,7 +4,7 @@
       v-swiper="swiperOptionsObject"
       class="swiper swiper-container relative w-full h-full bg-white overflow-hidden"
     >
-      <div v-if="data.banner" class="swiper-wrapper h-full">
+      <div class="swiper-wrapper h-full">
         <div
           v-for="(item, index) in data.banner"
           :key="index"

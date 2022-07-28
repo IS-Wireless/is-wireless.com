@@ -267,20 +267,12 @@ and limitations under the License.
           vueContext === null || vueContext === void 0
             ? void 0
             : vueContext[instanceName]
-        Vue.nextTick()
         // Swiper will destroy but not delete instance, when used <keep-alive>
-
         if (!swiper || swiper.destroyed) {
-          try {
-            swiper = new SwiperClass(element, swiperOptions)
-            vueContext[instanceName] = swiper
-            bindSwiperEvents(swiper, emitEvent)
-            emitEvent(ComponentEvents.Ready, swiper)
-          } catch (error) {
-            console.error(error)
-            // expected output: ReferenceError: nonExistentFunction is not defined
-            // Note - error messages will vary depending on browser
-          }
+          swiper = new SwiperClass(element, swiperOptions)
+          vueContext[instanceName] = swiper
+          bindSwiperEvents(swiper, emitEvent)
+          emitEvent(ComponentEvents.Ready, swiper)
           // MARK: Reinstance when the nexttick with <keep-alive>
           // Vue.nextTick(instancing) | setTimeout(instancing)
         }

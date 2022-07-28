@@ -9,7 +9,12 @@
           class="img-full"
           width="300"
           height="157"
-          :src="data.featured_image_src"
+          :src="
+            data.featured_image_src.replace(
+              'www.is-wireless.com',
+              'api.is-wireless.com'
+            )
+          "
         />
         <div v-if="data.title" class="p-5 pb-1">
           <h2

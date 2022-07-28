@@ -3,7 +3,12 @@
     <div class="w-full flex flex-col tablet-wide:flex-row my-10">
       <div class="tablet-wide:basis-1/3" v-if="data.person_image">
         <nuxt-picture
-          :src="data.person_image.url"
+          :src="
+            data.person_image.url.replace(
+              'www.is-wireless.com',
+              'api.is-wireless.com'
+            )
+          "
           :title="data.person_image.title ? data.person_image.title : ''"
           :alt="data.person_image.alt ? data.person_image.alt : ''"
         />

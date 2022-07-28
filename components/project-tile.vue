@@ -15,7 +15,12 @@
           class:
             'h-24 max-w-[75%] phablet:max-w-[60%] tablet:max-w-[75%] object-contain',
         }"
-        :src="data.acf.page_icon"
+        :src="
+          data.acf.page_icon.replace(
+            'www.is-wireless.com',
+            'api.is-wireless.com'
+          )
+        "
       />
       <p v-if="data.acf.page_description">
         {{ data.acf.page_description }}

@@ -13,7 +13,7 @@
           width="40px"
           height="40px"
           class="p-2 rounded-full bg-blue-main-hover group-hover:bg-blue-main transition duration-300 transform group-hover:scale-90 z-10"
-          :src="item.icon"
+          :src="item.icon.replace('www.is-wireless.com', 'api.is-wireless.com')"
           :alt="item.alt"
         />
         <div

@@ -19,7 +19,12 @@
                 :imgAttrs="{ class: 'w-full' }"
                 width="300"
                 height="157"
-                :src="post.featured_image_src"
+                :src="
+                  post.featured_image_src.replace(
+                    'www.is-wireless.com',
+                    'api.is-wireless.com'
+                  )
+                "
               />
               <h4
                 v-if="post.title"

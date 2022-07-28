@@ -10,7 +10,9 @@
           <nuxt-picture
             v-if="imageUrl"
             class="block h-auto w-full max-w-[200px]"
-            :src="imageUrl"
+            :src="
+              imageUrl.replace('www.is-wireless.com', 'api.is-wireless.com')
+            "
             :alt="'test alt'"
             width="200"
             height="67"

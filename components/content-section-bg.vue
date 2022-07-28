@@ -17,7 +17,14 @@
         }"
         ref="parallaxTarget"
         :style="parallaxStyle"
-        :src="data.image.url ? data.image.url : ''"
+        :src="
+          data.image.url
+            ? data.image.url.replace(
+                'www.is-wireless.com',
+                'api.is-wireless.com'
+              )
+            : ''
+        "
         :title="data.image.title ? data.image.title : ''"
         :alt="data.image.alt ? data.image.alt : ''"
       ></nuxt-picture>

@@ -22,7 +22,14 @@
               width="200"
               height="200"
               fit="outside"
-              :src="item.image.url ? item.image.url : ''"
+              :src="
+                item.image.url
+                  ? item.image.url.replace(
+                      'www.is-wireless.com',
+                      'api.is-wireless.com'
+                    )
+                  : ''
+              "
               :alt="item.image.alt ? item.image.alt : ''"
               :title="item.image.title ? item.image.title : ''"
               sizes="sm:180px lg:360px"
@@ -57,7 +64,14 @@
             class="h-full img-h-full"
             width="200"
             height="200"
-            :src="item.image.url ? item.image.url : ''"
+            :src="
+              item.image.url
+                ? item.image.url.replace(
+                    'www.is-wireless.com',
+                    'api.is-wireless.com'
+                  )
+                : ''
+            "
             :alt="item.image.alt ? item.image.alt : ''"
             :title="item.image.title ? item.image.title : ''"
           />

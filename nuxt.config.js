@@ -146,6 +146,13 @@ export default {
         include: /node_modules/,
         type: 'javascript/auto',
       })
+
+      config.module.rules.push({
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader',
+        // include: [path.resolve(__dirname, 'yourAppPath')],
+        exclude: [/node_modules/, /bower_components/],
+      })
     },
   },
   // render: {
@@ -183,12 +190,14 @@ export default {
       '4k': 1921,
     },
     domains: [
-      'https://www.is-wireless.com/',
+      'is-wireless.com',
       'www.is-wireless.com',
+      'api.is-wireless.com',
       'img.youtube.com',
       process.env.API_URL,
     ],
     alias: {
+      app: 'api.is-wireless.com',
       youtube: 'https://img.youtube.com',
       vimeo: 'https://i.vimeocdn.com',
     },

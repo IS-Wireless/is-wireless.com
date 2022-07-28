@@ -23,7 +23,11 @@
         <nuxt-picture
           fit="contain"
           class="mb-5"
-          :src="item.url ? item.url : ''"
+          :src="
+            item.url
+              ? item.url.replace('www.is-wireless.com', 'api.is-wireless.com')
+              : ''
+          "
           :title="item.title ? item.title : ''"
           :alt="item.alt ? item.alt : ''"
         />

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "noImplicitAny": false,
     "jsx": "preserve",
     "target": "ES2018",
     "module": "ESNext",
@@ -9,7 +10,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
-    "noEmit": true,
+    "noEmit": false,
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
@@ -18,5 +19,5 @@
     },
     "types": ["@nuxt/types", "@types/node"]
   },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "exclude": ["node_modules", ".nuxt", "dist", "package"]
 }

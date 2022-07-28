@@ -54,7 +54,11 @@
         class:
           'h-[300px] phone-wide:h-[600px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
       }"
-      :src="data.image.url ? data.image.url : ''"
+      :src="
+        data.image.url
+          ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com')
+          : ''
+      "
       :title="data.image.title ? data.image.title : ''"
       :alt="data.image.alt ? data.image.alt : ''"
     ></nuxt-picture>
@@ -121,11 +125,11 @@
             </a>
           </div>
         </div>
-        <p
+        <div
           v-if="data.description"
           class="inline-block mb-5 w-full text-justify"
           v-html="data.description"
-        ></p>
+        ></div>
       </div>
     </div>
   </div>

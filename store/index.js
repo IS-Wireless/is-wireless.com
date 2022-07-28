@@ -371,10 +371,10 @@ export const actions = {
 
             if (
               item.acf &&
-              item.acf.section &&
-              Object.keys(item.acf.section).length
+              item.acf.sections &&
+              Object.keys(item.acf.sections).length
             ) {
-              data.content = ''
+              data[index].content = ''
             }
           })
           filterData(data)

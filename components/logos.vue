@@ -13,7 +13,12 @@
           class="block w-full p-1"
         >
           <nuxt-picture
-            :src="image.img_url.url"
+            :src="
+              image.img_url.url.replace(
+                'www.is-wireless.com',
+                'api.is-wireless.com'
+              )
+            "
             :title="image.img_url.title ? image.img_url.title : ''"
             :alt="image.img_url.alt ? image.img_url.alt : ''"
             class="w-full img-full"
@@ -21,7 +26,12 @@
         </CustomLink>
         <nuxt-picture
           v-else-if="image.img_url"
-          :src="image.img_url.url"
+          :src="
+            image.img_url.url.replace(
+              'www.is-wireless.com',
+              'api.is-wireless.com'
+            )
+          "
           :title="image.img_url.title ? image.img_url.title : ''"
           :alt="image.img_url.alt ? image.img_url.alt : ''"
           class="w-full img-full p-1"

@@ -5,7 +5,11 @@
     <nuxt-picture
       v-if="data.image"
       class="block absolute w-full h-full inset-0 -z-20 after:block after:absolute after:inset-0 after:bg-[#434648] after:mix-blend-hard-light after:rounded-md before:block before:absolute before:inset-0 before:bg-[#000000] before:mix-blend-hue before:rounded-md before:opacity-[0.35]"
-      :src="data.image.url ? data.image.url : ''"
+      :src="
+        data.image.url
+          ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com')
+          : ''
+      "
       :title="data.image.title ? data.image.title : ''"
       :alt="data.image.alt ? data.image.alt : ''"
       :imgAttrs="{

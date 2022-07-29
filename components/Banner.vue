@@ -133,7 +133,6 @@ export default {
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
-        virtual: false,
         preventClicksPropagation: false,
         slidesperview: 1,
         spaceBetween: 0,
@@ -148,12 +147,7 @@ export default {
           prevEl: '[data-slide-prev]',
         },
         speed: 300,
-        loopedSlides: 1,
-        loop: this.data.banner
-          ? this.data.banner.length > 1
-            ? true
-            : false
-          : false,
+        loop: false,
         keyboard: {
           enabled: true,
           onlyInViewport: true,

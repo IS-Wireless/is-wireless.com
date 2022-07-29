@@ -10,7 +10,7 @@
           :key="index"
           class="swiper-slide h-full"
         >
-          <speedkit-picture
+          <nuxt-picture
             v-if="item.image"
             v-bind="picCompute(item.image)"
             :src="item.image.url ? item.image.url : ''"

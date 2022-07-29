@@ -6,7 +6,9 @@
       id="organisations"
       class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
     >
-      <div class="swiper-wrapper flex w-full h-full items-center">
+      <div
+        class="swiper-wrapper flex w-full overflow-hidden h-full items-center"
+      >
         <div
           v-for="(item, index) in logos.swiper"
           :key="index"

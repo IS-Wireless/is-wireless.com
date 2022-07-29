@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col">
     <Banner :data="frontPageData.homepageData.sections[0]" />
-
+    <!--
     <Organisations
       :data="frontPageData.homepageData.sections[1]"
       :critical="true"
     />
-
+-->
     <section_two_column
       static-class="px-[10%]"
       :data="frontPageData.homepageData.sections[2]"

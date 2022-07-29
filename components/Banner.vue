@@ -22,7 +22,6 @@
             :loading="index ? 'lazy' : 'eager'"
             :preload="index ? false : true"
             :critical="index ? false : true"
-            :hydrate="false"
           />
         </div>
       </div>

@@ -28,7 +28,7 @@
     "eslint-gitignore": "^0.1.0",
     "eslint-plugin-tailwind": "^0.2.1",
     "file-system-cache": "^2.0.0",
-    "formidable": "^3.2.4",
+    "formidable": "^2.0.1",
     "html-filter": "^4.3.3",
     "node-cache": "^5.1.2",
     "nuxt": "^2.15.3",
@@ -70,7 +70,7 @@
   "overrides": {
     "wpapi": {
       "superagent": "^8.0.0",
-      "formidable": "^3.2.4"
+      "formidable": "^2.0.1"
     },
     "nuxt-speedkit": {
       "@nuxt/image": "latest"

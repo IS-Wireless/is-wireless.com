@@ -51,7 +51,7 @@ export default {
         pageData: payload,
         postsRelated: getRelatedPosts(pagesData, route.path, $config),
       }
-    } else if (pagesData !== undefined) {
+    } else {
       const pagesArray = Object.values(pagesData)
       for (let i = 0; i < pagesArray.length; i++) {
         let pageFullPath = pagesArray[i].link

@@ -6,6 +6,11 @@
     >
       <div class="swiper-wrapper h-full">
         <div
+          ref="toRemove"
+          class="swiper-slide"
+          data-swiper-slide-index="0"
+        ></div>
+        <div
           v-for="(item, index) in data.banner"
           :key="index"
           class="swiper-slide h-full"
@@ -133,6 +138,7 @@ export default {
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
+        virtual: false,
         preventClicksPropagation: false,
         slidesperview: 1,
         spaceBetween: 0,
@@ -147,7 +153,12 @@ export default {
           prevEl: '[data-slide-prev]',
         },
         speed: 300,
-        loop: false,
+        loopedSlides: 1,
+        loop: this.data.banner
+          ? this.data.banner.length > 1
+            ? true
+            : false
+          : false,
         keyboard: {
           enabled: true,
           onlyInViewport: true,

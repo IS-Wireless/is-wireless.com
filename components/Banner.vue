@@ -133,6 +133,7 @@ export default {
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
+        virtual: false,
         preventClicksPropagation: false,
         slidesperview: 1,
         spaceBetween: 0,

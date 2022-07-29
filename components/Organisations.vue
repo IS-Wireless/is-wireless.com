@@ -3,7 +3,7 @@
     class="w-full px-[10%] bg-white mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
   >
     <div
-      v-swiper="swiperOptionsObject"
+      id="organisations"
       class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
     >
       <div class="swiper-wrapper flex w-full h-full items-center">
@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import { Swiper, Navigation, Autoplay } from 'swiper'
+
 export default {
   name: 'Organisations',
   props: {
@@ -97,6 +99,7 @@ export default {
       liveURL: '',
       loadEager: 5,
       swiperOptionsObject: {
+        modules: [Navigation, Autoplay],
         slidesPerView: 'auto',
         spaceBetween: 0,
         direction: 'horizontal',
@@ -131,6 +134,12 @@ export default {
       }
       return { swiper: logosSwiper, pinned: logosPinned }
     },
+  },
+  mounted() {
+    this.$data.swiper = new Swiper(
+      '#organisations',
+      this.$data.swiperOptionsObject
+    )
   },
   methods: {
     linkFilter(link) {

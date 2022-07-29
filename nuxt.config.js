@@ -69,7 +69,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '~/plugins/vue-google-maps', mode: 'client' },
     { src: '~/plugins/vue-composition-api', mode: 'server' },
   ],
@@ -131,6 +130,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    standalone: true,
     postcss: {
       plugins: {
         'postcss-import': {},
@@ -141,17 +141,16 @@ export default {
     },
     transpile: ['vue-share-it', /^vue2-google-maps($|\/)/],
     extend(config) {
+      config.externals = [
+        {
+          encoding: 'encoding',
+        },
+      ]
+
       config.module.rules.push({
         test: /\.mjs$/,
         include: /node_modules/,
         type: 'javascript/auto',
-      })
-
-      config.module.rules.push({
-        test: /\.(ts|tsx)$/,
-        loader: 'ts-loader',
-        // include: [path.resolve(__dirname, 'yourAppPath')],
-        exclude: [/node_modules/, /bower_components/],
       })
     },
   },

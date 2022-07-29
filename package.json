@@ -28,15 +28,16 @@
     "eslint-gitignore": "^0.1.0",
     "eslint-plugin-tailwind": "^0.2.1",
     "file-system-cache": "^2.0.0",
+    "formidable": "^3.2.4",
     "html-filter": "^4.3.3",
     "node-cache": "^5.1.2",
     "nuxt": "^2.15.3",
     "nuxt-speedkit": "^2.0.17",
+    "superagent": "^8.0.0",
     "superagent-cache": "^3.1.1",
-    "swiper": "^6.4.7",
+    "swiper": "^8.3.2",
     "typescript": "^4.4.4",
     "ufo": "^0.8.4",
-    "vue-awesome-swiper": "file:package/vue-awesome-swiper",
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-share-it": "^1.1.6",
     "vue2-google-maps": "^0.10.7",
@@ -67,6 +68,10 @@
     "tailwindcss": "^3.0.23"
   },
   "overrides": {
+    "wpapi": {
+      "superagent": "^8.0.0",
+      "formidable": "^3.2.4"
+    },
     "nuxt-speedkit": {
       "@nuxt/image": "latest"
     },

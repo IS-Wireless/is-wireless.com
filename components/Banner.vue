@@ -1,7 +1,7 @@
 <template>
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <div
-      v-swiper="swiperOptionsObject"
+      id="banner"
       class="swiper swiper-container relative w-full h-full bg-white overflow-hidden"
     >
       <div class="swiper-wrapper h-full">
@@ -10,7 +10,7 @@
           :key="index"
           class="swiper-slide h-full"
         >
-          <nuxt-picture
+          <speedkit-picture
             v-if="item.image"
             v-bind="picCompute(item.image)"
             :src="item.image.url ? item.image.url : ''"
@@ -113,6 +113,9 @@
 
 <script>
 import SpeedkitPicture from 'nuxt-speedkit/components/SpeedkitPicture'
+import { Swiper, Navigation, Autoplay } from 'swiper'
+
+import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',
@@ -128,11 +131,14 @@ export default {
   },
   data() {
     return {
+      swiper: null,
       swiperIndex: 0,
       swiperCount: 0,
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
+        modules: [Navigation, Autoplay],
+        virtual: false,
         preventClicksPropagation: false,
         slidesperview: 1,
         spaceBetween: 0,
@@ -148,7 +154,11 @@ export default {
         },
         speed: 300,
         loopedSlides: 1,
-        loop: false,
+        loop: this.data.banner
+          ? this.data.banner.length > 1
+            ? true
+            : false
+          : false,
         keyboard: {
           enabled: true,
           onlyInViewport: true,
@@ -157,23 +167,7 @@ export default {
     }
   },
   mounted() {
-    const content = [
-      this.$refs.content1,
-      this.$refs.content2,
-      this.$refs.content3,
-    ]
-    Show(0)
-    function Show(i) {
-      if (content[i]) {
-        content[i].classList.remove('opacity-0')
-      }
-      setTimeout(() => {
-        if (i < content.length - 1) {
-          i++
-          Show(i)
-        }
-      }, 600)
-    }
+    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
   },
   methods: {
     picCompute: function (image) {

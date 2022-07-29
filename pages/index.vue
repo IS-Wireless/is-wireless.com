@@ -1,8 +1,11 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" />
+    <Banner :data="frontPageData.homepageData.sections[0]" :critical="true" />
 
-    <Organisations :data="frontPageData.homepageData.sections[1]" />
+    <Organisations
+      :data="frontPageData.homepageData.sections[1]"
+      :critical="true"
+    />
 
     <section_two_column
       static-class="px-[10%]"

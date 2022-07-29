@@ -6,11 +6,6 @@
     >
       <div class="swiper-wrapper h-full">
         <div
-          ref="toRemove"
-          class="swiper-slide"
-          data-swiper-slide-index="0"
-        ></div>
-        <div
           v-for="(item, index) in data.banner"
           :key="index"
           class="swiper-slide h-full"
@@ -27,6 +22,7 @@
             :loading="index ? 'lazy' : 'eager'"
             :preload="index ? false : true"
             :critical="index ? false : true"
+            :hydrate="false"
           />
         </div>
       </div>
@@ -167,9 +163,6 @@ export default {
     }
   },
   mounted() {
-    if (this.data.banner && this.data.banner.length > 1) {
-      this.swiperOptionsObject.loop = true
-    }
     const content = [
       this.$refs.content1,
       this.$refs.content2,
@@ -205,8 +198,9 @@ export default {
           },
           {
             src: image.url,
+            width: '1920px',
+            height: '768px',
             sizes: { default: '100vw', xxs: '100vw', xs: '100vw' },
-            media: '(orientation: portrait)',
           },
         ],
         title: image.title,

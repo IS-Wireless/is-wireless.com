@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" :critical="true" />
+    <Banner :data="frontPageData.homepageData.sections[0]" />
 
     <Organisations
       :data="frontPageData.homepageData.sections[1]"
@@ -30,10 +30,11 @@
 
 <script>
 import speedkitHydrate from 'nuxt-speedkit/hydrate'
+import Baner from '~/components/Banner.vue'
 
 export default {
   components: {
-    Banner: speedkitHydrate(() => import('~/components/Banner.vue')),
+    Banner: Baner,
     Organisations: speedkitHydrate(() =>
       import('~/components/Organisations.vue')
     ),

@@ -1,8 +1,20 @@
 <template>
   <div class="flex flex-col">
-    <Banner :data="frontPageData.homepageData.sections[0]" />
+    <Banner
+      :data="frontPageData.homepageData.sections[0]"
+      v-if="
+        frontPageData.homepageData.sections[0] &&
+        frontPageData.homepageData.sections[0].banner
+      "
+      :critical="true"
+    />
 
     <Organisations
+      v-if="
+        frontPageData.homepageData.sections[1] &&
+        frontPageData.homepageData.sections[1].logos &&
+        frontPageData.homepageData.sections[1].logos.swiper
+      "
       :data="frontPageData.homepageData.sections[1]"
       :critical="true"
     />

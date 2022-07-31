@@ -138,10 +138,16 @@ export default {
     },
   },
   mounted() {
-    this.$data.swiper = new Swiper(
-      '#organisations',
-      this.$data.swiperOptionsObject
-    )
+    if (
+      this.$data.logos &&
+      this.$data.logos.swiper &&
+      this.$data.logos.swiper.length
+    ) {
+      this.$data.swiper = new Swiper(
+        '#organisations',
+        this.$data.swiperOptionsObject
+      )
+    }
   },
   methods: {
     linkFilter(link) {

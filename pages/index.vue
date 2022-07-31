@@ -1,65 +1,57 @@
 <template>
   <div class="flex flex-col">
-    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
-      <Banner
-        v-if="
-          frontPageData.homepageData.sections[0] &&
-          frontPageData.homepageData.sections[0].banner
-        "
-        :data="frontPageData.homepageData.sections[0]"
-      />
-    </LazyHydrate>
-    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
-      <Organisations
-        v-if="
-          frontPageData.homepageData.sections[1] &&
-          frontPageData.homepageData.sections[1].logos &&
-          frontPageData.homepageData.sections[1].logos.swiper
-        "
-        :data="frontPageData.homepageData.sections[1]"
-      />
-    </LazyHydrate>
+    <Banner
+      v-if="
+        frontPageData.homepageData.sections[0] &&
+        frontPageData.homepageData.sections[0].banner
+      "
+      :data="frontPageData.homepageData.sections[0]"
+    />
 
-    <LazyHydrate never>
-      <section_two_column
-        static-class="px-[10%]"
-        :data="frontPageData.homepageData.sections[2]"
-        :full-img="true"
-      />
-    </LazyHydrate>
+    <Organisations
+      v-if="
+        frontPageData.homepageData.sections[1] &&
+        frontPageData.homepageData.sections[1].logos &&
+        frontPageData.homepageData.sections[1].logos.swiper
+      "
+      :data="frontPageData.homepageData.sections[1]"
+    />
 
-    <LazyHydrate when-idle>
-      <section_two_column_bg
-        :textClr="'text-white'"
-        :data="frontPageData.homepageData.sections[3]"
-      />
-    </LazyHydrate>
+    <section_two_column
+      static-class="px-[10%]"
+      :data="frontPageData.homepageData.sections[2]"
+      :full-img="true"
+    />
 
-    <LazyHydrate never>
-      <section_two_column
-        static-class="px-[10%]"
-        :data="frontPageData.homepageData.sections[4]"
-        :full-img="true"
-      />
-    </LazyHydrate>
+    <section_two_column_bg
+      :textClr="'text-white'"
+      :data="frontPageData.homepageData.sections[3]"
+    />
 
-    <LazyHydrate never>
-      <CtaJob :data="frontPageData.homepageData.sections[5]" />
-    </LazyHydrate>
+    <section_two_column
+      static-class="px-[10%]"
+      :data="frontPageData.homepageData.sections[4]"
+      :full-img="true"
+    />
+
+    <CtaJob :data="frontPageData.homepageData.sections[5]" />
   </div>
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
+import Banner from '~/components/Banner.vue'
+import Organisations from '~/components/Organisations.vue'
+import SectionTwoColumns from '~/components/content-section.vue'
+import section_two_column_bg from '~/components/content-section-bg.vue'
+import CtaJob from '~/components/cta-job.vue'
 
 export default {
   components: {
-    LazyHydrate,
-    Banner: () => import('~/components/Banner.vue'),
-    Organisations: () => import('~/components/Organisations.vue'),
-    section_two_column: () => import('~/components/content-section.vue'),
-    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
-    CtaJob: () => import('~/components/cta-job.vue'),
+    Banner: Banner,
+    Organisations: Organisations,
+    section_two_column: SectionTwoColumns,
+    section_two_column_bg: section_two_column_bg,
+    CtaJob: CtaJob,
   },
   head() {
     let tags = {

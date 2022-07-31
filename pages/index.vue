@@ -1,62 +1,65 @@
 <template>
   <div class="flex flex-col">
-    <Banner
-      :data="frontPageData.homepageData.sections[0]"
-      v-if="
-        frontPageData.homepageData.sections[0] &&
-        frontPageData.homepageData.sections[0].banner
-      "
-      :critical="true"
-    />
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
+      <Banner
+        v-if="
+          frontPageData.homepageData.sections[0] &&
+          frontPageData.homepageData.sections[0].banner
+        "
+        :data="frontPageData.homepageData.sections[0]"
+      />
+    </LazyHydrate>
+    <LazyHydrate when-idle :on-interaction="['click', 'touchstart']">
+      <Organisations
+        v-if="
+          frontPageData.homepageData.sections[1] &&
+          frontPageData.homepageData.sections[1].logos &&
+          frontPageData.homepageData.sections[1].logos.swiper
+        "
+        :data="frontPageData.homepageData.sections[1]"
+      />
+    </LazyHydrate>
 
-    <Organisations
-      v-if="
-        frontPageData.homepageData.sections[1] &&
-        frontPageData.homepageData.sections[1].logos &&
-        frontPageData.homepageData.sections[1].logos.swiper
-      "
-      :data="frontPageData.homepageData.sections[1]"
-      :critical="true"
-    />
+    <LazyHydrate never>
+      <section_two_column
+        static-class="px-[10%]"
+        :data="frontPageData.homepageData.sections[2]"
+        :full-img="true"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      static-class="px-[10%]"
-      :data="frontPageData.homepageData.sections[2]"
-      :full-img="true"
-    />
+    <LazyHydrate when-idle>
+      <section_two_column_bg
+        :textClr="'text-white'"
+        :data="frontPageData.homepageData.sections[3]"
+      />
+    </LazyHydrate>
 
-    <section_two_column_bg
-      text-clr="text-white"
-      :data="frontPageData.homepageData.sections[3]"
-    />
+    <LazyHydrate never>
+      <section_two_column
+        static-class="px-[10%]"
+        :data="frontPageData.homepageData.sections[4]"
+        :full-img="true"
+      />
+    </LazyHydrate>
 
-    <section_two_column
-      static-class="px-[10%]"
-      :data="frontPageData.homepageData.sections[4]"
-      :full-img="true"
-    />
-
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    <LazyHydrate never>
+      <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
-import speedkitHydrate from 'nuxt-speedkit/hydrate'
-import Baner from '~/components/Banner.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
   components: {
-    Banner: Baner,
-    Organisations: speedkitHydrate(() =>
-      import('~/components/Organisations.vue')
-    ),
-    section_two_column: speedkitHydrate(() =>
-      import('~/components/content-section.vue')
-    ),
-    section_two_column_bg: speedkitHydrate(() =>
-      import('~/components/content-section-bg.vue')
-    ),
-    CtaJob: speedkitHydrate(() => import('~/components/cta-job.vue')),
+    LazyHydrate,
+    Banner: () => import('~/components/Banner.vue'),
+    Organisations: () => import('~/components/Organisations.vue'),
+    section_two_column: () => import('~/components/content-section.vue'),
+    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
+    CtaJob: () => import('~/components/cta-job.vue'),
   },
   head() {
     let tags = {

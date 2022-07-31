@@ -30,6 +30,7 @@
     "file-system-cache": "^2.0.0",
     "formidable": "^2.0.1",
     "html-filter": "^4.3.3",
+    "ipx": "^0.8.1",
     "node-cache": "^5.1.2",
     "nuxt": "^2.15.3",
     "nuxt-speedkit": "^2.0.17",

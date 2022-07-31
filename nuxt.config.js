@@ -81,7 +81,6 @@ export default {
     '@nuxt/typescript-build',
     '@nuxt/image',
     '@nuxtjs/pwa',
-    'nuxt-speedkit',
     [
       '@aceforth/nuxt-netlify',
       {
@@ -154,23 +153,23 @@ export default {
       })
     },
   },
-  // render: {
-  //   asyncScripts: false,
-  //   resourceHints: false,
-  //   // injectScripts: false, #need optimisation
-  //   crossorigin: 'anonymous',
-  //   http2: {
-  //     push: true,
-  //     pushAssets: (req, res, publicPath, preloadFiles) =>
-  //       preloadFiles
-  //         .filter((f) => f.asType === 'script')
-  //         .map(
-  //           (f) =>
-  //             `<${publicPath}${f.file}>; rel=preload; as=${f.asType}; crossorigin`
-  //         ),
-  //   },
-  //   compressor: { threshold: 9, level: 9 },
-  // },
+  render: {
+    asyncScripts: false,
+    resourceHints: false,
+    //   // injectScripts: false, #need optimisation
+    //   crossorigin: 'anonymous',
+    //   http2: {
+    //     push: true,
+    //     pushAssets: (req, res, publicPath, preloadFiles) =>
+    //       preloadFiles
+    //         .filter((f) => f.asType === 'script')
+    //         .map(
+    //           (f) =>
+    //             `<${publicPath}${f.file}>; rel=preload; as=${f.asType}; crossorigin`
+    //         ),
+    //   },
+    //   compressor: { threshold: 9, level: 9 },
+  },
   generate: {
     dir: 'public',
     crawler: true,

@@ -10,7 +10,7 @@
           :key="index"
           class="swiper-slide h-full"
         >
-          <speedkit-picture
+          <nuxt-picture
             v-if="item.image"
             v-bind="picCompute(item.image)"
             :src="item.image.url ? item.image.url : ''"
@@ -112,7 +112,6 @@
 </template>
 
 <script>
-import SpeedkitPicture from 'nuxt-speedkit/components/SpeedkitPicture'
 import { Swiper, Navigation, Autoplay } from 'swiper'
 
 import 'swiper/swiper-bundle.min.css'
@@ -120,7 +119,6 @@ import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',
   components: {
-    SpeedkitPicture,
     CustomLink,
   },
   props: {

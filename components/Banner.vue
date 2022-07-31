@@ -167,7 +167,9 @@ export default {
     }
   },
   mounted() {
-    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
+    if (this.$data.banner.length) {
+      this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
+    }
   },
   methods: {
     picCompute: function (image) {

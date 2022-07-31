@@ -1,11 +1,21 @@
 <template>
-  <nuxt-link v-if="!isExternal && !title" :to="urlFormatted">
+  <nuxt-link v-if="!title && !isExternalCheck" :to="urlFormatted">
     <slot></slot>
   </nuxt-link>
-  <nuxt-link v-else-if="!isExternal && title" v-html="title" :to="urlFormatted">
+  <nuxt-link
+    v-else-if="title && !isExternalCheck"
+    v-html="title"
+    :to="urlFormatted"
+  >
   </nuxt-link>
 
-  <a v-else-if="isExternal && !title" :href="url" target="_blank">
+  <a
+    v-else-if="
+      (isExternalCheck && !title) || (isExternalCheck && hasDefaultSlot)
+    "
+    :href="url"
+    target="_blank"
+  >
     <slot></slot>
   </a>
   <a v-else :href="url" v-html="title" target="_blank"> </a>
@@ -30,11 +40,24 @@ export default {
     },
   },
   computed: {
+    hasDefaultSlot() {
+      return !!this.$slots.default
+    },
     urlFormatted() {
       let formattedUrl = this.url
         .replace(this.$config.API_URL, '')
         .replace('https://www.is-wireless.com', '')
       return formattedUrl
+    },
+    isExternalCheck() {
+      var r = new RegExp('^(?:[a-z+]+:)?//', 'i')
+      var urlCheck = this.url
+        .replace(this.$config.API_URL, '')
+        .replace('https://www.is-wireless.com', '')
+      if (r.test(urlCheck)) {
+        return true
+      }
+      return this.isExternal
     },
   },
 }

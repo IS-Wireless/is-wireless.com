@@ -19,6 +19,10 @@ export default {
     API_URL: process.env.API_URL,
     GMAP_KEY: process.env.API_GMAPS,
     version: appVersionCacheBuster,
+    algolia: {
+      applicationId: 'VR74LN6Q10',
+      apiKey: 'a80619850095c92c2fc1696244c05f41',
+    },
   },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -34,10 +38,6 @@ export default {
         hid: 'description',
         name: 'description',
         content: '4G and 5G Mobile Networks of the Future',
-      },
-      {
-        src: 'https://cse.google.com/cse.js?cx=4a61290bc618cbfe1',
-        async: true,
       },
     ],
     link: [
@@ -105,6 +105,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'nuxt-algolia',
     {
       src: '@nuxtjs/robots',
       options: {
@@ -126,7 +127,6 @@ export default {
     },
     // 'nuxt-speedkit',
   ],
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     standalone: true,

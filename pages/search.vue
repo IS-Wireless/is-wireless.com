@@ -3,9 +3,10 @@
     <Breadcrumb v-if="breadcrumb" :data="breadcrumb" />
 
     <div
+      v-if="results && results.hits.length"
       class="search_wrapper px-[10%] tablet-wide:pr-0 tablet-wide:w-2/3 relative mt-[70px]"
     >
-      <div class="absolute flex items-start z-10">
+      <div class="flex items-start z-10">
         <div
           class="top-0 left-0 w-[50px] h-[50px] tablet-wide:w-[76px] tablet-wide:h-[76px] shrink-0 flex items-center justify-center rounded-md bg-gray-light"
         >
@@ -22,16 +23,37 @@
             ></path>
           </svg>
         </div>
-        <span
-          class="text-2xl tablet:text-[40px] text-gray-dark ml-5 font-normal font-lato whitespace-nowrap"
-        >
-          Search results</span
-        >
+        <div class="flex flex-wrap flex-col ml-5">
+          <span
+            class="text-2xl tablet:text-[40px] text-gray-dark font-normal font-lato whitespace-nowrap mb-[10px]"
+          >
+            Search results</span
+          >
+          <span
+            class="text-base tablet:text-lg font-lato font-normal text-gray-dark"
+          >
+            {{ results.hitsPerPage }} from {{ results.nbHits }}</span
+          >
+        </div>
       </div>
-      <div class="gcse-searchresults-only min-h-[100px]"></div>
+      <div class="min-h-[100px]">
+        <ul class="relative">
+          <li
+            class="py-[50px] border-0 border-b-2 border-solid border-gray-light"
+            v-for="(result, index) in results.hits"
+            :key="index"
+          >
+            <a :href="getPermaLink(result.permalink)">
+              {{ result.post_title }}
+            </a>
+            <div v-html="result.post_excerpt"></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
 import Breadcrumb from '~/components/breadcrumb.vue'
 
@@ -39,8 +61,17 @@ export default {
   components: {
     Breadcrumb,
   },
+  async asyncData({ $algolia, route }) {
+    const index = $algolia.initIndex('web_searchable_posts')
+    const results = await index.search(route.query.q)
+    return { results: results }
+  },
   data() {
     return {
+      results: {
+        nbHits: 0,
+        hits: [],
+      },
       breadcrumb: {
         '@type': 'BreadcrumbList',
         '@id': 'https://www.is-wireless.com/networks/services/#breadcrumb',
@@ -62,12 +93,7 @@ export default {
   },
   head() {
     let tags = {
-      script: [
-        {
-          src: 'https://cse.google.com/cse.js?cx=4a61290bc618cbfe1',
-          async: true,
-        },
-      ],
+      script: [],
       meta: [],
       link: [],
       __dangerouslyDisableSanitizers: ['script'],
@@ -193,20 +219,14 @@ export default {
     }
     return tags
   },
+  methods: {
+    getPermaLink: function (permalink) {
+      return permalink.replace('api.is-wireless.com', 'www.is-wireless.com')
+    },
+  },
 }
 </script>
 <style scoped lang="postcss">
-.search_wrapper >>> * {
-  @apply p-0;
-}
-.search_wrapper >>> .gsc-positioningWrapper,
-.search_wrapper >>> .gsc-orderby-container,
-.search_wrapper >>> .gs-image-box,
-.search_wrapper >>> .gsc-url-top,
-.search_wrapper >>> .gcsc-more-maybe-branding-root {
-  @apply hidden;
-}
-
 .search_wrapper >>> .gsc-control-cse {
   @apply pt-[66px] tablet:pt-[96px] relative;
 }

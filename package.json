@@ -33,6 +33,7 @@
     "ipx": "^0.8.1",
     "node-cache": "^5.1.2",
     "nuxt": "^2.15.3",
+    "nuxt-algolia": "^0.2.0",
     "nuxt-speedkit": "^2.0.17",
     "superagent": "^8.0.0",
     "superagent-cache": "^3.1.1",

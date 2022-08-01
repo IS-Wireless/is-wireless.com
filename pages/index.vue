@@ -11,8 +11,7 @@
     <Organisations
       v-if="
         frontPageData.homepageData.sections[1] &&
-        frontPageData.homepageData.sections[1].logos &&
-        frontPageData.homepageData.sections[1].logos.swiper
+        frontPageData.homepageData.sections[1].logo
       "
       :data="frontPageData.homepageData.sections[1]"
     />

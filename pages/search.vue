@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Breadcrumb />
+    <Breadcrumb v-if="breadcrumb" :data="breadcrumb" />
     <div
       class="search_wrapper px-[10%] tablet-wide:pr-0 tablet-wide:w-2/3 relative mt-[70px]"
     >
@@ -32,11 +32,32 @@
   </div>
 </template>
 <script>
-import Breadcrumb from '@/components/breadcrumb.vue'
+import Breadcrumb from '~/components/breadcrumb.vue'
 
 export default {
   components: {
     Breadcrumb,
+  },
+  data() {
+    return {
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://www.is-wireless.com/networks/services/#breadcrumb',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.is-wireless.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Search',
+          },
+        ],
+      },
+    }
   },
   head() {
     let tags = {
@@ -178,7 +199,6 @@ export default {
   @apply p-0;
 }
 
-.search_wrapper >>> .gsc-adBlock,
 .search_wrapper >>> .gsc-positioningWrapper,
 .search_wrapper >>> .gsc-orderby-container,
 .search_wrapper >>> .gs-image-box,

@@ -1,7 +1,7 @@
 <template>
   <div class="w-full my-16">
-    <div id="releated_news" class="swiper">
-      <div class="swiper-wrapper flex w-full overflow-hidden">
+    <div id="releated_news" class="swiper overflow-hidden">
+      <div class="swiper-wrapper flex w-full">
         <div
           v-for="post in data"
           :key="post.id"

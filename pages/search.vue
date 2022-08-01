@@ -199,6 +199,7 @@ export default {
   @apply p-0;
 }
 
+.search_wrapper >>> .gsc-adBlock,
 .search_wrapper >>> .gsc-positioningWrapper,
 .search_wrapper >>> .gsc-orderby-container,
 .search_wrapper >>> .gs-image-box,

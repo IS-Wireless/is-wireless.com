@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto w-4/5 tablet:w-full">
-    <div class="p-4 bg-gray-light rounded-md">
+    <div class="flex flex-col items-start p-4 bg-gray-light rounded-md">
       <h3
         v-if="data.title"
         class="text-2xl text-blue-main pb-4"
@@ -24,6 +24,12 @@
           </span>
         </li>
       </ul>
+      <CustomLink
+        v-if="data.link"
+        :class="'text-sm text-white uppercase ml-5 tablet:ml-0 tablet-wide:ml-5 px-10 py-3 rounded-full bg-blue-main hover:bg-white hover:text-black duration-300 mt-3 mb-4 tablet:mb-3'"
+        :url="data.link.url"
+        :title="data.link.title"
+      />
     </div>
   </div>
 </template>

@@ -101,6 +101,14 @@ export default {
         },
       },
     ],
+    {
+      src: 'nuxt-magpie',
+      options: {
+        baseUrl: `${process.env.API_URL}/wp-content`,
+        path: '/files',
+        extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
+      },
+    },
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -2,11 +2,14 @@
   <div class="mx-[calc(-12.5%+10px)] tablet:mx-0 tablet:w-full mt-15">
     <div class="w-full mb-32 flex flex-wrap transition-all">
       <div
-        v-for="(item, index) in tiles"
+        v-for="(item, index) in data"
         :key="index"
         class="basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
         :class="{
-          hidden: item.type.value != filterBy.value && filterBy.value != 'All',
+          hidden:
+            item.type &&
+            item.type.value != filterBy.value &&
+            filterBy.value != 'All',
         }"
       >
         <div v-if="index < visibleTilesCount" class="h-full p-[6px]">
@@ -45,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div v-if="visibleTilesCount < tiles.length" class="text-center my-10">
+    <div v-if="visibleTilesCount < data.length" class="text-center my-10">
       <button
         href="https://www.is-wireless.com/networks/"
         class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mb-6"
@@ -62,13 +65,13 @@ import svgIcon from './svg-icon.vue'
 import CustomLink from './custom-link.vue'
 
 export default {
-  name: 'FilterableTiles',
+  name: 'section_filterable_tiles',
   components: {
     svgIcon,
     CustomLink,
   },
   props: {
-    tiles: {
+    data: {
       type: Array,
       required: true,
     },

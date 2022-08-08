@@ -80,18 +80,18 @@
         </li>
       </ul>
     </div>
-    <FilterableTiles :tiles="posts" :filter-by="selectedFilter" />
+    <section_filterable_tiles :data="posts" :filter-by="selectedFilter" />
   </div>
 </template>
 
 <script>
-import FilterableTiles from './filterable-tiles.vue'
+import section_filterable_tiles from './filterable-tiles.vue'
 import svgIcon from './svg-icon.vue'
 
 export default {
   name: 'section_links_list',
   components: {
-    FilterableTiles,
+    section_filterable_tiles,
     svgIcon,
   },
   props: {

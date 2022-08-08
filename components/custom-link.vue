@@ -1,5 +1,9 @@
 <template>
-  <nuxt-link v-if="!title && !isExternalCheck" :to="urlFormatted">
+  <div v-if="!url && !title">
+    <slot> </slot>
+  </div>
+  <div v-else-if="!url && title" v-html="title"></div>
+  <nuxt-link v-else-if="!title && !isExternalCheck" :to="urlFormatted">
     <slot></slot>
   </nuxt-link>
   <nuxt-link
@@ -28,7 +32,7 @@ export default {
     url: {
       type: String,
       required: true,
-      default: '/',
+      default: '',
     },
     title: {
       type: String,

@@ -111,6 +111,7 @@ export default {
     {
       src: 'nuxt-magpie',
       options: {
+        concurrency: 20,
         baseUrl: `${process.env.API_URL}/wp-content`,
         path: '/files',
         extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],

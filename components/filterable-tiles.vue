@@ -1,8 +1,11 @@
 <template>
-  <div class="mx-[calc(-12.5%+10px)] tablet:mx-0 tablet:w-full mt-15">
+  <div
+    v-if="data.tile"
+    class="mx-[calc(-12.5%+10px)] tablet:mx-0 tablet:w-full mt-15"
+  >
     <div class="w-full mb-32 flex flex-wrap transition-all">
       <div
-        v-for="(item, index) in data"
+        v-for="(item, index) in data.tile"
         :key="index"
         class="basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
         :class="{
@@ -25,30 +28,30 @@
                 :name="item.type.value"
               />
 
-              <h2
+              <div
                 v-if="item.title"
-                class="text-lg tablet:text-2xl transform transition block my-[30px]"
+                class="text-lg tablet:text-2xl transform transition block my-[30px] text-gray-dark"
                 v-html="item.title"
-              ></h2>
-              <h2
+              ></div>
+              <div
                 v-if="item.name"
-                class="text-lg tablet:text-2xl transform transition block my-[30px]"
+                class="text-lg tablet:text-2xl transform transition block my-[30px] text-gray-dark"
                 v-html="item.name"
-              ></h2>
+              ></div>
               <span
                 class="inline-block mb-2.5 w-10 tablet:w-[75px] h-0.5 tablet:h-1 align-middle rounded-full bg-blue-main"
-              />
-              <p
+              ></span>
+              <div
                 v-if="item.description"
-                class="mt-[30px] text-sm tablet:text-base"
+                class="mt-[30px] text-sm tablet:text-base text-gray-dark"
                 v-html="item.description"
-              ></p>
+              ></div>
             </div>
           </CustomLink>
         </div>
       </div>
     </div>
-    <div v-if="visibleTilesCount < data.length" class="text-center my-10">
+    <div v-if="visibleTilesCount < data.tile.length" class="text-center my-10">
       <button
         href="https://www.is-wireless.com/networks/"
         class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mb-6"
@@ -65,14 +68,14 @@ import svgIcon from './svg-icon.vue'
 import CustomLink from './custom-link.vue'
 
 export default {
-  name: 'section_filterable_tiles',
+  name: 'section_tiles',
   components: {
     svgIcon,
     CustomLink,
   },
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
     filterBy: {

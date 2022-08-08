@@ -101,6 +101,7 @@ export default {
       import('~/components/more-solutions.vue'),
     section_tabs: () => import('~/components/tabs.vue'),
     section_links_list: () => import('~/components/filters.vue'),
+    section_tiles: () => import('~/components/filterable-tiles.vue'),
     section_grid_links: () => import('~/components/offer-tiles.vue'),
     section_list_links: () => import('~/components/offer-menu.vue'),
     section_cta_background_color: () => import('~/components/cta-funds.vue'),

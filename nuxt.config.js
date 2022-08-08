@@ -85,6 +85,7 @@ export default {
       '@aceforth/nuxt-netlify',
       {
         mergeSecurityHeaders: true,
+        mergeCachingHeaders: true,
         headers: {
           '/*': [
             'Access-Control-Allow-Origin: *',
@@ -99,6 +100,12 @@ export default {
           ],
           '/favicon.ico': ['Cache-Control: public, max-age=86400'],
         },
+        redirects: [
+          {
+            from: 'https://is-wireless.com',
+            to: 'https://www.is-wireless.com',
+          },
+        ],
       },
     ],
     {

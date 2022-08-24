@@ -91,9 +91,7 @@ export default {
             'Access-Control-Allow-Origin: *',
             `X-Build: ${pkg.version}`,
             `X-Robots-Tag: ${
-              (process.env.CF_PAGES_URL &&
-                process.env.CF_PAGES_URL.includes('pages.dev')) ||
-              process.env.CONTEXT !== 'production'
+               process.env.CONTEXT !== 'production'
                 ? 'noindex'
                 : 'index'
             }`,

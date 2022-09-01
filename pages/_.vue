@@ -1,6 +1,6 @@
 <template>
   <div v-if="pageData">
-    <div>
+    <div class="test">
       <div v-if="pageData.acf">
         <LazyHydrate never>
           <StaticBanner

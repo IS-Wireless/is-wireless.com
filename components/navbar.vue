@@ -79,7 +79,7 @@
                 :is-external="item.object == 'custom' ? true : false"
               ></CustomLink>
               <div
-                class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#111] cursor-default"
+                class="absolute top-full left-0 flex invisible hover:visible group-hover:visible delay-150 px-5 w-full bg-[#111] cursor-default"
               >
                 <ul v-if="item.children" class="w-4/5 mx-auto flex">
                   <li

@@ -6,7 +6,7 @@
   >
     <div
       class="absolute w-full h-full top-0 left-0"
-      style="perspective: 5000px;"
+      style="perspective: 5000px"
       v-if="data.image"
     >
       <nuxt-picture
@@ -148,7 +148,7 @@ export default {
 }
 
 .content-html >>> hr {
-  @apply block mx-[10%] mt-5 mb-10;
+  @apply block  mt-5 mb-10;
 }
 
 .content-html >>> code {

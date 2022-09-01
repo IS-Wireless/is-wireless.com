@@ -368,7 +368,7 @@ code {
 }
 
 .text-page >>> hr {
-  @apply block mx-[10%] mt-5 mb-10;
+  @apply block  mt-5 mb-10;
 }
 
 .text-page >>> code {

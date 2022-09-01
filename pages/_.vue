@@ -57,7 +57,10 @@
           class="tablet:w-1/3 sticky top-0 tablet:static"
           :class="pageData.acf.sidebar_right ? 'tablet:ml-5' : 'tablet:mr-5'"
         >
-          <div class="sticky tablet:top-8">
+          <div
+            class="tablet:top-8"
+            :class="pageData.acf.sidebar_right ? 'desktop:sticky' : 'sticky'"
+          >
             <div
               v-for="(component, index) in pageData.acf.sidebar"
               :key="index"

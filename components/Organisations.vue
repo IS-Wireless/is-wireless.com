@@ -1,133 +1,173 @@
 <template>
   <section
-    class="w-4/5 mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
+    class="w-full px-[10%] bg-white mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
   >
     <div
-      v-swiper="swiperOptionsObject"
-      class="swiper swiper-container tablet-small:w-4/6 w-full"
+      id="organisations"
+      class="swiper swiper-container overflow-hidden tablet-small:w-4/6 basis-full tablet-small:basis-4/6 w-full flex-grow-0 flex-shrink-0 h-[120px]"
     >
-      <div class="swiper-wrapper">
-
-        <div class="swiper-slide flex justify-center ">
-          <a class="py-3 px-5 tablet-small:pr-10" :href="url">
-          <img
-            class="swiper-lazy h-full object-contain filter saturate-0 hover:saturate-100 duration-300"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2015/07/O-ran-1024x439.png"
-          />
-          </a>
-        </div>
-        <div class="swiper-slide flex justify-center ">
-          <a class="py-3 px-5 tablet-small:pr-10" :href="url">
-          <img
-            class="swiper-lazy h-full object-contain filter saturate-0 hover:saturate-100 duration-300"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/tip_logo-200x132.png"
-          />
-          </a>
-        </div>
-        <div class="swiper-slide flex justify-center ">
-          <a class="py-3 px-5 tablet-small:pr-10" :href="url">
-          <img
-            class="swiper-lazy h-full object-contain filter saturate-0 hover:saturate-100 duration-300"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2021/10/website-logo-header-withoutclaim-200x114.png"
-          />
-          </a>
-        </div>
-        <div class="swiper-slide flex justify-center ">
-          <a class="py-3 px-5 tablet-small:pr-10" :href="url">
-          <img
-            class="swiper-lazy h-full object-contain filter saturate-0 hover:saturate-100 duration-300"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2020/04/AIOTI-e1610551262965.jpg"
-          />
-          </a>
-        </div>
-        <div class="swiper-slide flex justify-center ">
-          <a class="py-3 px-5 tablet-small:pr-10" :href="url">
-          <img
-            class="swiper-lazy h-full object-contain filter saturate-0 hover:saturate-100 duration-300"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/CyberMadeinPoland.png"
-          />
-          </a>
-        </div>
-        <div class="swiper-slide flex justify-center ">
-          <a class="py-3 px-5 tablet-small:pr-10" :href="url">
-          <img
-            class="swiper-lazy h-full object-contain filter saturate-0 hover:saturate-100 duration-300"
-            data-src="https://www.is-wireless.com/wp-content/uploads/2021/02/ZIPSEE-Cyfrowa-Polska-200x74.png"
-          />
+      <div class="swiper-wrapper flex w-full h-full items-center">
+        <div
+          v-for="(item, index) in logos.swiper"
+          :key="index"
+          class="swiper-slide swiper-duplicate-load-fix h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 desktop:basis-1/4 full-hd:basis-1/5"
+        >
+          <a
+            v-if="item.link"
+            class="py-3 px-5 flex items-center tablet-small:pr-10"
+            :href="item.link"
+          >
+            <nuxt-picture
+              v-if="item.image"
+              width="200"
+              height="200"
+              fit="outside"
+              :src="
+                item.image.url
+                  ? item.image.url.replace(
+                      'www.is-wireless.com',
+                      'api.is-wireless.com'
+                    )
+                  : ''
+              "
+              :alt="item.image.alt ? item.image.alt : ''"
+              :title="item.image.title ? item.image.title : ''"
+              sizes="sm:180px lg:360px"
+              :img-attrs="{
+                loading:
+                  index < loadEager
+                    ? 'eager'
+                    : index > loadEager - 1
+                    ? 'lazy'
+                    : 'auto',
+                class:
+                  'w-full object-contain custom-filter duration-300 opacity-0 transition',
+              }"
+              @load="imageAnimateLoad($event)"
+            />
           </a>
         </div>
       </div>
-
-
     </div>
-    <div class="tablet-small:w-2/6 w-full flex items-center bg-gray-light">
-      <div class="w-1/2 py-3 px-4 desktop:px-10">
-      <a href="https://www.is-wireless.com/about-us/#membership-and-associations">
-        <img src="https://www.is-wireless.com/wp-content/uploads/2021/02/NCBR.svg" alt="">
-      </a>
-
-      </div>
-      <div class="w-1/2 py-3 px-4 desktop:px-10">
-      <a href="https://www.is-wireless.com/about-us/#membership-and-associations">
-        <img src="https://www.is-wireless.com/wp-content/uploads/2021/02/European-Union.svg" alt="">
-      </a>
+    <div
+      class="tablet-small:w-2/6 w-full basis-full tablet-small:basis-2/6 flex-grow-0 flex-shrink-0 flex items-center bg-gray-light h-[120px]"
+    >
+      <div
+        v-for="(item, index) in logos.pinned"
+        :key="index"
+        class="py-3 px-4 desktop:px-10 h-full flex items-center"
+      >
+        <a class="block h-full" :href="linkFilter(item.link)">
+          <nuxt-picture
+            v-if="item.image"
+            loading="eager"
+            class="h-full img-h-full"
+            width="200"
+            height="200"
+            :src="
+              item.image.url
+                ? item.image.url.replace(
+                    'www.is-wireless.com',
+                    'api.is-wireless.com'
+                  )
+                : ''
+            "
+            :alt="item.image.alt ? item.image.alt : ''"
+            :title="item.image.title ? item.image.title : ''"
+          />
+        </a>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-
+import { Swiper, Navigation, Autoplay } from 'swiper'
 
 export default {
+  name: 'Organisations',
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-      url: 'https://www.is-wireless.com/about-us/#membership-and-associations',
-
-      swiperIndex: 1,
-      swiperCount: 0,
+      url: '/about-us/#membership-and-associations',
       iframeYoutubeSrc: '',
       liveURL: '',
+      loadEager: 5,
       swiperOptionsObject: {
-        slidesPerView: 2,
+        modules: [Navigation, Autoplay],
+        slidesPerView: 'auto',
         spaceBetween: 0,
         direction: 'horizontal',
         speed: 600,
         loop: true,
-        
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         },
         preloadImages: false,
         lazy: {
+          loadOnTransitionStart: true,
           loadPrevNext: true,
         },
-        breakpoints: {
-          1664: {
-            slidesPerView: 5,
-          },
-          1224: {
-            slidesPerView: 4,
-          },
-          784: {
-            slidesPerView: 3,
-          },
-          640: {
-            slidesPerView: 2,
-          },          
-          512: {
-            slidesPerView: 3,
-          },
-        }
       },
     }
   },
+  computed: {
+    logos() {
+      let logosSwiper = []
+      let logosPinned = []
 
-  
+      if (this.data.logo) {
+        this.data.logo.forEach((item) => {
+          if (item.pin) {
+            logosPinned.push(item)
+          } else {
+            logosSwiper.push(item)
+          }
+        })
+      }
+      return { swiper: logosSwiper, pinned: logosPinned }
+    },
+  },
+  mounted() {
+    var logos = this.logos
+    if (logos && logos.swiper && logos.swiper.length) {
+      this.$data.swiper = new Swiper(
+        '#organisations',
+        this.$data.swiperOptionsObject
+      )
+    }
+  },
+  methods: {
+    linkFilter(link) {
+      return link
+        .toString()
+        .replace(this.$config.API_URL, '')
+        .replace('https://www.is-wireless.com', '')
+    },
+    imageAnimateLoad(e) {
+      e.currentTarget.classList.remove('opacity-0')
+    },
+  },
 }
 </script>
 
-<style>
+<style lang="postcss" scoped>
+>>> .custom-filter {
+  filter: saturate(0);
+}
+>>> .custom-filter:hover {
+  filter: saturate(1);
+}
 
+.swiper-duplicate-load-fix /deep/ .opacity-0[loading='eager'],
+.swiper-duplicate-load-fix.swiper-slide-duplicate /deep/ .opacity-0 {
+  opacity: 1;
+}
 </style>

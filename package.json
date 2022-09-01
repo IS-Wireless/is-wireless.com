@@ -1,46 +1,85 @@
 {
   "name": "is-wireless",
+  "description": "4G and 5G Mobile Networks of the Future",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt dev",
+    "dev:external": "dotenv -- cross-var nuxt --hostname %IP_LAN% --port 8000",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
-    "test": "jest",
-    "deploy": "nuxt generate"
+    "generate": "nuxt generate --modern",
+    "lint:js": "eslint --ext js --ignore-path \".gitignore\" --ignore-pattern \"**/package/**\" .",
+    "lint:vue": "eslint --ext vue --ignore-path \".gitignore\" --ignore-pattern \"**/package/**\" .",
+    "lint": "npm run lint:js && npm run lint:vue",
+    "deploy": "nuxt generate  --modern"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
-    "@nuxtjs/sanity": "^0.10.0",
+    "@nuxtjs/robots": "^2.5.0",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "@vue/composition-api": "^1.4.9",
+    "@vueuse/core": "^8.3.1",
     "core-js": "^3.9.1",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^5.1.0",
+    "eslint-gitignore": "^0.1.0",
+    "eslint-plugin-tailwind": "^0.2.1",
+    "file-system-cache": "^2.0.0",
+    "formidable": "^2.0.1",
+    "html-filter": "^4.3.3",
+    "ipx": "^0.8.1",
+    "node-cache": "^5.1.2",
     "nuxt": "^2.15.3",
-    "swiper": "^6.8.4",
+    "nuxt-algolia": "^0.2.0",
+    "nuxt-magpie": "^0.0.17",
+    "nuxt-speedkit": "^2.0.17",
+    "superagent": "^8.0.0",
+    "superagent-cache": "^3.1.1",
+    "swiper": "^8.3.2",
     "typescript": "^4.4.4",
-    "vue-awesome-swiper": "file:package/vue-awesome-swiper"
+    "ufo": "^0.8.4",
+    "vue-lazy-hydration": "^2.0.0-beta.4",
+    "vue-share-it": "^1.1.6",
+    "vue2-google-maps": "^0.10.7",
+    "wp-nuxt": "file:package/wp-nuxt",
+    "wpapi": "^1.2.2",
+    "wpapi-extensions": "^1.0.12"
   },
   "devDependencies": {
-    "@nuxt/image": "^0.6.0",
+    "@aceforth/nuxt-netlify": "^1.1.0",
+    "@nuxt/image": "^0.6.2",
+    "@nuxt/postcss8": "^1.1.3",
     "@nuxt/types": "^2.15.3",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/tailwindcss": "^4.2.1",
     "@vue/test-utils": "^1.1.3",
+    "autoprefixer": "^10.4.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.6.3",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.7.0",
-    "jest": "^26.6.3",
-    "postcss": "^8.2.8",
+    "postcss": "^8.4.8",
+    "postcss-nesting": "^10.1.9",
     "prettier": "^2.2.1",
-    "ts-jest": "^26.5.4",
-    "vue-jest": "^3.0.4"
+    "tailwindcss": "^3.0.23"
+  },
+  "overrides": {
+    "wpapi": {
+      "superagent": "^8.0.0",
+      "formidable": "^2.0.1"
+    },
+    "nuxt-speedkit": {
+      "@nuxt/image": "latest"
+    },
+    "@nuxt/image": {
+      "ipx": "0.8.1"
+    }
   }
 }

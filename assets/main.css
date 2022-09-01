@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-dark font-lato;
+  }
+
+  p,
+  select,
+  option,
+  span,
+  th,
+  td {
+    @apply text-base text-gray-dark font-lato;
+  }
+
+  a {
+    @apply text-base text-blue-main hover:text-blue-main-hover transition font-lato;
+  }
+
+  li p {
+    @apply text-gray-dark font-lato;
+  }
+
+  .parallax-img img {
+    @apply min-w-full max-w-none object-cover object-center;
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: 16px;
+    scrollbar-color: rgb(118 136 148) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-[6px];
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full border-4 border-transparent box-border border-solid bg-gray-200;
+  }
+
+  picture.img-full img {
+    @apply w-full;
+  }
+
+  picture.img-h-full img {
+    @apply h-full;
+  }
+
+  .has-sidebar .section-content {
+    @apply max-w-full;
+  }
+
+  .img-no-click a[href$='.jpg'],
+  .img-no-click a[href$='.jpeg'],
+  .img-no-click a[href$='.png'],
+  .img-no-click a[href$='.gif'],
+  .img-no-click a[href$='.svg'],
+  .content-html a[href$='.jpg'],
+  .content-html a[href$='.jpeg'],
+  .content-html a[href$='.png'],
+  .content-html a[href$='.gif'],
+  .content-html a[href$='.svg'] {
+    pointer-events: none;
+  }
+
+  .content-html .wp-caption-text {
+    max-width: 50% !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .content-html .wp-caption-text {
+      max-width: 100% !important;
+    }
+  }
+}

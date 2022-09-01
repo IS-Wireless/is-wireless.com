@@ -1,132 +1,76 @@
 <template>
-  <section
-    class="w-full h-phonewide phone-wide:h-tabletsmall tablet-wide:h-tablet"
-  >
+  <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <div
-      v-swiper="swiperOptionsObject"
-      class="swiper swiper-container w-full h-full bg-gray-default overflow-hidden"
+      id="banner"
+      class="swiper swiper-container relative w-full h-full bg-white overflow-hidden"
     >
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" data-hash="slide1">
-          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Coverage-macro-IS-Wireless.jpg" />
-        </div>
-
-        <div class="swiper-slide" data-hash="slide2">
-          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Indoor-IS-Wireless.jpg" />
-        </div>
-
-        <div class="swiper-slide" data-hash="slide3">
-          <nuxt-picture src="https://www.is-wireless.com/wp-content/uploads/2021/02/Campus-IS-Wireless.jpg" />
+      <div class="swiper-wrapper h-full">
+        <div
+          v-for="(item, index) in data.banner"
+          :key="index"
+          class="swiper-slide h-full"
+        >
+          <nuxt-picture
+            v-if="item.image"
+            v-bind="picCompute(item.image)"
+            :src="item.image.url ? item.image.url : ''"
+            :alt="item.image.alt ? item.image.alt : ''"
+            :title="item.image.title ? item.image.title : ''"
+            width="1920px"
+            height="768px"
+            class="h-full"
+            :loading="index ? 'lazy' : 'eager'"
+            :preload="index ? false : true"
+            :critical="index ? false : true"
+          />
         </div>
       </div>
 
       <div
-        class="
-          absolute
-          h-full
-          w-full
-          flex
-          justify-center
-          items-center
-          flex-col
-          text-5xl
-          bg-black bg-opacity-40
-          z-10
-          top-0
-          select-none
-        "
+        v-if="data.default"
+        class="absolute h-full w-full flex justify-center items-center flex-col text-5xl bg-black bg-opacity-40 z-10 top-0 select-none"
       >
         <img
-        ref="content1"
-          class="
-            opacity-0
-            duration-300
-            mb-12
-            w-4/5
-            phone-wide:mb-20 phone-wide:w-3/5
-            tablet:mb-24
-            tablet-wide:w-3/5 tablet-wide:mb-48
-            desktop:w-1/2 desktop:mb-24
-          "
-          src="https://www.is-wireless.com/wp-content/uploads/2021/02/IS-Wireless-5GMadeTogether.svg"
-          alt="5G logo"
+          v-if="data.default.image"
+          ref="content1"
+          width="550"
+          height="160"
+          class="duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
+          :src="data.default.image.url ? data.default.image.url : ''"
+          :alt="data.default.image.alt ? data.default.image.alt : ''"
+          :title="data.default.image.title ? data.default.image.title : ''"
+          loading="eager"
+          :critical="true"
+          preload
         />
         <p
-        ref="content2"
-          class="
-            opacity-0
-            duration-300
-            text-2xl
-            tablet:text-3xl
-            text-center text-white
-            mb-10
-            tablet-wide:mb-20 tablet-wide:font-semibold
-            px-10
-          "
+          v-if="data.default && data.default.content"
+          ref="content2"
+          class="duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10"
         >
-          4G and 5G Mobile Networks of the Future
+          {{ data.default.content }}
         </p>
         <div
-        ref="content3"
-          class="
-            opacity-0
-            duration-300
-            flex
-            justify-evenly
-            flex-col
-            tablet:flex-row tablet:w-4/5
-            max-w-screen-phablet
-          "
+          v-if="data.default.links"
+          ref="content3"
+          class="duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
         >
-          <a
-            class="
-              text-lg text-white
-              uppercase
-              px-10
-              py-2
-              rounded-full
-              bg-blue-default
-              mx-auto
-              hover:bg-white hover:text-black
-              duration-300
-              tablet:mb-0
-              mb-6
-            "
-            href="https://www.is-wireless.com/networks/"
-            >Networks</a
+          <CustomLink
+            class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
+            v-for="(item, index) in data.default.links"
+            :key="index"
+            :isExternal="false"
+            :url="item.url_link ? item.url_link : ''"
+            :title="item.title_link ? item.title_link : ''"
           >
-          <a
-            class="
-              text-lg text-white
-              uppercase
-              px-10
-              py-2
-              rounded-full
-              bg-blue-default
-              mx-auto
-              hover:bg-white hover:text-black
-              duration-300
-            "
-            href="https://www.is-wireless.com/academy/"
-            >Academy</a
-          >
+          </CustomLink>
         </div>
       </div>
 
       <div
         tabindex="0"
-        class="
-          absolute
-          top-1/2
-          left-0
-          px-6
-          py-4
-          text-white
-          bg-black bg-opacity-30
-          z-20
-        "
+        class="absolute top-1/2 left-0 px-6 py-4 text-white bg-black bg-opacity-30 hover:bg-opacity-40 transition z-20"
         data-slide-prev
-
         role="button"
       >
         <svg
@@ -145,19 +89,8 @@
       </div>
       <div
         tabindex="0"
-        class="
-          absolute
-          top-1/2
-          right-0
-          px-6
-          py-4
-          text-white
-          bg-black bg-opacity-30
-          z-20
-        "
-
+        class="absolute top-1/2 right-0 px-6 py-4 text-white bg-black bg-opacity-30 hover:bg-opacity-40 transition z-20"
         data-slide-next
-
         role="button"
       >
         <svg
@@ -179,59 +112,94 @@
 </template>
 
 <script>
+import { Swiper, Navigation, Autoplay } from 'swiper'
+
+import 'swiper/swiper-bundle.min.css'
+import CustomLink from './custom-link.vue'
 export default {
+  name: 'Banner',
+  components: {
+    CustomLink,
+  },
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default: () => {},
+    },
+  },
   data() {
     return {
+      swiper: null,
       swiperIndex: 0,
       swiperCount: 0,
       iframeYoutubeSrc: '',
       liveURL: '',
       swiperOptionsObject: {
+        modules: [Navigation, Autoplay],
+        virtual: false,
         preventClicksPropagation: false,
         slidesperview: 1,
         spaceBetween: 0,
         direction: 'horizontal',
         effect: 'fade',
         fadeEffect: {
-          crossFade: false
+          crossFade: false,
         },
+        watchOverflow: true,
         navigation: {
           nextEl: '[data-slide-next]',
           prevEl: '[data-slide-prev]',
         },
         speed: 300,
-        loop: true,
-
+        loopedSlides: 1,
+        loop: this.data.banner
+          ? this.data.banner.length > 1
+            ? true
+            : false
+          : false,
         keyboard: {
           enabled: true,
           onlyInViewport: true,
         },
-        hashNavigation: {
-          replaceState: true,
-        },
-
       },
     }
   },
-
   mounted() {
-    const content = [this.$refs.content1, this.$refs.content2, this.$refs.content3];
-    
-    Show(content.length)
-
-    function Show(i) {
-      setTimeout(() => {
-        content[content.length - i].style.opacity = 1
-        if (i > 1) {
-          i--
-          Show(i)
-        }
-      }, 600)
-    }
+    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
+  },
+  methods: {
+    picCompute: function (image) {
+      return {
+        sources: [
+          {
+            src: image.url,
+            sizes: {
+              sm: '100vw',
+              md: '100vw',
+              lg: '100vw',
+              xl: '100vw',
+              xxl: '100vw',
+            },
+            media: '(orientation: landscape)',
+          },
+          {
+            src: image.url,
+            width: '1920px',
+            height: '768px',
+            sizes: { default: '100vw', xxs: '100vw', xs: '100vw' },
+          },
+        ],
+        title: image.title,
+        alt: image.alt,
+      }
+    },
   },
 }
 </script>
 
-<style>
-
+<style lang="postcss" scoped>
+.swiper .swiper-slide picture >>> img {
+  @apply min-w-full h-full object-cover;
+}
 </style>

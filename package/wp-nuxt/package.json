@@ -1,0 +1,57 @@
+{
+  "name": "wp-nuxt",
+  "version": "1.0.30",
+  "description": "",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "yasark <yasarkkk@protonmail.com>"
+    }
+  ],
+  "main": "lib/module.js",
+  "repository": "https://github.com/yashha/wp-nuxt/",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "nuxt build test/fixture",
+    "dev": "HOSTNAME=http://localhost:3000/ nuxt test/fixture",
+    "dev:public": "nuxt test/fixture --hostname 0.0.0.0",
+    "format": "yarn lint --fix",
+    "generate": "nuxt generate test/fixture",
+    "lint": "eslint --fix lib test",
+    "preview": "standard-version --dry-run",
+    "release": "standard-version && git push --follow-tags && yarn publish",
+    "start": "nuxt start test/fixture",
+    "analyze": "nuxt build --analyze -c test/fixture/nuxt.config.js",
+    "test": "npm run lint && jest",
+    "codecov": "codecov"
+  },
+  "eslintIgnore": [
+    "lib/templates/*.*"
+  ],
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@nuxtjs/feed": "^1.1.0",
+    "@nuxtjs/sitemap": "^2.0.1",
+    "url-join": "^4.0.1",
+    "wpapi": "^1.2.1",
+    "wpapi-extensions": "^1.0.10",
+    "superagent-cache": "^3.1.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "2.0.2",
+    "axios": "^0.21.1",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
+    "codecov": "^3.6.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.1.0",
+    "nuxt": "^2.11.0",
+    "standard-version": "^9.1.0"
+  }
+}

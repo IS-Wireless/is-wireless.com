@@ -1,56 +1,47 @@
 <template>
-  <div class="flex flex-col">
-    <Banner
-      v-if="
-        frontPageData.homepageData.sections[0] &&
-        frontPageData.homepageData.sections[0].banner
-      "
-      :data="frontPageData.homepageData.sections[0]"
-    />
-
-    <Organisations
-      v-if="
-        frontPageData.homepageData.sections[1] &&
-        frontPageData.homepageData.sections[1].logo
-      "
-      :data="frontPageData.homepageData.sections[1]"
-    />
-
-    <section_two_column
-      static-class="px-[10%]"
-      :data="frontPageData.homepageData.sections[2]"
-      :full-img="true"
-    />
-
-    <section_two_column_bg
-      :textClr="'text-white'"
-      :data="frontPageData.homepageData.sections[3]"
-    />
-
-    <section_two_column
-      static-class="px-[10%]"
-      :data="frontPageData.homepageData.sections[4]"
-      :full-img="true"
-    />
-
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+  <div>
+    <Breadcrumb :data="pageData.breadcrumb" />
+    <div class="px-[10%]">
+      <BlogTimeline :data="postsGrouped" />
+    </div>
+    <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
 
 <script>
-import Banner from '~/components/Banner.vue'
-import Organisations from '~/components/Organisations.vue'
-import SectionTwoColumns from '~/components/content-section.vue'
-import section_two_column_bg from '~/components/content-section-bg.vue'
-import CtaJob from '~/components/cta-job.vue'
+import BlogTimeline from '~/components/blog-timeline.vue'
+import Breadcrumb from '~/components/breadcrumb.vue'
+import ScrollToTopBtn from '@/components/scroll-to-top.vue'
+import { isSamePath } from 'ufo'
+import { groupBy as _groupBy } from 'lodash'
 
 export default {
+  name: 'BlogPage',
   components: {
-    Banner: Banner,
-    Organisations: Organisations,
-    section_two_column: SectionTwoColumns,
-    section_two_column_bg: section_two_column_bg,
-    CtaJob: CtaJob,
+    Breadcrumb,
+    BlogTimeline,
+    ScrollToTopBtn,
+  },
+  async asyncData({ route, payload, store, $config }) {
+    if (
+      typeof payload !== undefined &&
+      typeof payload === Object &&
+      Object.keys(payload).length
+    ) {
+      return { pageData: payload }
+    } else {
+      const pagesData = store.getters['general/getPagesData']
+      const pagesArray = Object.values(pagesData)
+      for (let i = 0; i < pagesArray.length; i++) {
+        let pageFullPath = pagesArray[i].link
+          .replace($config.API_URL, '')
+          .replace('https://www.is-wireless.com', '')
+        if (isSamePath(pageFullPath, route.path)) {
+          return { pageData: pagesArray[i] }
+        }
+      }
+    }
+    return { pageData: {} }
   },
   head() {
     let tags = {
@@ -59,7 +50,7 @@ export default {
       link: [],
       __dangerouslyDisableSanitizers: ['script'],
     }
-    this.pageData = this.frontPageData.homepageData
+
     if (this.pageData) {
       if (this.pageData.schema) {
         tags.script.push({
@@ -182,9 +173,52 @@ export default {
     return tags
   },
   computed: {
-    frontPageData() {
-      return this.$store.getters['homepage/getData']
+    postsGrouped() {
+      // TODO: move from general
+      let data = this.$store.getters['general/getData']
+      var months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ]
+
+      var groupedPosts = _groupBy(data.posts, (post) => {
+        return new Date(post.date).getFullYear()
+      })
+
+      groupedPosts = Object.keys(groupedPosts)
+        .map((year) => ({ year: year, posts: groupedPosts[year] }))
+        .reverse()
+
+      Object.keys(groupedPosts).forEach((item) => {
+        groupedPosts[item].posts = _groupBy(
+          groupedPosts[item].posts,
+          (post) => {
+            return new Date(post.date).getMonth()
+          }
+        )
+        groupedPosts[item].posts = Object.keys(groupedPosts[item].posts)
+          .map((month) => ({
+            number: month,
+            name: months[month],
+            posts: groupedPosts[item].posts[month],
+          }))
+          .reverse()
+      })
+
+      return groupedPosts
     },
   },
 }
 </script>
+
+<style></style>

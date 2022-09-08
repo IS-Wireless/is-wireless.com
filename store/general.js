@@ -1,6 +1,10 @@
 export const state = () => ({
   menu: {},
   pages: {},
+  posts: {},
+  options: {
+    acf: {},
+  },
 })
 
 export const getters = {

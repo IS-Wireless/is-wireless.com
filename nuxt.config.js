@@ -91,30 +91,22 @@ export default {
             'Access-Control-Allow-Origin: *',
             `X-Build: ${pkg.version}`,
             `X-Robots-Tag: ${
-               process.env.CONTEXT !== 'production'
-                ? 'noindex'
-                : 'index'
+              process.env.CONTEXT !== 'production' ? 'noindex' : 'index'
             }`,
           ],
           '/favicon.ico': ['Cache-Control: public, max-age=86400'],
         },
-        redirects: [
-          {
-            from: 'https://is-wireless.com',
-            to: 'https://www.is-wireless.com',
-          },
-        ],
       },
     ],
-    {
-      src: 'nuxt-magpie',
-      options: {
-        concurrency: 20,
-        baseUrl: `${process.env.API_URL}/wp-content`,
-        path: '/files',
-        extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
-      },
-    },
+    // {
+    //   src: 'nuxt-magpie',
+    //   options: {
+    //     concurrency: 20,
+    //     baseUrl: `${process.env.API_URL}/wp-content`,
+    //     path: '/files',
+    //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
+    //   },
+    // },
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -264,7 +256,7 @@ export default {
         name: 'menuIdSelect',
       },
     ],
-    sitemap: false,
+    // sitemap: false,
     // transport: require('./utils/superagent-cache.js'),
   },
   layoutTransition: {

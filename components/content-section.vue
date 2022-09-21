@@ -3,18 +3,23 @@
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
     >
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8">
-        <SectionHeader v-if="data.title" :title="data.title" />
+      <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2">
+        <SectionHeader
+          class="tablet:pr-[50px] desktop:pr-[140px]"
+          v-if="data.title"
+          :title="data.title"
+        />
         <div
           v-if="data.content"
-          class="content-html text-inherit"
+          class="content-html text-inherit p-5 tablet:p-[50px] desktop:pr-[140px]"
           v-html="data.content"
         ></div>
         <List v-if="data.list" :data="data.list" />
       </div>
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
+      <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2">
+        <Globe v-if="globeImg" />
         <CustomLink
-          v-if="data.image && data.image_url"
+          v-else-if="data.image && data.image_url"
           :url="data.image_url"
           :isExternal="true"
         >
@@ -43,8 +48,8 @@
 import SectionHeader from './section-header.vue'
 import SectionImage from './section-image.vue'
 import HomepageImage from './section-image.vue'
-
 import List from './list.vue'
+import Globe from './globe.vue'
 
 export default {
   name: 'section_two_column',
@@ -53,6 +58,7 @@ export default {
     SectionImage,
     HomepageImage,
     List,
+    Globe,
   },
   props: {
     data: {
@@ -66,6 +72,11 @@ export default {
       default: '',
     },
     fullImg: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    globeImg: {
       type: Boolean,
       required: false,
       default: false,

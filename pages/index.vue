@@ -19,7 +19,7 @@
     <section_two_column
       static-class="px-[10%]"
       :data="frontPageData.homepageData.sections[2]"
-      :full-img="true"
+      :globeImg="true"
     />
 
     <section_two_column_bg

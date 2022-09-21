@@ -1,6 +1,6 @@
 <template>
   <section
-    class="w-full px-[10%] bg-white mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
+    class="w-4/5 container mx-auto bg-white mx-auto flex flex-col-reverse tablet-small:flex-row select-none"
   >
     <div
       id="organisations"

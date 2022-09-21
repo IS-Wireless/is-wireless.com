@@ -6,7 +6,7 @@
   >
     <div
       class="absolute w-full h-full top-0 left-0"
-      style="perspective: 5000px;"
+      style="perspective: 5000px"
       v-if="data.image"
     >
       <nuxt-picture
@@ -30,7 +30,7 @@
       ></nuxt-picture>
     </div>
     <div
-      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto"
+      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto container"
     >
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8"></div>
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">

@@ -4,7 +4,7 @@
       class="w-full bg-black z-30"
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
-      <div class="mx-auto w-4/5 flex justify-between h-[90px]">
+      <div class="mx-auto w-4/5 container flex justify-between h-[90px]">
         <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
           <svg
             width="100%"
@@ -81,7 +81,7 @@
               <div
                 class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#111] cursor-default"
               >
-                <ul v-if="item.children" class="w-4/5 mx-auto flex">
+                <ul v-if="item.children" class="w-4/5 container mx-auto flex">
                   <li
                     v-for="subItem in item.children"
                     :key="subItem.id"
@@ -167,7 +167,7 @@
           <div
             class="absolute top-0 right-0 w-full h-full hidden tablet-wide:block pointer-events-none"
           >
-            <div class="mx-auto w-4/5 h-full flex overflow-hidden">
+            <div class="mx-auto w-4/5 container h-full flex overflow-hidden">
               <span class="w-[200px] shrink-0" />
               <form
                 class="flex flex-row h-full grow bg-gray-darkest transition duration-[400ms] pointer-events-auto"

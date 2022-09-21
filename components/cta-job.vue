@@ -1,8 +1,10 @@
 <template>
-  <section class="w-full relative overflow-hidden bg-[center_top] py-[120px]">
+  <section
+    class="w-4/5 mx-auto container relative overflow-hidden bg-[center_top] py-[120px]"
+  >
     <nuxt-picture
       v-if="data.image"
-      class="block absolute tablet-wide:fixed w-full h-full inset-0 -z-20"
+      class="block absolute w-full h-full inset-0 -z-20"
       :src="
         data.image.url
           ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com')
@@ -17,7 +19,7 @@
     />
     <div
       v-else
-      class="block absolute tablet-wide:fixed w-full h-full inset-0 -z-30"
+      class="block absolute w-full h-full inset-0 -z-30"
       :style="
         data.background_color ? 'background: ' + data.background_color : ''
       "

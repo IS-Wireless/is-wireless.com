@@ -28,51 +28,52 @@
         </div>
       </div>
 
-      <div class="swiper-pagination"></div>
-
       <div
         v-if="data.default"
-        class="absolute px-[10%] inset-0 flex justify-center items-start flex-col text-5xl bg-black/50 z-10 pb-10 tablet:pb-20"
+        class="absolute inset-0 flex justify-center items-start flex-col text-5xl bg-black/50 z-10 pb-10 tablet:pb-20"
       >
-        <img
-          v-if="data.default.image"
-          ref="content1"
-          width="550"
-          height="160"
-          class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
-          :src="data.default.image.url ? data.default.image.url : ''"
-          :alt="data.default.image.alt ? data.default.image.alt : ''"
-          :title="data.default.image.title ? data.default.image.title : ''"
-          loading="eager"
-          :critical="true"
-          preload
-        />
-        <p
-          v-if="data.default && data.default.content"
-          ref="content2"
-          class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-5 tablet:pr-0"
-        >
-          {{ data.default.content }}
-        </p>
-        <div
-          v-if="data.default.links"
-          ref="content3"
-          class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
-        >
-          <CustomLink
-            class="flex items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-3 tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
-            :class="
-              index > 0
-                ? 'border border-solid border-white hover:bg-white/25'
-                : 'bg-blue-main hover:bg-blue-main-hover'
-            "
-            v-for="(item, index) in data.default.links"
-            :key="index"
-            :isExternal="false"
-            :url="item.url_link ? item.url_link : ''"
-            :title="item.title_link ? item.title_link : ''"
+        <div class="w-4/5 container mx-auto relative">
+          <div class="swiper-pagination"></div>
+          <img
+            v-if="data.default.image"
+            ref="content1"
+            width="550"
+            height="160"
+            class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
+            :src="data.default.image.url ? data.default.image.url : ''"
+            :alt="data.default.image.alt ? data.default.image.alt : ''"
+            :title="data.default.image.title ? data.default.image.title : ''"
+            loading="eager"
+            :critical="true"
+            preload
+          />
+          <p
+            v-if="data.default && data.default.content"
+            ref="content2"
+            class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-5 tablet:pr-0"
           >
-          </CustomLink>
+            {{ data.default.content }}
+          </p>
+          <div
+            v-if="data.default.links"
+            ref="content3"
+            class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
+          >
+            <CustomLink
+              class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-3 tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
+              :class="
+                index > 0
+                  ? 'border border-solid border-white hover:bg-white/25'
+                  : 'bg-blue-main hover:bg-blue-main-hover'
+              "
+              v-for="(item, index) in data.default.links"
+              :key="index"
+              :isExternal="false"
+              :url="item.url_link ? item.url_link : ''"
+              :title="item.title_link ? item.title_link : ''"
+            >
+            </CustomLink>
+          </div>
         </div>
       </div>
     </div>
@@ -181,7 +182,7 @@ export default {
 }
 
 .swiper >>> .swiper-pagination.swiper-pagination {
-  @apply w-auto pr-[10vw] z-20 left-[unset] top-0 right-0 flex flex-col justify-center items-center;
+  @apply w-auto z-20 left-[unset] top-0 right-0 flex flex-col justify-center items-center;
 }
 
 .swiper >>> .swiper-pagination .swiper-pagination-bullet {

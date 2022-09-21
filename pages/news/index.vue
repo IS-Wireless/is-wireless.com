@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb :data="pageData.breadcrumb" />
-    <div class="px-[10%]">
+    <div class="w-4/5 mx-auto container">
       <BlogTimeline :data="postsGrouped" />
     </div>
     <ScrollToTopBtn :mobileVisible="true" />

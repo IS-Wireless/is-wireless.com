@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-white">
-    <div class="w-4/5 mx-auto flex flex-row flex-wrap pb-6">
+    <div class="w-4/5 mx-auto container flex flex-row flex-wrap pb-6">
       <div
         class="w-full flex flex-row flex-wrap flex-auto border-b-0 border-r-0 border-l-0 pt-8 border-t border-gray-200"
       >

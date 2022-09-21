@@ -3,7 +3,7 @@
     class="w-full h-[250px] tablet-wide:h-[350px] bg-cover bg-center"
     :style="{ backgroundImage: 'url(' + backgroundUrl + ')' }"
   >
-    <div class="w-4/5 h-full mx-auto flex items-end">
+    <div class="w-4/5 h-full container mx-auto flex items-end">
       <h1
         v-if="title"
         class="text-[40px] tablet:text-[60px] text-white mb-5 tablet:mb-12"

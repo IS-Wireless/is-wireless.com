@@ -8,7 +8,12 @@
       class="shrink-0 w-full tablet:w-1/2 py-2 tablet:px-2"
     >
       <div
-        class="group flex flex-col h-full p-5 tablet:p-[30px] pt-7 tablet:pt-10 bg-white border border-solid border-gray-default hover:border-blue-main rounded-[5px] transition-all duration-300"
+        class="group flex flex-col h-full p-5 tablet:p-[30px] pt-7 tablet:pt-10 rounded-[5px] transition-all duration-300"
+        :class="
+          isTransparent
+            ? 'text-white backdrop-blur-lg bg-white/5'
+            : 'text-gray-dark border border-solid bg-white border-gray-default hover:border-blue-main'
+        "
       >
         <div class="w-10 h-10 mb-5 tablet:mb-[30px]" v-if="item.icon">
           <nuxt-picture
@@ -21,7 +26,7 @@
           <!-- <nuxt-picture
           width="40px"
           height="40px"
-          class="transition duration-300 transform"
+          class="custom-filter transition duration-300"
           :src="item.icon.replace('www.is-wireless.com', 'api.is-wireless.com')"
           :alt="item.alt"
         /> -->
@@ -32,7 +37,7 @@
   <div class="mb-[30px] tablet:mb-10">
     <h4
     v-if="item.header"
-      class="text-xl tablet:text-2xl text-gray-dark"
+      class="text-xl tablet:text-2xl text-inherit"
     >
     {{item.header}}
   </h4>   
@@ -59,9 +64,7 @@
 
 -->
 
-        <h4
-          class="text-xl tablet:text-2xl text-gray-dark mb-[30px] tablet:mb-10"
-        >
+        <h4 class="text-xl tablet:text-2xl text-inherit mb-[30px] tablet:mb-10">
           Header Lorem ipsum dolor sit amet consectetur, adipisicing elit.
         </h4>
         <p v-if="item.point" class="text-inherit" v-html="item.point"></p>
@@ -78,6 +81,10 @@ export default {
       type: Array,
       default: null,
       required: true,
+    },
+    isTransparent: {
+      type: Boolean,
+      default: false,
     },
   },
 }

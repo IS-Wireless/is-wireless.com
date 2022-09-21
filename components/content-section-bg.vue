@@ -17,6 +17,18 @@
         }"
         ref="parallaxTarget"
         :style="parallaxStyle"
+        :src="'/test-bg.png'"
+        :title="data.image.title ? data.image.title : ''"
+        :alt="data.image.alt ? data.image.alt : ''"
+      ></nuxt-picture>
+      <!-- <nuxt-picture
+        class="absolute -inset-7 tablet-wide:-inset-16 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
+        :imgAttrs="{
+          class:
+            'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
+        }"
+        ref="parallaxTarget"
+        :style="parallaxStyle"
         :src="
           data.image.url
             ? data.image.url.replace(
@@ -27,21 +39,25 @@
         "
         :title="data.image.title ? data.image.title : ''"
         :alt="data.image.alt ? data.image.alt : ''"
-      ></nuxt-picture>
+      ></nuxt-picture> -->
     </div>
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto container"
     >
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8"></div>
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
-        <SectionHeader v-if="data.title" :title="data.title" />
+      <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2">
+        <SectionHeader
+          class="tablet:pr-[50px] desktop:pr-[140px]"
+          v-if="data.title"
+          :title="data.title"
+        />
         <div
           v-if="data.content"
-          class="content-html text-inherit"
+          class="content-html text-inherit p-5 tablet:p-[50px] desktop:pr-[140px]"
           v-html="data.content"
         ></div>
-        <List v-if="data.list" :data="data.list" />
+        <List v-if="data.list" :data="data.list" :isTransparent="true" />
       </div>
+      <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2"></div>
     </div>
   </section>
 </template>

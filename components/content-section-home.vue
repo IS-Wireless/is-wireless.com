@@ -1,44 +1,51 @@
 <template>
   <section :class="mergeClass">
     <div
-      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
+      class="text-inherit flex flex-col tablet-wide:flex-row w-4/5 container mx-auto"
     >
       <div
-        class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:mr-8"
+        class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
-        <SectionHeader v-if="data.title" :title="data.title" />
+        <SectionHeader
+          class="tablet:pr-[50px] desktop:pr-[140px]"
+          v-if="data.title"
+          :title="data.title"
+        />
         <div
           v-if="data.content"
-          class="content-html text-inherit"
+          class="content-html text-inherit p-5 tablet:p-[50px] desktop:pr-[140px]"
           v-html="data.content"
         ></div>
         <List v-if="data.list" :data="data.list" />
       </div>
       <div
-        class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:ml-8"
+        class="tablet-wide:absolute tablet-wide inset-0 flex justify-end max-w-[1920px] mx-auto"
+        :class="{ ' mt-0 tablet:mt-[-300px] tablet-wide:mt-0': globeImg }"
       >
-        <Globe v-if="globeImg" />
-        <CustomLink
-          v-else-if="data.image && data.image_url"
-          :url="data.image_url"
-          :isExternal="true"
-        >
+        <div class="tablet-wide:flex-[0_1_50%] w-full tablet-wide:w-1/2">
+          <Globe v-if="globeImg" />
+          <CustomLink
+            v-else-if="data.image && data.image_url"
+            :url="data.image_url"
+            :isExternal="true"
+          >
+            <component
+              :is="fullImg ? 'HomepageImage' : 'SectionImage'"
+              :url="data.image.url ? data.image.url : ''"
+              :title="data.image.title ? data.image.title : ''"
+              :alt="data.image.alt ? data.image.alt : ''"
+              :imageDecoration="data.image_decoration"
+            />
+          </CustomLink>
           <component
+            v-else-if="data.image"
             :is="fullImg ? 'HomepageImage' : 'SectionImage'"
             :url="data.image.url ? data.image.url : ''"
             :title="data.image.title ? data.image.title : ''"
             :alt="data.image.alt ? data.image.alt : ''"
             :imageDecoration="data.image_decoration"
           />
-        </CustomLink>
-        <component
-          v-else-if="data.image"
-          :is="fullImg ? 'HomepageImage' : 'SectionImage'"
-          :url="data.image.url ? data.image.url : ''"
-          :title="data.image.title ? data.image.title : ''"
-          :alt="data.image.alt ? data.image.alt : ''"
-          :imageDecoration="data.image_decoration"
-        />
+        </div>
       </div>
     </div>
   </section>
@@ -52,7 +59,7 @@ import List from './list.vue'
 import Globe from './globe.vue'
 
 export default {
-  name: 'section_two_column',
+  name: 'section_two_column_home',
   components: {
     SectionHeader,
     SectionImage,
@@ -85,7 +92,7 @@ export default {
   computed: {
     mergeClass: function () {
       return (
-        'bg-white relative w-full pb-8 tablet-wide:pb-14 text-gray-dark pt-10 tablet-wide:pt-16' +
+        'bg-white relative w-full pb-8 tablet-wide:pb-14 text-gray-dark' +
         ' ' +
         this.staticClass
       )

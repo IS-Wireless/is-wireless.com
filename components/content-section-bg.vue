@@ -1,7 +1,7 @@
 <template>
   <section
     v-bind="$attrs"
-    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 overflow-hidden"
+    class="bg-white relative w-full pb-8 tablet-wide:pb-14 overflow-hidden max-w-[1920px] mx-auto"
     :class="textClr"
   >
     <div
@@ -44,7 +44,9 @@
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto container"
     >
-      <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2">
+      <div
+        class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
+      >
         <SectionHeader
           class="tablet:pr-[50px] desktop:pr-[140px]"
           v-if="data.title"

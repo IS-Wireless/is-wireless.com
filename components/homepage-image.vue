@@ -1,13 +1,16 @@
 <template>
-  <div class="flex justify-center group">
-    <div :class="{ 'rounded-md overflow-hidden': imageDecoration }">
+  <div class="flex justify-center group h-full tablet-wide:pl-20">
+    <div
+      class="w-full h-full rounded-[5px] tablet-wide:rounded-none overflow-hidden"
+    >
       <nuxt-picture
         width="640"
         height="640"
-        class="block transform max-w-full w-auto transition duration-[1000ms]"
+        class="block transform h-full w-full transition duration-[1000ms]"
         :class="{
-          'group-hover:scale-110 group-hover:opacity-80': imageDecoration,
+          'group-hover:scale-105 group-hover:opacity-80': imageDecoration,
         }"
+        :imgAttrs="{ class: 'h-full w-full object-cover' }"
         :src="url.replace('www.is-wireless.com', 'api.is-wireless.com')"
         :alt="alt"
         :title="title"

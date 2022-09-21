@@ -15,21 +15,12 @@
             : 'text-gray-dark border border-solid bg-white border-gray-default hover:border-blue-main'
         "
       >
-        <div class="w-10 h-10 mb-5 tablet:mb-[30px]" v-if="item.icon">
-          <nuxt-picture
-            width="40px"
-            height="40px"
-            class="custom-filter transition duration-300"
-            :src="'./icon-blue.png'"
-            :alt="item.alt"
-          />
-          <!-- <nuxt-picture
-          width="40px"
-          height="40px"
-          class="custom-filter transition duration-300"
-          :src="item.icon.replace('www.is-wireless.com', 'api.is-wireless.com')"
-          :alt="item.alt"
-        /> -->
+        <div
+          class="w-10 h-10 mb-5 tablet:mb-[30px] group-hover:text-blue-main"
+          v-if="item.icon"
+          :class="isTransparent ? 'text-white' : 'text-gray-default'"
+        >
+          <ListIcon :name="'protocol'" />
         </div>
 
         <!--         TODO: Add values in ACF
@@ -74,8 +65,12 @@
 </template>
 
 <script>
+import ListIcon from '~/components/list-icon.vue'
 export default {
   name: 'List',
+  components: {
+    ListIcon,
+  },
   props: {
     data: {
       type: Array,

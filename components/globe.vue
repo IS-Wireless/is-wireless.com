@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full mt-0 tablet:mt-[-300px] tablet-wide:mt-0">
+  <div class="w-full h-full">
     <svg
       class="h-full tablet-wide:h-auto desktop:h-full w-full"
       width="1005"

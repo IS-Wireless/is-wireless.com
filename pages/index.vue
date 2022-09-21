@@ -16,19 +16,20 @@
       :data="frontPageData.homepageData.sections[1]"
     />
 
-    <section_two_column
+    <section_two_column_home
       :data="frontPageData.homepageData.sections[2]"
       :globeImg="true"
     />
 
     <section_two_column_bg
+      :staticClass="'container mx-auto w-4/5'"
       :textClr="'text-white'"
       :data="frontPageData.homepageData.sections[3]"
     />
 
-    <section_two_column
+    <section_two_column_home
       :data="frontPageData.homepageData.sections[4]"
-      :full-img="true"
+      :fullImg="true"
     />
 
     <CtaJob :data="frontPageData.homepageData.sections[5]" />
@@ -40,6 +41,7 @@ import Banner from '~/components/Banner.vue'
 import Organisations from '~/components/Organisations.vue'
 import SectionTwoColumns from '~/components/content-section.vue'
 import section_two_column_bg from '~/components/content-section-bg.vue'
+import section_two_column_home from '~/components/content-section-home.vue'
 import CtaJob from '~/components/cta-job.vue'
 
 export default {
@@ -48,6 +50,7 @@ export default {
     Organisations: Organisations,
     section_two_column: SectionTwoColumns,
     section_two_column_bg: section_two_column_bg,
+    section_two_column_home: section_two_column_home,
     CtaJob: CtaJob,
   },
   head() {

@@ -1,29 +1,32 @@
 <template>
   <footer class="bg-white">
-    <div class="w-4/5 mx-auto container flex flex-row flex-wrap pb-6">
-      <div
-        class="w-full flex flex-row flex-wrap flex-auto border-b-0 border-r-0 border-l-0 pt-8 border-t border-gray-200"
-      >
+    <div class="flex flex-row flex-wrap">
+      <div class="w-4/5 mx-auto container flex flex-row flex-wrap">
         <div
-          class="w-full phablet:w-1/2 tablet:w-1/3 flex-initial flex mb-12 justify-center phablet:justify-start tablet:pr-12 dekstop:pr-0 items-center"
+          class="w-full phablet:w-1/2 tablet:w-1/3 flex-initial flex mb-10 phablet:mb-[75px] justify-center phablet:justify-start tablet:pr-12 dekstop:pr-0 items-center"
         >
-          <nuxt-picture
+          <CustomLink
             v-if="imageUrl"
-            class="block h-auto w-full max-w-[200px]"
-            :src="
-              imageUrl.replace('www.is-wireless.com', 'api.is-wireless.com')
-            "
-            :alt="'test alt'"
-            width="200"
-            height="67"
-            :title="'is-wireless logo'"
-            :imgAttrs="{
-              loading: 'lazy',
-            }"
-          />
+            :url="'/'"
+            class="custom-filter transition duration-300"
+          >
+            <nuxt-picture
+              class="block h-auto w-full max-w-[200px]"
+              :src="
+                imageUrl.replace('www.is-wireless.com', 'api.is-wireless.com')
+              "
+              :alt="'test alt'"
+              width="200"
+              height="67"
+              :title="'is-wireless logo'"
+              :imgAttrs="{
+                loading: 'lazy',
+              }"
+            />
+          </CustomLink>
         </div>
         <div
-          class="w-full phablet:w-1/2 tablet:w-1/3 flex-initial flex order-last mb-12 justify-end items-center"
+          class="w-full phablet:w-1/2 tablet:w-1/3 flex-initial flex order-last mb-10 phablet:mb-[75px] justify-end items-center"
         >
           <div class="w-full phablet:w-auto relative border-none h-12">
             <select
@@ -52,7 +55,7 @@
           </div>
         </div>
         <div
-          class="w-full tablet:w-1/3 flex-auto flex justify-center mb-12 order-last tablet:order-none"
+          class="w-full tablet:w-1/3 flex-auto flex justify-center mb-10 phablet:mb-[75px] order-last tablet:order-none"
         >
           <ul v-if="socials" class="flex items-center">
             <li
@@ -114,55 +117,80 @@
           </ul>
         </div>
       </div>
-      <div class="w-full flex flex-row flex-wrap flex-auto mb-12 desktop:mb-0">
-        <div
-          class="w-full phablet:w-1/2 my-2 mb-4 flex justify-center phablet:justify-start"
-        >
-          <ul v-if="menu.menu_left" class="list-none m-0 p-0 flex">
-            <li
-              v-for="item in menu.menu_left"
-              :key="item.id"
-              class="mr-4 tablet:mx-0 tablet:mr-8 text-base"
-            >
-              <CustomLink
-                v-if="item.url"
-                class="font-lato text-blue-main hover:text-blue-main-hover transition"
-                :url="item.url"
-                :title="item.title ? item.title : ''"
-                :isExternal="item.object == 'custom' ? true : false"
+
+      <div class="w-full bg-gray-light">
+        <div class="w-4/5 mx-auto container flex flex-row flex-wrap">
+          <div
+            class="w-full phablet:w-1/2 my-5 flex justify-center phablet:justify-start"
+          >
+            <ul v-if="menu.menu_left" class="list-none m-0 p-0 flex">
+              <li
+                v-for="item in menu.menu_left"
+                :key="item.id"
+                class="mr-4 tablet:mx-0 tablet:mr-8 text-base"
               >
-                {{ item.title }}
-              </CustomLink>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="w-full phablet:w-1/2 my-2 mb-4 flex justify-center phablet:justify-end"
-        >
-          <ul v-if="menu.menu_right" class="list-none m-0 p-0 flex">
-            <li
-              v-for="item in menu.menu_right"
-              :key="item.id"
-              class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
-            >
-              <CustomLink
-                v-if="item.url"
-                class="font-lato text-blue-main hover:text-blue-main-hover transition"
-                :url="item.url"
-                :title="item.title ? item.title : ''"
-                :isExternal="item.object == 'custom' ? true : false"
+                <CustomLink
+                  v-if="item.url"
+                  class="font-lato text-gray-dark hover:text-blue-main-hover transition"
+                  :url="item.url"
+                  :title="item.title ? item.title : ''"
+                  :isExternal="item.object == 'custom' ? true : false"
+                >
+                  {{ item.title }}
+                </CustomLink>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="w-full phablet:w-1/2 my-5 flex justify-center phablet:justify-end"
+          >
+            <ul v-if="menu.menu_right" class="list-none m-0 p-0 flex">
+              <li
+                v-for="item in menu.menu_right"
+                :key="item.id"
+                class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
               >
-              </CustomLink>
-            </li>
-          </ul>
+                <CustomLink
+                  v-if="item.url"
+                  class="font-lato text-gray-dark hover:text-blue-main-hover transition"
+                  :url="item.url"
+                  :title="item.title ? item.title : ''"
+                  :isExternal="item.object == 'custom' ? true : false"
+                >
+                </CustomLink>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div
-        class="w-full flex flex-column flex-wrap flex-auto justify-center phablet:justify-start"
-      >
-        <p class="text-xs leading-normal mb-2">
-          {{ copyright }}
-        </p>
+
+        <div
+          class="w-4/5 mx-auto container flex flex-column flex-wrap justify-center phablet:justify-between"
+        >
+          <p class="text-xs leading-normal my-5 phablet:mt-0 phablet:mb-[60px]">
+            {{ copyright }}
+          </p>
+          <div
+            class="w-full phablet:w-1/2 flex mb-5 justify-center phablet:justify-end"
+          >
+            <ul v-if="menu.menu_right_bottom" class="list-none m-0 p-0 flex">
+              <li
+                v-for="(item, index) in menu.menu_right_bottom"
+                :key="index"
+                class="ml-4 tablet:mx-0 tablet:ml-8 text-base"
+              >
+                <CustomLink
+                  v-if="item.url"
+                  class="font-lato text-xs leading-normal mb-10 phablet:mb-[60px] text-gray-dark hover:text-blue-main-hover transition"
+                  :url="item.url"
+                  :title="item.title ? item.title : ''"
+                  :isExternal="item.object == 'custom' ? true : false"
+                >
+                  {{ item.title }}
+                </CustomLink>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -214,4 +242,11 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+>>> .custom-filter {
+  filter: saturate(0);
+}
+>>> .custom-filter:hover {
+  filter: saturate(1);
+}
+</style>

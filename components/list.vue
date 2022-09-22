@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:w-full desktop:flex-nowrap relative z-10 mb-14"
+    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:w-full desktop:flex-nowrap mb-14"
   >
     <li
       v-for="(item, index) in data"
@@ -12,7 +12,7 @@
         :class="
           isTransparent
             ? 'text-white backdrop-blur-lg bg-white/5'
-            : 'text-gray-dark border border-solid bg-white border-gray-default hover:border-blue-main'
+            : 'text-gray-dark border border-solid bg-white border-gray-light hover:border-blue-main'
         "
       >
         <div
@@ -56,7 +56,7 @@
 -->
 
         <h4 class="text-xl tablet:text-2xl text-inherit mb-[30px] tablet:mb-10">
-          Header Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Header Lorem ipsum.
         </h4>
         <p v-if="item.point" class="text-inherit" v-html="item.point"></p>
       </div>

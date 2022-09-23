@@ -47,6 +47,7 @@
       <div
         class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
+      <EffectAppear>
         <SectionHeader
           class="tablet:pr-[50px] desktop:pr-[140px]"
           v-if="data.title"
@@ -57,6 +58,7 @@
           class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
           v-html="data.content"
         ></div>
+      </EffectAppear>
         <List v-if="data.list" :data="data.list" :isTransparent="true" />
       </div>
       <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2"></div>
@@ -70,13 +72,15 @@ import List from './list.vue'
 
 import { useParallax } from '@vueuse/core'
 import { ref, reactive, computed } from '@vue/composition-api'
+import EffectAppear from './effect-appear.vue'
 
 export default {
   name: 'section_two_column_bg',
   components: {
     SectionHeader,
     List,
-  },
+    EffectAppear
+},
   props: {
     textClr: {
       type: String,

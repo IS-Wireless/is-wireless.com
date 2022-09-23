@@ -34,46 +34,52 @@
       >
         <div class="w-4/5 container mx-auto relative">
           <div class="swiper-pagination"></div>
-          <img
-            v-if="data.default.image"
-            ref="content1"
-            width="550"
-            height="160"
-            class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
-            :src="data.default.image.url ? data.default.image.url : ''"
-            :alt="data.default.image.alt ? data.default.image.alt : ''"
-            :title="data.default.image.title ? data.default.image.title : ''"
-            loading="eager"
-            :critical="true"
-            preload
-          />
-          <p
-            v-if="data.default && data.default.content"
-            ref="content2"
-            class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
-          >
-            {{ data.default.content }}
-          </p>
-          <div
-            v-if="data.default.links"
-            ref="content3"
-            class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
-          >
-            <CustomLink
-              class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-[18px] tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
-              :class="
-                index > 0
-                  ? 'border border-solid border-white hover:bg-white/25'
-                  : 'bg-blue-main hover:bg-blue-main-hover'
-              "
-              v-for="(item, index) in data.default.links"
-              :key="index"
-              :isExternal="false"
-              :url="item.url_link ? item.url_link : ''"
-              :title="item.title_link ? item.title_link : ''"
+          <EffectAppear>
+            <img
+              v-if="data.default.image"
+              ref="content1"
+              width="550"
+              height="160"
+              class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
+              :src="data.default.image.url ? data.default.image.url : ''"
+              :alt="data.default.image.alt ? data.default.image.alt : ''"
+              :title="data.default.image.title ? data.default.image.title : ''"
+              loading="eager"
+              :critical="true"
+              preload
+            />
+          </EffectAppear>
+          <EffectAppear :delay="100">
+            <p
+              v-if="data.default && data.default.content"
+              ref="content2"
+              class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
             >
-            </CustomLink>
-          </div>
+              {{ data.default.content }}
+            </p>
+          </EffectAppear>
+          <EffectAppear :delay="200">
+            <div
+              v-if="data.default.links"
+              ref="content3"
+              class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
+            >
+              <CustomLink
+                class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-[18px] tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
+                :class="
+                  index > 0
+                    ? 'border border-solid border-white hover:bg-white/25'
+                    : 'bg-blue-main hover:bg-blue-main-hover'
+                "
+                v-for="(item, index) in data.default.links"
+                :key="index"
+                :isExternal="false"
+                :url="item.url_link ? item.url_link : ''"
+                :title="item.title_link ? item.title_link : ''"
+              >
+              </CustomLink>
+            </div>
+          </EffectAppear>
         </div>
       </div>
     </div>
@@ -81,6 +87,7 @@
 </template>
 
 <script>
+import EffectAppear from './effect-appear.vue'
 import { Swiper, Pagination, Autoplay } from 'swiper'
 
 import 'swiper/swiper-bundle.min.css'
@@ -89,6 +96,7 @@ export default {
   name: 'Banner',
   components: {
     CustomLink,
+    EffectAppear,
   },
   props: {
     data: {

@@ -7,16 +7,18 @@
         class="relative w-4/5 container tablet-wide:max-w-none mx-auto tablet-wide:mx-0 tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
         <div class="relative z-20">
-          <SectionHeader
-            class="tablet:pr-[50px] desktop:pr-[140px] max-w-[560px]"
-            v-if="data.title"
-            :title="data.title"
-          />
-          <div
-            v-if="data.content"
-            class="content-html text-inherit pb-8 tablet:p-[50px] tablet:pb-20 desktop:pr-[140px]"
-            v-html="data.content"
-          ></div>
+          <EffectAppear>
+            <SectionHeader
+              class="tablet:pr-[50px] desktop:pr-[140px] max-w-[560px]"
+              v-if="data.title"
+              :title="data.title"
+            />
+            <div
+              v-if="data.content"
+              class="content-html text-inherit pb-8 tablet:p-[50px] tablet:pb-20 desktop:pr-[140px]"
+              v-html="data.content"
+            ></div>
+          </EffectAppear>
           <List v-if="data.list" :data="data.list" />
         </div>
         <div class="z-10 absolute bottom-0 left-0 max-w-[66%]">
@@ -51,7 +53,9 @@
         :class="{ ' mt-0 tablet:mt-[-300px] tablet-wide:mt-0': globeImg }"
       >
         <div class="tablet-wide:flex-[0_1_50%] w-full tablet-wide:w-1/2">
-          <Globe v-if="globeImg" />
+          <EffectAppear v-if="globeImg">
+            <Globe />
+          </EffectAppear>
           <CustomLink
             v-else-if="data.image && data.image_url"
             :url="data.image_url"
@@ -299,6 +303,7 @@ import SectionImage from './section-image.vue'
 import HomepageImage from './homepage-image.vue'
 import List from './list.vue'
 import Globe from './globe.vue'
+import EffectAppear from './effect-appear.vue'
 
 export default {
   name: 'section_two_column_home',
@@ -308,6 +313,7 @@ export default {
     HomepageImage,
     List,
     Globe,
+    EffectAppear,
   },
   props: {
     data: {

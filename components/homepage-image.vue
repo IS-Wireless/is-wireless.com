@@ -5,9 +5,6 @@
         width="640"
         height="640"
         class="block transform h-full w-full transition duration-[1000ms]"
-        :class="{
-          'group-hover:scale-105 group-hover:opacity-80': imageDecoration,
-        }"
         :imgAttrs="{ class: 'h-full w-full object-cover' }"
         :src="url.replace('www.is-wireless.com', 'api.is-wireless.com')"
         :alt="alt"

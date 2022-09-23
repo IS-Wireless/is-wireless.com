@@ -91,9 +91,7 @@ export default {
             'Access-Control-Allow-Origin: *',
             `X-Build: ${pkg.version}`,
             `X-Robots-Tag: ${
-               process.env.CONTEXT !== 'production'
-                ? 'noindex'
-                : 'index'
+              process.env.CONTEXT !== 'production' ? 'noindex' : 'index'
             }`,
           ],
           '/favicon.ico': ['Cache-Control: public, max-age=86400'],
@@ -264,7 +262,6 @@ export default {
         name: 'menuIdSelect',
       },
     ],
-    sitemap: false,
     // transport: require('./utils/superagent-cache.js'),
   },
   layoutTransition: {

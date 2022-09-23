@@ -8,7 +8,7 @@
       >
         <div class="relative z-20">
           <SectionHeader
-            class="tablet:pr-[50px] desktop:pr-[140px]"
+            class="tablet:pr-[50px] desktop:pr-[140px] max-w-[560px]"
             v-if="data.title"
             :title="data.title"
           />

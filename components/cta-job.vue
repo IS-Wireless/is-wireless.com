@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative overflow-x-hiddenbg-[center_top] h-[300px] phone-wide:h-[500px] desktop:h-[700px] w-full max-w-[1920px] mx-auto mb-[200px]"
+    class="relative overflow-x-hiddenbg-[center_top] h-[500px] desktop:h-[700px] w-full max-w-[1920px] mx-auto mb-[200px]"
   >
     <nuxt-picture
       v-if="data.image"
@@ -30,7 +30,7 @@
       <div class="phone-wide:w-1/2"></div>
       <div class="tablet-wide:ml-20 mb-[-100px] tablet:mr-[10%]">
         <div
-          class="relative p-5 phone-wide:p-10 tablet:p-[60px] tablet-wide:pr-32 tablet:w-[440px] bg-blue-main rounded-[5px]"
+          class="relative p-8 phone-wide:p-10 tablet:p-[60px] tablet-wide:pr-32 tablet:w-[440px] bg-blue-main rounded-[5px]"
         >
           <div class="absolute bottom-0 left-0 w-full">
             <svg
@@ -204,7 +204,7 @@
             ></p>
             <CustomLink
               v-if="data.link"
-              :class="'flex items-center object-cover text-sm text-white hover:text-white uppercase px-7 py-3 rounded-full transition duration-300 tablet:mb-0 mb-6 border border-solid border-white hover:bg-white/25  after:content-[``] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1'"
+              :class="'flex items-center object-cover text-sm text-white hover:text-white uppercase px-7 py-[18px] tablet:py-4 rounded-full transition duration-300 tablet:mb-0 mb-6 border border-solid border-white hover:bg-white/25  after:content-[``] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1'"
               :url="data.link.url"
               :title="data.link.title"
               :isExternal="true"

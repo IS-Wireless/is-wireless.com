@@ -1,7 +1,7 @@
 <template>
-  <section class="w-4/5 container mx-auto">
+  <section class="w-full tablet:w-4/5 tablet:container mx-auto">
     <div
-      class="relative top-[-50px] z-10 w-full bg-white flex flex-col tablet-small:flex-row items-center select-none rounded-[5px] overflow-hidden shadow-2xl shadow-gray-dark/25"
+      class="relative tablet:top-[-50px] z-10 w-full bg-white flex flex-col tablet-small:flex-row items-center select-none tablet:rounded-[5px] overflow-hidden shadow-2xl shadow-gray-dark/25"
     >
       <div
         v-if="data.text"

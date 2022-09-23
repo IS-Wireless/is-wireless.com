@@ -54,7 +54,7 @@
         />
         <div
           v-if="data.content"
-          class="content-html text-inherit p-5 tablet:p-[50px] desktop:pr-[140px]"
+          class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
           v-html="data.content"
         ></div>
         <List v-if="data.list" :data="data.list" :isTransparent="true" />

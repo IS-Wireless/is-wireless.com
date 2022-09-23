@@ -1,8 +1,6 @@
 <template>
   <div class="flex justify-center group h-full tablet-wide:pl-20">
-    <div
-      class="w-full h-full rounded-[5px] tablet-wide:rounded-none overflow-hidden"
-    >
+    <div class="w-full h-full overflow-hidden">
       <nuxt-picture
         width="640"
         height="640"

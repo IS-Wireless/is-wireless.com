@@ -4,7 +4,7 @@
       class="w-full bg-black z-30"
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
-      <div class="mx-auto w-4/5 container flex justify-between h-[90px]">
+      <div class="mx-auto w-4/5 container flex justify-between h-[80px]">
         <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
           <svg
             width="100%"
@@ -233,7 +233,7 @@
         </div>
       </div>
       <div
-        class="fixed flex z-40 top-[90px] tablet-wide:top-0 left-0 w-full bottom-0 overflow-hidden"
+        class="fixed flex z-40 top-[80px] tablet-wide:top-0 left-0 w-full bottom-0 overflow-hidden"
         :class="{ 'pointer-events-none': !expanded }"
       >
         <div
@@ -246,7 +246,7 @@
           :class="{ '-translate-x-full ': expanded }"
         >
           <div
-            class="w-full h-[90px] py-[30px] pr-10 bg-black hidden tablet-wide:block"
+            class="w-full h-[80px] py-[30px] pr-10 bg-black hidden tablet-wide:block"
           >
             <div
               class="ml-auto w-8 cursor-pointer text-white hover:text-white/80"
@@ -405,7 +405,7 @@
         </div>
       </div>
     </nav>
-    <div v-if="expanded" class="h-[90px] tablet-wide:hidden"></div>
+    <div v-if="expanded" class="h-[80px] tablet-wide:hidden"></div>
   </div>
 </template>
 

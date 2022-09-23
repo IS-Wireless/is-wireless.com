@@ -50,7 +50,7 @@
           <p
             v-if="data.default && data.default.content"
             ref="content2"
-            class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-5 tablet:pr-0"
+            class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
           >
             {{ data.default.content }}
           </p>
@@ -60,7 +60,7 @@
             class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
           >
             <CustomLink
-              class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-3 tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
+              class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-[18px] tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
               :class="
                 index > 0
                   ? 'border border-solid border-white hover:bg-white/25'

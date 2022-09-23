@@ -1,10 +1,10 @@
 <template>
   <section :class="mergeClass">
     <div
-      class="text-inherit flex flex-col tablet-wide:flex-row w-4/5 container mx-auto"
+      class="text-inherit flex flex-col tablet-wide:flex-row tablet-wide:w-4/5 tablet-wide:container tablet-wide:mx-auto"
     >
       <div
-        class="relative tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
+        class="relative w-4/5 container tablet-wide:max-w-none mx-auto tablet-wide:mx-0 tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
         <div class="relative z-20">
           <SectionHeader
@@ -14,7 +14,7 @@
           />
           <div
             v-if="data.content"
-            class="content-html text-inherit p-5 tablet:p-[50px] tablet:pb-20 desktop:pr-[140px]"
+            class="content-html text-inherit pb-8 tablet:p-[50px] tablet:pb-20 desktop:pr-[140px]"
             v-html="data.content"
           ></div>
           <List v-if="data.list" :data="data.list" />
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div
-        class="tablet-wide:absolute z-10 tablet-wide inset-0 flex justify-end max-w-[1920px] mx-auto"
+        class="w-full tablet-wide:absolute z-10 tablet-wide inset-0 flex justify-end max-w-[1920px] mx-auto"
         :class="{ ' mt-0 tablet:mt-[-300px] tablet-wide:mt-0': globeImg }"
       >
         <div class="tablet-wide:flex-[0_1_50%] w-full tablet-wide:w-1/2">
@@ -77,7 +77,7 @@
       </div>
       <div
         v-if="fullImg"
-        class="absolute inset-0 flex justify-end items-end tablet-wide:items-center overflow-hidden"
+        class="absolute inset-0 flex justify-end items-start tablet-wide:items-center overflow-hidden mt-[250px] tablet-wide:mt-0"
       >
         <svg
           class="tablet-wide:w-3/4"
@@ -334,7 +334,7 @@ export default {
   computed: {
     mergeClass: function () {
       return (
-        'bg-white relative w-full pb-10 tablet-wide:pb-[140px] text-gray-dark' +
+        'bg-white relative w-full tablet-wide:pb-[140px] text-gray-dark' +
         ' ' +
         this.staticClass
       )

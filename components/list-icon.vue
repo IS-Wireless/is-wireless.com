@@ -1,5 +1,5 @@
 <template>
-  <div class="w-10 h-10 text-inherit">
+  <div class="w-10 h-10 text-inherit group-hover:text-blue-main">
     <svg
       v-if="name == 'no_vendor'"
       xmlns="http://www.w3.org/2000/svg"

@@ -16,7 +16,7 @@
         "
       >
         <div
-          class="w-10 h-10 mb-5 tablet:mb-[30px] group-hover:text-blue-main"
+          class="w-10 h-10 mb-5 tablet:mb-[30px]"
           v-if="item.icon"
           :class="isTransparent ? 'text-white' : 'text-gray-default'"
         >

@@ -13167,9 +13167,11 @@ export default {
 
 <style>
 @keyframes ping2 {
-  75%,
+  0% {
+    transform: scale(0.5);
+  }
   100% {
-    transform: scale(1.5);
+    transform: scale(1);
     opacity: 0;
   }
 }

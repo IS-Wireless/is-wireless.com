@@ -82,8 +82,17 @@ export default {
       },
     }
   },
+  computed: {
+    videoId() {
+      let ID = false
+      if (this.videoSrc) {
+        ID = this.videoSrc.split('watch?v=').pop()
+      }
+      return ID
+    },
+  },
   props: {
-    videoId: String,
+    videoSrc: String,
   },
 }
 </script>

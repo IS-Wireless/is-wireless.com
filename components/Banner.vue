@@ -1,6 +1,9 @@
 <template>
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
-    <PopupVideo ref="popupVideo" :videoId="'AoI79F43hNQ'" />
+    <PopupVideo
+      ref="popupVideo"
+      :videoSrc="'https://www.youtube.com/watch?v=AoI79F43hNQ'"
+    />
     <div
       id="banner"
       class="swiper swiper-container relative w-full h-full bg-white overflow-hidden"

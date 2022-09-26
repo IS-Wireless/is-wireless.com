@@ -9281,7 +9281,17 @@
           fill="#00A2E0"
           fill-opacity="0.1"
           stroke="#00A2E0"
-          class="origin-center scale-0 animate-ping"
+          class="origin-center animate-ping"
+          style="transform-box: fill-box"
+        ></path>
+        <path
+          xmlns="http://www.w3.org/2000/svg"
+          d="M560.099 270.753L560.099 270.753C542.08 261.502 532.819 245.085 532.434 229.367C532.05 213.658 540.525 198.624 558.063 192.059L558.063 192.059L558.068 192.057C558.998 191.697 560.166 191.355 561.258 191.034C561.672 190.913 562.075 190.794 562.45 190.679C596.034 183.692 618.742 207.066 624.145 225.892C629.278 243.809 622.13 259.57 609.275 268.59C596.413 277.615 577.825 279.896 560.099 270.753Z"
+          fill="#00A2E0"
+          fill-opacity="0.1"
+          stroke="#00A2E0"
+          transform="scale(0.5)"
+          class="origin-center animate-[1s_ping2_0.25s_cubic-bezier(0,0,0.2,1)_infinite]"
           style="transform-box: fill-box"
         ></path>
         <path
@@ -13155,4 +13165,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+@keyframes ping2 {
+  75%,
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+</style>

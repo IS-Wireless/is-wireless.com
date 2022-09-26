@@ -93,10 +93,12 @@
             class="hidden tablet-wide:block"
             :delay="300"
           >
-            <div class="flex justify-center items-center mr-5">
+            <div
+              class="group cursor-pointer flex justify-center items-center mr-5"
+              @click="togglePopup()"
+            >
               <div
-                class="group cursor-pointer flex justify-center items-center p-2 w-10 tablet:w-20 aspect-square shrink-0 mr-3 border-2 border-white hover:border-blue-main bg-white/20 rounded-full transition duration-300"
-                @click="togglePopup()"
+                class="flex justify-center items-center p-2 w-10 tablet:w-20 aspect-square shrink-0 mr-3 border-2 border-white group-hover:border-blue-main bg-white/20 rounded-full transition duration-300"
               >
                 <svg
                   class="fill-white group-hover:fill-blue-main transition duration-300"
@@ -113,7 +115,7 @@
               </div>
               <span
                 v-if="data.default.video.title"
-                class="text-white text-xl tablet:text-2xl"
+                class="text-white text-xl tablet:text-2xl group-hover:text-blue-main transition duration-300"
               >
                 {{ data.default.video.title }}
               </span>

@@ -1,8 +1,9 @@
 <template>
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
     <PopupVideo
+      v-if="data.default.video.link"
       ref="popupVideo"
-      :videoSrc="'https://www.youtube.com/watch?v=AoI79F43hNQ'"
+      :videoSrc="data.default.video.link"
     />
     <div
       id="banner"
@@ -87,7 +88,11 @@
               </div>
             </EffectAppear>
           </div>
-          <EffectAppear class="hidden tablet-wide:block" :delay="300">
+          <EffectAppear
+            v-if="data.default.video.link"
+            class="hidden tablet-wide:block"
+            :delay="300"
+          >
             <div class="flex justify-center items-center mr-5">
               <div
                 class="group cursor-pointer flex justify-center items-center p-2 w-10 tablet:w-20 aspect-square shrink-0 mr-3 border-2 border-white hover:border-blue-main bg-white/20 rounded-full transition duration-300"
@@ -106,8 +111,11 @@
                   />
                 </svg>
               </div>
-              <span class="text-white text-xl tablet:text-2xl">
-                PLAY VIDEO
+              <span
+                v-if="data.default.video.title"
+                class="text-white text-xl tablet:text-2xl"
+              >
+                {{ data.default.video.title }}
               </span>
             </div>
           </EffectAppear>
@@ -143,8 +151,6 @@ export default {
       swiper: null,
       swiperIndex: 0,
       swiperCount: 0,
-      iframeYoutubeSrc: '',
-      liveURL: '',
       swiperOptionsObject: {
         modules: [Pagination, Autoplay],
         virtual: false,

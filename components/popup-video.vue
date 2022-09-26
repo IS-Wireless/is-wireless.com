@@ -2,7 +2,7 @@
   <Transition name="fade" mode="in-out">
     <div
       v-if="isOpen"
-      class="fixed inset-0 bg-black/50 z-50 flex justify-center items-center"
+      class="fixed hidden tablet-wide:flex inset-0 bg-black/50 z-50 justify-center items-center"
     >
       <div
         ref="modal"

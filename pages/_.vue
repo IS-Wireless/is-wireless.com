@@ -81,6 +81,9 @@
         v-html="contentFiltered"
         class="img-no-click text-page mb-10 w-4/5 mx-auto container tablet:px-0"
       ></div>
+      <div v-else class="flex flex-col items-center">
+        <span class="text-9xl">404</span><span>Strona nie znaleziona</span>
+      </div>
     </div>
   </div>
 </template>

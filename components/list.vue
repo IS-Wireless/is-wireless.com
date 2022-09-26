@@ -30,7 +30,7 @@
             </h4>
             <div
               v-if="item.text_highlight"
-              class="flex flex-wrap gap-x-6 gap-y-1"
+              class="flex flex-nowrap gap-x-3 desktop:gap-x-6 gap-y-1"
             >
               <div
                 v-for="(entry, index) in item.text_highlight"

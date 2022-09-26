@@ -2,7 +2,7 @@
   <section class="relative z-10 w-full tablet:w-4/5 tablet:container mx-auto">
     <EffectAppear :delay="250">
       <div
-        class="relative tablet:top-[-50px] z-10 w-full bg-white flex flex-col tablet-small:flex-row items-center select-none tablet:rounded-[5px] overflow-hidden shadow-2xl shadow-gray-dark/10"
+        class="relative tablet:top-[-50px] z-10 w-full bg-white flex flex-col tablet-small:flex-row items-center tablet:rounded-[5px] overflow-hidden shadow-2xl shadow-gray-dark/10"
       >
         <div
           v-if="data.title"
@@ -16,11 +16,13 @@
           id="organisations"
           class="swiper swiper-container overflow-hidden basis-[100px] tablet-small:w-4/6 tablet-small:basis-4/6 w-full flex-grow-0 h-[100px]"
         >
-          <div class="swiper-wrapper flex w-full h-full items-center">
+          <div
+            class="swiper-wrapper select-none flex w-full h-full items-center"
+          >
             <div
               v-for="(item, index) in logos.swiper"
               :key="index"
-              class="swiper-slide swiper-duplicate-load-fix h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 tablet:basis-1/3 tablet-wide:1/2 desktop:basis-1/4 full-hd:basis-1/5"
+              class="swiper-slide swiper-duplicate-load-fix h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 desktop:basis-1/3 full-hd:basis-1/4"
             >
               <a
                 v-if="item.link"
@@ -61,7 +63,7 @@
           </div>
         </div>
         <div
-          class="relative tablet-small:w-[40%] tablet-wide:w-2/6 w-full basis-full tablet-small:basis-[40%] tablet-wide:basis-2/6 flex-grow-0 flex-shrink-0 flex items-center justify-center bg-blue-main h-[100px]"
+          class="relative select-none tablet-small:w-[40%] tablet-wide:w-2/6 w-full basis-full tablet-small:basis-[40%] tablet-wide:basis-2/6 flex-grow-0 flex-shrink-0 flex items-center justify-center bg-blue-main h-[100px]"
         >
           <div class="absolute bottom-0 left-0 w-full z-10">
             <svg

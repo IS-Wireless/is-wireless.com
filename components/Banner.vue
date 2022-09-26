@@ -234,7 +234,7 @@ export default {
 }
 
 .swiper >>> .swiper-pagination.swiper-pagination {
-  @apply w-auto z-20 static flex flex-col justify-center items-center;
+  @apply hidden w-auto z-20 static tablet:flex flex-col justify-center items-center;
 }
 
 .swiper >>> .swiper-pagination .swiper-pagination-bullet {

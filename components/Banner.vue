@@ -98,7 +98,7 @@
               @click="togglePopup()"
             >
               <div
-                class="flex justify-center items-center p-2 w-10 tablet:w-20 aspect-square shrink-0 mr-3 border-2 border-white group-hover:border-blue-main bg-white/20 rounded-full transition duration-300"
+                class="flex justify-center items-center p-2 w-10 tablet:w-20 aspect-square shrink-0 mr-3 border-2 border-white group-hover:border-blue-main bg-white/20 group-hover:bg-blue-main/20 rounded-full transition duration-300"
               >
                 <svg
                   class="fill-white group-hover:fill-blue-main transition duration-300"
@@ -234,7 +234,7 @@ export default {
 }
 
 .swiper >>> .swiper-pagination.swiper-pagination {
-  @apply hidden w-auto z-20 static tablet:flex flex-col justify-center items-center;
+  @apply hidden w-auto z-20 static pointer-events-none tablet:flex flex-col justify-center items-center;
 }
 
 .swiper >>> .swiper-pagination .swiper-pagination-bullet {

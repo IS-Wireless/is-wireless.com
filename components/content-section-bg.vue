@@ -16,7 +16,7 @@
             'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
         }"
         ref="parallaxTarget"
-        :style="parallaxStyle"
+        :style="parallaxActive ? parallaxStyle : ''"
         :src="'/test-bg.png'"
         :title="data.image.title ? data.image.title : ''"
         :alt="data.image.alt ? data.image.alt : ''"
@@ -47,18 +47,18 @@
       <div
         class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
-      <EffectAppear>
-        <SectionHeader
-          class="tablet:pr-[50px] desktop:pr-[140px]"
-          v-if="data.title"
-          :title="data.title"
-        />
-        <div
-          v-if="data.content"
-          class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
-          v-html="data.content"
-        ></div>
-      </EffectAppear>
+        <EffectAppear>
+          <SectionHeader
+            class="tablet:pr-[50px] desktop:pr-[140px]"
+            v-if="data.title"
+            :title="data.title"
+          />
+          <div
+            v-if="data.content"
+            class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
+            v-html="data.content"
+          ></div>
+        </EffectAppear>
         <List v-if="data.list" :data="data.list" :isTransparent="true" />
       </div>
       <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2"></div>
@@ -79,9 +79,13 @@ export default {
   components: {
     SectionHeader,
     List,
-    EffectAppear
-},
+    EffectAppear,
+  },
   props: {
+    parallaxActive: {
+      type: Boolean,
+      default: true,
+    },
     textClr: {
       type: String,
       required: false,

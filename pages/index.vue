@@ -24,6 +24,7 @@
     <section_two_column_bg
       :staticClass="'container mx-auto w-4/5'"
       :textClr="'text-white'"
+      :parallaxActive="false"
       :data="frontPageData.homepageData.sections[3]"
     />
 

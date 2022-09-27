@@ -1,11 +1,11 @@
 <template>
   <ul
-    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:w-full desktop:flex-nowrap mb-14"
+    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:w-[80vw]"
   >
     <li
       v-for="(item, index) in data"
       :key="index"
-      class="shrink-0 w-full tablet:w-1/2 py-2 tablet:px-2"
+      class="shrink-0 desktop:shrink w-full tablet:w-1/2 desktop:w-full desktop:basis-[388px] py-2 tablet:px-2"
     >
       <EffectAppear class="h-full">
         <div

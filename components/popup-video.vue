@@ -6,11 +6,11 @@
     >
       <div
         ref="modal"
-        class="relative bg-white rounded-[5px] w-4/5 aspect-video container"
+        class="relative rounded-[5px] bg-gray-darkest w-4/5 aspect-video container"
         :class="{ 'pointer-events-none': !isOpen }"
       >
         <div
-          class="absolute cursor-pointer top-0 right-0 text-black hover:text-gray-dark transition duration-300"
+          class="absolute cursor-pointer -top-10 -right-10 text-white hover:text-gray-dark transition duration-300"
           @click="togglePopup()"
         >
           <svg
@@ -39,10 +39,19 @@
             />
           </svg>
         </div>
-        <div class="p-10 w-full h-full">
+        <div
+          class="absolute inset-0 z-10 flex justify-center items-center transition"
+          :class="{ 'opacity-0': frameLoaded }"
+        >
+          <div class="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="relative z-20 w-full h-full">
           <iframe
             v-if="videoId"
-            class="w-full h-full rounded-[5px]"
+            class="w-full h-full rounded-[5px] transition"
             width="560"
             height="315"
             :src="'https://www.youtube.com/embed/' + videoId"
@@ -50,6 +59,8 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
+            @load="setFrameLoaded()"
+            :class="{ 'opacity-0': !frameLoaded }"
           ></iframe>
         </div>
       </div>
@@ -65,14 +76,20 @@ export default {
   setup() {
     const modal = ref(null)
     let isOpen = ref(false)
+    let frameLoaded = ref(false)
 
     onClickOutside(modal, () => {
       togglePopup()
     })
 
-    return { modal, isOpen, togglePopup }
+    return { modal, isOpen, frameLoaded, togglePopup, setFrameLoaded }
     function togglePopup() {
       isOpen.value = !isOpen.value
+      if (!isOpen.value) frameLoaded.value = false
+    }
+
+    function setFrameLoaded() {
+      frameLoaded.value = true
     }
   },
   head() {
@@ -97,7 +114,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease-in-out;
@@ -106,5 +123,52 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #00a2e0;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
 }
 </style>

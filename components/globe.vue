@@ -9281,7 +9281,7 @@
           fill="#00A2E0"
           fill-opacity="0.1"
           stroke="#00A2E0"
-          class="origin-center animate-ping"
+          class="origin-center animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"
           style="transform-box: fill-box"
         ></path>
         <path
@@ -9291,7 +9291,7 @@
           fill-opacity="0.1"
           stroke="#00A2E0"
           transform="scale(0.5)"
-          class="origin-center animate-[1s_ping2_0.25s_cubic-bezier(0,0,0.2,1)_infinite]"
+          class="origin-center animate-[2s_ping2_0.5s_cubic-bezier(0,0,0.2,1)_infinite]"
           style="transform-box: fill-box"
         ></path>
         <path

@@ -31,7 +31,7 @@
             class="flex flex-col h-full p-5 tablet:p-[30px] pt-7 tablet:pt-10"
             :class="
               isTransparent
-                ? 'text-white backdrop-blur-lg bg-white/5 rounded-[5px]'
+                ? 'text-white backdrop backdrop-blur-lg backdrop-brightness-100 backdrop-contrast-100 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 backdrop-sepia-0 bg-white/5 rounded-[5px]'
                 : 'text-gray-dark bg-white relative z-10 rounded-[4px]'
             "
           >

@@ -59,7 +59,12 @@
             v-html="data.content"
           ></div>
         </EffectAppear>
-        <List v-if="data.list" :data="data.list" :isTransparent="true" />
+        <List
+          v-if="data.list"
+          :data="data.list"
+          :isTransparent="true"
+          :noEffect="true"
+        />
       </div>
       <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2"></div>
     </div>

@@ -2,7 +2,7 @@
   <div
     ref="container"
     class="transition duration-500"
-    :class="{ 'opacity-0 translate-y-2.5': !visited }"
+    :class="{ 'opacity-0 translate-y-2.5': !visited && !disabled }"
     :style="{ 'transition-delay': delay + 'ms' }"
   >
     <slot></slot>
@@ -18,6 +18,10 @@ export default {
     delay: {
       type: Number,
       default: 0,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   setup() {

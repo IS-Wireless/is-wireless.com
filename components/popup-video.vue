@@ -6,11 +6,11 @@
     >
       <div
         ref="modal"
-        class="relative rounded-[5px] bg-gray-darkest w-4/5 aspect-video container"
+        class="relative w-4/5 p-10 container"
         :class="{ 'pointer-events-none': !isOpen }"
       >
         <div
-          class="absolute cursor-pointer -top-10 -right-10 text-white hover:text-gray-dark transition duration-300"
+          class="absolute cursor-pointer top-0 right-0 text-white hover:text-gray-dark transition duration-300"
           @click="togglePopup()"
         >
           <svg
@@ -39,29 +39,31 @@
             />
           </svg>
         </div>
-        <div
-          class="absolute inset-0 z-10 flex justify-center items-center transition"
-          :class="{ 'opacity-0': frameLoaded }"
-        >
-          <div class="lds-ripple">
-            <div></div>
-            <div></div>
+        <div class="relative w-full aspect-video bg-gray-darkest rounded-[5px]">
+          <div
+            class="absolute inset-0 z-10 flex justify-center items-center transition"
+            :class="{ 'opacity-0': frameLoaded }"
+          >
+            <div class="lds-ripple">
+              <div></div>
+              <div></div>
+            </div>
           </div>
-        </div>
-        <div class="relative z-20 w-full h-full">
-          <iframe
-            v-if="videoId"
-            class="w-full h-full rounded-[5px] transition"
-            width="560"
-            height="315"
-            :src="'https://www.youtube.com/embed/' + videoId"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            @load="setFrameLoaded()"
-            :class="{ 'opacity-0': !frameLoaded }"
-          ></iframe>
+          <div class="relative z-20 w-full h-full shadow-2xl">
+            <iframe
+              v-if="videoId"
+              class="w-full h-full rounded-[5px] transition"
+              width="560"
+              height="315"
+              :src="'https://www.youtube.com/embed/' + videoId"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              @load="setFrameLoaded()"
+              :class="{ 'opacity-0': !frameLoaded }"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:w-[80vw]"
+    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:w-[80vw] relative"
   >
     <li
       v-for="(item, index) in data"
@@ -12,7 +12,7 @@
           class="group flex flex-col h-full p-5 tablet:p-[30px] pt-7 tablet:pt-10 rounded-[5px] transition-all duration-300"
           :class="
             isTransparent
-              ? 'text-white backdrop-blur-lg bg-white/5'
+              ? 'text-white backdrop-blur-lg backdrop-brightness-100 backdrop-contrast-100 backdrop-grayscale-0 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 backdrop-sepia-0 bg-white/5'
               : 'text-gray-dark border border-solid bg-white border-gray-light hover:border-blue-main'
           "
         >

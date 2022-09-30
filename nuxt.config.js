@@ -8,6 +8,7 @@ let appVersionCacheBuster =
 
 export default {
   env: {
+    HOSTNAME: process.env.CF_PAGES_URL || 'http://localhost:3000/',
     HOST: process.env.CF_PAGES_URL,
     COMMIT: process.env.CF_PAGES_COMMIT_SHA,
     CONTEXT: process.env.CONTEXT,

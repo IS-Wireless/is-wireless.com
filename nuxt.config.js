@@ -8,7 +8,7 @@ let appVersionCacheBuster =
 
 export default {
   env: {
-    HOSTNAME: process.env.CF_PAGES_URL || 'http://localhost:3000/',
+    HOSTNAME: process.env.CF_PAGES_URL,
     HOST: process.env.CF_PAGES_URL,
     COMMIT: process.env.CF_PAGES_COMMIT_SHA,
     CONTEXT: process.env.CONTEXT,
@@ -16,7 +16,7 @@ export default {
     API_AFFIX: process.env.API_AFFIX,
   },
   publicRuntimeConfig: {
-    baseURL: process.env.CF_PAGES_URL || 'http://localhost:3000/',
+    baseURL: process.env.CF_PAGES_URL,
     API_URL: process.env.API_URL,
     GMAP_KEY: process.env.API_GMAPS,
     version: appVersionCacheBuster,
@@ -105,15 +105,15 @@ export default {
         ],
       },
     ],
-    {
-      src: 'nuxt-magpie',
-      options: {
-        concurrency: 20,
-        baseUrl: `${process.env.API_URL}/wp-content`,
-        path: '/files',
-        extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
-      },
-    },
+    // {
+    //   src: 'nuxt-magpie',
+    //   options: {
+    //     concurrency: 20,
+    //     baseUrl: `${process.env.API_URL}/wp-content`,
+    //     path: '/files',
+    //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
+    //   },
+    // },
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

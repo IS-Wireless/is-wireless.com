@@ -6,7 +6,9 @@ let appVersionCacheBuster =
     ? process.env.CF_PAGES_COMMIT_SHA
     : pkg.version + '_' + Date.now()
 
-const HOSTNAME = process.env.CF_PAGES_URL || 'http://localhost:3000/'
+const HOSTNAME = process.env.CF_PAGES_URL
+  ? process.env.CF_PAGES_URL
+  : 'http://localhost:3000/'
 
 export default {
   env: {
@@ -263,7 +265,6 @@ export default {
         name: 'menuIdSelect',
       },
     ],
-    sitemap: false,
   },
   layoutTransition: {
     name: 'page',

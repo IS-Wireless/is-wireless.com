@@ -12,7 +12,9 @@ function sitemapModule(_moduleOptions) {
   this.requireModule([
     '@nuxtjs/sitemap',
     {
-      hostname: process.env.HOSTNAME || 'http://localhost:3000',
+      hostname: process.env.CF_PAGES_URL
+        ? process.env.CF_PAGES_URL
+        : 'http://localhost:3000/',
       defaults: {
         changefreq: 'daily',
         priority: 1,

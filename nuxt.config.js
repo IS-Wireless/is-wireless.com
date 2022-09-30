@@ -263,7 +263,7 @@ export default {
         name: 'menuIdSelect',
       },
     ],
-    // transport: require('./utils/superagent-cache.js'),
+    sitemap: false,
   },
   layoutTransition: {
     name: 'page',

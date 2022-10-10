@@ -3,7 +3,7 @@ import WPAPI from 'wpapi'
 const { getAll } = require('../utils')
 
 const defaults = {
-  postsBasePath: '/'
+  postsBasePath: '/',
 }
 
 function sitemapModule(_moduleOptions) {
@@ -12,12 +12,14 @@ function sitemapModule(_moduleOptions) {
   this.requireModule([
     '@nuxtjs/sitemap',
     {
-      hostname: process.env.HOSTNAME || 'http://localhost:3000',
+      hostname: process.env.CF_PAGES_URL
+        ? process.env.CF_PAGES_URL
+        : 'http://localhost:3000/',
       defaults: {
         changefreq: 'daily',
         priority: 1,
         lastmodISO: new Date().toISOString(),
-        lastmodrealtime: true
+        lastmodrealtime: true,
       },
       routes: async () => {
         const postsBasePath = options.postsBasePath
@@ -27,14 +29,16 @@ function sitemapModule(_moduleOptions) {
         let posts = []
         posts = await getAll(wpapi.posts(100))
 
-        let pages = posts.map(item => {
+        let pages = posts.map((item) => {
           return {
             url: `${postsBasePath}${item.slug}`,
-            lastmod: new Date(item.modified).toISOString()
+            lastmod: new Date(item.modified).toISOString(),
           }
         })
 
-        pages = pages.concat(this.options.router.routes.map(route => route.path))
+        pages = pages.concat(
+          this.options.router.routes.map((route) => route.path)
+        )
 
         if (this.options.sitemap && this.options.sitemap.additionalPages) {
           pages = [...pages, this.options.sitemap.additionalPages]
@@ -42,8 +46,8 @@ function sitemapModule(_moduleOptions) {
 
         return pages
       },
-      ...options
-    }
+      ...options,
+    },
   ])
 }
 

@@ -1,15 +1,27 @@
 <template>
   <section
     v-bind="$attrs"
-    class="bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 overflow-hidden"
+    class="bg-white relative w-full pb-8 tablet-wide:pb-14 overflow-hidden max-w-[1920px] mx-auto"
     :class="textClr"
   >
     <div
       class="absolute w-full h-full top-0 left-0"
-      style="perspective: 5000px;"
+      style="perspective: 5000px"
       v-if="data.image"
     >
       <nuxt-picture
+        class="absolute -inset-7 tablet-wide:-inset-16 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
+        :imgAttrs="{
+          class:
+            'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
+        }"
+        ref="parallaxTarget"
+        :style="parallaxActive ? parallaxStyle : ''"
+        :src="'/test-bg.png'"
+        :title="data.image.title ? data.image.title : ''"
+        :alt="data.image.alt ? data.image.alt : ''"
+      ></nuxt-picture>
+      <!-- <nuxt-picture
         class="absolute -inset-7 tablet-wide:-inset-16 -z-10 transform after:content-[''] after:block after:absolute after:inset-0 after:bg-black/50 tablet-wide:after:bg-black/5"
         :imgAttrs="{
           class:
@@ -27,21 +39,34 @@
         "
         :title="data.image.title ? data.image.title : ''"
         :alt="data.image.alt ? data.image.alt : ''"
-      ></nuxt-picture>
+      ></nuxt-picture> -->
     </div>
     <div
-      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto"
+      class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-4/5 mx-auto container"
     >
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8"></div>
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
-        <SectionHeader v-if="data.title" :title="data.title" />
-        <div
-          v-if="data.content"
-          class="content-html text-inherit"
-          v-html="data.content"
-        ></div>
-        <List v-if="data.list" :data="data.list" />
+      <div
+        class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
+      >
+        <EffectAppear>
+          <SectionHeader
+            class="tablet:pr-[50px] desktop:pr-[140px]"
+            v-if="data.title"
+            :title="data.title"
+          />
+          <div
+            v-if="data.content"
+            class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
+            v-html="data.content"
+          ></div>
+        </EffectAppear>
+        <List
+          v-if="data.list"
+          :data="data.list"
+          :isTransparent="true"
+          :noEffect="true"
+        />
       </div>
+      <div class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2"></div>
     </div>
   </section>
 </template>
@@ -52,14 +77,20 @@ import List from './list.vue'
 
 import { useParallax } from '@vueuse/core'
 import { ref, reactive, computed } from '@vue/composition-api'
+import EffectAppear from './effect-appear.vue'
 
 export default {
   name: 'section_two_column_bg',
   components: {
     SectionHeader,
     List,
+    EffectAppear,
   },
   props: {
+    parallaxActive: {
+      type: Boolean,
+      default: true,
+    },
     textClr: {
       type: String,
       required: false,

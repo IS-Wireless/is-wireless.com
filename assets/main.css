@@ -11,7 +11,7 @@
   h4,
   h5,
   h6 {
-    @apply text-4xl tablet:text-[50px] tablet:leading-[60px] text-gray-dark font-lato;
+    @apply text-3xl tablet:text-[40px] tablet:leading-[50px] text-gray-dark font-lato;
   }
 
   p,

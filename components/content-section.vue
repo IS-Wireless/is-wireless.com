@@ -3,7 +3,9 @@
     <div
       class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
     >
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8">
+      <div
+        class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:mr-8"
+      >
         <SectionHeader v-if="data.title" :title="data.title" />
         <div
           v-if="data.content"
@@ -12,9 +14,12 @@
         ></div>
         <List v-if="data.list" :data="data.list" />
       </div>
-      <div class="tablet-wide:flex-[1_1_50%] tablet-wide:ml-8">
+      <div
+        class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:ml-8"
+      >
+        <Globe v-if="globeImg" />
         <CustomLink
-          v-if="data.image && data.image_url"
+          v-else-if="data.image && data.image_url"
           :url="data.image_url"
           :isExternal="true"
         >
@@ -42,9 +47,9 @@
 <script>
 import SectionHeader from './section-header.vue'
 import SectionImage from './section-image.vue'
-import HomepageImage from './section-image.vue'
-
+import HomepageImage from './homepage-image.vue'
 import List from './list.vue'
+import Globe from './globe.vue'
 
 export default {
   name: 'section_two_column',
@@ -53,6 +58,7 @@ export default {
     SectionImage,
     HomepageImage,
     List,
+    Globe,
   },
   props: {
     data: {
@@ -70,11 +76,16 @@ export default {
       required: false,
       default: false,
     },
+    globeImg: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   computed: {
     mergeClass: function () {
       return (
-        'bg-white relative w-full pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 text-gray-dark' +
+        'bg-white relative w-full pb-8 tablet-wide:pb-14 text-gray-dark pt-10 tablet-wide:pt-16' +
         ' ' +
         this.staticClass
       )

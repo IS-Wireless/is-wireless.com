@@ -4,7 +4,7 @@
 
     <div
       v-if="results && results.hits.length"
-      class="search_wrapper px-[10%] tablet-wide:pr-0 tablet-wide:w-2/3 relative mt-[70px]"
+      class="search_wrapper w-4/5 container mx-auto tablet-wide:pr-0 relative my-[70px]"
     >
       <div class="flex items-start z-10">
         <div

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <div class="w-4/5 mx-auto">
+    <div class="w-4/5 mx-auto container">
       <ul class="flex flex-row flex-wrap my-4">
         <li
           v-for="(route, index) in routesComputed"
@@ -38,7 +38,6 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true,
       default: () => {},
     },
   },

@@ -1,5 +1,10 @@
 <template>
   <section class="w-full h-[480px] phone-wide:h-[640px] tablet-wide:h-[768px]">
+    <PopupVideo
+      v-if="data.default.video.link"
+      ref="popupVideo"
+      :videoSrc="data.default.video.link"
+    />
     <div
       id="banner"
       class="swiper swiper-container relative w-full h-full bg-white overflow-hidden"
@@ -28,91 +33,104 @@
 
       <div
         v-if="data.default"
-        class="absolute h-full w-full flex justify-center items-center flex-col text-5xl bg-black bg-opacity-40 z-10 top-0 select-none"
+        class="absolute inset-0 flex justify-center items-start flex-col text-5xl bg-black/50 z-10 pb-10 tablet:pb-20"
       >
-        <img
-          v-if="data.default.image"
-          ref="content1"
-          width="550"
-          height="160"
-          class="duration-300 mb-12 w-4/5 phone-wide:mb-20 phone-wide:w-3/5 tablet:mb-24 tablet-wide:w-3/5 tablet-wide:mb-48 desktop:w-1/2 desktop:mb-24"
-          :src="data.default.image.url ? data.default.image.url : ''"
-          :alt="data.default.image.alt ? data.default.image.alt : ''"
-          :title="data.default.image.title ? data.default.image.title : ''"
-          loading="eager"
-          :critical="true"
-          preload
-        />
-        <p
-          v-if="data.default && data.default.content"
-          ref="content2"
-          class="duration-300 text-2xl tablet:text-3xl text-center text-white mb-10 tablet-wide:mb-20 tablet-wide:font-semibold px-10"
-        >
-          {{ data.default.content }}
-        </p>
         <div
-          v-if="data.default.links"
-          ref="content3"
-          class="duration-300 flex justify-evenly flex-col tablet:flex-row tablet:w-4/5 max-w-screen-phablet"
+          class="flex justify-between items-center w-4/5 container mx-auto relative"
         >
-          <CustomLink
-            class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-white hover:text-black duration-300 tablet:mb-0 mb-6"
-            v-for="(item, index) in data.default.links"
-            :key="index"
-            :isExternal="false"
-            :url="item.url_link ? item.url_link : ''"
-            :title="item.title_link ? item.title_link : ''"
+          <div class="tablet-wide:basis-1/2">
+            <EffectAppear>
+              <img
+                v-if="data.default.image"
+                ref="content1"
+                width="550"
+                height="160"
+                class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
+                :src="data.default.image.url ? data.default.image.url : ''"
+                :alt="data.default.image.alt ? data.default.image.alt : ''"
+                :title="
+                  data.default.image.title ? data.default.image.title : ''
+                "
+                loading="eager"
+                :critical="true"
+                preload
+              />
+            </EffectAppear>
+            <EffectAppear :delay="100">
+              <p
+                v-if="data.default && data.default.content"
+                ref="content2"
+                class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
+              >
+                {{ data.default.content }}
+              </p>
+            </EffectAppear>
+            <EffectAppear :delay="200">
+              <div
+                v-if="data.default.links"
+                ref="content3"
+                class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
+              >
+                <CustomLink
+                  class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-[18px] tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
+                  :class="
+                    index > 0
+                      ? 'border border-solid border-white hover:bg-white/25'
+                      : 'bg-blue-main hover:bg-blue-main-hover'
+                  "
+                  v-for="(item, index) in data.default.links"
+                  :key="index"
+                  :isExternal="false"
+                  :url="item.url_link ? item.url_link : ''"
+                  :title="item.title_link ? item.title_link : ''"
+                >
+                </CustomLink>
+              </div>
+            </EffectAppear>
+          </div>
+          <EffectAppear
+            v-if="data.default.video.link"
+            class="hidden tablet-wide:block"
+            :delay="300"
           >
-          </CustomLink>
+            <div
+              class="group cursor-pointer flex justify-center items-center mr-5"
+              @click="togglePopup()"
+            >
+              <div
+                class="flex justify-center items-center p-2 w-10 tablet:w-20 aspect-square shrink-0 mr-3 border-2 border-white group-hover:border-blue-main bg-white/20 group-hover:bg-blue-main/20 rounded-full transition duration-300"
+              >
+                <svg
+                  class="fill-white group-hover:fill-blue-main transition duration-300"
+                  width="28"
+                  height="26"
+                  viewBox="-2 0 21 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 13L7.65417e-07 25.1244L1.82536e-06 0.875644L21 13Z"
+                  />
+                </svg>
+              </div>
+              <span
+                v-if="data.default.video.title"
+                class="text-white text-xl tablet:text-2xl group-hover:text-blue-main transition duration-300"
+              >
+                {{ data.default.video.title }}
+              </span>
+            </div>
+          </EffectAppear>
+          <div class="swiper-pagination"></div>
         </div>
-      </div>
-
-      <div
-        tabindex="0"
-        class="absolute top-1/2 left-0 px-6 py-4 text-white bg-black bg-opacity-30 hover:bg-opacity-40 transition z-20"
-        data-slide-prev
-        role="button"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="28"
-          viewBox="0 0 16 28"
-          fill="none"
-        >
-          <path
-            class="text-white fill-current"
-            d="M3.05891 14.0065L15.2265 1.83892C15.6471 1.41821 15.6471 0.736143 15.2265 0.315436C14.8057 -0.105145 14.1237 -0.105145 13.703 0.315436L0.773687 13.2447C0.353107 13.6654 0.353107 14.3475 0.773687 14.7682L13.703 27.6975C14.131 28.1109 14.8131 28.099 15.2265 27.671C15.6297 27.2534 15.6297 26.5915 15.2265 26.174L3.05891 14.0065Z"
-            fill="#9F9FA1"
-          />
-        </svg>
-      </div>
-      <div
-        tabindex="0"
-        class="absolute top-1/2 right-0 px-6 py-4 text-white bg-black bg-opacity-30 hover:bg-opacity-40 transition z-20"
-        data-slide-next
-        role="button"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="28"
-          viewBox="0 0 16 28"
-          fill="none"
-        >
-          <path
-            class="text-white fill-current"
-            d="M12.9411 14.0065L0.77354 1.83892C0.352896 1.41821 0.352896 0.736143 0.77354 0.315436C1.19431 -0.105145 1.87632 -0.105145 2.29703 0.315436L15.2263 13.2447C15.6469 13.6654 15.6469 14.3475 15.2263 14.7682L2.29703 27.6975C1.86899 28.1109 1.18692 28.099 0.77354 27.671C0.37032 27.2534 0.37032 26.5915 0.77354 26.174L12.9411 14.0065Z"
-            fill="#9F9FA1"
-          />
-        </svg>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { Swiper, Navigation, Autoplay } from 'swiper'
+import EffectAppear from './effect-appear.vue'
+import { Swiper, Pagination, Autoplay } from 'swiper'
 
 import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
@@ -120,6 +138,7 @@ export default {
   name: 'Banner',
   components: {
     CustomLink,
+    EffectAppear,
   },
   props: {
     data: {
@@ -130,13 +149,12 @@ export default {
   },
   data() {
     return {
+      isPopupOpen: false,
       swiper: null,
       swiperIndex: 0,
       swiperCount: 0,
-      iframeYoutubeSrc: '',
-      liveURL: '',
       swiperOptionsObject: {
-        modules: [Navigation, Autoplay],
+        modules: [Pagination, Autoplay],
         virtual: false,
         preventClicksPropagation: false,
         slidesperview: 1,
@@ -151,7 +169,7 @@ export default {
           nextEl: '[data-slide-next]',
           prevEl: '[data-slide-prev]',
         },
-        speed: 300,
+        speed: 500,
         loopedSlides: 1,
         loop: this.data.banner
           ? this.data.banner.length > 1
@@ -162,6 +180,15 @@ export default {
           enabled: true,
           onlyInViewport: true,
         },
+        autoplay: {
+          delay: 6000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true,
+        },
       },
     }
   },
@@ -169,7 +196,10 @@ export default {
     this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
   },
   methods: {
-    picCompute: function (image) {
+    togglePopup() {
+      this.$refs.popupVideo.togglePopup()
+    },
+    picCompute(image) {
       return {
         sources: [
           {
@@ -201,5 +231,19 @@ export default {
 <style lang="postcss" scoped>
 .swiper .swiper-slide picture >>> img {
   @apply min-w-full h-full object-cover;
+}
+
+.swiper >>> .swiper-pagination.swiper-pagination {
+  @apply hidden w-auto z-20 static pointer-events-none tablet:flex flex-col justify-center items-center;
+}
+
+.swiper >>> .swiper-pagination .swiper-pagination-bullet {
+  @apply w-3 h-3 mx-0 my-[5px]  bg-transparent border border-white border-solid transition duration-200 opacity-100 hover:bg-white/25;
+}
+
+.swiper
+  >>> .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply bg-blue-main border-blue-main;
 }
 </style>

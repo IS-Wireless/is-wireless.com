@@ -4,7 +4,7 @@
       class="w-full bg-black z-30"
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
-      <div class="mx-auto w-4/5 flex justify-between h-[90px]">
+      <div class="mx-auto w-4/5 container flex justify-between h-[80px]">
         <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
           <svg
             width="100%"
@@ -19,7 +19,7 @@
             clip-rule="evenodd"
             stroke-linejoin="round"
             stroke-miterlimit="2"
-            class="block h-full py-4 w-[179px]"
+            class="block h-full py-4"
           >
             <path
               d="M258.413,168.229C266.463,168.229 272.996,175.175 272.996,183.725C272.996,192.275 266.463,199.221 258.413,199.221C250.367,199.217 243.833,192.275 243.833,183.725C243.833,175.175 250.367,168.233 258.413,168.233L258.413,168.229Z"
@@ -79,9 +79,9 @@
                 :is-external="item.object == 'custom' ? true : false"
               ></CustomLink>
               <div
-                class="absolute top-full left-0 hidden hover:flex group-hover:flex px-5 w-full bg-[#111] cursor-default"
+                class="absolute top-full left-0 flex invisible hover:visible group-hover:visible delay-150 px-5 w-full bg-[#111] cursor-default"
               >
-                <ul v-if="item.children" class="w-4/5 mx-auto flex">
+                <ul v-if="item.children" class="w-4/5 container mx-auto flex">
                   <li
                     v-for="subItem in item.children"
                     :key="subItem.id"
@@ -167,7 +167,7 @@
           <div
             class="absolute top-0 right-0 w-full h-full hidden tablet-wide:block pointer-events-none"
           >
-            <div class="mx-auto w-4/5 h-full flex overflow-hidden">
+            <div class="mx-auto w-4/5 container h-full flex overflow-hidden">
               <span class="w-[200px] shrink-0" />
               <form
                 class="flex flex-row h-full grow bg-gray-darkest transition duration-[400ms] pointer-events-auto"
@@ -233,7 +233,7 @@
         </div>
       </div>
       <div
-        class="fixed flex z-40 top-[90px] tablet-wide:top-0 left-0 w-full bottom-0 overflow-hidden"
+        class="fixed flex z-40 top-[80px] tablet-wide:top-0 left-0 w-full bottom-0 overflow-hidden"
         :class="{ 'pointer-events-none': !expanded }"
       >
         <div
@@ -246,7 +246,7 @@
           :class="{ '-translate-x-full ': expanded }"
         >
           <div
-            class="w-full h-[90px] py-[30px] pr-10 bg-black hidden tablet-wide:block"
+            class="w-full h-[80px] py-[30px] pr-10 bg-black hidden tablet-wide:block"
           >
             <div
               class="ml-auto w-8 cursor-pointer text-white hover:text-white/80"
@@ -405,7 +405,7 @@
         </div>
       </div>
     </nav>
-    <div v-if="expanded" class="h-[90px] tablet-wide:hidden"></div>
+    <div v-if="expanded" class="h-[80px] tablet-wide:hidden"></div>
   </div>
 </template>
 

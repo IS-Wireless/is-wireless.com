@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb v-if="pageData" :data="pageData.breadcrumb" />
-    <div class="w-full px-[10%]">
+    <div class="w-4/5 container mx-auto">
       <div class="tablet:w-2/3" v-if="pageData">
         <BlogPostContent
           v-if="pageData.content"

@@ -6,16 +6,20 @@ let appVersionCacheBuster =
     ? process.env.CF_PAGES_COMMIT_SHA
     : pkg.version + '_' + Date.now()
 
+const HOSTNAME = process.env.CF_PAGES_URL
+  ? process.env.CF_PAGES_URL
+  : 'http://localhost:3000/'
+
 export default {
   env: {
-    HOST: process.env.CF_PAGES_URL,
+    HOST: HOSTNAME,
     COMMIT: process.env.CF_PAGES_COMMIT_SHA,
     CONTEXT: process.env.CONTEXT,
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
   publicRuntimeConfig: {
-    baseURL: process.env.CF_PAGES_URL || 'http://localhost:3000/',
+    baseURL: HOSTNAME,
     API_URL: process.env.API_URL,
     GMAP_KEY: process.env.API_GMAPS,
     version: appVersionCacheBuster,
@@ -96,6 +100,12 @@ export default {
           ],
           '/favicon.ico': ['Cache-Control: public, max-age=86400'],
         },
+        // redirects: [
+        //   {
+        //     from: 'https://is-wireless.com',
+        //     to: 'https://www.is-wireless.com',
+        //   },
+        // ],
       },
     ],
     // {
@@ -108,7 +118,6 @@ export default {
     //   },
     // },
   ],
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-algolia',
@@ -256,8 +265,6 @@ export default {
         name: 'menuIdSelect',
       },
     ],
-    // sitemap: false,
-    // transport: require('./utils/superagent-cache.js'),
   },
   layoutTransition: {
     name: 'page',

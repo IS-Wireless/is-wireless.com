@@ -15,11 +15,11 @@
       :image-url="footerData.image"
       :copyright="footerData.copyright"
       :menu="{
-        ...footerMenuData,
-        menu_right_bottom: [
-          { title: 'test', url: '/privacy-policy' },
-          { title: 'test2', url: '/privacy-policy' },
-        ],
+        ...ffooterMenuData,
+        // menu_right_bottom: [
+        //   { title: 'test', url: '/privacy-policy' },
+        //   { title: 'test2', url: '/privacy-policy' },
+        // ],
       }"
       :socials="socialMenuData"
       :languages="footerData.language"

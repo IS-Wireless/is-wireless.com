@@ -15,7 +15,7 @@
       :image-url="footerData.image"
       :copyright="footerData.copyright"
       :menu="{
-        ...ffooterMenuData,
+        ...footerMenuData,
         // menu_right_bottom: [
         //   { title: 'test', url: '/privacy-policy' },
         //   { title: 'test2', url: '/privacy-policy' },

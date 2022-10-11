@@ -20,6 +20,17 @@ export default {
         return {}
       },
     },
+    time: {
+      type: Number,
+      default() {
+        return 0
+      },
+    },
+  },
+  watch: {
+    time: function (start, end) {
+      this.player.currentTime(end)
+    },
   },
   data() {
     return {

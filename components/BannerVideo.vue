@@ -7,10 +7,9 @@
       ref="popupVideo"
       :videoSrc="data.default.video.link"
     />
-    <video-player :options="videoOptions" />
+    <video-player :options="videoOptions" :time="videoSecondTime" />
 
     <div
-      v-if="data.default"
       class="absolute inset-0 flex justify-center items-start flex-col text-5xl bg-black/50 z-10 pb-10 tablet:pb-20"
     >
       <div
@@ -97,7 +96,33 @@
             </span>
           </div>
         </EffectAppear>
-        <div class="swiper-pagination"></div>
+        <EffectAppear
+          v-if="data.default.video.link"
+          class="hidden tablet-wide:block"
+          :delay="300"
+        >
+          <div class="swiper !ml-auto !mr-0">
+            <div
+              class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+            >
+              <span
+                class="swiper-pagination-bullet"
+                ref="videoBullet1"
+                @click="videoBullet(1)"
+              ></span
+              ><span
+                class="swiper-pagination-bullet"
+                ref="videoBullet2"
+                @click="videoBullet(2)"
+              ></span
+              ><span
+                class="swiper-pagination-bullet"
+                ref="videoBullet3"
+                @click="videoBullet(3)"
+              ></span>
+            </div>
+          </div>
+        </EffectAppear>
       </div>
     </div>
   </section>
@@ -125,6 +150,7 @@ export default {
   },
   data() {
     return {
+      videoSecondTime: 0,
       isPopupOpen: false,
       swiper: null,
       swiperIndex: 0,
@@ -174,19 +200,41 @@ export default {
         fill: true,
         sources: [
           {
-            src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background.mp4',
+            src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background_Trim.mp4',
             type: 'video/mp4',
           },
         ],
       },
     }
   },
-  mounted() {
-    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
-  },
+  mounted() {},
   methods: {
     togglePopup() {
       this.$refs.popupVideo.togglePopup()
+    },
+    videoBullet(number) {
+      this.$refs.videoBullet1.classList.remove(
+        'swiper-pagination-bullet-active'
+      )
+      this.$refs.videoBullet2.classList.remove(
+        'swiper-pagination-bullet-active'
+      )
+      this.$refs.videoBullet3.classList.remove(
+        'swiper-pagination-bullet-active'
+      )
+
+      if (number == 1) {
+        this.videoSecondTime = 0
+        this.$refs.videoBullet1.classList.add('swiper-pagination-bullet-active')
+      }
+      if (number == 2) {
+        this.videoSecondTime = 5
+        this.$refs.videoBullet2.classList.add('swiper-pagination-bullet-active')
+      }
+      if (number == 3) {
+        this.videoSecondTime = 10
+        this.$refs.videoBullet3.classList.add('swiper-pagination-bullet-active')
+      }
     },
     picCompute(image) {
       return {
@@ -218,12 +266,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.swiper .swiper-slide picture >>> img {
-  @apply min-w-full h-full object-cover;
-}
-
 .swiper >>> .swiper-pagination.swiper-pagination {
-  @apply hidden w-auto z-20 static pointer-events-none tablet:flex flex-col justify-center items-center;
+  @apply hidden w-auto z-20 static tablet:flex flex-col justify-center items-center;
 }
 
 .swiper >>> .swiper-pagination .swiper-pagination-bullet {

@@ -1,7 +1,7 @@
 {
   "name": "is-wireless",
   "description": "4G and 5G Mobile Networks of the Future",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "nuxt dev",
@@ -41,6 +41,7 @@
     "swiper": "^8.3.2",
     "typescript": "^4.4.4",
     "ufo": "^0.8.4",
+    "video.js": "^7.20.3",
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-share-it": "^1.1.6",
     "vue2-google-maps": "^0.10.7",
@@ -68,7 +69,7 @@
     "postcss": "^8.4.8",
     "postcss-nesting": "^10.1.9",
     "prettier": "^2.2.1",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.1"
   },
   "overrides": {
     "wpapi": {

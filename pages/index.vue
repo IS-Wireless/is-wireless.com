@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <Banner
+    <BannerVideo
       v-if="
         frontPageData.homepageData.sections[0] &&
         frontPageData.homepageData.sections[0].banner

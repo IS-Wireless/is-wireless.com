@@ -1,39 +1,51 @@
 <template>
   <div class="flex flex-col">
-    <BannerVideo
-      v-if="
-        frontPageData.homepageData.sections[0] &&
-        frontPageData.homepageData.sections[0].banner
-      "
-      :data="frontPageData.homepageData.sections[0]"
-    />
+    <LazyHydrate when-visible>
+      <BannerVideo
+        v-if="
+          frontPageData.homepageData.sections[0] &&
+          frontPageData.homepageData.sections[0].banner
+        "
+        :data="frontPageData.homepageData.sections[0]"
+      />
+    </LazyHydrate>
 
-    <Organisations
-      v-if="
-        frontPageData.homepageData.sections[1] &&
-        frontPageData.homepageData.sections[1].logo
-      "
-      :data="frontPageData.homepageData.sections[1]"
-    />
+    <LazyHydrate when-visible>
+      <Organisations
+        v-if="
+          frontPageData.homepageData.sections[1] &&
+          frontPageData.homepageData.sections[1].logo
+        "
+        :data="frontPageData.homepageData.sections[1]"
+      />
+    </LazyHydrate>
 
-    <section_two_column_home
-      :data="frontPageData.homepageData.sections[2]"
-      :globeImg="true"
-    />
+    <LazyHydrate when-visible>
+      <section_two_column_home
+        :data="frontPageData.homepageData.sections[2]"
+        :globeImg="true"
+      />
+    </LazyHydrate>
 
-    <section_two_column_bg
-      :staticClass="'container mx-auto w-4/5'"
-      :textClr="'text-white'"
-      :parallaxActive="false"
-      :data="frontPageData.homepageData.sections[3]"
-    />
+    <LazyHydrate when-visible>
+      <section_two_column_bg
+        :staticClass="'container mx-auto w-4/5'"
+        :textClr="'text-white'"
+        :parallaxActive="false"
+        :data="frontPageData.homepageData.sections[3]"
+      />
+    </LazyHydrate>
 
-    <section_two_column_home
-      :data="frontPageData.homepageData.sections[4]"
-      :fullImg="true"
-    />
+    <LazyHydrate when-visible>
+      <section_two_column_home
+        :data="frontPageData.homepageData.sections[4]"
+        :fullImg="true"
+      />
+    </LazyHydrate>
 
-    <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    <LazyHydrate when-visible>
+      <CtaJob :data="frontPageData.homepageData.sections[5]" />
+    </LazyHydrate>
   </div>
 </template>
 

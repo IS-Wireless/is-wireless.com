@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import videojs from 'video.js'
+import videojs from 'video.js/core.es.js'
 
 export default {
   name: 'VideoPlayer',

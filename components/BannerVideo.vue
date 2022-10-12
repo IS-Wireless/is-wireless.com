@@ -104,9 +104,14 @@
 <script>
 import EffectAppear from './effect-appear.vue'
 import { Swiper, Pagination, Autoplay } from 'swiper'
-import VideoPlayer from '@/components/VideoPlayer.vue'
 import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
+
+const VideoPlayer = () => ({
+  component: import('@/components/VideoPlayer'),
+  delay: 200,
+  timeout: 5000,
+})
 
 export default {
   name: 'Banner',

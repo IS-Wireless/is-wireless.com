@@ -16,6 +16,7 @@
             'h-full max-w-[200%] w-[200%] tablet-wide:w-full tablet:max-w-full object-cover',
         }"
         ref="parallaxTarget"
+        loading="lazy"
         :style="parallaxActive ? parallaxStyle : ''"
         :src="'/test-bg.png'"
         :title="data.image.title ? data.image.title : ''"

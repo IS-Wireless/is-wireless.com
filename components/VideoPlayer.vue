@@ -6,6 +6,7 @@
       loop
       muted
       loading="lazy"
+      preload="none"
       ref="videoPlayer"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
     ></video>

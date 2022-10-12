@@ -62,3 +62,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.vjs-hidden {
+  @apply hidden;
+}
+</style>

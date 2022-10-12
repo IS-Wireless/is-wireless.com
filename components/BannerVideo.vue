@@ -17,30 +17,28 @@
         class="flex justify-between items-center w-4/5 container mx-auto relative"
       >
         <div class="tablet-wide:basis-1/2">
-          <EffectAppear>
-            <img
-              v-if="data.default.image"
-              ref="content1"
-              width="550"
-              height="160"
-              class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
-              :src="data.default.image.url ? data.default.image.url : ''"
-              :alt="data.default.image.alt ? data.default.image.alt : ''"
-              :title="data.default.image.title ? data.default.image.title : ''"
-              loading="eager"
-              :critical="true"
-              preload
-            />
-          </EffectAppear>
-          <EffectAppear :delay="100">
-            <p
-              v-if="data.default && data.default.content"
-              ref="content2"
-              class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
-            >
-              {{ data.default.content }}
-            </p>
-          </EffectAppear>
+          <img
+            v-if="data.default.image"
+            ref="content1"
+            width="550"
+            height="160"
+            class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
+            :src="data.default.image.url ? data.default.image.url : ''"
+            :alt="data.default.image.alt ? data.default.image.alt : ''"
+            :title="data.default.image.title ? data.default.image.title : ''"
+            loading="eager"
+            :critical="true"
+            preload
+          />
+
+          <p
+            v-if="data.default && data.default.content"
+            ref="content2"
+            class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
+          >
+            {{ data.default.content }}
+          </p>
+
           <EffectAppear :delay="200">
             <div
               v-if="data.default.links"

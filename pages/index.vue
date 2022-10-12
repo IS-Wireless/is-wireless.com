@@ -50,21 +50,18 @@
 </template>
 
 <script>
-import Banner from '~/components/Banner.vue'
-import Organisations from '~/components/Organisations.vue'
-import SectionTwoColumns from '~/components/content-section.vue'
-import section_two_column_bg from '~/components/content-section-bg.vue'
-import section_two_column_home from '~/components/content-section-home.vue'
-import CtaJob from '~/components/cta-job.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
   components: {
-    Banner: Banner,
-    Organisations: Organisations,
-    section_two_column: SectionTwoColumns,
-    section_two_column_bg: section_two_column_bg,
-    section_two_column_home: section_two_column_home,
-    CtaJob: CtaJob,
+    LazyHydrate,
+    Banner: () => import('@/components/Banner.vue'),
+    Organisations: () => import('~/components/Organisations.vue'),
+    section_two_column: () => import('~/components/content-section.vue'),
+    section_two_column_bg: () => import('~/components/content-section-bg.vue'),
+    section_two_column_home: () =>
+      import('~/components/content-section-home.vue'),
+    CtaJob: () => import('~/components/cta-job.vue'),
   },
   head() {
     let tags = {

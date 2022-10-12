@@ -4,15 +4,19 @@
       <div
         v-for="(image, index) in data.galeria"
         :key="index"
-        class="basis-1/2 tablet-wide:basis-1/3 flex justify-center items-center p-[5%] tablet-wide:p-[2.5%]"
+        class="basis-1/2 tablet-wide:basis-1/3 flex justify-center items-center p-[5%] tablet-wide:p-[2.5%] h-[120px] tablet-wide:h-[150px]"
       >
         <CustomLink
           v-if="image.url && image.img_url"
           :url="image.url"
           :isExternal="true"
-          class="block w-full p-1"
+          class="block w-full p-1 h-full"
         >
           <nuxt-picture
+            class="w-full img-full"
+            :imgAttrs="{
+              class: '!h-full object-contain',
+            }"
             :src="
               image.img_url.url.replace(
                 'www.is-wireless.com',
@@ -21,11 +25,14 @@
             "
             :title="image.img_url.title ? image.img_url.title : ''"
             :alt="image.img_url.alt ? image.img_url.alt : ''"
-            class="w-full img-full"
           />
         </CustomLink>
         <nuxt-picture
           v-else-if="image.img_url"
+          class="w-full h-full img-full p-1"
+          :imgAttrs="{
+            class: '!h-full object-contain',
+          }"
           :src="
             image.img_url.url.replace(
               'www.is-wireless.com',
@@ -34,7 +41,6 @@
           "
           :title="image.img_url.title ? image.img_url.title : ''"
           :alt="image.img_url.alt ? image.img_url.alt : ''"
-          class="w-full img-full p-1"
         />
       </div>
     </div>

@@ -1,16 +1,32 @@
 <template>
   <div class="relative w-full h-full">
     <video
+      playsinline
+      autoplay
+      loop
+      muted
       ref="videoPlayer"
-      class="video-js object-cover w-full [&>*]:object-none desktop:[&>*]:object-cover"
+      class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
     ></video>
+
+    <nuxt-picture
+      src="video_ poster.jpg"
+      alt="Poster"
+      width="1920px"
+      height="768px"
+      class="h-full absolute inset-0"
+      :imgAttrs="{ class: 'h-full object-cover' }"
+      loading="eager"
+      preload
+      critical="true"
+      ref="videoPlayerPoster"
+    />
   </div>
 </template>
 
 <script>
 import videojs from 'video.js'
 
-import 'video.js/dist/video-js.css'
 export default {
   name: 'VideoPlayer',
   props: {
@@ -27,9 +43,16 @@ export default {
     }
   },
   mounted() {
-    this.player = videojs(this.$refs.videoPlayer, this.options, () => {
-      this.player.log('onPlayerReady', this)
-    })
+    this.player = videojs(
+      this.$refs.videoPlayer,
+      this.options,
+      this.playerReady
+    )
+  },
+  methods: {
+    playerReady() {
+      this.$refs['videoPlayerPoster'].$el.classList.add('invisible')
+    },
   },
   beforeDestroy() {
     if (this.player) {

@@ -109,6 +109,7 @@ import { Swiper, Pagination, Autoplay } from 'swiper'
 import VideoPlayer from '@/components/VideoPlayer.vue'
 import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
+
 export default {
   name: 'Banner',
   components: {

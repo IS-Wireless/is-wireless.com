@@ -7,7 +7,10 @@
       ref="popupVideo"
       :videoSrc="data.default.video.link"
     />
-    <video-player :options="videoOptions" />
+
+    <LazyHydrate when-idle>
+      <video-player :options="videoOptions" />
+    </LazyHydrate>
 
     <div
       v-if="data.default"
@@ -102,23 +105,17 @@
 </template>
 
 <script>
+import LazyHydrate from 'vue-lazy-hydration'
 import EffectAppear from './effect-appear.vue'
-import { Swiper, Pagination, Autoplay } from 'swiper'
-import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
-
-const VideoPlayer = () => ({
-  component: import('@/components/VideoPlayer'),
-  delay: 200,
-  timeout: 5000,
-})
 
 export default {
   name: 'Banner',
   components: {
+    LazyHydrate,
     CustomLink,
     EffectAppear,
-    VideoPlayer,
+    VideoPlayer: () => import('@/components/VideoPlayer.vue'),
   },
   props: {
     data: {
@@ -130,46 +127,6 @@ export default {
   data() {
     return {
       isPopupOpen: false,
-      swiper: null,
-      swiperIndex: 0,
-      swiperCount: 0,
-      swiperOptionsObject: {
-        modules: [Pagination, Autoplay],
-        virtual: false,
-        preventClicksPropagation: false,
-        slidesperview: 1,
-        spaceBetween: 0,
-        direction: 'horizontal',
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: false,
-        },
-        watchOverflow: true,
-        navigation: {
-          nextEl: '[data-slide-next]',
-          prevEl: '[data-slide-prev]',
-        },
-        speed: 500,
-        loopedSlides: 1,
-        loop: this.data.banner
-          ? this.data.banner.length > 1
-            ? true
-            : false
-          : false,
-        keyboard: {
-          enabled: true,
-          onlyInViewport: true,
-        },
-        autoplay: {
-          delay: 6000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true,
-        },
-      },
       videoOptions: {
         autoplay: true,
         controls: false,
@@ -189,37 +146,9 @@ export default {
       },
     }
   },
-  mounted() {
-    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
-  },
   methods: {
     togglePopup() {
       this.$refs.popupVideo.togglePopup()
-    },
-    picCompute(image) {
-      return {
-        sources: [
-          {
-            src: image.url,
-            sizes: {
-              sm: '100vw',
-              md: '100vw',
-              lg: '100vw',
-              xl: '100vw',
-              xxl: '100vw',
-            },
-            media: '(orientation: landscape)',
-          },
-          {
-            src: image.url,
-            width: '1920px',
-            height: '768px',
-            sizes: { default: '100vw', xxs: '100vw', xs: '100vw' },
-          },
-        ],
-        title: image.title,
-        alt: image.alt,
-      }
     },
   },
 }

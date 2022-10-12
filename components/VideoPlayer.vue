@@ -2,7 +2,6 @@
   <div class="relative w-full h-full">
     <video
       playsinline
-      autoplay
       loop
       muted
       loading="lazy"
@@ -49,7 +48,7 @@ export default {
       this.$refs.videoPlayer,
       this.options,
       this.playerReady
-    )
+    ).play()
   },
   methods: {
     playerReady() {

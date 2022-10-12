@@ -2,7 +2,7 @@
   <div class="relative w-full h-full">
     <video
       ref="videoPlayer"
-      class="video-js object-cover w-full [&>*]:object-cover"
+      class="video-js object-cover w-full [&>*]:object-none desktop:[&>*]:object-cover"
     ></video>
   </div>
 </template>

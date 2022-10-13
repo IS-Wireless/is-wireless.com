@@ -42,30 +42,28 @@
             {{ data.default.content }}
           </p>
 
-          <EffectAppear :delay="200">
-            <div
-              v-if="data.default.links"
-              ref="content3"
-              class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
+          <div
+            v-if="data.default.links"
+            ref="content3"
+            class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
+          >
+            <CustomLink
+              class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-[18px] tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
+              :class="
+                index > 0
+                  ? 'border border-solid border-white hover:bg-white/25'
+                  : 'bg-blue-main hover:bg-blue-main-hover'
+              "
+              v-for="(item, index) in data.default.links"
+              :key="index"
+              :isExternal="false"
+              :url="item.url_link ? item.url_link : ''"
+              :title="item.title_link ? item.title_link : ''"
             >
-              <CustomLink
-                class="flex w-fit items-center text-sm tablet:text-base text-white hover:text-white font-medium uppercase px-6 tablet:px-8 py-[18px] tablet:py-4 rounded-full tablet:mr-[50px] duration-300 tablet:mb-0 mb-6 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1"
-                :class="
-                  index > 0
-                    ? 'border border-solid border-white hover:bg-white/25'
-                    : 'bg-blue-main hover:bg-blue-main-hover'
-                "
-                v-for="(item, index) in data.default.links"
-                :key="index"
-                :isExternal="false"
-                :url="item.url_link ? item.url_link : ''"
-                :title="item.title_link ? item.title_link : ''"
-              >
-              </CustomLink>
-            </div>
-          </EffectAppear>
+            </CustomLink>
+          </div>
         </div>
-        <EffectAppear
+        <div
           v-if="data.default.video.link"
           class="hidden tablet-wide:block"
           :delay="300"
@@ -97,8 +95,7 @@
               {{ data.default.video.title }}
             </span>
           </div>
-        </EffectAppear>
-        <div class="swiper-pagination"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -106,7 +103,6 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import EffectAppear from './effect-appear.vue'
 import CustomLink from './custom-link.vue'
 
 export default {
@@ -114,7 +110,6 @@ export default {
   components: {
     LazyHydrate,
     CustomLink,
-    EffectAppear,
     VideoPlayer: () => import('@/components/VideoPlayer.vue'),
   },
   props: {

@@ -237,7 +237,6 @@
 </template>
 
 <script>
-import EffectAppear from './effect-appear.vue'
 import { Swiper, Navigation, Autoplay } from 'swiper'
 
 export default {
@@ -273,9 +272,6 @@ export default {
         },
       },
     }
-  },
-  components: {
-    EffectAppear,
   },
   computed: {
     logos() {

@@ -55,7 +55,7 @@ import LazyHydrate from 'vue-lazy-hydration'
 export default {
   components: {
     LazyHydrate,
-    Banner: () => import('@/components/Banner.vue'),
+    BannerVideo: () => import('@/components/BannerVideo.vue'),
     Organisations: () => import('~/components/Organisations.vue'),
     section_two_column: () => import('~/components/content-section.vue'),
     section_two_column_bg: () => import('~/components/content-section-bg.vue'),

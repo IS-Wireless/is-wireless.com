@@ -7,18 +7,16 @@
         class="relative w-4/5 container tablet-wide:max-w-none mx-auto tablet-wide:mx-0 tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
         <div class="relative z-20">
-          <EffectAppear>
-            <SectionHeader
-              class="tablet:pr-[50px] desktop:pr-[140px] max-w-[560px]"
-              v-if="data.title"
-              :title="data.title"
-            />
-            <div
-              v-if="data.content"
-              class="content-html text-inherit pb-8 tablet:p-[50px] tablet:pb-20 desktop:pr-[140px]"
-              v-html="data.content"
-            ></div>
-          </EffectAppear>
+          <SectionHeader
+            class="tablet:pr-[50px] desktop:pr-[140px] max-w-[560px]"
+            v-if="data.title"
+            :title="data.title"
+          />
+          <div
+            v-if="data.content"
+            class="content-html text-inherit pb-8 tablet:p-[50px] tablet:pb-20 desktop:pr-[140px]"
+            v-html="data.content"
+          ></div>
           <List v-if="data.list" :data="data.list" />
         </div>
         <div class="z-10 absolute bottom-0 left-0 max-w-[66%]">
@@ -304,7 +302,6 @@ import SectionImage from './section-image.vue'
 import HomepageImage from './homepage-image.vue'
 import List from './list.vue'
 import Globe from './globe.vue'
-import EffectAppear from './effect-appear.vue'
 import EffectParallax from './effect-parallax.vue'
 
 export default {
@@ -315,7 +312,6 @@ export default {
     HomepageImage,
     List,
     Globe,
-    EffectAppear,
     EffectParallax,
   },
   props: {

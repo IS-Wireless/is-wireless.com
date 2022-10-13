@@ -48,18 +48,16 @@
       <div
         class="tablet-wide:flex-[0_1_50%] tablet-wide:w-1/2 pt-10 tablet-wide:pt-16"
       >
-        <EffectAppear>
-          <SectionHeader
-            class="tablet:pr-[50px] desktop:pr-[140px]"
-            v-if="data.title"
-            :title="data.title"
-          />
-          <div
-            v-if="data.content"
-            class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
-            v-html="data.content"
-          ></div>
-        </EffectAppear>
+        <SectionHeader
+          class="tablet:pr-[50px] desktop:pr-[140px]"
+          v-if="data.title"
+          :title="data.title"
+        />
+        <div
+          v-if="data.content"
+          class="content-html text-inherit tablet:p-[50px] desktop:pr-[140px]"
+          v-html="data.content"
+        ></div>
         <List
           v-if="data.list"
           :data="data.list"

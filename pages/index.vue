@@ -44,6 +44,10 @@
     </LazyHydrate>
 
     <LazyHydrate when-visible>
+      <PressSlider :data="{title: 'In the media:', link: 'https://www.is-wireless.com/about-us/in-the-media/'}" />
+    </LazyHydrate>
+
+    <LazyHydrate when-visible>
       <CtaJob :data="frontPageData.homepageData.sections[5]" />
     </LazyHydrate>
   </div>
@@ -61,6 +65,7 @@ export default {
     section_two_column_bg: () => import('~/components/content-section-bg.vue'),
     section_two_column_home: () =>
       import('~/components/content-section-home.vue'),
+    PressSlider: () => import('~/components/press-slider.vue'),
     CtaJob: () => import('~/components/cta-job.vue'),
   },
   async asyncData({ app, store, $filterData }) {

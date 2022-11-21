@@ -22,8 +22,23 @@
             :isExternal="isExternal(item.link)"
           >
             <div class="m-[30px] flex flex-col">
+              <nuxt-picture
+                v-if="item.image"
+                class="block h-20 tablet:h-[50px] max-w-[200px] mb-5 tablet:mb-7"
+                :src="
+                  item.image.url
+                    ? item.image.url.replace('www.is-wireless.com', 'api.is-wireless.com')
+                    : ''
+                "
+                :title="item.image.title ? item.image.title : ''"
+                :alt="item.image.alt ? item.image.alt : ''"
+                :imgAttrs="{
+                  class: 'w-full h-full object-contain object-left rounded-md',
+                  loading: 'lazy',
+                }"
+              />
               <svgIcon
-                v-if="item.type && item.type.value"
+                v-else-if="item.type && item.type.value"
                 :class="'w-[50px] h-[50px] mb-2.5 p-1'"
                 :name="item.type.value"
               />
@@ -45,6 +60,11 @@
                 v-if="item.description"
                 class="mt-[30px] text-sm tablet:text-base text-gray-dark"
                 v-html="item.description"
+              ></div>
+              <div
+                v-if="item.date"
+                class="mt-[30px] mb-10 tablet:mb-[60px] text-sm tablet:text-base text-gray-dark"
+                v-html="item.date"
               ></div>
             </div>
           </CustomLink>

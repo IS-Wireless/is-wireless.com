@@ -1,6 +1,7 @@
 <template>
   <div class="w-full">
     <div
+    v-if="data.use_filters"
       ref="filterBar"
       class="mx-[calc(-12.5%+10px)] tablet:mx-0 mt-10 tablet:w-full py-2 bg-white sticky top-0 z-10 transition duration-200"
       :class="{
@@ -151,6 +152,9 @@ export default {
       }
       if (this.$props.data.use_materials) {
         return this.$store.getters['general/getOptionsData'].materials
+      }
+      if (this.$props.data.use_press) {
+        return this.$store.getters['general/getOptionsData'].press_collection
       }
       return []
     },

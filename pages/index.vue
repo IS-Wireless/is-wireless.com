@@ -44,7 +44,7 @@
     </LazyHydrate>
 
     <LazyHydrate when-visible>
-      <PressSlider :data="{title: 'In the media:', link: 'https://www.is-wireless.com/about-us/in-the-media/'}" />
+      <section_press_slider :data="{title: 'In the media:', link: 'https://www.is-wireless.com/about-us/in-the-media/'}" />
     </LazyHydrate>
 
     <LazyHydrate when-visible>

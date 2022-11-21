@@ -63,7 +63,7 @@
   import { Swiper, Navigation, Autoplay } from 'swiper'
   
   export default {
-    name: 'PressSlider',
+    name: 'section_press_slider',
     props: {
       data: {
         type: Object,

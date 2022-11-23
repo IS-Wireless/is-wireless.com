@@ -120,7 +120,7 @@ export default {
     section_content_columns_center_image: () =>
       import('~/components/content-section-center.vue'),
     section_person_list: () => import('~/components/rnd-team.vue'),
-    section_form: () => import('~/components/block-form.vue'),
+    section_two_column_contact: () => import('~/components/block-form.vue'),
   },
   async asyncData({ route, payload, store, $config }) {
     if (

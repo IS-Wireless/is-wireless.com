@@ -4,15 +4,15 @@
         class="max-w-[820px] text-gray-darker mb-20 tablet:mb-0 basis-2/3 desktopWide:basis-auto desktopWide:shrink-0"
       >
         <form name="contactForm" method="post" enctype="multipart/form-data" class="flex flex-col">
-          <ul class="flex flex-wrap gap-5 justify-between mb-8 desktop:mb-16">
+          <ul class="flex flex-wrap gap-5 justify-between mb-4">
             <li v-for="item,index in data.inputs" :key="index" :class="[item.fullWidth ? 'basis-full':'basis-[calc(50%_-_10px)]']">
                 <FormField :data="item" />
             </li>
-            <li class="w-full">
-                <input type="checkbox" name="acceptance" id="acceptance">
+            <li class="w-full flex items-start px-2.5" v-if="data.privacyText">
+                <input type="checkbox" name="acceptance" id="acceptance" required="required" class="shrink-0 mx-2.5 mt-1">
                 <label for="acceptance"
-                  class="text-xs desktop:text-sm text-gray-dark/50 max-w-[250px]"
-                    v-html="data.privacyText ? data.privacyText : 'Accept privacy policy' ">
+                  class="block text-xs desktop:text-sm text-gray-dark"
+                    v-html="data.privacyText">
                 </label>
             </li>
           </ul>

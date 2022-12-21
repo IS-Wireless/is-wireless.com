@@ -138,6 +138,9 @@ export default {
       },
     },
     {
+      src:'@nuxtjs/axios'
+    },
+    {
       src: 'wp-nuxt',
     },
     // 'nuxt-speedkit',

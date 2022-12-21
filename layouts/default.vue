@@ -5,9 +5,10 @@
       :main-menu="topMenuData"
       :side-menu="sideMenuData"
       :socials="socialMenuData"
+      keep-alive
     />
 
-    <Nuxt />
+    <Nuxt keep-alive />
 
     <ScrollToTopBtn />
 

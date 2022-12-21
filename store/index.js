@@ -54,62 +54,46 @@ export const mutations = {}
 export const getters = {}
 
 export const actions = {
+
+  async setPages({dispatch}){
+    const pages = await this.$axios.get(`${process.env.API_URL}/wp-json/wp/v2/pages/2`)
+    const data = pages.data
+    let tmp = ''
+    if (data && data.yoast_head_json && data.yoast_head_json.schema) {
+      tmp = JSON.stringify(data.yoast_head_json.schema)
+    }
+    filterData(data)
+    data.schema = tmp
+    if (data.acf && data.acf.section) {
+      data.content = ''
+    }
+    dispatch('homepage/init', { homepageData: data.acf })
+  },
+
   async nuxtServerInit({ dispatch }, { app }) {
+    console.log('------GENERATE--------');
+    await dispatch('setPages');
     return Promise.all([
-      new Promise((resolve) => {
-        // if (process.env) {
-        //   let cacheID = app.$wp.namespace('wp/v2').pages().id(2)._options
-        //     .endpoint
-        //   cacheReqWP
-        //     .get(cacheID)
-        //     .then(function (result) {
-        //       dispatch('homepage/init', { homepageData: result.acf })
-        //       resolve()
-        //     })
-        //     .catch(function () {
-        //       app.$wp
-        //         .namespace('wp/v2')
-        //         .pages()
-        //         .id(2)
-        //         .then(function (data) {
-        //           let tmp = ''
-        //           if (
-        //             data &&
-        //             data.yoast_head_json &&
-        //             data.yoast_head_json.schema
-        //           ) {
-        //             tmp = JSON.stringify(data.yoast_head_json.schema)
-        //           }
-        //           filterData(data)
-        //           data.schema = tmp
-        //           if (data.acf && data.acf.section) {
-        //             data.content = ''
-        //           }
-        //           cacheReqWP.set(cacheID, data)
-        //           dispatch('homepage/init', { homepageData: data.acf })
-        //           resolve()
-        //         })
-        //     })
-        // } else {
-        app.$wp
-          .namespace('wp/v2')
-          .pages()
-          .id(2)
-          .then(function (data) {
-            let tmp = ''
-            if (data && data.yoast_head_json && data.yoast_head_json.schema) {
-              tmp = JSON.stringify(data.yoast_head_json.schema)
-            }
-            filterData(data)
-            data.schema = tmp
-            if (data.acf && data.acf.section) {
-              data.content = ''
-            }
-            dispatch('homepage/init', { homepageData: data.acf })
-            resolve()
-          })
-        // }
-      }),
+      // new Promise((resolve) => {
+      //   app.$wp
+      //     .namespace('wp/v2')
+      //     .pages()
+      //     .id(2)
+      //     .then(function (data) {
+      //       let tmp = ''
+      //       if (data && data.yoast_head_json && data.yoast_head_json.schema) {
+      //         tmp = JSON.stringify(data.yoast_head_json.schema)
+      //       }
+      //       filterData(data)
+      //       data.schema = tmp
+      //       if (data.acf && data.acf.section) {
+      //         data.content = ''
+      //       }
+      //       dispatch('homepage/init', { homepageData: data.acf })
+      //       resolve()
+      //     })
+      //   // }
+      // }),
       new Promise((resolve) => {
         app.$wp
           .namespace('wp-api-menus/v2')
@@ -153,56 +137,7 @@ export const actions = {
           })
       }),
       new Promise((resolve) => {
-        // cacheReqWP
-        //   .get('posts')
-        //   .then(function (data) {
-        //     data.forEach(function (item, index) {
-        //       if (
-        //         item.yoast_head_json &&
-        //         Object.keys(item.yoast_head_json).length
-        //       ) {
-        //         data[index]['schema'] = JSON.stringify(
-        //           item.yoast_head_json.schema
-        //         )
-
-        //         data[index]['schema_basic'] = {
-        //           title: item.yoast_head_json.title,
-        //           description: item.yoast_head_json.description,
-        //           robots: {
-        //             index: item.yoast_head_json.robots.index,
-        //             follow: item.yoast_head_json.robots.follow,
-        //             'max-snippet': item.yoast_head_json.robots['max-snippet'],
-        //             'max-image-preview':
-        //               item.yoast_head_json.robots['max-image-preview'],
-        //             'max-video-preview':
-        //               item.yoast_head_json.robots['max-video-preview'],
-        //           },
-        //           canonical: item.yoast_head_json.canonical,
-        //           og_locale: item.yoast_head_json.og_locale,
-        //           og_type: item.yoast_head_json.og_type,
-        //           og_title: item.yoast_head_json.og_title,
-        //           og_description: item.yoast_head_json.og_description,
-        //           og_url: item.yoast_head_json.og_url,
-        //           og_site_name: item.yoast_head_json.og_site_name,
-        //           article_modified_time:
-        //             item.yoast_head_json.article_modified_time,
-        //           twitter_card: item.yoast_head_json.twitter_card,
-        //           twitter_misc: item.yoast_head_json.twitter_misc,
-        //         }
-        //       }
-        //       if (item.content.rendered) {
-        //         let tmp = item.content.rendered
-        //         item.content.rendered = tmp.replace(/srcset="[\s\S]*?"/, '')
-        //       }
-        //     })
-        //     filterData(data)
-        //     dispatch('general/init', { posts: data })
-        //     resolve()
-        //   })
-        //   .catch(function () {
         getAll(app.$wp.namespace('wp/v2').posts()).then(function (data) {
-          // cacheReqWP.set('posts', data)
-          // console.log(data)
           data.forEach(function (item, index) {
             if (
               item.yoast_head_json &&
@@ -263,62 +198,6 @@ export const actions = {
         // })
       }),
       new Promise((resolve) => {
-        // cacheReqWP
-        //   .get('pages')
-        //   .then(function (data) {
-        //     data.forEach(function (item, index) {
-        //       if (
-        //         item.yoast_head_json &&
-        //         Object.keys(item.yoast_head_json).length
-        //       ) {
-        //         data[index]['schema'] = JSON.stringify(
-        //           item.yoast_head_json.schema
-        //         )
-
-        //         data[index]['schema_basic'] = {
-        //           title: item.yoast_head_json.title,
-        //           description: item.yoast_head_json.description,
-        //           robots: {
-        //             index: item.yoast_head_json.robots.index,
-        //             follow: item.yoast_head_json.robots.follow,
-        //             'max-snippet': item.yoast_head_json.robots['max-snippet'],
-        //             'max-image-preview':
-        //               item.yoast_head_json.robots['max-image-preview'],
-        //             'max-video-preview':
-        //               item.yoast_head_json.robots['max-video-preview'],
-        //           },
-        //           canonical: item.yoast_head_json.canonical,
-        //           og_locale: item.yoast_head_json.og_locale,
-        //           og_type: item.yoast_head_json.og_type,
-        //           og_title: item.yoast_head_json.og_title,
-        //           og_description: item.yoast_head_json.og_description,
-        //           og_url: item.yoast_head_json.og_url,
-        //           og_site_name: item.yoast_head_json.og_site_name,
-        //           article_modified_time:
-        //             item.yoast_head_json.article_modified_time,
-        //           twitter_card: item.yoast_head_json.twitter_card,
-        //           twitter_misc: item.yoast_head_json.twitter_misc,
-        //         }
-        //       }
-
-        //       if (
-        //         item.acf &&
-        //         item.acf.section &&
-        //         Object.keys(item.acf.section).length
-        //       ) {
-        //         data.content = ''
-        //       }
-        //     })
-        //     filterData(data)
-        //     data.forEach((pageData) => {
-        //       dispatch('general/pagesInit', { pages: pageData })
-        //     })
-        //     resolve()
-        //   })
-        //   .catch(function () {
-        // getAll(app.$wp.namespace('wp/v2').pages()).then(function (data) {
-        // cacheReqWP.set('pages', data)
-
         getAll(app.$wp.namespace('wp/v2').pages()).then(function (data) {
           data.forEach(function (item, index) {
             if (

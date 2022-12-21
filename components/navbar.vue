@@ -444,6 +444,10 @@ export default {
     const { focused } = useFocus(searchInput, { initialValue: false })
     return { searchInput, focused }
   },
+  async asyncData(){
+    console.log('---------POBIERAMY DANE DO LAYOUTU!!!--------');
+  },
+
   methods: {
     toggleExpanded() {
       this.expanded = !this.expanded

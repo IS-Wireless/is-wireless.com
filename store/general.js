@@ -26,7 +26,7 @@ export const mutations = {
   save($state, data) {
     Object.assign($state, data)
   },
-  menuAdd($state, data) {
+  menuAdd($state, data) {    
     var obj = {
       [data.ID.toString()]: data,
     }

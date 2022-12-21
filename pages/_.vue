@@ -122,6 +122,13 @@ export default {
     section_person_list: () => import('~/components/rnd-team.vue'),
     section_two_column_contact: () => import('~/components/block-form.vue'),
   },
+  // async asyncData(route){
+  //   const query = `page: nodeByUri(uri: "${route.path}"){
+  //     id
+  //     content
+  //   }`
+  //   return {pageData: {}}
+  // },
   async asyncData({ route, payload, store, $config }) {
     if (
       typeof payload !== 'undefined' &&

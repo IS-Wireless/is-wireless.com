@@ -52,33 +52,6 @@
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
 
-import { isEmpty as _isEmpty } from 'lodash'
-const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
-
-const filterData = (obj) => {
-  Object.keys(obj).forEach((key) => {
-    if (typeof obj[key] == 'string') {
-      obj[key] = obj[key].replace(
-        /(<!--.*?-->)|(<!--[\S\s]+?-->)|(<!--[\S\s]*?$)/gs,
-        ''
-      )
-    }
-
-    if (
-      _isEmpty(key) ||
-      RegExp(filterWords.join('|')).test(key) ||
-      obj[key] == null ||
-      typeof obj[key] == 'undefined' ||
-      (Array.isArray(obj[key]) && !obj[key].length) ||
-      obj[key] == '' ||
-      obj[key] == []
-    ) {
-      delete obj[key]
-    } // delete
-    else if (obj[key] && typeof obj[key] === 'object') filterData(obj[key]) // recurse
-  })
-}
-
 export default {
   components: {
     LazyHydrate,
@@ -90,7 +63,7 @@ export default {
       import('~/components/content-section-home.vue'),
     CtaJob: () => import('~/components/cta-job.vue'),
   },
-  async asyncData({ app, store }) {
+  async asyncData({ app, store, $filterData }) {
     return app.$wp
       .namespace('wp/v2')
       .pages()
@@ -100,7 +73,7 @@ export default {
         if (data && data.yoast_head_json && data.yoast_head_json.schema) {
           tmp = JSON.stringify(data.yoast_head_json.schema)
         }
-        filterData(data)
+        $filterData(data)
         data.schema = tmp
         if (data.acf && data.acf.section) {
           data.content = ''

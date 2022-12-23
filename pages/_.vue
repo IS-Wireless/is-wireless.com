@@ -180,7 +180,6 @@ export default {
               data['breadcrumb'] = data.yoast_head_json.schema['@graph'][i]
             }
           }
-          console.log(data.yoast_head_json)
           data['schema_basic'] = {
             title: data.yoast_head_json.title,
             robots: {

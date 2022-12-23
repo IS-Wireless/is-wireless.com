@@ -1,12 +1,10 @@
-import { isEmpty as _isEmpty } from 'lodash'
+import filterData from "~/utils/filterData";
 // import Cache from 'file-system-cache'
 
 // let cacheReqWP = Cache({
 //   basePath: './.cache', // Optional. Path where cache files are stored (default).
 //   ns: 'wp_json', // Optional. A grouping namespace for items.
 // })
-
-const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
 
 // http://wp-api.org/node-wpapi/collection-pagination/
 function getAll(request) {
@@ -20,30 +18,6 @@ function getAll(request) {
         return [].concat(...responses)
       }
     )
-  })
-}
-
-const filterData = (obj) => {
-  Object.keys(obj).forEach((key) => {
-    if (typeof obj[key] == 'string') {
-      obj[key] = obj[key].replace(
-        /(<!--.*?-->)|(<!--[\S\s]+?-->)|(<!--[\S\s]*?$)/gs,
-        ''
-      )
-    }
-
-    if (
-      _isEmpty(key) ||
-      RegExp(filterWords.join('|')).test(key) ||
-      obj[key] == null ||
-      typeof obj[key] == 'undefined' ||
-      (Array.isArray(obj[key]) && !obj[key].length) ||
-      obj[key] == '' ||
-      obj[key] == []
-    ) {
-      delete obj[key]
-    } // delete
-    else if (obj[key] && typeof obj[key] === 'object') filterData(obj[key]) // recurse
   })
 }
 

@@ -118,25 +118,6 @@ export const actions = {
     return Promise.all([
       new Promise((resolve) => {
         app.$wp
-          .namespace('wp/v2')
-          .pages()
-          .id(2)
-          .then(function (data) {
-            let tmp = ''
-            if (data && data.yoast_head_json && data.yoast_head_json.schema) {
-              tmp = JSON.stringify(data.yoast_head_json.schema)
-            }
-            filterData(data)
-            data.schema = tmp
-            if (data.acf && data.acf.section) {
-              data.content = ''
-            }
-            dispatch('homepage/init', { homepageData: data.acf })
-            resolve()
-          })
-      }),
-      new Promise((resolve) => {
-        app.$wp
           .namespace('wp-api-menus/v2')
           ['menu-locations']()
           .then(function (data) {

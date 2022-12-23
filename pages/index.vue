@@ -64,7 +64,7 @@ export default {
     CtaJob: () => import('~/components/cta-job.vue'),
   },
   async asyncData({ app }) {
-    app.$wp
+    await app.$wp
       .namespace('wp/v2')
       .pages()
       .id(2)

@@ -52,6 +52,33 @@
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
 
+import { isEmpty as _isEmpty } from 'lodash'
+const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
+
+const filterData = (obj) => {
+  Object.keys(obj).forEach((key) => {
+    if (typeof obj[key] == 'string') {
+      obj[key] = obj[key].replace(
+        /(<!--.*?-->)|(<!--[\S\s]+?-->)|(<!--[\S\s]*?$)/gs,
+        ''
+      )
+    }
+
+    if (
+      _isEmpty(key) ||
+      RegExp(filterWords.join('|')).test(key) ||
+      obj[key] == null ||
+      typeof obj[key] == 'undefined' ||
+      (Array.isArray(obj[key]) && !obj[key].length) ||
+      obj[key] == '' ||
+      obj[key] == []
+    ) {
+      delete obj[key]
+    } // delete
+    else if (obj[key] && typeof obj[key] === 'object') filterData(obj[key]) // recurse
+  })
+}
+
 export default {
   components: {
     LazyHydrate,
@@ -63,8 +90,8 @@ export default {
       import('~/components/content-section-home.vue'),
     CtaJob: () => import('~/components/cta-job.vue'),
   },
-  async asyncData({ app }) {
-    await app.$wp
+  async asyncData({ app, store }) {
+    return app.$wp
       .namespace('wp/v2')
       .pages()
       .id(2)
@@ -78,6 +105,7 @@ export default {
         if (data.acf && data.acf.section) {
           data.content = ''
         }
+        store.dispatch('homepage/init', { homepageData: data.acf })
         return { homepageData: data.acf }
       })
   },

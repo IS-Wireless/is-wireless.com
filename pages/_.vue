@@ -252,10 +252,7 @@ export default {
           }
         })
         filterData(data)
-        data.forEach((pageData) => {
-          store.dispatch('general/pagesInit', { pages: pageData })
-          return { pageData: pageData }
-        })
+        return { pageData: data[0] }
       })
   },
   head() {

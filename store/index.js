@@ -324,7 +324,7 @@ export const actions = {
         //   data.forEach((pageData) => {
         //     dispatch('general/pagesInit', { pages: pageData })
         //   })
-        //   resolve()
+        resolve()
         // })
         // })
         // })

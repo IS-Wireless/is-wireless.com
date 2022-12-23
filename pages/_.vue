@@ -93,54 +93,6 @@
 import LazyHydrate from 'vue-lazy-hydration'
 import { isSamePath } from 'ufo'
 
-import { isEmpty as _isEmpty } from 'lodash'
-// import Cache from 'file-system-cache'
-
-// let cacheReqWP = Cache({
-//   basePath: './.cache', // Optional. Path where cache files are stored (default).
-//   ns: 'wp_json', // Optional. A grouping namespace for items.
-// })
-
-const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
-
-// http://wp-api.org/node-wpapi/collection-pagination/
-function getAll(request) {
-  return request.then((response) => {
-    if (!response._paging || !response._paging.next) {
-      return response
-    }
-    // Request the next page and return both responses as one collection
-    return Promise.all([response, getAll(response._paging.next)]).then(
-      (responses) => {
-        return [].concat(...responses)
-      }
-    )
-  })
-}
-
-const filterData = (obj) => {
-  Object.keys(obj).forEach((key) => {
-    if (typeof obj[key] == 'string') {
-      obj[key] = obj[key].replace(
-        /(<!--.*?-->)|(<!--[\S\s]+?-->)|(<!--[\S\s]*?$)/gs,
-        ''
-      )
-    }
-
-    if (
-      _isEmpty(key) ||
-      RegExp(filterWords.join('|')).test(key) ||
-      obj[key] == null ||
-      typeof obj[key] == 'undefined' ||
-      (Array.isArray(obj[key]) && !obj[key].length) ||
-      obj[key] == '' ||
-      obj[key] == []
-    ) {
-      delete obj[key]
-    } // delete
-    else if (obj[key] && typeof obj[key] === 'object') filterData(obj[key]) // recurse
-  })
-}
 
 export default {
   components: {
@@ -194,7 +146,7 @@ export default {
   //   }
   //   return { pageData: {} }
   // },
-  async asyncData({ app, store, route }) {
+  async asyncData({ app, store, route, $filterData }) {
     return app.$wp
       .namespace('wp/v2')
       .pages()
@@ -251,7 +203,7 @@ export default {
             data[index].content = ''
           }
         })
-        filterData(data)
+        $filterData(data)
         return { pageData: data[0] }
       })
   },

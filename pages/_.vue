@@ -22,7 +22,7 @@
 
     <div class="tablet:w-4/5 mx-auto py-10 container">
       <div
-        v-if="pageData.acf"
+        v-if="Object.values(pageData.acf).length"
         class="flex"
         :class="
           pageData.acf.sidebar_right && pageData.acf.sidebar

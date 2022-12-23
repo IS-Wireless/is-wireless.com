@@ -152,7 +152,7 @@ export default {
       .namespace('wp/v2')
       .pages()
       .slug(slugs[slugs.length - 1])
-      .then(function (data) {
+      .then(async function (data) {
         data.forEach(function (item, index) {
           let pageFullPath = item.link
           .replace($config.API_URL, '')
@@ -209,6 +209,10 @@ export default {
             data.acf.sections &&
             Object.keys(data.acf.sections).length
           ) {
+            if(data.acf.sections.some(section => section.acf_fc_layout == 'section_block_subpages')){
+              await store.dispatch('getPages')
+            }
+
             data.content = ''
           }
 

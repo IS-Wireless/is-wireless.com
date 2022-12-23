@@ -32,8 +32,8 @@ export const getters = {
 }
 
 export const actions = {
-  getPages() {
-    return getAll(app.$wp.namespace('wp/v2').pages()).then(function (data) {
+  getPages({ dispatch }) {
+    return getAll(this.$wp.namespace('wp/v2').pages()).then(function (data) {
       data.forEach(function (item, index) {
         if (item.yoast_head_json && Object.keys(item.yoast_head_json).length) {
           data[index]['schema'] = JSON.stringify(item.yoast_head_json.schema)

@@ -122,6 +122,8 @@ export default {
     section_person_list: () => import('~/components/rnd-team.vue'),
   },
   async asyncData({ route, payload, store, $config }) {
+    await store.getters['index/getPages']
+
     if (
       typeof payload !== 'undefined' &&
       typeof payload === 'object' &&
@@ -129,6 +131,7 @@ export default {
     ) {
       return { pageData: payload }
     } else {
+      await store.getters['general/getPages']
       const pagesData = store.getters['general/getPagesData']
       const pagesArray = Object.values(pagesData)
       for (let i = 0; i < pagesArray.length; i++) {

@@ -1,7 +1,11 @@
 <template>
   <div v-if="pageData">
     <div>
-      <div v-if="pageData.acf">
+      <div
+        v-if="
+          pageData.acf && pageData.acf.sections && pageData.acf.sections.length
+        "
+      >
         <LazyHydrate never>
           <StaticBanner
             v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
@@ -155,62 +159,71 @@ export default {
       .then(function (data) {
         data.forEach(function (item, index) {
           let pageFullPath = item.link
-          .replace($config.API_URL, '')
-          .replace('https://www.is-wireless.com', '')
+            .replace($config.API_URL, '')
+            .replace('https://www.is-wireless.com', '')
           if (isSamePath(pageFullPath, route.path)) {
             data = item
           }
         })
 
-          if (
-            data.yoast_head_json &&
-            Object.keys(data.yoast_head_json).length
+        if (data.yoast_head_json && Object.keys(data.yoast_head_json).length) {
+          data['schema'] = JSON.stringify(data.yoast_head_json.schema)
+          for (
+            var i = 0;
+            i < data.yoast_head_json.schema['@graph'].length;
+            i++
           ) {
-            data['schema'] = JSON.stringify(data.yoast_head_json.schema)
-            for (
-              var i = 0;
-              i < data.yoast_head_json.schema['@graph'].length;
-              i++
+            if (
+              data.yoast_head_json.schema['@graph'][i]['@type'] ==
+              'BreadcrumbList'
             ) {
-              if (
-                data.yoast_head_json.schema['@graph'][i]['@type'] ==
-                'BreadcrumbList'
-              ) {
-                data['breadcrumb'] =
-                  data.yoast_head_json.schema['@graph'][i]
-              }
-            }
-            data['schema_basic'] = {
-              title: data.yoast_head_json.title,
-              description: data.yoast_head_json.description,
-              robots: {
-                index: data.yoast_head_json.robots.index,
-                follow: data.yoast_head_json.robots.follow,
-                'max-snippet': data.yoast_head_json.robots['max-snippet'],
-                'max-image-preview':
-                  data.yoast_head_json.robots['max-image-preview'],
-                'max-video-preview':
-                  data.yoast_head_json.robots['max-video-preview'],
-              },
-              canonical: data.yoast_head_json.canonical,
-              og_locale: data.yoast_head_json.og_locale,
-              og_type: data.yoast_head_json.og_type,
-              og_title: data.yoast_head_json.og_title,
-              og_description: data.yoast_head_json.og_description,
-              og_url: data.yoast_head_json.og_url,
-              og_site_name: data.yoast_head_json.og_site_name,
-              article_modified_time: data.yoast_head_json.article_modified_time,
-              twitter_card: data.yoast_head_json.twitter_card,
-              twitter_misc: data.yoast_head_json.twitter_misc,
+              data['breadcrumb'] = data.yoast_head_json.schema['@graph'][i]
             }
           }
-          if (
-            data.acf &&
-            data.acf.sections &&
-            Object.keys(data.acf.sections).length
-          ) {
-            data.content = ''
+          console.log(data.yoast_head_json)
+          data['schema_basic'] = {
+            title: data.yoast_head_json.title,
+            robots: {
+              index: data.yoast_head_json.robots.index,
+              follow: data.yoast_head_json.robots.follow,
+              'max-snippet': data.yoast_head_json.robots['max-snippet'],
+              'max-image-preview':
+                data.yoast_head_json.robots['max-image-preview'],
+              'max-video-preview':
+                data.yoast_head_json.robots['max-video-preview'],
+            },
+            canonical: data.yoast_head_json.canonical,
+            og_locale: data.yoast_head_json.og_locale,
+            og_type: data.yoast_head_json.og_type,
+            og_title: data.yoast_head_json.og_title,
+            og_description: data.yoast_head_json.og_description,
+            og_url: data.yoast_head_json.og_url.replace(
+              $config.API_URL,
+              'https://www.is-wireless.com'
+            ),
+            og_site_name: data.yoast_head_json.og_site_name,
+            twitter_card: data.yoast_head_json.twitter_card,
           }
+          if (data.yoast_head_json.description) {
+            data['schema_basic']['description'] =
+              data.yoast_head_json.description
+          }
+          if (data.yoast_head_json.twitter_misc) {
+            data['schema_basic']['twitter_misc'] =
+              data.yoast_head_json.twitter_misc
+          }
+          if (data.yoast_head_json.article_modified_time) {
+            data['schema_basic']['article_modified_time'] =
+              data.yoast_head_json.article_modified_time
+          }
+        }
+        if (
+          data.acf &&
+          data.acf.sections &&
+          Object.keys(data.acf.sections).length
+        ) {
+          data.content = ''
+        }
 
         $filterData(data)
         return { pageData: data }
@@ -236,7 +249,6 @@ export default {
         if (this.pageData.schema_basic.title) {
           tags.title = this.pageData.schema_basic.title
         }
-
         if (this.pageData.schema_basic.description) {
           tags.meta.push({
             hid: 'description',
@@ -244,7 +256,6 @@ export default {
             content: this.pageData.schema_basic.description,
           })
         }
-
         tags.meta.push({
           hid: 'robots',
           name: 'robots',
@@ -256,61 +267,53 @@ export default {
             this.pageData.schema_basic.robots['max-video-preview']
           ).join(', '),
         })
-
         tags.link.push({
           hid: 'canonical',
           rel: 'canonical',
           href: this.pageData.schema_basic.canonical,
         })
-
         tags.meta.push({
           hid: 'og_locale',
           property: 'og_locale',
           content: this.pageData.schema_basic.og_locale,
         })
-
         tags.meta.push({
           hid: 'og_type',
           property: 'og_type',
           content: this.pageData.schema_basic.og_type,
         })
-
         tags.meta.push({
           hid: 'og_title',
           property: 'og_title',
           content: this.pageData.schema_basic.og_title,
         })
-
         tags.meta.push({
           hid: 'og_description',
           property: 'og_description',
           content: this.pageData.schema_basic.og_description,
         })
-
         tags.meta.push({
           hid: 'og_url',
           property: 'og_url',
           content: this.pageData.schema_basic.og_url,
         })
-
         tags.meta.push({
           hid: 'og_site_name',
           property: 'og_site_name',
           content: this.pageData.schema_basic.og_site_name,
         })
-
-        tags.meta.push({
-          hid: 'article_modified_time',
-          property: 'article_modified_time',
-          content: this.pageData.schema_basic.article_modified_time,
-        })
-
+        if (this.pageData.schema_basic.article_modified_time) {
+          tags.meta.push({
+            hid: 'article_modified_time',
+            property: 'article_modified_time',
+            content: this.pageData.schema_basic.article_modified_time,
+          })
+        }
         tags.meta.push({
           hid: 'twitter_card',
           name: 'twitter_card',
           content: this.pageData.schema_basic.twitter_card,
         })
-
         if (this.pageData.schema_basic.twitter_misc) {
           let $i = 1
           for (const [key, value] of Object.entries(
@@ -329,14 +332,16 @@ export default {
             $i++
           }
         }
-
         tags.meta.push({
           hid: 'og:url',
           property: 'og:url',
-          content: this.pageData.link,
+          content: this.pageData.schema_basic.og_url,
         })
-
-        if (this.pageData.acf.sections[0].acf_fc_layout === 'section_header') {
+        if (
+          this.pageData.acf &&
+          this.pageData.acf.sections &&
+          this.pageData.acf.sections[0].acf_fc_layout === 'section_header'
+        ) {
           tags.meta.push({
             hid: 'og:image',
             property: 'og:image',

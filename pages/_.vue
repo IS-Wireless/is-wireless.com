@@ -91,8 +91,7 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import { isSamePath } from 'ufo'
-
+import { isSamePath, withoutTrailingSlash, withoutProtocol } from 'ufo'
 
 export default {
   components: {
@@ -147,11 +146,22 @@ export default {
   //   return { pageData: {} }
   // },
   async asyncData({ app, store, route, $filterData }) {
+    let slugs = withoutTrailingSlash(route.fullPath).split('/')
+    console.log(withoutTrailingSlash(route.fullPath).split('/'))
+
     return app.$wp
       .namespace('wp/v2')
       .pages()
-      .slug(route.path)
+      .slug(slugs[slugs.length - 1])
       .then(function (data) {
+        data.forEach(function (item, index) {
+          console.log(
+            withoutTrailingSlash(
+              withoutProtocol(item.link.replace('api.is-wireless.com', ''))
+            ).split('/')
+          )
+        })
+
         data.forEach(function (item, index) {
           if (
             item.yoast_head_json &&

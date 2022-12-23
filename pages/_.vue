@@ -91,7 +91,7 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import { isSamePath, withoutTrailingSlash, withoutProtocol } from 'ufo'
+import { isSamePath, withoutTrailingSlash } from 'ufo'
 
 export default {
   components: {
@@ -145,9 +145,8 @@ export default {
   //   }
   //   return { pageData: {} }
   // },
-  async asyncData({ app, store, route, $filterData }) {
+  async asyncData({ app, store, route, $filterData, $config }) {
     let slugs = withoutTrailingSlash(route.fullPath).split('/')
-    console.log(withoutTrailingSlash(route.fullPath).split('/'))
 
     return app.$wp
       .namespace('wp/v2')
@@ -155,66 +154,66 @@ export default {
       .slug(slugs[slugs.length - 1])
       .then(function (data) {
         data.forEach(function (item, index) {
-          console.log(
-            withoutTrailingSlash(
-              withoutProtocol(item.link.replace('api.is-wireless.com', ''))
-            ).split('/')
-          )
+          let pageFullPath = item.link
+          .replace($config.API_URL, '')
+          .replace('https://www.is-wireless.com', '')
+          if (isSamePath(pageFullPath, route.path)) {
+            data = item
+          }
         })
 
-        data.forEach(function (item, index) {
           if (
-            item.yoast_head_json &&
-            Object.keys(item.yoast_head_json).length
+            data.yoast_head_json &&
+            Object.keys(data.yoast_head_json).length
           ) {
-            data[index]['schema'] = JSON.stringify(item.yoast_head_json.schema)
+            data['schema'] = JSON.stringify(data.yoast_head_json.schema)
             for (
               var i = 0;
-              i < item.yoast_head_json.schema['@graph'].length;
+              i < data.yoast_head_json.schema['@graph'].length;
               i++
             ) {
               if (
-                item.yoast_head_json.schema['@graph'][i]['@type'] ==
+                data.yoast_head_json.schema['@graph'][i]['@type'] ==
                 'BreadcrumbList'
               ) {
-                data[index]['breadcrumb'] =
-                  item.yoast_head_json.schema['@graph'][i]
+                data['breadcrumb'] =
+                  data.yoast_head_json.schema['@graph'][i]
               }
             }
-            data[index]['schema_basic'] = {
-              title: item.yoast_head_json.title,
-              description: item.yoast_head_json.description,
+            data['schema_basic'] = {
+              title: data.yoast_head_json.title,
+              description: data.yoast_head_json.description,
               robots: {
-                index: item.yoast_head_json.robots.index,
-                follow: item.yoast_head_json.robots.follow,
-                'max-snippet': item.yoast_head_json.robots['max-snippet'],
+                index: data.yoast_head_json.robots.index,
+                follow: data.yoast_head_json.robots.follow,
+                'max-snippet': data.yoast_head_json.robots['max-snippet'],
                 'max-image-preview':
-                  item.yoast_head_json.robots['max-image-preview'],
+                  data.yoast_head_json.robots['max-image-preview'],
                 'max-video-preview':
-                  item.yoast_head_json.robots['max-video-preview'],
+                  data.yoast_head_json.robots['max-video-preview'],
               },
-              canonical: item.yoast_head_json.canonical,
-              og_locale: item.yoast_head_json.og_locale,
-              og_type: item.yoast_head_json.og_type,
-              og_title: item.yoast_head_json.og_title,
-              og_description: item.yoast_head_json.og_description,
-              og_url: item.yoast_head_json.og_url,
-              og_site_name: item.yoast_head_json.og_site_name,
-              article_modified_time: item.yoast_head_json.article_modified_time,
-              twitter_card: item.yoast_head_json.twitter_card,
-              twitter_misc: item.yoast_head_json.twitter_misc,
+              canonical: data.yoast_head_json.canonical,
+              og_locale: data.yoast_head_json.og_locale,
+              og_type: data.yoast_head_json.og_type,
+              og_title: data.yoast_head_json.og_title,
+              og_description: data.yoast_head_json.og_description,
+              og_url: data.yoast_head_json.og_url,
+              og_site_name: data.yoast_head_json.og_site_name,
+              article_modified_time: data.yoast_head_json.article_modified_time,
+              twitter_card: data.yoast_head_json.twitter_card,
+              twitter_misc: data.yoast_head_json.twitter_misc,
             }
           }
           if (
-            item.acf &&
-            item.acf.sections &&
-            Object.keys(item.acf.sections).length
+            data.acf &&
+            data.acf.sections &&
+            Object.keys(data.acf.sections).length
           ) {
-            data[index].content = ''
+            data.content = ''
           }
-        })
+
         $filterData(data)
-        return { pageData: data[0] }
+        return { pageData: data }
       })
   },
   head() {

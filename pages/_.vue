@@ -93,6 +93,55 @@
 import LazyHydrate from 'vue-lazy-hydration'
 import { isSamePath } from 'ufo'
 
+import { isEmpty as _isEmpty } from 'lodash'
+// import Cache from 'file-system-cache'
+
+// let cacheReqWP = Cache({
+//   basePath: './.cache', // Optional. Path where cache files are stored (default).
+//   ns: 'wp_json', // Optional. A grouping namespace for items.
+// })
+
+const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
+
+// http://wp-api.org/node-wpapi/collection-pagination/
+function getAll(request) {
+  return request.then((response) => {
+    if (!response._paging || !response._paging.next) {
+      return response
+    }
+    // Request the next page and return both responses as one collection
+    return Promise.all([response, getAll(response._paging.next)]).then(
+      (responses) => {
+        return [].concat(...responses)
+      }
+    )
+  })
+}
+
+const filterData = (obj) => {
+  Object.keys(obj).forEach((key) => {
+    if (typeof obj[key] == 'string') {
+      obj[key] = obj[key].replace(
+        /(<!--.*?-->)|(<!--[\S\s]+?-->)|(<!--[\S\s]*?$)/gs,
+        ''
+      )
+    }
+
+    if (
+      _isEmpty(key) ||
+      RegExp(filterWords.join('|')).test(key) ||
+      obj[key] == null ||
+      typeof obj[key] == 'undefined' ||
+      (Array.isArray(obj[key]) && !obj[key].length) ||
+      obj[key] == '' ||
+      obj[key] == []
+    ) {
+      delete obj[key]
+    } // delete
+    else if (obj[key] && typeof obj[key] === 'object') filterData(obj[key]) // recurse
+  })
+}
+
 export default {
   components: {
     LazyHydrate,
@@ -121,29 +170,93 @@ export default {
       import('~/components/content-section-center.vue'),
     section_person_list: () => import('~/components/rnd-team.vue'),
   },
-  async asyncData({ route, payload, store, $config }) {
-    await store.getters['index/getPages']
+  // async asyncData({ route, payload, store, $config }) {
+  //   await store.getters['index/getPages']
 
-    if (
-      typeof payload !== 'undefined' &&
-      typeof payload === 'object' &&
-      Object.keys(payload).length
-    ) {
-      return { pageData: payload }
-    } else {
-      await store.getters['general/getPages']
-      const pagesData = store.getters['general/getPagesData']
-      const pagesArray = Object.values(pagesData)
-      for (let i = 0; i < pagesArray.length; i++) {
-        let pageFullPath = pagesArray[i].link
-          .replace($config.API_URL, '')
-          .replace('https://www.is-wireless.com', '')
-        if (isSamePath(pageFullPath, route.path)) {
-          return { pageData: pagesArray[i] }
-        }
-      }
-    }
-    return { pageData: {} }
+  //   if (
+  //     typeof payload !== 'undefined' &&
+  //     typeof payload === 'object' &&
+  //     Object.keys(payload).length
+  //   ) {
+  //     return { pageData: payload }
+  //   } else {
+  //     await store.getters['general/getPages']
+  //     const pagesData = store.getters['general/getPagesData']
+  //     const pagesArray = Object.values(pagesData)
+  //     for (let i = 0; i < pagesArray.length; i++) {
+  //       let pageFullPath = pagesArray[i].link
+  //         .replace($config.API_URL, '')
+  //         .replace('https://www.is-wireless.com', '')
+  //       if (isSamePath(pageFullPath, route.path)) {
+  //         return { pageData: pagesArray[i] }
+  //       }
+  //     }
+  //   }
+  //   return { pageData: {} }
+  // },
+  async asyncData({ app, store, route }) {
+    return app.$wp
+      .namespace('wp/v2')
+      .pages()
+      .slug(route.path)
+      .then(function (data) {
+        data.forEach(function (item, index) {
+          if (
+            item.yoast_head_json &&
+            Object.keys(item.yoast_head_json).length
+          ) {
+            data[index]['schema'] = JSON.stringify(item.yoast_head_json.schema)
+            for (
+              var i = 0;
+              i < item.yoast_head_json.schema['@graph'].length;
+              i++
+            ) {
+              if (
+                item.yoast_head_json.schema['@graph'][i]['@type'] ==
+                'BreadcrumbList'
+              ) {
+                data[index]['breadcrumb'] =
+                  item.yoast_head_json.schema['@graph'][i]
+              }
+            }
+            data[index]['schema_basic'] = {
+              title: item.yoast_head_json.title,
+              description: item.yoast_head_json.description,
+              robots: {
+                index: item.yoast_head_json.robots.index,
+                follow: item.yoast_head_json.robots.follow,
+                'max-snippet': item.yoast_head_json.robots['max-snippet'],
+                'max-image-preview':
+                  item.yoast_head_json.robots['max-image-preview'],
+                'max-video-preview':
+                  item.yoast_head_json.robots['max-video-preview'],
+              },
+              canonical: item.yoast_head_json.canonical,
+              og_locale: item.yoast_head_json.og_locale,
+              og_type: item.yoast_head_json.og_type,
+              og_title: item.yoast_head_json.og_title,
+              og_description: item.yoast_head_json.og_description,
+              og_url: item.yoast_head_json.og_url,
+              og_site_name: item.yoast_head_json.og_site_name,
+              article_modified_time: item.yoast_head_json.article_modified_time,
+              twitter_card: item.yoast_head_json.twitter_card,
+              twitter_misc: item.yoast_head_json.twitter_misc,
+            }
+          }
+          if (
+            item.acf &&
+            item.acf.sections &&
+            Object.keys(item.acf.sections).length
+          ) {
+            data[index].content = ''
+          }
+        })
+        filterData(data)
+        data.forEach((pageData) => {
+          store.dispatch('general/pagesInit', { pages: pageData })
+          return { pageData: pageData }
+        })
+      })
   },
   head() {
     let tags = {

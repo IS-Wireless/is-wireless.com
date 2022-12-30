@@ -113,7 +113,6 @@ export default {
   },
   data() {
     return {
-      pageData: null,
       testBlogShare: {
         text: 'Share This Story, Choose Your Platform!',
         socials: [

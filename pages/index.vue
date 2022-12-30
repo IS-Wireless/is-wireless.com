@@ -63,6 +63,25 @@ export default {
       import('~/components/content-section-home.vue'),
     CtaJob: () => import('~/components/cta-job.vue'),
   },
+  async asyncData({ app, store, $filterData }) {
+    return app.$wp
+      .namespace('wp/v2')
+      .pages()
+      .id(2)
+      .then(function (data) {
+        let tmp = ''
+        if (data && data.yoast_head_json && data.yoast_head_json.schema) {
+          tmp = JSON.stringify(data.yoast_head_json.schema)
+        }
+        $filterData(data)
+        data.schema = tmp
+        if (data.acf && data.acf.section) {
+          data.content = ''
+        }
+        store.dispatch('homepage/init', { homepageData: data.acf })
+        return { homepageData: data.acf }
+      })
+  },
   head() {
     let tags = {
       script: [],

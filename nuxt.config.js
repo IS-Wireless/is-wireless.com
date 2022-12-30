@@ -118,6 +118,8 @@ export default {
     //   },
     // },
   ],
+
+  plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-algolia',
@@ -190,6 +192,7 @@ export default {
     crawler: true,
     fallback: '404.html',
   },
+
   image: {
     screens: {
       default: 320,

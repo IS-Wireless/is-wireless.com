@@ -48,32 +48,71 @@ export default {
     BlogRelated,
   },
 
-  async asyncData({ route, payload, store, $config }) {
-    const pagesData = store.getters['general/getPostsData']
-    if (typeof payload !== 'undefined' && Object.keys(payload).length) {
-      return {
-        pageData: payload,
-        postsRelated: getRelatedPosts(pagesData, route.path, $config),
-      }
-    } else {
-      const pagesArray = Object.values(pagesData)
-      for (let i = 0; i < pagesArray.length; i++) {
-        let pageFullPath = pagesArray[i].link
-          .replace($config.API_URL, '')
-          .replace('https://www.is-wireless.com', '')
-        if (isSamePath(pageFullPath, route.path)) {
-          return {
-            pageData: pagesArray[i],
-            postsRelated: getRelatedPosts(pagesData, route.path, $config),
-          }
-        }
-      }
-    }
+  async asyncData({ route, payload, store,app, $config }) {
+    return app.$wp.namespace('wp/v2').posts().slug(route.params.slug).then(function (data) {
+          data.forEach(function (item, index) {
+            if (
+              item.yoast_head_json &&
+              Object.keys(item.yoast_head_json).length
+            ) {
+              data[index]['schema'] = JSON.stringify(
+                item.yoast_head_json.schema
+              )
 
-    return { pageData: {}, postsRelated: [] }
+              for (
+                var i = 0;
+                i < item.yoast_head_json.schema['@graph'].length;
+                i++
+              ) {
+                if (
+                  item.yoast_head_json.schema['@graph'][i]['@type'] ==
+                  'BreadcrumbList'
+                ) {
+                  data[index]['breadcrumb'] =
+                    item.yoast_head_json.schema['@graph'][i]
+                }
+              }
+
+              data[index]['schema_basic'] = {
+                title: item.yoast_head_json.title,
+                description: item.yoast_head_json.description,
+                robots: {
+                  index: item.yoast_head_json.robots.index,
+                  follow: item.yoast_head_json.robots.follow,
+                  'max-snippet': item.yoast_head_json.robots['max-snippet'],
+                  'max-image-preview':
+                    item.yoast_head_json.robots['max-image-preview'],
+                  'max-video-preview':
+                    item.yoast_head_json.robots['max-video-preview'],
+                },
+                canonical: item.yoast_head_json.canonical,
+                og_locale: item.yoast_head_json.og_locale,
+                og_type: item.yoast_head_json.og_type,
+                og_title: item.yoast_head_json.og_title,
+                og_description: item.yoast_head_json.og_description,
+                og_url: item.yoast_head_json.og_url,
+                og_site_name: item.yoast_head_json.og_site_name,
+                article_modified_time:
+                  item.yoast_head_json.article_modified_time,
+                twitter_card: item.yoast_head_json.twitter_card,
+                twitter_misc: item.yoast_head_json.twitter_misc,
+              }
+            }
+            if (item.content.rendered) {
+              let tmp = item.content.rendered
+              item.content.rendered = tmp.replace(/srcset="[\s\S]*?"/, '')
+            }
+          })
+
+          return {
+            pageData: data[0],
+            postsRelated: getRelatedPosts(data, route.path, $config),
+          }
+        })
   },
   data() {
     return {
+      pageData: null,
       testBlogShare: {
         text: 'Share This Story, Choose Your Platform!',
         socials: [
@@ -246,15 +285,17 @@ export default {
         a: { href: 1, rel: 1, 'data-rel': 1, 'aria-label': 1 },
         div: null,
       }
-      let filteredContent = htmlFilter.filter(this.pageData.content.rendered)
-      if (filteredContent.includes('data-orig-src')) {
-        filteredContent = filteredContent.replace(/ src=/g, ' data-test=')
-        filteredContent = filteredContent.replace(
-          / data-orig-/g,
-          ' ref="imageFix" '
-        )
+      if (this.pageData.content.rendered) {
+        let filteredContent = htmlFilter.filter(this.pageData.content.rendered)
+        if (filteredContent.includes('data-orig-src')) {
+          filteredContent = filteredContent.replace(/ src=/g, ' data-test=')
+          filteredContent = filteredContent.replace(
+            / data-orig-/g,
+            ' ref="imageFix" '
+          )
+        }
+        return filteredContent
       }
-      return filteredContent
     },
   },
 }

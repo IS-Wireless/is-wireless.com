@@ -245,12 +245,12 @@ export default {
     },
     workbox: {
       cleanupOutdatedCaches: true,
-      // offlineStrategy: 'StaleWhileRevalidate',
+      //offlineStrategy: 'StaleWhileRevalidate',
       cacheOptions: {
         cacheId: appVersionCacheBuster,
         revision: appVersionCacheBuster,
       },
-      offlineStrategy: 'NetworkOnly',
+      //offlineStrategy: 'NetworkOnly',
       cacheAssets: false,
     },
     icon: {

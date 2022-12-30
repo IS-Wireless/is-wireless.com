@@ -10,7 +10,6 @@ const HOSTNAME = process.env.CF_PAGES_URL
   ? process.env.CF_PAGES_URL
   : 'http://localhost:3000/'
 
-
 export default {
   env: {
     HOST: HOSTNAME,
@@ -30,8 +29,8 @@ export default {
     },
   },
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-
+  target: 'universal',
+  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'IS-Wireless #5GMadeTogether',

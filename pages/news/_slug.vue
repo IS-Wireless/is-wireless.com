@@ -9,10 +9,10 @@
           class="postContent img-no-click"
         />
         <BlogShare :data="testBlogShare" />
-        <!-- BlogRelated
+        <BlogRelated
           v-if="postsRelated && postsRelated.length"
           :data="postsRelated"
-        / -->
+        />
       </div>
     </div>
   </div>
@@ -47,9 +47,10 @@ export default {
     BlogShare,
     BlogRelated,
   },
-
-  async fetch({ route, payload, store, app, $config }) {
-    return app.$wp
+  async fetch() {
+    let route = this.$route
+    let config = this.$config
+    let dataRaw = await this.$wp
       .namespace('wp/v2')
       .posts()
       .slug(route.params.slug)
@@ -107,12 +108,15 @@ export default {
 
         return {
           pageData: data[0],
-          postsRelated: getRelatedPosts(data, route.path, $config),
+          postsRelated: getRelatedPosts(data, route.path, config),
         }
       })
+    this.pageData = dataRaw.pageData
+    this.postsRelated = dataRaw.postsRelated
   },
   data() {
     return {
+      pageData: false,
       testBlogShare: {
         text: 'Share This Story, Choose Your Platform!',
         socials: [
@@ -296,6 +300,11 @@ export default {
         }
         return filteredContent
       }
+    },
+  },
+  methods: {
+    refresh() {
+      this.$fetch()
     },
   },
 }

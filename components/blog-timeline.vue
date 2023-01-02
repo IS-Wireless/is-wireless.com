@@ -29,8 +29,8 @@
           data-collapsed="false"
           data-month-group
         >
-          <div
-          :class="{'hidden':!(countMonths(yearIndex, monthIndex) < visibleMonthsCount)}"
+          <template
+            v-if="countMonths(yearIndex, monthIndex) < visibleMonthsCount"
           >
             <div
               class="w-full text-center hidden tablet-wide:block"
@@ -54,7 +54,7 @@
                 <BlogPost :data="post" />
               </div>
             </div>
-          </div>
+          </template>
         </div>
       </template>
       <div
@@ -105,9 +105,9 @@ export default {
     Collapse(event) {
       let group = event.target.closest('[data-month-group]')
       let collapseState = group.getAttribute('data-collapsed') === 'true'
-      let collapsedHeight = group.firstChild.firstChild.clientHeight
+      let collapsedHeight = group.firstChild.clientHeight
       let expandedHeight =
-        group.firstChild.firstChild.clientHeight + group.firstChild.lastChild.clientHeight
+        group.firstChild.clientHeight + group.lastChild.clientHeight
 
       group.style.height = expandedHeight + 'px'
 
@@ -123,8 +123,8 @@ export default {
       this.$refs.monthGroup.forEach((element) => {
         element.setAttribute('data-collapsed', false)
         element.style.height =
-          element.firstChild.firstChild.clientHeight +
-          element.firstChild.lastChild.clientHeight +
+          element.firstChild.clientHeight +
+          element.lastChild.clientHeight +
           'px'
       })
     },

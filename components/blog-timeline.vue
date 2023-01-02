@@ -30,7 +30,11 @@
           data-month-group
         >
           <div
-          :class="{'hidden':!(countMonths(yearIndex, monthIndex) < visibleMonthsCount)}"
+            :class="{
+              hidden: !(
+                countMonths(yearIndex, monthIndex) < visibleMonthsCount
+              ),
+            }"
           >
             <div
               class="w-full text-center hidden tablet-wide:block"
@@ -107,7 +111,8 @@ export default {
       let collapseState = group.getAttribute('data-collapsed') === 'true'
       let collapsedHeight = group.firstChild.firstChild.clientHeight
       let expandedHeight =
-        group.firstChild.firstChild.clientHeight + group.firstChild.lastChild.clientHeight
+        group.firstChild.firstChild.clientHeight +
+        group.firstChild.lastChild.clientHeight
 
       group.style.height = expandedHeight + 'px'
 

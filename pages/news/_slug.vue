@@ -48,7 +48,7 @@ export default {
     BlogRelated,
   },
 
-  async asyncData({ route, payload, store, app, $config }) {
+  async fetch({ route, payload, store, app, $config }) {
     return app.$wp
       .namespace('wp/v2')
       .posts()

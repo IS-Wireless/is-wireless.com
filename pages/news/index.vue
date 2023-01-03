@@ -12,7 +12,8 @@
 
     <!-- FOR CRAWLER -->
     <a
-      v-for="(pagesCount, index) in pagesCount" :key="index"
+      v-for="(pagesCount, index) in pagesCount"
+      :key="index"
       :href="`/news/p/` + (index + 1)"
       class="hidden"
     ></a>

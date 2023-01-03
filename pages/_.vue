@@ -20,7 +20,7 @@
       <Breadcrumb :data="pageData.breadcrumb" />
     </LazyHydrate>
 
-    <div class="tablet:w-4/5 mx-auto py-10 container">
+    <div class="tablet:w-4/5 mx-auto py-10 tablet:container">
       <div
         v-if="Object.values(pageData.acf).length"
         class="flex"
@@ -84,7 +84,7 @@
       <div
         v-else-if="pageData.content"
         v-html="contentFiltered"
-        class="img-no-click text-page mb-10 w-4/5 mx-auto container tablet:px-0"
+        class="img-no-click text-page mb-10 w-4/5 mx-auto tablet:container tablet:px-0"
       ></div>
       <div v-else class="flex flex-col items-center">
         <span class="text-9xl">404</span><span>Strona nie znaleziona</span>

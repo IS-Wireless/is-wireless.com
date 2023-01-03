@@ -38,12 +38,12 @@
       >
         <nuxt-link
           v-if="item.link_url"
-          class="menu-left-text overflow-hidden px-10 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main w-full border-0 border-b border-solid border-l-gray-light relative after:hidden tablet:after:block after:absolute after:h-1 after:w-full after:bg-blue-main after:-bottom-1 after:left-0 after:transition after:duration-200"
+          class="menu-left-text overflow-hidden px-7 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main w-full border-0 border-b border-solid border-l-gray-light relative after:hidden tablet:after:block after:absolute after:h-1 after:w-full after:bg-blue-main after:-bottom-1 after:left-0 after:transition after:duration-200"
           :to="{ hash: item.link_url }"
           @click.native="switchMobileExpand"
         >
           <span
-            class="ml-[30px] text-inherit"
+            class="tablet:ml-[30px] text-inherit"
             v-html="item.link_title ? item.link_title : item.link_url"
           >
           </span>

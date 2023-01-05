@@ -29,7 +29,8 @@
             <nuxt-picture
               class="w-full"
               :imgAttrs="{
-                class: 'w-full max-w-[75%] tablet:max-w-[50%] object-contain',
+                class:
+                  'w-full max-w-[75%] tablet:max-w-[50%] tablet:max-h-[200px] object-contain',
               }"
               :src="
                 data.image.url
@@ -47,7 +48,8 @@
             v-else-if="data.image"
             class="w-full"
             :imgAttrs="{
-              class: 'w-full max-w-[75%] tablet:max-w-[50%] object-contain',
+              class:
+                'w-full max-w-[75%] tablet:max-w-[50%] tablet:max-h-[200px] object-contain',
             }"
             :src="
               data.image.url

@@ -85,7 +85,7 @@ export default {
         loopedSlides: 4,
         autoplay: {
           delay: 1,
-          disableOnInteraction: true,
+          pauseOnMouseEnter: true,
         },
         freeMode: {
           enabled: true,

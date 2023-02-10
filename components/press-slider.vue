@@ -80,16 +80,11 @@ export default {
         slidesPerView: 'auto',
         spaceBetween: 0,
         direction: 'horizontal',
-        speed: 10000,
+        speed: 5000,
         loop: true,
-        loopedSlides: 4,
         autoplay: {
           delay: 1,
           pauseOnMouseEnter: true,
-        },
-        freeMode: {
-          enabled: true,
-          sticky: true,
         },
       },
     }

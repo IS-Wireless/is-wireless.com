@@ -81,16 +81,10 @@ export default {
         spaceBetween: 0,
         direction: 'horizontal',
         speed: 600,
-        //loop: true,
-        // autoplay: {
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
-        preloadImages: false,
-        lazy: {
-          loadOnTransitionStart: true,
-          loadPrevNext: true,
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
         },
         slidesPerView: 'auto',
       },

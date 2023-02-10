@@ -83,9 +83,12 @@ export default {
         speed: 600,
         loop: true,
         autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
+          delay: 1,
+          disableOnInteraction: true,
         },
+        freeMode: true,
+        speed: 5000,
+        freeModeMomentum: false,
         slidesPerView: 'auto',
       },
     }

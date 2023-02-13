@@ -286,8 +286,16 @@ export default {
         span: null,
         strong: null,
         em: null,
+        blockquote: null,
+        ul: null,
+        ol: null,
+        li: null,
         a: { href: 1, rel: 1, 'data-rel': 1, 'aria-label': 1 },
         div: null,
+        table: null,
+        th: null,
+        tr: null,
+        td: null,
       }
       if (this.pageData.content.rendered) {
         let filteredContent = htmlFilter.filter(this.pageData.content.rendered)

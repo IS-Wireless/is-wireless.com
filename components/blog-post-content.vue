@@ -62,12 +62,12 @@ export default {
   @apply text-gray-dark;
 }
 
-.content-html >>> ol li {
-  @apply list-disc ml-5;
+.content-html >>> ol {
+  @apply mb-5 list-decimal pl-5;
 }
 
 .content-html >>> ul {
-  @apply mb-5;
+  @apply mb-5 list-disc pl-5;
 }
 
 .content-html >>> hr {
@@ -89,4 +89,20 @@ export default {
 .content-html >>> iframe[src*='www.youtu'] {
   @apply w-full aspect-video;
 }
+
+.content-html >>> tbody {
+  @apply flex phone-wide:table-row-group;
+}
+
+.content-html >>> tr {
+  @apply flex flex-col phone-wide:table-row;
+}
+
+.content-html >>> blockquote {
+  @apply border-0 border-l-2 border-blue-main p-5 bg-gray-light mb-5
+}
+.content-html >>> blockquote *:last-child {
+  @apply mb-0
+}
+
 </style>

@@ -79,7 +79,7 @@ export default {
 }
 
 .content-html >>> img {
-  @apply max-w-full w-auto h-auto;
+  @apply max-w-full w-auto h-auto mb-5;
 }
 
 .content-html >>> iframe {

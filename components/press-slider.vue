@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { Swiper, FreeMode, Navigation, Autoplay } from 'swiper'
+import { Swiper, Navigation, Autoplay } from 'swiper'
 
 export default {
   name: 'section_press_slider',
@@ -70,21 +70,17 @@ export default {
     return {
       url: '/about-us/in-the-media',
       swiperOptionsObject: {
-        modules: [Navigation, Autoplay, FreeMode],
+        modules: [Navigation, Autoplay],
         slidesPerView: 'auto',
         spaceBetween: 0,
         direction: 'horizontal',
         speed: 5000,
         loop: true,
+        loopedSlides: 8,
         autoplay: {
-          delay: 2,
+          delay: 2000,
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
-        },
-        freeMode: {
-          enabled: true,
-          sticky: false,
-          momentum: false,
         },
       },
     }

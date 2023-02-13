@@ -14,7 +14,7 @@
 
       <CustomLink
         :url="data.link"
-        class="block mt-5 tablet:mt-0 w-full flex-grow-0 h-[50px] tablet:h-[60px] overflow-hidden"
+        class="block mt-5 tablet:mt-0 w-full flex-grow-0 overflow-hidden"
       >
         <div id="pressSwiper" class="swiper swiper-container overflow-hidden">
           <div
@@ -23,7 +23,7 @@
             <div
               v-for="(image, index) in logos"
               :key="index"
-              class="swiper-slide swiper-duplicate-load-fix h-full px-7 tablet:px-[50px] basis-[100px] tablet-small:w-4/6 tablet-small:basis-4/6 desktop:basis-1/3 full-hd:basis-1/4 w-full flex-grow-0"
+              class="swiper-slide swiper-duplicate-load-fix h-full w-full px-7 basis-full tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0"
             >
               <nuxt-picture
                 v-if="image.url"
@@ -36,14 +36,14 @@
                       )
                     : ''
                 "
-                class="h-full"
+                class="h-full flex justify-center"
                 :alt="image.alt ? image.alt : ''"
                 :title="image.title ? image.title : ''"
                 sizes="sm:180px lg:360px"
                 :img-attrs="{
                   loading: 'lazy',
                   class:
-                    'w-auto h-full object-contain custom-filter duration-300 max-w-[200px] mx-auto opacity-0 transition max-h-[68px]',
+                    'w-auto h-full object-contain custom-filter duration-300 max-w-[200px] m-0 opacity-0 transition w-full',
                 }"
                 @load="imageAnimateLoad($event)"
               />

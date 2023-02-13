@@ -23,7 +23,7 @@
             <div
               v-for="(image, index) in logos"
               :key="index"
-              class="swiper-slide swiper-duplicate-load-fix !w-auto h-full px-7 tablet:px-[50px]"
+              class="swiper-slide swiper-duplicate-load-fix h-full px-7 tablet:px-[50px] basis-[100px] tablet-small:w-4/6 tablet-small:basis-4/6 desktop:basis-1/3 full-hd:basis-1/4 w-full flex-grow-0"
             >
               <nuxt-picture
                 v-if="image.url"
@@ -49,12 +49,6 @@
               />
             </div>
           </div>
-          <div
-            class="absolute h-full w-10 right-0 top-0 bg-gradient-to-l from-gray-light z-20"
-          ></div>
-          <div
-            class="absolute h-full w-10 left-0 top-0 bg-gradient-to-r from-gray-light z-20"
-          ></div>
         </div>
       </CustomLink>
     </div>
@@ -82,6 +76,7 @@ export default {
         direction: 'horizontal',
         speed: 5000,
         loop: true,
+        loopedSlides: 5,
         autoplay: {
           delay: 1,
           pauseOnMouseEnter: true,

@@ -13,7 +13,7 @@
       </div>
       <div
         id="organisations"
-        class="swiper swiper-container overflow-hidden basis-[100px] tablet-small:w-4/6 tablet-small:basis-4/6 w-full flex-grow-0 h-[100px]"
+        class="swiper swiper-container overflow-hidden basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 desktop:basis-1/3 full-hd:basis-1/4 w-full flex-grow-0 h-[100px]"
       >
         <div class="swiper-wrapper select-none flex w-full h-full items-center">
           <div

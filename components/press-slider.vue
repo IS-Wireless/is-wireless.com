@@ -43,7 +43,7 @@
                 :img-attrs="{
                   loading: 'lazy',
                   class:
-                    'w-auto h-full object-contain custom-filter duration-300 max-w-[200px] mx-auto opacity-0 transition',
+                    'w-auto h-full object-contain custom-filter duration-300 max-w-[200px] mx-auto opacity-0 transition max-h-[68px]',
                 }"
                 @load="imageAnimateLoad($event)"
               />

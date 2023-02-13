@@ -76,14 +76,15 @@ export default {
         direction: 'horizontal',
         speed: 5000,
         loop: true,
-        loopedSlides: 5,
         autoplay: {
-          delay: 0,
+          delay: 2,
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
         },
         freeMode: {
           enabled: true,
+          sticky: false,
+          momentum: false,
         },
       },
     }

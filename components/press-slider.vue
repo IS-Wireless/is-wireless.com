@@ -23,7 +23,7 @@
             <div
               v-for="(image, index) in logos"
               :key="index"
-              class="swiper-slide swiper-duplicate-load-fix h-full w-full px-7 basis-full tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0"
+              class="swiper-slide swiper-duplicate-load-fix h-full w-full px-7 basis-full phone:basis-1/2 tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0"
             >
               <nuxt-picture
                 v-if="image.url"

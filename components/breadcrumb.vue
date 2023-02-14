@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="w-4/5 mx-auto container">
-      <ul class="flex flex-row flex-wrap my-4">
+      <ul class="tablet:flex flex-row my-4">
         <li
           v-for="(route, index) in routesComputed"
           :key="index"
@@ -116,17 +116,20 @@ export default {
 
 <style lang="postcss">
 .breadcrumb-item {
-  @apply mr-2;
+  @apply inline tablet:block mr-2;
+}
+
+.breadcrumb-item div{
+  @apply inline tablet:block;
 }
 
 .breadcrumb-item a {
-  @apply text-base capitalize flex items-center text-blue-main hover:text-blue-main-hover transition;
+  @apply text-base capitalize inline tablet:flex items-center text-blue-main hover:text-blue-main-hover transition;
 }
 .breadcrumb-item a::after {
   content: '';
-  display: block;
   height: 15px;
   width: 1px;
-  @apply bg-gray-dark ml-2;
+  @apply inline-block tablet:block bg-gray-dark ml-2;
 }
 </style>

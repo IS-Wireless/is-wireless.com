@@ -332,6 +332,10 @@ export default {
   text-align: center;
   font-style: italic;
   color: #768894;
-  font-size: 16px;
+}
+
+.postContent /deep/ em::before,
+.postContent /deep/ em::after {
+  content: '"';
 }
 </style>

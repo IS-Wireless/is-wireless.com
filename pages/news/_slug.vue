@@ -334,8 +334,4 @@ export default {
   color: #768894;
 }
 
-.postContent /deep/ em::before,
-.postContent /deep/ em::after {
-  content: '"';
-}
 </style>

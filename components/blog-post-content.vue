@@ -99,7 +99,7 @@ export default {
 }
 
 .content-html >>> tr {
-  @apply flex flex-col phone-wide:table-row;
+  @apply flex flex-col phone-wide:table-row mb-2.5 phone-wide:mb-0;
 }
 
 .content-html >>> blockquote {

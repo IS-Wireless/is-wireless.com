@@ -90,8 +90,12 @@ export default {
   @apply w-full aspect-video;
 }
 
+.content-html >>> table {
+  @apply mb-5;
+}
+
 .content-html >>> tbody {
-  @apply flex phone-wide:table-row-group;
+  @apply flex flex-wrap phone-wide:table-row-group;
 }
 
 .content-html >>> tr {

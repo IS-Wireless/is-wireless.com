@@ -173,6 +173,7 @@
                 class="flex flex-row h-full grow bg-gray-darkest transition duration-[400ms] pointer-events-auto"
                 action="/search/"
                 :class="{ 'translate-x-full': !mainSearch }"
+                @submit.prevent="goToSearch()"
               >
                 <button
                   class="px-5 flex justify-center items-center text-white hover:text-blue-main"
@@ -191,7 +192,8 @@
                   </svg>
                 </button>
                 <input
-                  ref="searchInput"
+                  ref="searchContainer"
+                  v-model="searchInput"
                   type="text"
                   name="q"
                   placeholder="Search here..."
@@ -283,8 +285,10 @@
             <form
               class="flex items-center w- h-[70px] pl-14 pr-7 focus-visible:outline-none"
               action="/search/"
+              @submit.prevent="goToSearch()"
             >
               <input
+                v-model="searchInput"
                 type="search"
                 name="q"
                 placeholder="Search..."
@@ -437,12 +441,13 @@ export default {
     return {
       expanded: false,
       mainSearch: false,
+      searchInput: ''
     }
   },
   setup() {
-    const searchInput = ref()
-    const { focused } = useFocus(searchInput, { initialValue: false })
-    return { searchInput, focused }
+    const searchContainer = ref()
+    const { focused } = useFocus(searchContainer, { initialValue: false })
+    return { searchContainer, focused }
   },
   methods: {
     toggleExpanded() {
@@ -468,6 +473,16 @@ export default {
         return item.url === url
       })
     },
+
+    goToSearch(){
+      let query = this.searchInput 
+      if (query.length>0) {
+        this.$router.push(`/search/?${this.searchContainer.name}=${this.searchInput}` )
+        if (this.expanded){
+          this.toggleExpanded()
+        }
+      }
+    }
   },
 }
 </script>

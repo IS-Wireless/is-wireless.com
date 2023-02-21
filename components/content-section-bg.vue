@@ -18,7 +18,7 @@
         ref="parallaxTarget"
         loading="lazy"
         :style="parallaxActive ? parallaxStyle : ''"
-        :src="'/test-bg.png'"
+        :src="data.image.url ? data.image.url : ''"
         :title="data.image.title ? data.image.title : ''"
         :alt="data.image.alt ? data.image.alt : ''"
       ></nuxt-picture>

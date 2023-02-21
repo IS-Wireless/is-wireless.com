@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full flex flex-col">
     <Navbar
       :critical="true"
       :main-menu="topMenuData"

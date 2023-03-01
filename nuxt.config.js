@@ -129,9 +129,9 @@ export default {
     {
       src: '@nuxtjs/robots',
       options: {
-        robots: {
-          UserAgent: '*',
-        },
+        UserAgent: '*',
+        Disallow: '',
+        Sitemap: 'https://is-wireless.com/sitemap.xml'
       },
     },
     // https://go.nuxtjs.dev/pwa
@@ -359,5 +359,5 @@ export default {
     path: '/sitemap.xml',
     hostname: "https://is-wireless.com"
   },
-  
+
 }

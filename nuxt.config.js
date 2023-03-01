@@ -353,9 +353,11 @@ export default {
       backgroundColor: 'grey',
     },
 
-    sitemap: {
-      path: '/sitemap.xml',
-      hostname: "https://is-wireless.com"
-    },
   },
+
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: "https://is-wireless.com"
+  },
+  
 }

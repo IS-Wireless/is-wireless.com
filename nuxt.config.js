@@ -117,7 +117,10 @@ export default {
     //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
     //   },
     // },
+    '@/modules/sitemapRouteGenerator'
   ],
+
+
 
   plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -143,6 +146,7 @@ export default {
       src: 'wp-nuxt',
     },
     // 'nuxt-speedkit',
+    // '@nuxtjs/sitemap'
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -268,6 +272,7 @@ export default {
         name: 'menuIdSelect',
       },
     ],
+    sitemap: false,
   },
   layoutTransition: {
     name: 'page',
@@ -346,6 +351,11 @@ export default {
       dataUri: null,
       size: '100px',
       backgroundColor: 'grey',
+    },
+
+    sitemap: {
+      path: '/sitemap.xml',
+      hostname: "https://is-wireless.com"
     },
   },
 }

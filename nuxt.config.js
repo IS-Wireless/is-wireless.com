@@ -195,6 +195,7 @@ export default {
     dir: 'public',
     crawler: true,
     fallback: '404.html',
+    interval: 500,
   },
 
   image: {

@@ -146,7 +146,7 @@ export default {
       src: 'wp-nuxt',
     },
     // 'nuxt-speedkit',
-    // '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap'
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

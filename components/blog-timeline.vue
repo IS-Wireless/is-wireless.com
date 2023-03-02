@@ -116,6 +116,9 @@ export default {
     this.setFullHeight()
     this.allMonthsCount = this.countAllMonths()
     window.addEventListener('resize', this.setFullHeight)
+    Vue.nextTick(()=>{
+      this.setFullHeight()
+    })
   },
   unmounted() {
     window.removeEventListener('resize', this.setFullHeight)
@@ -132,6 +135,10 @@ export default {
       handler(){
         Vue.nextTick(()=>{
           this.setFullHeight()
+          // //TODO: Scroll into view
+          // setTimeout(()=>{
+            
+          // }, 501)
         })
       },
       deep: true,

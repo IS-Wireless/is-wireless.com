@@ -51,7 +51,7 @@
                 :key="index"
                 class="w-full tablet-wide:shrink-0 tablet-wide:max-w-[400px] tablet-wide:even:mt-20"
               >
-                <BlogPost :data="post" />
+                <BlogPost :data="post" :data-post-slug="post.slug"/>
               </div>
             </div>
           </div>
@@ -110,6 +110,10 @@ export default {
     isFetching:{
       type: Boolean,
       default: true
+    },
+    prevLink:{
+      type: String,
+      default: ''
     }
   },
   mounted() {
@@ -118,8 +122,13 @@ export default {
     window.addEventListener('resize', this.setFullHeight)
     Vue.nextTick(()=>{
       this.setFullHeight()
+      // //TODO: Scroll into view
+      setTimeout(()=>{
+        this.scrollToPost(this.prevLink)
+      }, 501)
     })
   },
+
   unmounted() {
     window.removeEventListener('resize', this.setFullHeight)
   },
@@ -135,10 +144,6 @@ export default {
       handler(){
         Vue.nextTick(()=>{
           this.setFullHeight()
-          // //TODO: Scroll into view
-          // setTimeout(()=>{
-            
-          // }, 501)
         })
       },
       deep: true,
@@ -187,6 +192,18 @@ export default {
 
     countAllMonths() {
       return this.$refs.monthGroup.length
+    },
+
+    scrollToPost(slug){
+    if(slug.length > 0){
+        let prevPost = document.querySelector(`[data-post-slug="${slug}"]`)
+        const offset = 100
+        window.scrollTo({
+          behavior: 'smooth',
+          top:
+          prevPost.getBoundingClientRect().top - offset,
+        })
+      }
     },
 
     increaseVisibleMonthsCount() {

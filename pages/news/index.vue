@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nuxt-link :to="{path:'/news', query: {p: 2}}">LINK 2  </nuxt-link>
+    <nuxt-link :to="{path:'/news', query: {p: 3}}">LINK 3  </nuxt-link>
     <div class="w-4/5 mx-auto container pt-8">
       <BlogTimeline v-if="pageData.length > 0" :data="pageData" :isFetching="$fetchState.pending || $fetchState.error" />
     </div>

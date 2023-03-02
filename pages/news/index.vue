@@ -1,9 +1,9 @@
 <template>
   <div>
-    <nuxt-link :to="{path:'/news', query: {p: 2}}">LINK 2  </nuxt-link>
-    <nuxt-link :to="{path:'/news', query: {p: 3}}">LINK 3  </nuxt-link>
     <div class="w-4/5 mx-auto container pt-8">
-      <BlogTimeline v-if="pageData.length > 0" :data="pageData" :isFetching="$fetchState.pending || $fetchState.error" />
+      <keep-alive>
+        <BlogTimeline v-if="pageData.length > 0" :data="pageData" :isFetching="$fetchState.pending || $fetchState.error" :prevLink="lastPageSlug" />
+      </keep-alive>
     </div>
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
@@ -19,6 +19,7 @@ import { groupBy as _groupBy } from 'lodash'
 // http://wp-api.org/node-wpapi/collection-pagination/
 function getAll(request) {
   return request.then((response) => {
+    console.log(response._paging.totalPages)
     if (!response._paging || !response._paging.next) {
       return response
     }
@@ -43,30 +44,23 @@ export default {
   data(){
     return {
       pageData: [],
+      pagesCount: 1,
+      lastPageSlug: ''
     }
   },
 
+  beforeRouteEnter(to,from,next){
+    next(vm=>{
+      if(from.params.slug){
+        vm.lastPageSlug = from.params.slug; 
+      }
+    })
+  },
+
   async fetch() {
-    // if (
-    //   typeof payload !== undefined &&
-    //   typeof payload === Object &&
-    //   Object.keys(payload).length
-    // ) {
-    //   return { pageData: payload }
-    // } else {
-    //   const pagesData = store.getters['general/getPagesData']
-    //   const pagesArray = Object.values(pagesData)
-    //   for (let i = 0; i < pagesArray.length; i++) {
-    //     let pageFullPath = pagesArray[i].link
-    //       .replace($config.API_URL, '')
-    //       .replace('https://www.is-wireless.com', '')
-    //     if (isSamePath(pageFullPath, route.path)) {
-    //       return { pageData: pagesArray[i] }
-    //     }
-    //   }
-    // }
         const vm = this
-        this.pageData = await this.$wp.namespace('wp/v2').posts().page(this.$route.query.p? parseInt(this.$route.query.p) : 1).then(function (data) {
+        this.pageData = await this.$wp.namespace('wp/v2').posts().perPage(10).page(this.$route.query.p? parseInt(this.$route.query.p) : 1).then(function (data) {
+          vm.pagesCount = data._paging.totalPages
           data.forEach(function (item, index) {
             if (
               item.yoast_head_json &&

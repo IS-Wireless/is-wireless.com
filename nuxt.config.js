@@ -117,7 +117,10 @@ export default {
     //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
     //   },
     // },
+    '@/modules/sitemapRouteGenerator'
   ],
+
+
 
   plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -126,9 +129,9 @@ export default {
     {
       src: '@nuxtjs/robots',
       options: {
-        robots: {
-          UserAgent: '*',
-        },
+        UserAgent: '*',
+        Disallow: '',
+        Sitemap: 'https://is-wireless.com/sitemap.xml'
       },
     },
     // https://go.nuxtjs.dev/pwa
@@ -143,6 +146,7 @@ export default {
       src: 'wp-nuxt',
     },
     // 'nuxt-speedkit',
+    '@nuxtjs/sitemap'
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -191,6 +195,7 @@ export default {
     dir: 'public',
     crawler: true,
     fallback: '404.html',
+    interval: 500,
   },
 
   image: {
@@ -268,6 +273,7 @@ export default {
         name: 'menuIdSelect',
       },
     ],
+    sitemap: false,
   },
   layoutTransition: {
     name: 'page',
@@ -347,5 +353,12 @@ export default {
       size: '100px',
       backgroundColor: 'grey',
     },
+
   },
+
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: "https://is-wireless.com"
+  },
+
 }

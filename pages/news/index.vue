@@ -64,7 +64,6 @@ export default {
     //   }
     // }
         const vm = this
-        console.log(this.$route.query.p? parseInt(this.$route.query.p) : 1);
         this.pageData = await this.$wp.namespace('wp/v2').posts().page(this.$route.query.p? parseInt(this.$route.query.p) : 1).then(function (data) {
           data.forEach(function (item, index) {
             if (

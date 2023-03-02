@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Breadcrumb :data="pageData.breadcrumb" />
-    <div class="w-4/5 mx-auto container">
-      <BlogTimeline :data="postsGrouped" />
+    <div class="w-4/5 mx-auto container pt-8">
+      <BlogTimeline v-if="pageData.length > 0" :data="pageData" />
     </div>
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
@@ -39,7 +38,14 @@ export default {
     ScrollToTopBtn,
   },
 
-  async asyncData({ route, payload, store, $config ,app }) {
+  data(){
+    return {
+      pageData: [],
+      breadcrumb
+    }
+  },
+
+  async fetch() {
     // if (
     //   typeof payload !== undefined &&
     //   typeof payload === Object &&
@@ -58,7 +64,9 @@ export default {
     //     }
     //   }
     // }
-        return getAll(app.$wp.namespace('wp/v2').posts()).then(function (data) {
+        const vm = this
+        console.log(this.$route.query.p? parseInt(this.$route.query.p) : 1);
+        this.pageData = await this.$wp.namespace('wp/v2').posts().page(this.$route.query.p? parseInt(this.$route.query.p) : 1).then(function (data) {
           data.forEach(function (item, index) {
             if (
               item.yoast_head_json &&
@@ -112,12 +120,16 @@ export default {
               item.content.rendered = tmp.replace(/srcset="[\s\S]*?"/, '')
             }
           })
-          store.dispatch('general/init', { posts: data })
-          return { pageData: {data} }
+          vm.$store.dispatch('general/postsInit', { posts: data, prepend: false })
+          data = vm.postsGrouped({posts: vm.$store.getters['general/getPostsData']})
+          return data
         })
         // })
   },
 
+  watch: {
+    '$route.query': '$fetch',
+  },
 
   head() {
     let tags = {
@@ -248,10 +260,8 @@ export default {
 
     return tags
   },
-  computed: {
-    postsGrouped() {
-      // TODO: move from general
-      let data = this.$store.getters['general/getData']
+  methods: {
+    postsGrouped(data) {
       var months = [
         'January',
         'February',

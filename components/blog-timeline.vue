@@ -28,13 +28,9 @@
           class="flex flex-col max-w-[960px] mx-auto group transition-all duration-500 overflow-hidden"
           data-collapsed="false"
           data-month-group
+          :style="{height: (monthIndex + yearIndex) >= 1 ? ' ' : '0px'}"
         >
           <div
-            :class="{
-              hidden: !(
-                countMonths(yearIndex, monthIndex) < visibleMonthsCount
-              ),
-            }"
           >
             <div
               class="w-full text-center hidden tablet-wide:block"
@@ -61,8 +57,18 @@
           </div>
         </div>
       </template>
-      <div
+      <!-- <div
         v-if="allMonthsCount > visibleMonthsCount"
+        class="w-full text-center"
+      >
+        <button
+          class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mt-6"
+          @click="increaseVisibleMonthsCount()"
+        >
+          Load more
+        </button>
+      </div> -->
+      <div
         class="w-full text-center"
       >
         <button
@@ -77,8 +83,8 @@
 </template>
 
 <script>
-import BlogPost from './blog-post.vue'
 import Vue from 'vue'
+import BlogPost from './blog-post.vue'
 
 export default {
   name: 'BlogTimeline',
@@ -101,10 +107,20 @@ export default {
   },
   data() {
     return {
-      visibleMonthsCount: 10,
       allMonthsCount: 0,
+      postPageNr: this.$route.query.p ? parseInt(this.$route.query.p) : 1
     }
   },
+
+  watch:{
+    data: {
+      handler(){
+        this.setFullHeight()
+      },
+      deep: true,
+    } 
+  },
+
   methods: {
     Collapse(event) {
       let group = event.target.closest('[data-month-group]')
@@ -150,10 +166,8 @@ export default {
     },
 
     increaseVisibleMonthsCount() {
-      this.visibleMonthsCount += 5
-      Vue.nextTick(() => {
-        this.setFullHeight()
-      })
+      this.postPageNr +=1
+      this.$router.push('/news?p=' + this.postPageNr)
     },
   },
 }

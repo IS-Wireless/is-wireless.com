@@ -1,7 +1,7 @@
 export const state = () => ({
   menu: {},
   pages: {},
-  posts: {},
+  posts: [],
   options: {
     acf: {},
   },
@@ -40,6 +40,21 @@ export const mutations = {
 
     Object.assign($state.pages, { ...$state.pages, ...obj })
   },
+
+  postsPrepend($state, data) {
+
+    let postsSet = new Set([ ...data, ...$state.posts ])
+    Object.assign($state.posts, Array.from(postsSet) )
+  },
+
+  postsAdd($state, data) {
+
+    let postsCombined = [...$state.posts, ...data]
+    let postsUnique = [...new Map(postsCombined.map(item =>
+      [item['id'], item])).values()]
+
+    $state.posts = postsUnique
+  },
 }
 
 export const actions = {
@@ -51,5 +66,13 @@ export const actions = {
   },
   pagesInit(context, data) {
     context.commit('pageAdd', data.pages)
+  },
+
+  postsInit(context, {posts= {}, prepend= false }) {
+    if (prepend) {
+      context.commit('postsPrepend', posts)      
+    }else{
+      context.commit('postsAdd', posts)
+    }
   },
 }

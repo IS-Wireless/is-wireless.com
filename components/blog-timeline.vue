@@ -28,7 +28,7 @@
           class="flex flex-col max-w-[960px] mx-auto group transition-all duration-500 overflow-hidden"
           data-collapsed="false"
           data-month-group
-          :style="{height: (monthIndex + yearIndex) >= 1 ? ' ' : '0px'}"
+          style="height: 0px"
         >
           <div
           >
@@ -71,12 +71,23 @@
       <div
         class="w-full text-center"
       >
-        <button
-          class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mt-6"
+        <div
+          role="button"
+          class="flex flex-col items-center overflow-hidden w-[180px] h-11 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mt-6"
+          :class="{'opacity-80 pointer-events-none' :isFetching}"
           @click="increaseVisibleMonthsCount()"
         >
-          Load more
-        </button>
+          <span class="h-full py-2 shrink-0 text-lg text-white uppercase transition duration-300"
+          :class="{'-translate-y-full' :isFetching}"
+          >
+            Load more
+          </span>
+          <div class=" p-1 h-11 w-11 shrink-0 transition duration-300"
+          :class="{'-translate-y-full' :isFetching}"
+          >
+          <span class=" block w-full h-full rounded-full border-2 border-l-white border-transparent animate-spin"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -96,6 +107,10 @@ export default {
       type: Array,
       required: true,
     },
+    isFetching:{
+      type: Boolean,
+      default: true
+    }
   },
   mounted() {
     this.setFullHeight()
@@ -115,7 +130,9 @@ export default {
   watch:{
     data: {
       handler(){
-        this.setFullHeight()
+        Vue.nextTick(()=>{
+          this.setFullHeight()
+        })
       },
       deep: true,
     } 

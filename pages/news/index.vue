@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-4/5 mx-auto container pt-8">
-      <BlogTimeline v-if="pageData.length > 0" :data="pageData" />
+      <BlogTimeline v-if="pageData.length > 0" :data="pageData" :isFetching="$fetchState.pending || $fetchState.error" />
     </div>
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
@@ -41,7 +41,6 @@ export default {
   data(){
     return {
       pageData: [],
-      breadcrumb
     }
   },
 

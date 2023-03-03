@@ -122,7 +122,6 @@ export default {
     window.addEventListener('resize', this.setFullHeight)
     Vue.nextTick(()=>{
       this.setFullHeight()
-      // //TODO: Scroll into view
       setTimeout(()=>{
         this.scrollToPost(this.prevLink)
       }, 501)
@@ -132,6 +131,7 @@ export default {
   unmounted() {
     window.removeEventListener('resize', this.setFullHeight)
   },
+
   data() {
     return {
       allMonthsCount: 0,
@@ -147,7 +147,15 @@ export default {
         })
       },
       deep: true,
-    } 
+    },
+    
+    prevLink: {
+      handler(){
+        Vue.nextTick(()=>{
+          this.setFullHeight()
+        })
+      }
+    }
   },
 
   methods: {
@@ -198,11 +206,13 @@ export default {
     if(slug.length > 0){
         let prevPost = document.querySelector(`[data-post-slug="${slug}"]`)
         const offset = 100
-        window.scrollTo({
-          behavior: 'smooth',
-          top:
-          prevPost.getBoundingClientRect().top - offset,
-        })
+        if (prevPost) {
+          window.scrollTo({
+            behavior: 'smooth',
+            top:
+            prevPost.getBoundingClientRect().top - offset,
+          })
+        }
       }
     },
 

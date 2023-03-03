@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full relative">
+  <div v-if="posts.length > 0" class="w-full relative">
     <div
       class="absolute h-full w-full hidden tablet-wide:flex flex-col items-center z-0"
     >
@@ -20,7 +20,7 @@
       <div class="h-full w-1 bg-gray-light rounded-b-full mb-20" />
     </div>
     <div class="relative z-10 mb-32">
-      <template v-for="(yearData, yearIndex) in data">
+      <template v-for="(yearData, yearIndex) in posts">
         <div
           v-for="(monthData, monthIndex) in yearData.posts"
           :key="monthData.name + yearIndex"
@@ -57,33 +57,22 @@
           </div>
         </div>
       </template>
-      <!-- <div
-        v-if="allMonthsCount > visibleMonthsCount"
-        class="w-full text-center"
-      >
-        <button
-          class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mt-6"
-          @click="increaseVisibleMonthsCount()"
-        >
-          Load more
-        </button>
-      </div> -->
       <div
         class="w-full text-center"
       >
         <div
           role="button"
           class="flex flex-col items-center overflow-hidden w-[180px] h-11 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mt-6"
-          :class="{'opacity-80 pointer-events-none' :isFetching}"
-          @click="increaseVisibleMonthsCount()"
+          :class="{'opacity-80 pointer-events-none' :isFetching || posts.length < 0 }"
+          @click="setNextPage()"
         >
           <span class="h-full py-2 shrink-0 text-lg text-white uppercase transition duration-300"
-          :class="{'-translate-y-full' :isFetching}"
+          :class="{'-translate-y-full' :isFetching || posts.length < 0 }"
           >
             Load more
           </span>
           <div class=" p-1 h-11 w-11 shrink-0 transition duration-300"
-          :class="{'-translate-y-full' :isFetching}"
+          :class="{'-translate-y-full' :isFetching || posts.length < 0 }"
           >
           <span class=" block w-full h-full rounded-full border-2 border-l-white border-transparent animate-spin"></span>
           </div>
@@ -96,6 +85,8 @@
 <script>
 import Vue from 'vue'
 import BlogPost from './blog-post.vue'
+import { groupBy as _groupBy } from 'lodash'
+
 
 export default {
   name: 'BlogTimeline',
@@ -103,10 +94,6 @@ export default {
     BlogPost,
   },
   props: {
-    data: {
-      type: Array,
-      required: true,
-    },
     isFetching:{
       type: Boolean,
       default: true
@@ -118,7 +105,6 @@ export default {
   },
   mounted() {
     this.setFullHeight()
-    this.allMonthsCount = this.countAllMonths()
     window.addEventListener('resize', this.setFullHeight)
     Vue.nextTick(()=>{
       this.setFullHeight()
@@ -134,13 +120,18 @@ export default {
 
   data() {
     return {
-      allMonthsCount: 0,
       postPageNr: this.$route.query.p ? parseInt(this.$route.query.p) : 1
     }
   },
 
+  computed:{
+    posts(){
+      return this.groupPosts({posts: this.$store.getters['general/getPostsData']}) 
+    }
+  },
+
   watch:{
-    data: {
+    posts: {
       handler(){
         Vue.nextTick(()=>{
           this.setFullHeight()
@@ -148,17 +139,52 @@ export default {
       },
       deep: true,
     },
-    
-    prevLink: {
-      handler(){
-        Vue.nextTick(()=>{
-          this.setFullHeight()
-        })
-      }
-    }
   },
 
   methods: {
+    groupPosts(data) {
+      var months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ]
+
+      var groupedPosts = _groupBy(data.posts, (post) => {
+        return new Date(post.date).getFullYear()
+      })
+
+      groupedPosts = Object.keys(groupedPosts)
+        .map((year) => ({ year: year, posts: groupedPosts[year] }))
+        .reverse()
+
+      Object.keys(groupedPosts).forEach((item) => {
+        groupedPosts[item].posts = _groupBy(
+          groupedPosts[item].posts,
+          (post) => {
+            return new Date(post.date).getMonth()
+          }
+        )
+        groupedPosts[item].posts = Object.keys(groupedPosts[item].posts)
+          .map((month) => ({
+            number: month,
+            name: months[month],
+            posts: groupedPosts[item].posts[month],
+          }))
+          .reverse()
+      })
+
+      return groupedPosts
+    },
+
     Collapse(event) {
       let group = event.target.closest('[data-month-group]')
       let collapseState = group.getAttribute('data-collapsed') === 'true'
@@ -178,6 +204,9 @@ export default {
     },
 
     setFullHeight() {
+      if (!this.$refs.monthGroup) {
+        return
+      }
       this.$refs.monthGroup.forEach((element) => {
         element.setAttribute('data-collapsed', false)
         element.style.height =
@@ -185,21 +214,6 @@ export default {
           element.firstChild.lastChild.clientHeight +
           'px'
       })
-    },
-
-    countMonths(yearIdx, monthIdx) {
-      let count = 0
-      if (yearIdx > 0) {
-        for (let i = 0; i < yearIdx; i++) {
-          count += this.data[i].posts.length
-        }
-      }
-      count += monthIdx
-      return count
-    },
-
-    countAllMonths() {
-      return this.$refs.monthGroup.length
     },
 
     scrollToPost(slug){
@@ -216,7 +230,7 @@ export default {
       }
     },
 
-    increaseVisibleMonthsCount() {
+    setNextPage() {
       this.postPageNr +=1
       this.$router.push('/news?p=' + this.postPageNr)
     },

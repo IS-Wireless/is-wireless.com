@@ -2,7 +2,7 @@
   <div>
     <div class="w-4/5 mx-auto container pt-8">
       <keep-alive>
-        <BlogTimeline v-if="pageData.length > 0" :data="pageData" :isFetching="$fetchState.pending || $fetchState.error" :prevLink="lastPageSlug" />
+        <BlogTimeline :isFetching="$fetchState.pending || $fetchState.error" :prevLink="lastPageSlug" />
       </keep-alive>
     </div>
     <ScrollToTopBtn :mobileVisible="true" />
@@ -13,25 +13,7 @@
 import BlogTimeline from '~/components/blog-timeline.vue'
 import Breadcrumb from '~/components/breadcrumb.vue'
 import ScrollToTopBtn from '@/components/scroll-to-top.vue'
-import { isSamePath } from 'ufo'
 import { groupBy as _groupBy } from 'lodash'
-
-// http://wp-api.org/node-wpapi/collection-pagination/
-function getAll(request) {
-  return request.then((response) => {
-    console.log(response._paging.totalPages)
-    if (!response._paging || !response._paging.next) {
-      return response
-    }
-    // Request the next page and return both responses as one collection
-    return Promise.all([response, getAll(response._paging.next)]).then(
-      (responses) => {
-        return [].concat(...responses)
-      }
-    )
-  })
-}
-
 
 export default {
   name: 'BlogPage',
@@ -43,7 +25,6 @@ export default {
 
   data(){
     return {
-      pageData: [],
       pagesCount: 1,
       lastPageSlug: ''
     }
@@ -59,7 +40,7 @@ export default {
 
   async fetch() {
         const vm = this
-        this.pageData = await this.$wp.namespace('wp/v2').posts().perPage(10).page(this.$route.query.p? parseInt(this.$route.query.p) : 1).then(function (data) {
+        await this.$wp.namespace('wp/v2').posts().perPage(10).page(this.$route.query.p? parseInt(this.$route.query.p) : 1).then(function (data) {
           vm.pagesCount = data._paging.totalPages
           data.forEach(function (item, index) {
             if (
@@ -115,10 +96,7 @@ export default {
             }
           })
           vm.$store.dispatch('general/postsInit', { posts: data, prepend: false })
-          data = vm.postsGrouped({posts: vm.$store.getters['general/getPostsData']})
-          return data
         })
-        // })
   },
 
   watch: {
@@ -253,50 +231,6 @@ export default {
     }
 
     return tags
-  },
-  methods: {
-    postsGrouped(data) {
-      var months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ]
-
-      var groupedPosts = _groupBy(data.posts, (post) => {
-        return new Date(post.date).getFullYear()
-      })
-
-      groupedPosts = Object.keys(groupedPosts)
-        .map((year) => ({ year: year, posts: groupedPosts[year] }))
-        .reverse()
-
-      Object.keys(groupedPosts).forEach((item) => {
-        groupedPosts[item].posts = _groupBy(
-          groupedPosts[item].posts,
-          (post) => {
-            return new Date(post.date).getMonth()
-          }
-        )
-        groupedPosts[item].posts = Object.keys(groupedPosts[item].posts)
-          .map((month) => ({
-            number: month,
-            name: months[month],
-            posts: groupedPosts[item].posts[month],
-          }))
-          .reverse()
-      })
-
-      return groupedPosts
-    },
   },
 }
 </script>

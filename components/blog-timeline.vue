@@ -59,6 +59,7 @@
       </template>
       <div
         class="w-full text-center"
+        v-if="(postPageCount > postPageNr) || isFetching"
       >
         <div
           role="button"
@@ -94,6 +95,10 @@ export default {
     BlogPost,
   },
   props: {
+    postPageCount: {
+      type: Number,
+      default: 1
+    },
     isFetching:{
       type: Boolean,
       default: true

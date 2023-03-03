@@ -2,7 +2,7 @@
   <div>
     <div class="w-4/5 mx-auto container pt-8">
       <keep-alive>
-        <BlogTimeline :isFetching="$fetchState.pending || $fetchState.error" :prevLink="lastPageSlug" />
+        <BlogTimeline :postPageCount="pagesCount" :isFetching="$fetchState.pending || $fetchState.error" :prevLink="lastPageSlug" />
       </keep-alive>
     </div>
     <ScrollToTopBtn :mobileVisible="true" />

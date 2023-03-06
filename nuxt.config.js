@@ -1,6 +1,5 @@
 require('dotenv').config()
 const pkg = require('./package.json')
-var WPAPI = require('wpapi')
 
 let appVersionCacheBuster =
   process.env.CONTEXT === 'production'
@@ -10,32 +9,6 @@ let appVersionCacheBuster =
 const HOSTNAME = process.env.CF_PAGES_URL
   ? process.env.CF_PAGES_URL
   : 'http://localhost:3000/'
-
-function getAll(request) {
-  return request.then((response) => {
-    if (!response._paging || !response._paging.next) {
-      return response
-    }
-    // Request the next page and return both responses as one collection
-    return Promise.all([response, getAll(response._paging.next)]).then(
-      (responses) => {
-        return [].concat(...responses)
-      }
-    )
-  })
-}
-
-function getPosts(url) {
-  const wp = new WPAPI({ endpoint: url })
-  return getAll(wp.namespace('wp/v2').posts()).then(function (posts) {
-    let postsLinks = []
-    posts.forEach((post) => {
-      console.log(post.slug)
-      postsLinks.push('/news/' + post.slug)
-    })
-    return postsLinks
-  })
-}
 
 export default {
   env: {
@@ -221,17 +194,6 @@ export default {
     crawler: true,
     fallback: '404.html',
     interval: 500,
-    // routes(){
-    //   return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
-    // }
-    // routes(){
-    //   return getAll(axios('https://api.is-wireless.com/wp-json/wp/v2/posts/')
-    //   .then(response => {
-    //     return response.json()
-    //   })).then(res=>{
-    //     console.log(res)
-    //   })
-    // }
   },
 
   image: {
@@ -394,5 +356,8 @@ export default {
   sitemap: {
     path: '/sitemap.xml',
     hostname: 'https://is-wireless.com',
+    filter({ routes }) {
+      return routes.filter((route) => !route.url.includes('/p/'))
+    },
   },
 }

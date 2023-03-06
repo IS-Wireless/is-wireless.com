@@ -9,24 +9,6 @@
         />
       </keep-alive>
     </div>
-    <a href="/news/p/1"></a>
-    <a href="/news/p/2"></a>
-    <a href="/news/p/3"></a>
-    <a href="/news/p/4"></a>
-    <a href="/news/p/5"></a>
-    <a href="/news/p/6"></a>
-    <a href="/news/p/7"></a>
-    <a href="/news/p/8"></a>
-    <a href="/news/p/9"></a>
-    <a href="/news/p/10"></a>
-    <a href="/news/p/11"></a>
-    <a href="/news/p/12"></a>
-    <a href="/news/p/13"></a>
-    <a href="/news/p/14"></a>
-    <a href="/news/p/15"></a>
-    <a href="/news/p/16"></a>
-    <a href="/news/p/17"></a>
-    <a href="/news/p/18"></a>
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
@@ -66,7 +48,7 @@ export default {
       .namespace('wp/v2')
       .posts()
       .perPage(10)
-      .page(this.$route.query.p ? parseInt(this.$route.query.p) : 1)
+      .page(this.$route.params.slug ? parseInt(this.$route.params.slug) : 1)
       .then(function (data) {
         vm.pagesCount = data._paging.totalPages
         data.forEach(function (item, index) {

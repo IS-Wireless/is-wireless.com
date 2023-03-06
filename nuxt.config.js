@@ -1,6 +1,6 @@
 require('dotenv').config()
 const pkg = require('./package.json')
-var WPAPI = require( 'wpapi' );
+var WPAPI = require('wpapi')
 
 let appVersionCacheBuster =
   process.env.CONTEXT === 'production'
@@ -26,16 +26,15 @@ function getAll(request) {
 }
 
 function getPosts(url) {
-  const wp = new WPAPI({endpoint: url})
+  const wp = new WPAPI({ endpoint: url })
   return getAll(wp.namespace('wp/v2').posts()).then(function (posts) {
-    let postsLinks = []  
-    posts.forEach(post => {
-      console.log(post.slug);
+    let postsLinks = []
+    posts.forEach((post) => {
+      console.log(post.slug)
       postsLinks.push('/news/' + post.slug)
     })
     return postsLinks
   })
-  
 }
 
 export default {
@@ -145,10 +144,8 @@ export default {
     //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
     //   },
     // },
-    '@/modules/sitemapRouteGenerator'
+    '@/modules/sitemapRouteGenerator',
   ],
-
-
 
   plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -159,7 +156,7 @@ export default {
       options: {
         UserAgent: '*',
         Disallow: '',
-        Sitemap: 'https://is-wireless.com/sitemap.xml'
+        Sitemap: 'https://is-wireless.com/sitemap.xml',
       },
     },
     // https://go.nuxtjs.dev/pwa
@@ -174,7 +171,7 @@ export default {
       src: 'wp-nuxt',
     },
     // 'nuxt-speedkit',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -224,9 +221,9 @@ export default {
     crawler: true,
     fallback: '404.html',
     interval: 500,
-    routes(){
-      return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
-    }
+    // routes(){
+    //   return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
+    // }
     // routes(){
     //   return getAll(axios('https://api.is-wireless.com/wp-json/wp/v2/posts/')
     //   .then(response => {
@@ -392,12 +389,10 @@ export default {
       size: '100px',
       backgroundColor: 'grey',
     },
-
   },
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: "https://is-wireless.com"
+    hostname: 'https://is-wireless.com',
   },
-
 }

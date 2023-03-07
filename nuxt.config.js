@@ -7,8 +7,8 @@ let appVersionCacheBuster =
     ? process.env.CF_PAGES_COMMIT_SHA
     : pkg.version + '_' + Date.now()
 
-const HOSTNAME = process.env.CF_PAGES_URL
-  ? process.env.CF_PAGES_URL
+const HOSTNAME = process.env.CF_PAGES_BRANCH
+  ? process.env.CF_PAGES_BRANCH
   : 'http://localhost:3000/'
 
 function getAll(request) {
@@ -145,10 +145,8 @@ export default {
     //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
     //   },
     // },
-    '@/modules/sitemapRouteGenerator'
+    '@/modules/sitemapRouteGenerator',
   ],
-
-
 
   plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -159,7 +157,7 @@ export default {
       options: {
         UserAgent: '*',
         Disallow: '',
-        Sitemap: 'https://is-wireless.com/sitemap.xml'
+        Sitemap: `${HOSTNAME}/sitemap.xml`,
       },
     },
     // https://go.nuxtjs.dev/pwa
@@ -174,7 +172,7 @@ export default {
       src: 'wp-nuxt',
     },
     // 'nuxt-speedkit',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -270,7 +268,7 @@ export default {
       ogDescription: false,
       ogType: false,
       ogSiteName: 'IS-Wireless',
-      ogHost: process.env.CF_PAGES_URL,
+      ogHost: process.env.CF_PAGES_BRANCH,
       ogUrl: false,
       twitterCard: 'summary',
       twitterSite: '@is_wireless',
@@ -392,12 +390,13 @@ export default {
       size: '100px',
       backgroundColor: 'grey',
     },
-
   },
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: "https://is-wireless.com"
+    hostname: HOSTNAME,
+    filter({ routes }) {
+      return routes.filter((route) => !route.url.includes('/p/'))
+    },
   },
-
 }

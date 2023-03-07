@@ -9,15 +9,6 @@
         />
       </keep-alive>
     </div>
-
-    <!-- FOR CRAWLER -->
-    <a
-      v-for="(pagesCount, index) in pagesCount" :key="index"
-      :href="`/news/p/` + (index + 1)"
-      class="hidden"
-    ></a>
-    <!-- /FOR CRAWLER -->
-
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
@@ -57,7 +48,7 @@ export default {
       .namespace('wp/v2')
       .posts()
       .perPage(10)
-      .page(this.$route.query.p ? parseInt(this.$route.query.p) : 1)
+      .page(this.$route.params.slug ? parseInt(this.$route.params.slug) : 1)
       .then(function (data) {
         vm.pagesCount = data._paging.totalPages
         data.forEach(function (item, index) {

@@ -220,7 +220,7 @@ export default {
     dir: 'public',
     crawler: true,
     fallback: '404.html',
-    interval: 500,
+    interval: 1000,
     routes() {
       return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
     },

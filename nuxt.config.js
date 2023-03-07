@@ -129,7 +129,7 @@ export default {
       options: {
         UserAgent: '*',
         Disallow: '',
-        Sitemap: 'https://is-wireless.com/sitemap.xml',
+        Sitemap: `${HOSTNAME}/sitemap.xml`,
       },
     },
     // https://go.nuxtjs.dev/pwa
@@ -355,7 +355,7 @@ export default {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://is-wireless.com',
+    hostname: HOSTNAME,
     filter({ routes }) {
       return routes.filter((route) => !route.url.includes('/p/'))
     },

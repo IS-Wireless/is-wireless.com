@@ -6,8 +6,8 @@ let appVersionCacheBuster =
     ? process.env.CF_PAGES_COMMIT_SHA
     : pkg.version + '_' + Date.now()
 
-const HOSTNAME = process.env.CF_PAGES_URL
-  ? process.env.CF_PAGES_URL
+const HOSTNAME = process.env.CF_PAGES_BRANCH
+  ? process.env.CF_PAGES_BRANCH
   : 'http://localhost:3000/'
 
 export default {
@@ -229,7 +229,7 @@ export default {
       ogDescription: false,
       ogType: false,
       ogSiteName: 'IS-Wireless',
-      ogHost: process.env.CF_PAGES_URL,
+      ogHost: process.env.CF_PAGES_BRANCH,
       ogUrl: false,
       twitterCard: 'summary',
       twitterSite: '@is_wireless',

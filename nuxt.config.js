@@ -7,8 +7,8 @@ let appVersionCacheBuster =
     ? process.env.CF_PAGES_COMMIT_SHA
     : pkg.version + '_' + Date.now()
 
-const HOSTNAME = process.env.CF_PAGES_BRANCH
-  ? process.env.CF_PAGES_BRANCH
+const HOSTNAME = process.env.CF_PAGES_URL
+  ? process.env.CF_PAGES_URL
   : 'http://localhost:3000/'
 
 function getAll(request) {
@@ -157,7 +157,7 @@ export default {
       options: {
         UserAgent: '*',
         Disallow: '',
-        Sitemap: `${HOSTNAME}/sitemap.xml`,
+        Sitemap: 'https://is-wireless.com/sitemap.xml',
       },
     },
     // https://go.nuxtjs.dev/pwa
@@ -268,7 +268,7 @@ export default {
       ogDescription: false,
       ogType: false,
       ogSiteName: 'IS-Wireless',
-      ogHost: process.env.CF_PAGES_BRANCH,
+      ogHost: process.env.CF_PAGES_URL,
       ogUrl: false,
       twitterCard: 'summary',
       twitterSite: '@is_wireless',

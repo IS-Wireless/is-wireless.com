@@ -4,6 +4,9 @@ export default function () {
     const allRoutes = Array.from(context.generatedRoutes)
     const routes = allRoutes.filter((route) => !routesToExclude.includes(route))
 
-    this.nuxt.options.sitemap.routes = [...routes]
+    const routesObjects = routes.map((route) => {
+      return { url: route, changefreq: route == '/news' ? 'daily' : 'monthly' }
+    })
+    this.nuxt.options.sitemap.routes = routesObjects
   })
 }

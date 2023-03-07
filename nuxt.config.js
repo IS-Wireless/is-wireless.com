@@ -355,7 +355,7 @@ export default {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: HOSTNAME,
+    hostname: 'https://is-wireless.com',
     filter({ routes }) {
       return routes.filter((route) => !route.url.includes('/p/'))
     },

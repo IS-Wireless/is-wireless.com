@@ -129,7 +129,7 @@ export default {
       options: {
         UserAgent: '*',
         Disallow: '',
-        Sitemap: `${HOSTNAME}/sitemap.xml`,
+        Sitemap: `${HOSTNAME}sitemap.xml`,
       },
     },
     // https://go.nuxtjs.dev/pwa

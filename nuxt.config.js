@@ -18,6 +18,9 @@ export default {
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+  },
   publicRuntimeConfig: {
     baseURL: HOSTNAME,
     API_URL: process.env.API_URL,
@@ -27,6 +30,25 @@ export default {
       applicationId: 'VR74LN6Q10',
       apiKey: 'a80619850095c92c2fc1696244c05f41',
     },
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+    },
+    optional: [
+      {
+          name: 'Google Analytics',
+          identifier: 'ga',
+          description: '...',
+          initialState: false,
+          cookies: ['_ga', '_gat', '_gid'],
+          accepted: () => {
+              window.$nuxt.$ga.enable() // Activate module
+              window.$nuxt.$ga.page(window.$nuxt.$route.path) // Track current route
+          },
+          declined: () => {
+              window.$nuxt.$cookies.remove('ga') // Remove any existing Google Analytics cookies
+          },
+      },
+    ],
   },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -118,6 +140,7 @@ export default {
     //   },
     // },
     '@/modules/sitemapRouteGenerator',
+    '@abbo/nuxt-google-analytics'
   ],
 
   plugins: ['~/plugins/filterData.js'],

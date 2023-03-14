@@ -65,8 +65,15 @@ export default {
     }
   },
   mounted() {
-    this.isMounted = true
-    console.log(this.$ga)
+    // this.isMounted = true
+    // console.log(this.$ga)
+    // this.$ga.enable()
+    // this.$ga.page('/')
+    window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B0N58DBDBV');
   },
 }
 </script>

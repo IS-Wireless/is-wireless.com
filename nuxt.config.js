@@ -99,11 +99,13 @@ export default {
         href: 'https://cdn.jsdelivr.net',
         crossorigin: true,
       },
+    ],
+    script:[
       {
-        href: 'https://www.googletagmanager.com/gtag/js?id=G-B0N58DBDBV',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-B0N58DBDBV',
         async: true
       }
-    ],
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

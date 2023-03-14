@@ -100,7 +100,8 @@ export default {
         crossorigin: true,
       },
       {
-        href: 'https://www.googletagmanager.com/gtag/js?id=G-B0N58DBDBV'
+        href: 'https://www.googletagmanager.com/gtag/js?id=G-B0N58DBDBV',
+        async: true
       }
     ],
   },

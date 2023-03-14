@@ -103,7 +103,8 @@ export default {
     script:[
       {
         src: 'https://www.googletagmanager.com/gtag/js?id=G-B0N58DBDBV',
-        async: true
+        async: true,
+        type: 'text/javascript'
       }
     ]
   },

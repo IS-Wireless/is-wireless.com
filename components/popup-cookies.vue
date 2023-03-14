@@ -1,7 +1,7 @@
 <template>
-  <Transition name="slide-left">
+  <Transition name="slide-right">
     <div
-      v-if="isMounted"
+      v-if="isVisible"
       class="fixed bottom-0 right-0 tablet:bottom-10 tablet:right-10 p-5 tablet:p-0 z-50"
     >
       <div
@@ -19,12 +19,12 @@
         <div class="mt-5 gap-5 flex flex-wrap tablet:flex-nowrap">
           <button
             class="w-max grow-0 py-3 rounded-full transition duration-200"
-          >
+            @click="setConsent()">
             {{ requiredConsentText }}
           </button>
           <button
             class="w-max grow-0 px-5 py-3 text-white rounded-full bg-blue-main hover:bg-blue-main-hover transition duration-200"
-          >
+           @click="setConsentAll()">
             {{ allConsentText }}
           </button>
         </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-
+  import { useCookies } from '@vueuse/integrations/useCookies'
 export default {
   props: {
     description: {
@@ -59,33 +59,60 @@ export default {
       default: 'Accept all',
     },
   },
+  setup(){
+    const cookies = useCookies()
+    const consentCookie = cookies.get(['CONSENT'])
+    const gaCookie = cookies.get(['_ga'])
+
+    return {
+      cookies,
+      consentCookie,
+      gaCookie
+    }
+  },
   data() {
     return {
       isMounted: false,
     }
   },
-  mounted() {
-    // this.isMounted = true
-    // console.log(this.$ga)
-    // this.$ga.enable()
-    // this.$ga.page('/')
-    window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  computed: {
+    isVisible(){
+      return this.isMounted && !(this.gaCookie || this.consentCookie)
+    }
+  },
+  methods:{
+    setConsent(){
+      this.cookies.set('CONSENT','TRUE')
+      this.consentCookie = true
 
-  gtag('config', 'G-B0N58DBDBV');
+    },
+    setConsentAll(){
+      this.setConsent()
+      this.gaCookie = true
+      this.$gtag.optIn()
+      this.$gtag.pageview(this.$route)
+    }
+  },
+  mounted() {
+    this.isMounted = true
+
+    if (!this.gaCookie){
+      this.$gtag.optOut()
+    }else{
+      this.$gtag.optIn()
+    }
   },
 }
 </script>
 
 <style>
-.slide-left-enter-active,
-.slide-left-leave-active {
+.slide-right-enter-active,
+.slide-right-leave-active {
   transition: all 0.3s ease-in-out;
 }
 
-.slide-left-enter-from,
-.slide-left-leave-to {
-  transform: translateX(-120%);
+.slide-right-enter-from,
+.slide-right-leave-to {
+  transform: translateX(120%);
 }
 </style>

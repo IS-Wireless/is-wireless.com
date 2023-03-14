@@ -18,15 +18,17 @@ export default {
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
-  // googleAnalytics: {
-  //   id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
-  //   debug: {
-  //     sendHitTask: true
-  //   },
-  //   autoTracking: {
-  //     screenview: true
-  //   }
-  // },
+  googleAnalytics: {
+    id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
+    useGtag: true,
+    enabled: false,
+    debug: {
+      sendHitTask: true
+    },
+    autoTracking: {
+      screenview: true
+    }
+  },
   publicRuntimeConfig: {
     baseURL: HOSTNAME,
     API_URL: process.env.API_URL,
@@ -36,15 +38,17 @@ export default {
       applicationId: 'VR74LN6Q10',
       apiKey: 'a80619850095c92c2fc1696244c05f41',
     },
-    // googleAnalytics: {
-    //   id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
-    //   debug: {
-    //     sendHitTask: true
-    //   },
-    //   autoTracking: {
-    //     screenview: true
-    //   }
-    // },
+    googleAnalytics: {
+      id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
+      useGtag: true,
+      enabled: false,
+      debug: {
+        sendHitTask: true
+      },
+      autoTracking: {
+        screenview: true
+      }
+    },
     // optional: [
     //   {
     //       name: 'Google Analytics',
@@ -100,13 +104,6 @@ export default {
         crossorigin: true,
       },
     ],
-    script:[
-      {
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-B0N58DBDBV',
-        async: true,
-        type: 'text/javascript'
-      }
-    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -158,13 +155,13 @@ export default {
     //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
     //   },
     // },
+    '@abbo/nuxt-google-analytics',
     '@/modules/sitemapRouteGenerator',
   ],
 
   plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@abbo/nuxt-google-analytics',
     'nuxt-algolia',
     {
       src: '@nuxtjs/robots',

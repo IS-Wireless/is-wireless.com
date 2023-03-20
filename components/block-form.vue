@@ -122,7 +122,7 @@ export default {
       }
     },
     async formRequest(data) {
-      return await this.$fetch('/api/contact', {
+      return await fetch('/api/contact', {
         method: 'POST',
         body: data,
       })

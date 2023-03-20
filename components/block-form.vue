@@ -99,6 +99,11 @@ export default {
     sendForm() {
       const formContainer = document.forms.contactForm
       const formData = new FormData(formContainer)
+      console.log(
+        formData.get('mail') &&
+          this.checkRequired(formContainer) &&
+          this.isEmailValid(formData.get('mail'))
+      )
       if (
         formData.get('mail') &&
         this.checkRequired(formContainer) &&

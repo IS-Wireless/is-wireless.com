@@ -51,10 +51,60 @@
           <button
             class="text-sm ml-auto w-auto block text-white uppercase px-10 py-3 rounded-full bg-blue-main hover:bg-gray-light hover:text-black duration-300 mt-3 mb-4 tablet:mb-3"
             @click="sendForm()"
+            ref="sendButton"
             v-html="data.buttonText ? data.buttonText : 'Send'"
           ></button>
         </div>
       </div>
+      <Transition name="confirmShow" @after-enter="onConfirmTransitionAfter()">
+        <div
+          v-show="mailSent"
+          class="absolute inset-0 flex flex-col justify-center items-center bg-white"
+        >
+          <div
+            class="w-24 desktop:w-[175px] aspect-square flex justify-center items-center rounded-full border-4 border-green-main mb-7 desktop:mb-[50px]"
+          >
+            <svg
+              class="w-12 h-12 desktop:w-auto desktop:h-auto"
+              width="74"
+              height="51"
+              viewBox="0 0 74 51"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                ref="svgPath"
+                class="svg-check"
+                d="M4 25.5L26 47L70 4"
+                stroke="#07E7C4"
+                stroke-width="8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div
+            v-if="$slots.thanksMessage"
+            class="text-3xl tablet:text-4xl desktop:text-5xl mb-5 desktop:mb-10 text-center font-semibold"
+          >
+            <ContentSlot :use="$slots.thanksMessage" />
+          </div>
+          <div
+            v-if="$slots.thanksDescription"
+            class="text-lg desktop:text-xl mb-7 desktop:mb-[50px] text-center font-semibold"
+          >
+            <ContentSlot :use="$slots.thanksDescription" />
+          </div>
+          <div v-if="$slots.buttonBackText">
+            <ButtonMain
+              class="mb-2.5 desktop:mb-6 text-white !w-auto"
+              :link="'https://www.webo.agency/'"
+            >
+              <ContentSlot :use="$slots.buttonBackText" />
+            </ButtonMain>
+          </div>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -67,6 +117,11 @@ export default {
   name: 'section_two_column_contact',
   props: {
     data: Object,
+  },
+  data() {
+    return {
+      mailSent: false,
+    }
   },
   methods: {
     isEmailValid(email) {
@@ -100,6 +155,8 @@ export default {
     sendForm() {
       const formContainer = document.forms.contactForm
       const formData = new FormData(formContainer)
+      const sendBtn = this.$refs['sendButton']?.$el
+      const vm = this
       console.log(
         formData.get('mail') &&
           this.checkRequired(formContainer) &&
@@ -110,13 +167,17 @@ export default {
         this.checkRequired(formContainer) &&
         this.isEmailValid(formData.get('mail'))
       ) {
+        sendBtn?.setAttribute('disabled', '')
         // console.log(formData)
         this.formRequest(formData)
           .then((result) => {
             console.log(result)
+            vm.mailSent = true
+            sendBtn?.removeAttribute('disabled')
           })
           .catch((error) => {
             console.error('Contact form could not be send', error)
+            sendBtn?.removeAttribute('disabled')
           })
       } else {
         console.log('Fulfill required fields correctly')
@@ -127,6 +188,9 @@ export default {
         method: 'POST',
         body: data,
       })
+    },
+    onConfirmTransitionAfter() {
+      this.$refs['svgPath'].classList.add('svg-check-animation')
     },
   },
   components: { section_content },

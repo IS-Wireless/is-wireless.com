@@ -144,7 +144,7 @@ function generateUserOptions(form, config, env) {
   let user_data = {
     from: config.from,
     to: form.mail,
-    subject: `Dziękujemy za kontakt z webo.agency ${form.name}`,
+    subject: `Thank you for contact ${form.name}`,
     text: JSON.stringify(form),
     template: 'hello',
     'h:X-Mailgun-Variables': JSON.stringify({

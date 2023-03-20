@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import http from 'http'
 import section_content from './content-static.vue'
 
 export default {

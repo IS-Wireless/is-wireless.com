@@ -74,9 +74,8 @@
             >
               <path
                 ref="svgPath"
-                class="svg-check"
+                class="svg-check stroke-blue-main"
                 d="M4 25.5L26 47L70 4"
-                stroke="#07E7C4"
                 stroke-width="8"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -84,16 +83,14 @@
             </svg>
           </div>
           <div
-            v-if="$slots.thanksMessage"
             class="text-3xl tablet:text-4xl desktop:text-5xl mb-5 desktop:mb-10 text-center font-semibold"
           >
-            <ContentSlot :use="$slots.thanksMessage" />
+            Thank you for Your message.
           </div>
           <div
-            v-if="$slots.thanksDescription"
             class="text-lg desktop:text-xl mb-7 desktop:mb-[50px] text-center font-semibold"
           >
-            <ContentSlot :use="$slots.thanksDescription" />
+            We will reply soon
           </div>
           <div v-if="$slots.buttonBackText">
             <ButtonMain

@@ -104,12 +104,14 @@ export default {
         this.checkRequired(formContainer) &&
         this.isEmailValid(formData.get('mail'))
       ) {
-        console.log(formData)
-        //   this.formRequest(formData).then( (result) => {
-        //       console.log(result)
-        //   }).catch( (error) => {
-        //       console.error('Contact form could not be send', error)
-        //   });
+        // console.log(formData)
+        this.formRequest(formData)
+          .then((result) => {
+            console.log(result)
+          })
+          .catch((error) => {
+            console.error('Contact form could not be send', error)
+          })
       } else {
         console.log('Fulfill required fields correctly')
       }

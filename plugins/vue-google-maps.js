@@ -10,6 +10,4 @@ export default ({ $config: { GMAP_KEY } }) => {
     libraries: 'places',
     installComponents: true,
   })
-  Vue.component('GmapMap', GmapVue.Map)
-  Vue.component('GmapMarker', GmapVue.Marker)
 }

@@ -110,9 +110,9 @@ function generateAdminOptions(form, config, env) {
       // be sure to stringify your payload
       name: form.name,
       company: form.company,
-      phone: form.phone,
-      description: form.description,
-      service: form.service,
+      phone: form.tel,
+      description: form.message,
+      acceptance: form.acceptance,
     }),
     'o:tag': 'www',
     'h:Reply-To': form.mail,
@@ -151,9 +151,9 @@ function generateUserOptions(form, config, env) {
       // be sure to stringify your payload
       name: form.name,
       company: form.company,
-      phone: form.phone,
-      description: form.description,
-      service: form.service,
+      phone: form.tel,
+      description: form.message,
+      acceptance: form.acceptance,
     }),
     'o:tag': 'www',
     'h:Reply-To': config.admin_email, // reply to admin
@@ -225,8 +225,8 @@ export async function onRequestPost(context) {
       // be sure to stringify your payload
       name: formData.name,
       company: formData.company,
-      phone: formData.phone,
-      description: formData.description,
+      phone: formData.tel,
+      description: formData.message,
     }),
     'o:tag': 'www',
     'h:Reply-To': formData.mail,

@@ -105,7 +105,7 @@ function generateAdminOptions(form, config, env) {
     to: config.admin_email,
     subject: `${form.company}: New message from ${form.name}`,
     text: JSON.stringify(form),
-    template: 'hello',
+    template: env.MAILGUN_TEMPLATE || 'hello',
     'h:X-Mailgun-Variables': JSON.stringify({
       // be sure to stringify your payload
       name: form.name,
@@ -146,7 +146,7 @@ function generateUserOptions(form, config, env) {
     to: form.mail,
     subject: `Thank you for contact ${form.name}`,
     text: JSON.stringify(form),
-    template: 'hello',
+    template: env.MAILGUN_TEMPLATE || 'hello',
     'h:X-Mailgun-Variables': JSON.stringify({
       // be sure to stringify your payload
       name: form.name,
@@ -155,6 +155,7 @@ function generateUserOptions(form, config, env) {
       description: form.message,
       acceptance: form.acceptance,
     }),
+
     'o:tag': 'www',
     'h:Reply-To': config.admin_email, // reply to admin
     // attachments: [{
@@ -220,13 +221,14 @@ export async function onRequestPost(context) {
     to: [context.env.EMAIL_TO || 'test@webo.agency'],
     subject: `${formData.company}`,
     text: JSON.stringify(formData),
-    template: 'hello',
+    template: context.env.MAILGUN_TEMPLATE || 'hello',
     'h:X-Mailgun-Variables': JSON.stringify({
       // be sure to stringify your payload
-      name: formData.name,
-      company: formData.company,
-      phone: formData.tel,
-      description: formData.message,
+      name: form.name,
+      company: form.company,
+      phone: form.tel,
+      description: form.message,
+      acceptance: form.acceptance,
     }),
     'o:tag': 'www',
     'h:Reply-To': formData.mail,

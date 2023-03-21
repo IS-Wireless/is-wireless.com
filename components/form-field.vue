@@ -100,7 +100,7 @@
     @apply absolute left-5 top-[5px] leading-3 text-[10px] text-gray-dark italic pointer-events-none transition-all duration-200;
   }
 
-  [required="required"] ~ span {
+  [required] ~ span {
     @apply flex flex-row-reverse before:content-['*'] before:inline-block before:text-blue-main before:ml-1
   }
 
@@ -114,7 +114,7 @@
     @apply text-red-500 font-semibold;
   }
 
-  [required="required"].invalid  ~ span {
+  [required].invalid  ~ span {
     @apply after:text-red-500
   }
 

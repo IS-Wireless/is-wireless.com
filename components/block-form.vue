@@ -81,24 +81,18 @@
                 />
               </svg>
             </div>
-            <div
-              class="text-3xl tablet:text-4xl desktop:text-5xl mb-5 desktop:mb-10 text-center font-semibold"
-            >
-              Thank you for Your message.
-            </div>
-            <div
-              class="text-lg desktop:text-xl mb-7 desktop:mb-[50px] text-center font-semibold"
-            >
-              We will reply soon
-            </div>
-            <div>
+            <h3 class="block text-3xl tablet:text-4xl desktop:text-5xl mb-5 desktop:mb-10 text-center font-semibold">
+               {{data.confirmText ? data.confirmText : 'Thank you for sending your message'}}
+            </h3>
+            <h4 class="block text-lg desktop:text-xl mb-7 desktop:mb-[50px] text-center font-semibold">
+              {{data.confirmSubText ? data.confirmSubText :'We will reply soon'}}
+            </h4>
               <CustomLink
-                class="block mt-auto tablet-wide:mx-2.5 text-sm !text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-gray-light hover:!text-gray-darkest duration-300 tablet:mb-0 mb-6"
+                class="block tablet-wide:mx-2.5 text-sm !text-white uppercase px-7 py-3 rounded-full bg-blue-main hover:bg-gray-light hover:!text-gray-darkest duration-300 tablet:mb-0 mb-6"
                 :url="'/'"
                 :title="data.buttonBackText ? data.buttonBackText : 'Back to Homepage'"
                 :isExternal="false"
               ></CustomLink>
-            </div>
           </div>
         </Transition>
       </div>

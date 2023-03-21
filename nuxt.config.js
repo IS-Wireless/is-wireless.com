@@ -45,17 +45,17 @@ export default {
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
-  googleAnalytics: {
-    id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
-    useGtag: true,
-    enabled: false,
-    debug: {
-      sendHitTask: true
-    },
-    autoTracking: {
-      screenview: true
-    }
-  },
+  // googleAnalytics: {
+  //   id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
+  //   useGtag: true,
+  //   enabled: false,
+  //   debug: {
+  //     sendHitTask: true
+  //   },
+  //   autoTracking: {
+  //     screenview: true
+  //   }
+  // },
   publicRuntimeConfig: {
     baseURL: HOSTNAME,
     API_URL: process.env.API_URL,
@@ -65,17 +65,17 @@ export default {
       applicationId: 'VR74LN6Q10',
       apiKey: 'a80619850095c92c2fc1696244c05f41',
     },
-    googleAnalytics: {
-      id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
-      useGtag: true,
-      enabled: false,
-      debug: {
-        sendHitTask: true
-      },
-      autoTracking: {
-        screenview: true
-      }
-    },
+    // googleAnalytics: {
+    //   id: 'G-B0N58DBDBV', //process.env.GOOGLE_ANALYTICS_ID,
+    //   useGtag: true,
+    //   enabled: false,
+    //   debug: {
+    //     sendHitTask: true
+    //   },
+    //   autoTracking: {
+    //     screenview: true
+    //   }
+    // },
     // optional: [
     //   {
     //       name: 'Google Analytics',
@@ -182,7 +182,7 @@ export default {
     //     extensions: ['jpg', 'jpeg', 'gif', 'png', 'webp', 'svg', 'xml'],
     //   },
     // },
-    '@abbo/nuxt-google-analytics',
+    // '@abbo/nuxt-google-analytics',
     '@/modules/sitemapRouteGenerator',
   ],
 

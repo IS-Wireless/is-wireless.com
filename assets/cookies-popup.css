@@ -1,0 +1,38 @@
+.cf_modal_wrapper{
+    background: transparent;
+    backdrop-filter: none;
+}
+
+.cf_modal{
+    padding-bottom: 0;
+        max-height: 162px;
+}
+
+.cf_modal .title_container{
+    display: none;
+}
+
+.cf_modal_container{    
+    width: auto!important;
+    height: auto!important; 
+}
+.cf_button{
+        background: rgb(0 162 224/1);
+}
+
+.cf_button.cf_button--reject{
+    background: transparent;
+    color: #161616;
+    order: -1;
+}
+
+.cf_consent-buttons{
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-top: 1px solid #ccc;
+}
+
+.cf_consent-element p{
+    display: none;
+}

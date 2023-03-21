@@ -10,7 +10,7 @@
     <Nuxt />
 
     <ScrollToTopBtn />
-    <PopupCookies />
+    <!-- <PopupCookies /> -->
     <Footer
       :image-url="footerData.image"
       :copyright="footerData.copyright"
@@ -30,7 +30,7 @@
 <script>
 import NavbarComponent from '@/components/navbar.vue'
 import CScrollToTopBtn from '@/components/scroll-to-top.vue'
-import PopupCookies from '@/components/popup-cookies.vue'
+// import PopupCookies from '@/components/popup-cookies.vue'
 import CFooter from '@/components/footer.vue'
 
 export default {
@@ -39,7 +39,7 @@ export default {
     Navbar: NavbarComponent,
     ScrollToTopBtn: CScrollToTopBtn,
     Footer: CFooter,
-    PopupCookies,
+    // PopupCookies,
   },
   computed: {
     topMenuData() {

@@ -29,7 +29,6 @@
     <div
       v-else-if="data.type == 'tel'"
       class="formText"
-      :class="{ invalid: telInput && !isTelValid }"
     >
       <input
         class="textInput"
@@ -83,12 +82,6 @@
           .match(
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           )
-          ? true
-          : false;
-      },
-      isTelValid() {
-        return String(this.telInput)
-          .match(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/)
           ? true
           : false;
       },

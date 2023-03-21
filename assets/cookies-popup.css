@@ -1,3 +1,7 @@
+.cf_modal_container{
+    @apply !left-auto !right-10 !bottom-10 !top-auto !bg-transparent !w-auto !h-auto
+}
+
 .cf_modal_wrapper{
     background: transparent;
     backdrop-filter: none;

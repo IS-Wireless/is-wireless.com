@@ -206,7 +206,7 @@ export async function onRequestPost(context) {
       context.env.EMAIL_FROM ||
       'mailgun@sandbox59a0930a84614b27b3e712756266a274.mailgun.org',
     email_field: 'mail', // email field name
-    admin_email: 'test@webo.agency',
+    admin_email: context.env.EMAIL_TO || 'test@webo.agency',
     form_fields: ['name', 'description', 'company', 'service'], // list of required fields
     honeypot_field: 'email2', // honeypot field name
   }
@@ -217,7 +217,7 @@ export async function onRequestPost(context) {
       context.env.EMAIL_FROM ||
       'mailgun@sandbox59a0930a84614b27b3e712756266a274.mailgun.org'
     }>`,
-    to: ['test@webo.agency'],
+    to: [context.env.EMAIL_TO || 'test@webo.agency'],
     subject: `${formData.company}`,
     text: JSON.stringify(formData),
     template: 'hello',

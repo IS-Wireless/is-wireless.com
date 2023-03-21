@@ -126,7 +126,7 @@ export default {
     },
     checkRequired(form) {
       const formData = new FormData(form)
-      const requiredInputs = form.querySelectorAll('[required="required"]')
+      const requiredInputs = form.querySelectorAll('[required]')
       let validityArray = []
       for (const input of requiredInputs.values()) {
         validityArray.push(input.checkValidity())

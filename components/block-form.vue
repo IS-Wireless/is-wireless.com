@@ -17,6 +17,7 @@
           method="post"
           enctype="multipart/form-data"
           class="flex flex-col"
+          @submit.prevent="sendForm()"
         >
           <ul class="flex flex-wrap gap-2.5 tablet:gap-5 justify-between mb-4">
             <li
@@ -49,7 +50,6 @@
           <div class="w-full">
             <button
               class="text-sm ml-auto w-auto block text-white uppercase px-10 py-3 rounded-full bg-blue-main hover:bg-gray-light hover:text-black duration-300 mt-3 mb-4 tablet:mb-3"
-              @submit.prevent="sendForm()"
               ref="sendButton"
               v-html="data.buttonText ? data.buttonText : 'Send'"
             ></button>
@@ -142,24 +142,20 @@ export default {
     sendForm() {
       const formContainer = document.forms.contactForm
       const formData = new FormData(formContainer)
-      const sendBtn = this.$refs['sendButton']?.$el
-      const vm = this
-      console.log(
-        formData.get('mail') &&
-          this.checkRequired(formContainer) &&
-          this.isEmailValid(formData.get('mail'))
-      )
+      const sendBtn = this.$refs['sendButton']
+
       if (
         formData.get('mail') &&
         this.checkRequired(formContainer) &&
         this.isEmailValid(formData.get('mail'))
       ) {
         sendBtn?.setAttribute('disabled', '')
-        // console.log(formData)
         this.formRequest(formData)
           .then((result) => {
             console.log(result)
-            vm.mailSent = true
+            if (result.ok) {
+              this.mailSent = true
+            }
             sendBtn?.removeAttribute('disabled')
           })
           .catch((error) => {

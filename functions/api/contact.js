@@ -105,7 +105,15 @@ function generateAdminOptions(form, config, env) {
     to: config.admin_email,
     subject: `${form.company}: New message from ${form.name}`,
     text: JSON.stringify(form),
-    template: context.env.MAILGUN_TEMPLATE || 'hello',
+    template: env.MAILGUN_TEMPLATE || 'hello',
+    'h:X-Mailgun-Variables': JSON.stringify({
+      // be sure to stringify your payload
+      name: form.name,
+      company: form.company,
+      phone: form.tel,
+      description: form.message,
+      acceptance: form.acceptance,
+    }),
     'o:tag': 'www',
     'h:Reply-To': form.mail,
     // attachments: [{
@@ -138,7 +146,16 @@ function generateUserOptions(form, config, env) {
     to: form.mail,
     subject: `Thank you for contact ${form.name}`,
     text: JSON.stringify(form),
-    template: context.env.MAILGUN_TEMPLATE || 'hello',
+    template: env.MAILGUN_TEMPLATE || 'hello',
+    'h:X-Mailgun-Variables': JSON.stringify({
+      // be sure to stringify your payload
+      name: form.name,
+      company: form.company,
+      phone: form.tel,
+      description: form.message,
+      acceptance: form.acceptance,
+    }),
+
     'o:tag': 'www',
     'h:Reply-To': config.admin_email, // reply to admin
     // attachments: [{
@@ -205,6 +222,14 @@ export async function onRequestPost(context) {
     subject: `${formData.company}`,
     text: JSON.stringify(formData),
     template: context.env.MAILGUN_TEMPLATE || 'hello',
+    'h:X-Mailgun-Variables': JSON.stringify({
+      // be sure to stringify your payload
+      name: form.name,
+      company: form.company,
+      phone: form.tel,
+      description: form.message,
+      acceptance: form.acceptance,
+    }),
     'o:tag': 'www',
     'h:Reply-To': formData.mail,
   }

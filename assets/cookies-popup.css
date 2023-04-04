@@ -1,42 +1,139 @@
-.cf_modal_container{
-    @apply !left-4 tablet-small:!left-auto !right-4 tablet-small:!right-10 !bottom-4 tablet-small:!bottom-10 !top-auto !bg-transparent !w-auto !h-auto
+.cf_modal_container {
+  @apply !left-4 tablet-small:!left-auto !right-4 tablet-small:!right-10 !bottom-4 tablet-small:!bottom-10 !top-auto !bg-transparent !w-auto !h-auto;
 }
 
-.cf_modal_wrapper{
-    background: transparent;
-    backdrop-filter: none;
+.cf_modal_wrapper {
+  background: transparent;
+  backdrop-filter: none;
 }
 
-.cf_modal{
-    --padding: 19px !important;
-    @apply pb-0 max-h-60 tablet-small:max-h-44 !w-auto
+.cf_modal {
+  --padding: 19px !important;
+  @apply pb-0 max-h-60 tablet-small:max-h-44 !w-auto;
 }
 
-.cf_modal .title_container{
-    display: none;
+.cf_modal .title_container {
+  display: none;
 }
 
-.cf_modal_container{    
-    width: auto!important;
-    height: auto!important; 
-}
-.cf_button{
-    background: rgb(0 162 224/1);
+.cf_modal_container {
+  width: auto !important;
+  height: auto !important;
 }
 
-.cf_button.cf_button--reject{
-    background: transparent;
-    color: #161616;
-    order: -1;
+.cf_button {
+  color: transparent;
+}
+.cf_button.cf_button--accept {
+  background-color: #ededed;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Accept</text></svg>");
+}
+.cf_button.cf_button--accept:hover {
+  background-color: #ededed;
+}
+.cf_button.cf_button--save {
+  background-color: rgb(0 162 224/1);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='white' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Save All</text></svg>");
+}
+.cf_button.cf_button--save:hover {
+  background-color: rgb(0 162 224/1);
+}
+.cf_button.cf_button--reject {
+  order: -1;
+  padding: 0;
+  background-color: #ededed;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Reject All</text></svg>");
 }
 
-.cf_consent-buttons{
-    position: sticky;
-    bottom: 0;
-    background: #fff;
-    border-top: 1px solid #ccc;
+.cf_consent-buttons {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-top: 1px solid #ccc;
 }
 
-.cf_consent-element p{
-    display: none;
+.cf_consent-element p {
+  display: none;
+}
+
+.cf_modal_container {
+  left: 1rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
+  top: auto !important;
+  height: auto !important;
+  width: auto !important;
+  background-color: transparent !important;
+}
+
+@media (min-width: 640px) {
+  .cf_modal_container {
+    left: auto !important;
+    right: 2.5rem !important;
+    bottom: 2.5rem !important;
+  }
+}
+
+.cf_modal_wrapper {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.cf_modal {
+  --padding: 19px !important;
+  max-height: 15rem;
+  width: auto !important;
+  padding-bottom: 0px;
+}
+
+@media (min-width: 640px) {
+  .cf_modal {
+    max-height: 11rem;
+  }
+}
+
+.cf_modal .title_container {
+  display: none;
+}
+
+.cf_modal_container {
+  width: auto !important;
+  height: auto !important;
+}
+
+.cf_button {
+  color: transparent;
+}
+.cf_button.cf_button--accept {
+  background-color: #ededed;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Accept</text></svg>");
+}
+.cf_button.cf_button--accept:hover {
+  background-color: #ededed;
+}
+.cf_button.cf_button--save {
+  background-color: rgb(0 162 224/1);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='white' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Save All</text></svg>");
+}
+.cf_button.cf_button--save:hover {
+  background-color: rgb(0 162 224/1);
+}
+.cf_button.cf_button--reject {
+  order: -1;
+  padding: 0;
+  background-color: #ededed;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Reject All</text></svg>");
+}
+
+.cf_consent-buttons {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.cf_consent-element p {
+  display: none;
 }

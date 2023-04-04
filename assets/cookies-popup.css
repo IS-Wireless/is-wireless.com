@@ -1,5 +1,5 @@
 .cf_modal_container{
-    @apply !left-auto !right-10 !bottom-10 !top-auto !bg-transparent !w-auto !h-auto
+    @apply !left-4 tablet-small:!left-auto !right-4 tablet-small:!right-10 !bottom-4 tablet-small:!bottom-10 !top-auto !bg-transparent !w-auto !h-auto
 }
 
 .cf_modal_wrapper{
@@ -8,8 +8,8 @@
 }
 
 .cf_modal{
-    padding-bottom: 0;
-        max-height: 162px;
+    --padding: 19px !important;
+    @apply pb-0 max-h-60 tablet-small:max-h-44 !w-auto
 }
 
 .cf_modal .title_container{
@@ -21,7 +21,7 @@
     height: auto!important; 
 }
 .cf_button{
-        background: rgb(0 162 224/1);
+    background: rgb(0 162 224/1);
 }
 
 .cf_button.cf_button--reject{

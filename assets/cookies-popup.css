@@ -1,17 +1,37 @@
 .cf_modal_container {
-  @apply !left-4 tablet-small:!left-auto !right-4 tablet-small:!right-10 !bottom-4 tablet-small:!bottom-10 !top-auto !bg-transparent !w-auto !h-auto;
+  box-shadow: -4px 1px 17px 0px rgba(0, 0, 0, 0.18);
+  @apply !left-4 tablet-small:!left-auto !right-4 tablet-small:!right-4 !bottom-4 tablet-small:!bottom-4 !top-4 !bg-transparent !w-auto !h-auto;
 }
 
 .cf_modal_wrapper {
   background: transparent;
   backdrop-filter: none;
+  height: 100% !important;
+  overflow: hidden;
 }
 
 .cf_modal {
   --padding: 19px !important;
-  box-shadow: -4px 1px 17px 0px rgba(0, 0, 0, 0.18);
-  @apply !w-auto !overflow-hidden !filter-none;
+  height: 100% !important;
+  max-height: none !important;
+  @apply !w-auto !filter-none;
 }
+
+@media (min-height: 400px) {
+  .cf_modal{
+    overflow: hidden !important;
+  }
+
+  .cf_modal_container {
+    @apply !left-4 tablet-small:!left-auto !right-4 tablet-small:!right-10 !bottom-4 tablet-small:!bottom-10 !top-auto !bg-transparent !w-auto !h-auto;
+  }
+
+  .cf_modal_wrapper {
+    overflow: auto;
+  }
+  
+}
+
 
 .cf_modal .title_container {
   display: none;
@@ -25,27 +45,6 @@
 .cf_button {
   color: transparent;
   @apply !max-w-none phone-wide:!max-w-[100px]
-}
-
-.cf_button.cf_button--accept {
-  background-color: #ededed;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Accept</text></svg>");
-}
-.cf_button.cf_button--accept:hover {
-  background-color: #ededed;
-}
-.cf_button.cf_button--save {
-  background-color: rgb(0 162 224/1);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='white' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Save All</text></svg>");
-}
-.cf_button.cf_button--save:hover {
-  background-color: rgb(0 162 224/1);
-}
-.cf_button.cf_button--reject {
-  order: -1;
-  padding: 0;
-  background-color: #ededed;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Reject All</text></svg>");
 }
 
 .cf_consent-element p {
@@ -94,24 +93,27 @@
   color: transparent;
 }
 .cf_button.cf_button--accept {
-  background-color: #ededed;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Accept</text></svg>");
+  order: 3;
+  background-color: rgb(0 162 224/1);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='white' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Accept</text></svg>");
 }
 .cf_button.cf_button--accept:hover {
-  background-color: #ededed;
+  background-color: rgb(0 162 224/1);
 }
 .cf_button.cf_button--save {
-  background-color: rgb(0 162 224/1);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='white' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Save All</text></svg>");
+  background-color: #ededed;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Save All</text></svg>");
+  @apply phone:w-[calc(50%_-_8px)]
 }
 .cf_button.cf_button--save:hover {
-  background-color: rgb(0 162 224/1);
+  background-color: #ededed;
 }
 .cf_button.cf_button--reject {
   order: -1;
   padding: 0;
   background-color: #ededed;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='100%' height='100%'><text fill='black' x='50%' y='50%' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Reject All</text></svg>");
+  @apply phone:w-[calc(50%_-_8px)]
 }
 
 .cf_consent-buttons {
@@ -131,4 +133,8 @@
 .cf_consent-element{
   padding: 16px 0;
   border-bottom: 1px solid #ddd
+}
+
+.cf_consent-element + .cf_consent-element{
+  @apply !mt-0
 }

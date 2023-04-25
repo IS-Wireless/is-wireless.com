@@ -116,6 +116,7 @@ export default {
   },
   data() {
     return {
+      postsRelated: false,
       pageData: false,
       testBlogShare: {
         text: 'Share This Story, Choose Your Platform!',
@@ -296,6 +297,8 @@ export default {
         th: null,
         tr: null,
         td: null,
+        sup: null,
+        sub: null,
       }
       if (this.pageData.content.rendered) {
         let filteredContent = htmlFilter.filter(this.pageData.content.rendered)

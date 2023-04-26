@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full h-full">
-    
-    <video v-if="isMounted"
+    <video
+      v-if="isMounted"
       playsinline
       loop
       muted
@@ -10,7 +10,7 @@
       ref="videoPlayer"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
     ></video>
-    
+
     <nuxt-picture
       src="video_ poster.jpg"
       alt="Poster"
@@ -47,7 +47,7 @@ export default {
   },
   mounted() {
     this.isMounted = true
-    this.$nextTick(()=>{
+    this.$nextTick(() => {
       this.player = videojs(
         this.$refs.videoPlayer,
         this.options,

@@ -32,6 +32,7 @@
     "eslint-plugin-tailwind": "^0.2.1",
     "file-system-cache": "^2.0.0",
     "formidable": "^2.0.1",
+    "gmap-vue": "^3.5.4",
     "html-filter": "^4.3.3",
     "ipx": "^0.8.1",
     "node-cache": "^5.1.2",
@@ -49,7 +50,6 @@
     "vitest": "^0.31.0",
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-share-it": "^1.1.6",
-    "vue2-google-maps": "^0.10.7",
     "wp-nuxt": "^1.0.30",
     "wpapi": "^1.2.2",
     "wpapi-extensions": "^1.0.12"

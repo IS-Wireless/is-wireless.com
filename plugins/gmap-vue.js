@@ -1,13 +1,13 @@
 import Vue from 'vue'
-import * as GmapVue from 'vue2-google-maps'
+import GmapVue from 'gmap-vue';
 
 export default ({ $config: { GMAP_KEY } }) => {
   Vue.use(GmapVue, {
     load: {
       key: GMAP_KEY,
       language: 'en',
+      libraries: 'places',
     },
-    libraries: 'places',
     installComponents: true,
   })
 }

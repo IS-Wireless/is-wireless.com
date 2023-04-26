@@ -138,7 +138,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-google-maps', mode: 'client' },
+    { src: '~/plugins/filterData' },
+    { src: '~/plugins/gmap-vue', mode: 'client' },
     { src: '~/plugins/vue-composition-api', mode: 'server' },
   ],
 
@@ -186,7 +187,6 @@ export default {
     '@/modules/sitemapRouteGenerator',
   ],
 
-  plugins: ['~/plugins/filterData.js'],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-algolia',
@@ -223,7 +223,7 @@ export default {
         autoprefixer: {},
       },
     },
-    transpile: ['vue-share-it', /^vue2-google-maps($|\/)/],
+    transpile: ['vue-share-it',/^gmap-vue($|\/)/],
     extend(config) {
       config.externals = [
         {

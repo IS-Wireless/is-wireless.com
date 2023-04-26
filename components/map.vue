@@ -2,12 +2,11 @@
   <div class="mb-10">
     <GmapMap
       :center="{ lat: 52, lng: 21.1 }"
-      :zoom="12"
+      :zoom="10"
       :options="mapOptions"
       class="map-custom w-full h-[600px]"
     >
       <GmapMarker
-        title="Hello World!"
         :position="{ lat: data.map.lat, lng: data.map.lng }"
         :clickable="true"
         :icon="{
@@ -42,7 +41,7 @@ export default {
   },
   methods: {
     openLocationMarker: function () {
-      window.location.href = 'https://goo.gl/maps/pky2oTRWzc5HnFaz8'
+      window.open('https://goo.gl/maps/pky2oTRWzc5HnFaz8','_blank').focus()
     },
   },
 }

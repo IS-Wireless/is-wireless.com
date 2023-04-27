@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full h-full">
-    <video
+    <!-- <video
       v-if="isMounted"
       playsinline
       loop
@@ -22,7 +22,7 @@
       preload
       critical="true"
       ref="videoPlayerPoster"
-    />
+    /> -->
   </div>
 </template>
 
@@ -47,13 +47,13 @@ export default {
   },
   mounted() {
     this.isMounted = true
-    this.$nextTick(() => {
-      this.player = videojs(
-        this.$refs.videoPlayer,
-        this.options,
-        this.playerReady
-      ).play()
-    })
+    // this.$nextTick(() => {
+    //   this.player = videojs(
+    //     this.$refs.videoPlayer,
+    //     this.options,
+    //     this.playerReady
+    //   ).play()
+    // })
   },
   methods: {
     playerReady() {

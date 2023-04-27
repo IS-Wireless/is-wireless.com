@@ -9,7 +9,7 @@
     />
 
     <LazyHydrate when-idle>
-      <video-player :options="videoOptions" />
+      <video-player :options="videoOptions" :placeholderImg="'video_ poster.jpg'" />
     </LazyHydrate>
 
     <div

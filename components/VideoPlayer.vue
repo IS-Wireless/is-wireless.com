@@ -19,7 +19,7 @@
       muted
       loading="lazy"
       preload="none"
-      class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
+      class="relative z-10 block align-top bg-transparent object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
     >
         <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
       </video>

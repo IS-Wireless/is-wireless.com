@@ -46,6 +46,7 @@
     "ufo": "^0.8.4",
     "universal-cookie": "^4.0.4",
     "video.js": "^7.20.3",
+    "vitest": "^0.31.0",
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-share-it": "^1.1.6",
     "vue2-google-maps": "^0.10.7",

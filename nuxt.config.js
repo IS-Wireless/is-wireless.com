@@ -165,12 +165,12 @@ export default {
           ],
           '/favicon.ico': ['Cache-Control: public, max-age=86400'],
         },
-        // redirects: [
-        //   {
-        //     from: 'https://is-wireless.com',
-        //     to: 'https://www.is-wireless.com',
-        //   },
-        // ],
+        redirects: [
+          {
+            from: '/public-funds/',
+            to: '/about-us/public-funds/',
+          },
+        ],
       },
     ],
     // {

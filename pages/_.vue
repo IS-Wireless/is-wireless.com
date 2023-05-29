@@ -126,6 +126,7 @@ export default {
     section_person_list: () => import('~/components/rnd-team.vue'),
     section_two_column_contact: () => import('~/components/block-form.vue'),
     section_video_yt: () => import('~/components/section-video-yt.vue'),
+    section_public_found: () => import('~/components/section-public-fund.vue'),
   },
   // async asyncData({ route, payload, store, $config }) {
   //   await store.getters['index/getPages']
@@ -222,9 +223,13 @@ export default {
           data.acf.sections &&
           Object.keys(data.acf.sections).length
         ) {
-            if(data.acf.sections.some(section => section.acf_fc_layout == 'section_block_subpages')){
-              await store.dispatch('getPages')
-            }
+          if (
+            data.acf.sections.some(
+              (section) => section.acf_fc_layout == 'section_block_subpages'
+            )
+          ) {
+            await store.dispatch('getPages')
+          }
 
           data.content = ''
         }

@@ -1,11 +1,11 @@
 <template>
   <div
-    v-if="data.tile"
+    v-if="activeTiles"
     class="mx-[calc(-12.5%+10px)] tablet:mx-0 tablet:w-full mt-15"
   >
     <div class="w-full mb-32 flex flex-wrap transition-all">
       <div
-        v-for="(item, index) in data.tile"
+        v-for="(item, index) in activeTiles"
         :key="index"
         class="basis-full tablet-small:basis-1/2 tablet-wide:basis-1/3 flex-shrink flex-grow tablet-small:flex-grow-0 min-w-[220px]"
         :class="{
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div v-if="visibleTilesCount < data.tile.length" class="text-center my-10">
+    <div v-if="visibleTilesCount < activeTiles.length" class="text-center my-10">
       <button
         href="https://www.is-wireless.com/networks/"
         class="text-lg text-white uppercase px-10 py-2 rounded-full bg-blue-main mx-auto hover:bg-blue-main-hover duration-300 tablet:mb-0 mb-6"
@@ -109,6 +109,15 @@ export default {
   data() {
     return {
       visibleTilesCount: 21,
+    }
+  },
+  computed:{
+    activeTiles(){
+      if (this.data.tile?.length > 0) {
+        return this.data.tile.filter(tile => !tile.hidden)
+      }else{
+        return []
+      }
     }
   },
   methods: {

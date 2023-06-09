@@ -227,7 +227,7 @@ export async function onRequestPost(context) {
       name: form.name,
       company: form.company,
       phone: form.tel,
-      description: form.message,
+      message: form.message,
       acceptance: form.acceptance,
     }),
     'o:tag': 'www',

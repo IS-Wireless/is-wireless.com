@@ -54,11 +54,8 @@ export default {
       return formattedUrl
     },
     isExternalCheck() {
-      var r = new RegExp('^(?:[a-z+]+:)?//', 'i')
-      var urlCheck = this.url
-        .replace(this.$config.API_URL, '')
-        .replace('https://www.is-wireless.com', '')
-      if (r.test(urlCheck)) {
+      var r = new RegExp('^(?:[a-z+]+:)?//|\\/wp-content\\/', 'i')
+      if (r.test(this.urlFormatted)) {
         return true
       }
       return this.isExternal

@@ -111,7 +111,7 @@ function generateAdminOptions(form, config, env) {
       name: form.name,
       company: form.company,
       phone: form.tel,
-      description: form.message,
+      message: form.message,
       acceptance: form.acceptance,
     }),
     'o:tag': 'www',
@@ -152,7 +152,7 @@ function generateUserOptions(form, config, env) {
       name: form.name,
       company: form.company,
       phone: form.tel,
-      description: form.message,
+      message: form.message,
       acceptance: form.acceptance,
     }),
 

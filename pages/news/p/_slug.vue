@@ -219,11 +219,11 @@ export default {
           content: this.pageData.link,
         })
 
-        if (this.pageData.featured_image_src) {
+        if (this.pageData.acf.sections[0].acf_fc_layout === 'section_header') {
           tags.meta.push({
             hid: 'og:image',
             property: 'og:image',
-            content: this.pageData.featured_image_src,
+            content: this.pageData.acf.sections[0].background.url,
           })
         }
       }

@@ -94,7 +94,6 @@ export default {
                 'max-video-preview':
                   item.yoast_head_json.robots['max-video-preview'],
               },
-              canonical: item.yoast_head_json.canonical,
               og_locale: item.yoast_head_json.og_locale,
               og_type: item.yoast_head_json.og_type,
               og_title: item.yoast_head_json.og_title,
@@ -155,12 +154,6 @@ export default {
             this.pageData.schema_basic.robots['max-image-preview'],
             this.pageData.schema_basic.robots['max-video-preview']
           ).join(', '),
-        })
-
-        tags.link.push({
-          hid: 'canonical',
-          rel: 'canonical',
-          href: this.pageData.schema_basic.canonical,
         })
 
         tags.meta.push({

@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <LazyHydrate when-visible>
+    <section-video-yt />
+    <!-- <LazyHydrate when-visible>
       <BannerVideo
         v-if="
           frontPageData.homepageData.sections[0] &&
@@ -54,7 +55,7 @@
 
     <LazyHydrate when-visible>
       <CtaJob :data="frontPageData.homepageData.sections[5]" />
-    </LazyHydrate>
+    </LazyHydrate> -->
   </div>
 </template>
 

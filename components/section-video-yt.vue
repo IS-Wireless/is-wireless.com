@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative w-full h-auto aspect-[16/9] tablet:max-w-[75%] bg-gray-darkest"
+    class="section-content inline-block relative w-full h-auto aspect-[16/9] tablet:max-w-[75%] bg-gray-darkest mb-5 "
   >
     <iframe
       v-if="data.videoId && videoStarted"

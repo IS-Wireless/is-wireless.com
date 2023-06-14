@@ -130,12 +130,6 @@ export default {
           ).join(', '),
         })
 
-        tags.link.push({
-          hid: 'canonical',
-          rel: 'canonical',
-          href: this.pageData.schema_basic.canonical,
-        })
-
         tags.meta.push({
           hid: 'og_locale',
           property: 'og_locale',

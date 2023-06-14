@@ -62,7 +62,6 @@ export const actions = {
               'max-video-preview':
                 item.yoast_head_json.robots['max-video-preview'],
             },
-            canonical: item.yoast_head_json.canonical,
             og_locale: item.yoast_head_json.og_locale,
             og_type: item.yoast_head_json.og_type,
             og_title: item.yoast_head_json.og_title,

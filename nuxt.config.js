@@ -290,6 +290,7 @@ export default {
       'www.is-wireless.com',
       'api.is-wireless.com',
       'img.youtube.com',
+      'i.ytimg.com',
       process.env.API_URL,
     ],
     alias: {

@@ -23,7 +23,7 @@
             <div
               v-for="(image, index) in logos"
               :key="index"
-              class="swiper-slide swiper-duplicate-load-fix h-full px-7 basis-full phone:basis-1/2 tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0"
+              class="swiper-slide swiper-duplicate-load-fix h-full px-7 basis-full phone:basis-1/2 tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0 flex-shrink-0"
             >
               <nuxt-picture
                 v-if="image.url"
@@ -74,14 +74,23 @@ export default {
         slidesPerView: 'auto',
         spaceBetween: 0,
         direction: 'horizontal',
-        speed: 5000,
+        speed: 600,
         loop: true,
-        loopedSlides: 8,
+        loopedSlides: 5,
         autoplay: {
-          delay: 2000,
+          delay: 3000,
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
         },
+        breakpoints:{
+          1248:{
+            loopedSlides: 3,
+          }
+        }
+        // lazy: {
+        //   loadOnTransitionStart: true,
+        //   loadPrevNext: true,
+        // },
       },
     }
   },

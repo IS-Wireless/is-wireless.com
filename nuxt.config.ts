@@ -185,7 +185,6 @@ export default defineNuxtConfig({
     workbox: {
       cleanupOutdatedCaches: true,
       cacheId: appVersionCacheBuster,
-      offlineStrategy: "NetworkOnly",
       cacheAssets: false,
     },
     icon: {

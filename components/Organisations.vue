@@ -301,28 +301,29 @@ export default {
   },
   methods: {
     linkFilter(link) {
+      const config = useRuntimeConfig()
       return link
         .toString()
-        .replace(this.$config.API_URL, '')
-        .replace('https://www.is-wireless.com', '')
+        .replace(config.public.API_URL, '')
+        .replace(config.public.DOMAIN_URL, '')
     },
     imageAnimateLoad(e) {
-      e.currentTarget.classList.remove('opacity-0')
+      e.currentTarget?.classList.remove('opacity-0')
     },
   },
 }
 </script>
 
 <style lang="postcss" scoped>
->>> .custom-filter {
+:deep( .custom-filter ){
   filter: saturate(0);
 }
->>> .custom-filter:hover {
+:deep( .custom-filter:hover ){
   filter: saturate(1);
 }
 
-.swiper-duplicate-load-fix /deep/ .opacity-0[loading='eager'],
-.swiper-duplicate-load-fix.swiper-slide-duplicate /deep/ .opacity-0 {
+.swiper-duplicate-load-fix :deep( .opacity-0[loading='eager'] ),
+.swiper-duplicate-load-fix.swiper-slide-duplicate :deep( .opacity-0 ){
   opacity: 1;
 }
 </style>

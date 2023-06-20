@@ -10,7 +10,6 @@
       ref="videoPlayer"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
     ></video>
-
     <component v-if="$isServer" :is="'noscript'">
       <video
       autoplay
@@ -88,7 +87,12 @@ export default {
 </script>
 
 <style>
-.vjs-hidden {
+.vjs-hidden,
+.vjs-text-track-display,
+.vjs-control-bar,
+.vjs-big-play-button,
+.vjs-loading-spinner
+ {
   @apply hidden;
 }
 </style>

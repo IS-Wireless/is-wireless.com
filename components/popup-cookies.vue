@@ -34,7 +34,6 @@
 </template>
 
 <script>
-  import { useCookies } from '@vueuse/integrations/useCookies'
 export default {
   props: {
     description: {

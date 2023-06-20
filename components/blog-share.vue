@@ -9,7 +9,7 @@
 
       <ul v-if="data.socials" class="flex tablet:p-5 tablet:pr-0">
         <li v-for="item in data.socials" :key="item.type" class="block m-1.5">
-          <share-it
+          <!-- <share-it
             :url="'https://is-wireless.com' + $route.fullPath"
             icons
             :targets="[item.type.replace('mail', 'email')]"
@@ -80,7 +80,7 @@
                 />
               </svg>
             </template>
-          </share-it>
+          </share-it> -->
         </li>
       </ul>
     </div>
@@ -88,12 +88,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import shareIt from 'vue-share-it'
+// import Vue from 'vue'
+// import shareIt from 'vue-share-it'
 
-shareIt.install(Vue, {
-  targets: "['facebook', 'twitter', 'linkedin', 'email']",
-})
+// shareIt.install(Vue, {
+//   targets: "['facebook', 'twitter', 'linkedin', 'email']",
+// })
 
 export default {
   name: 'BlogShare',

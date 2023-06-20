@@ -23,10 +23,8 @@
 </template>
 
 <script>
-import { useWindowScroll } from '@vueuse/core'
 
 export default {
-  name: 'ScrollToTopBtn',
   props: {
     mobileVisible: {
       type: Boolean,

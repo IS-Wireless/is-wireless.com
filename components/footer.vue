@@ -243,10 +243,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
->>> .custom-filter {
+:deep( .custom-filter ){
   filter: saturate(0);
 }
->>> .custom-filter:hover {
+:deep( .custom-filter:hover ){
   filter: saturate(1);
 }
 </style>

@@ -52,7 +52,6 @@
 </template>
 
 <script>
-import { useMediaQuery } from '@vueuse/core'
 
 export default {
   name: 'section_table',

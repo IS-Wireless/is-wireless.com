@@ -5,7 +5,7 @@
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
       <div class="mx-auto w-4/5 container flex justify-between h-[80px]">
-        <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
+        <nuxt-link to="/" @click="expanded ? toggleExpanded() : null">
           <svg
             width="100%"
             height="100%"
@@ -328,7 +328,7 @@
                   :url="item.url ? item.url : ''"
                   :title="item.title ? item.title : ''"
                   :isExternal="item.object == 'custom' ? true : false"
-                  @click.native="toggleExpanded()"
+                  @click="toggleExpanded()"
                 ></CustomLink>
               </li>
             </ul>
@@ -414,15 +414,8 @@
 </template>
 
 <script>
-import CustomLink from './custom-link.vue'
-
-import { useFocus } from '@vueuse/core'
-import { ref } from '@vue/composition-api'
 export default {
   name: 'Navbar',
-  components: {
-    CustomLink,
-  },
   props: {
     mainMenu: {
       type: Array,

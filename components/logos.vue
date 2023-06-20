@@ -48,12 +48,7 @@
 </template>
 
 <script>
-import CustomLink from '@/components/custom-link.vue'
 export default {
-  name: 'logo_static',
-  components: {
-    CustomLink,
-  },
   props: {
     data: {
       type: Object,

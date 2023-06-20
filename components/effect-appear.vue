@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import { computed, ref } from '@vue/composition-api'
-import { useElementBounding, useWindowSize } from '@vueuse/core'
 export default {
   name: 'EffectAppear',
   props: {
@@ -69,7 +67,7 @@ export default {
 
 <style lang="postcss" scoped>
 @media only screen and (max-width: 767px) {
-  .desktop-delay >>> {
+  .desktop-delay :deep(){
     @apply !delay-[0s];
   }
 }

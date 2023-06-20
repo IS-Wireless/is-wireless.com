@@ -20,7 +20,7 @@
       <div class="h-full w-1 bg-gray-light rounded-b-full mb-20" />
     </div>
     <div class="relative z-10 mb-32">
-      <template v-for="(yearData, yearIndex) in posts">
+      <template v-for="(yearData, yearIndex) in posts" :key="yearIndex">
         <div
           v-for="(monthData, monthIndex) in yearData.posts"
           :key="monthData.name + yearIndex"
@@ -84,7 +84,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import BlogPost from './blog-post.vue'
 import { groupBy as _groupBy } from 'lodash'
 
@@ -111,7 +110,7 @@ export default {
   mounted() {
     this.setFullHeight()
     window.addEventListener('resize', this.setFullHeight)
-    Vue.nextTick(()=>{
+    nextTick(()=>{
       this.setFullHeight()
       setTimeout(()=>{
         this.scrollToPost(this.prevLink)

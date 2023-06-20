@@ -6,20 +6,14 @@
       :side-menu="sideMenuData"
       :socials="socialMenuData"
     />
-
-    <Nuxt />
-
-    <ScrollToTopBtn />
+    <slot></slot>
+    <ScrollToTop />
     <!-- <PopupCookies /> -->
     <Footer
       :image-url="footerData.image"
       :copyright="footerData.copyright"
       :menu="{
         ...footerMenuData,
-        // menu_right_bottom: [
-        //   { title: 'test', url: '/privacy-policy' },
-        //   { title: 'test2', url: '/privacy-policy' },
-        // ],
       }"
       :socials="socialMenuData"
       :languages="footerData.language"
@@ -28,23 +22,13 @@
 </template>
 
 <script>
-import NavbarComponent from '@/components/navbar.vue'
-import CScrollToTopBtn from '@/components/scroll-to-top.vue'
-// import PopupCookies from '@/components/popup-cookies.vue'
-import CFooter from '@/components/footer.vue'
-
+import { useGeneralStore } from '~/store/general'
 export default {
   name: 'Default',
-  components: {
-    Navbar: NavbarComponent,
-    ScrollToTopBtn: CScrollToTopBtn,
-    Footer: CFooter,
-    // PopupCookies,
-  },
   computed: {
     topMenuData() {
       let menu = []
-      let data = this.$store.getters['general/getData']
+      let data = useGeneralStore().data
       if (data['menu_locations'] && data['menu_locations']['main_navigation']) {
         let topMenuID = data['menu_locations']['main_navigation']['ID']
 
@@ -57,7 +41,7 @@ export default {
 
     sideMenuData() {
       let menu = []
-      let data = this.$store.getters['general/getData']
+      let data = useGeneralStore().data
 
       if (data['menu_locations'] && data['menu_locations']['sidebar']) {
         let sideMenuID = data['menu_locations']['sidebar']['ID']
@@ -69,7 +53,7 @@ export default {
 
     socialMenuData() {
       let menu = []
-      let data = this.$store.getters['general/getData']
+      let data = useGeneralStore().data
 
       if (data['menu_locations'] && data['menu_locations']['social-media']) {
         let socialMenuID = data['menu_locations']['social-media']['ID']
@@ -80,7 +64,7 @@ export default {
     },
 
     footerMenuData() {
-      let data = this.$store.getters['general/getData']
+      let data = useGeneralStore().data
       let menu_left = []
       let menu_right = []
 
@@ -107,7 +91,7 @@ export default {
     },
 
     footerRightMenuData() {
-      let data = this.$store.getters['general/getData']
+      let data = useGeneralStore().data
       let footerMenuID = data['menu_locations']['footer-menu-right']['ID']
 
       return data['menu'][footerMenuID]['items']

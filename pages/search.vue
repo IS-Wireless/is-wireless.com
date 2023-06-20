@@ -1,13 +1,8 @@
 <template>
   <div>
     <Breadcrumb v-if="breadcrumb" :data="breadcrumb" />
-    <div
-      class="h-full w-4/5 container mx-auto tablet-wide:pr-0 relative my-[70px]"
-    >
-      <div
-        v-if="$fetchState.pending"
-        class="w-full h-full flex justify-center items-center"
-      >
+    <div class="h-full w-4/5 container mx-auto tablet-wide:pr-0 relative my-[70px]">
+      <div v-if="pending" class="w-full h-full flex justify-center items-center">
         <div class="lds-ripple">
           <div></div>
           <div></div>
@@ -32,25 +27,13 @@
             </svg>
           </div>
           <div class="flex flex-wrap flex-col ml-5">
-            <span
-              class="text-2xl tablet:text-[40px] text-gray-dark font-normal font-lato whitespace-nowrap mb-[10px]"
-            >
-              Search results</span
-            >
-            <span
-              class="text-base tablet:text-lg font-lato font-normal text-gray-dark"
-            >
-              {{ results.hits.length }} from {{ results.nbHits }}</span
-            >
+            <span class="text-2xl tablet:text-[40px] text-gray-dark font-normal font-lato whitespace-nowrap mb-[10px]"> Search results</span>
+            <span class="text-base tablet:text-lg font-lato font-normal text-gray-dark"> {{ results.hits.length }} from {{ results.nbHits }}</span>
           </div>
         </div>
         <div class="min-h-[100px] desktop:w-2/3 mb-10 tablet:mb-20">
           <ul class="relative">
-            <li
-              class="py-[50px] border-0 border-b-2 border-solid border-gray-light"
-              v-for="(result, index) in results.hits"
-              :key="index"
-            >
+            <li class="py-[50px] border-0 border-b-2 border-solid border-gray-light" v-for="(result, index) in results.hits" :key="index">
               <a :href="getPermaLink(result.permalink)">
                 {{ result.post_title }}
               </a>
@@ -59,13 +42,12 @@
           </ul>
         </div>
         <ul class="w-fit mx-auto flex items-center gap-[15px] flex-wrap">
-          <li v-if="results.page != 0"
-          class="hidden tablet:block">
+          <li v-if="results.page != 0" class="hidden tablet:block">
             <nuxt-link
               :to="{
-                path: $route.fullPath,
+                path: route.fullPath,
                 query: {
-                  q: $route.query.q,
+                  q: route.query.q,
                   p: results.page - 1,
                 },
               }"
@@ -90,16 +72,12 @@
               Prev
             </nuxt-link>
           </li>
-          <li
-            v-for="(page, index) in pagination"
-            :key="index"
-            :class="[{ dots: page - pagination[index - 1] > 1 }]"
-          >
+          <li v-for="(page, index) in pagination" :key="index" :class="[{ dots: page - pagination[index - 1] > 1 }]">
             <nuxt-link
               :to="{
-                path: $route.fullPath,
+                path: route.fullPath,
                 query: {
-                  q: $route.query.q,
+                  q: route.query.q,
                   p: page,
                 },
               }"
@@ -107,21 +85,18 @@
               exact-active-class=""
               class="flex justify-center items-center w-11 h-11 tablet:w-[55px] tablet:h-[55px] border border-solid rounded-full hover:no-underline text-base tablet:text-lg font-lato transition duration-200"
               :class="[
-                page == results.page
-                  ? 'border-blue-main bg-blue-main text-white'
-                  : 'border-gray-default hover:border-blue-main text-gray-default',
+                page == results.page ? 'border-blue-main bg-blue-main text-white' : 'border-gray-default hover:border-blue-main text-gray-default',
               ]"
             >
               {{ page + 1 }}
             </nuxt-link>
           </li>
-          <li v-if="results.page != results.nbPages - 1"
-          class="hidden tablet:block">
+          <li v-if="results.page != results.nbPages - 1" class="hidden tablet:block">
             <nuxt-link
               :to="{
-                path: $route.fullPath,
+                path: route.fullPath,
                 query: {
-                  q: $route.query.q,
+                  q: route.query.q,
                   p: results.page + 1,
                 },
               }"
@@ -152,283 +127,149 @@
   </div>
 </template>
 
-<script>
-import Breadcrumb from '~/components/breadcrumb.vue'
+<script setup>
 
-export default {
-  components: {
-    Breadcrumb,
-  },
-  data() {
-    return {
-      results: {
-        nbHits: 0,
-        hits: [],
-      },
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        '@id': 'https://www.is-wireless.com/networks/services/#breadcrumb',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://www.is-wireless.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Search',
-          },
-        ],
-      },
-    }
-  },
-  async fetch() {
-    const index = this.$algolia.initIndex('web_searchable_posts')
-    const pageNr = this.$route.query.p ? this.$route.query.p : 0
-    this.results = await index.search(this.$route.query.q, {
-      page: pageNr,
-    })
-  },
-  fetchOnServer: false,
+const results = ref({
+  nbHits: 0,
+  hits: [],
+});
 
-  watch: {
-    '$route.query': '$fetch',
-  },
-
-  computed: {
-    pagination() {
-      if (!this.results || this.results.hits.length == 0) {
-        return
-      }
-
-      let resultsCopy = this.results
-      let pagination = new Set()
-      let currentPage = resultsCopy.page
-      let pagesCount = resultsCopy.nbPages
-
-      pagination.add(0)
-
-      if (currentPage != pagesCount - 1) {
-        pagination.add(currentPage + 1)
-      } else {
-        if (pagesCount > 2 && currentPage > 2) {
-          pagination.add(currentPage - 2)
-        }
-      }
-
-      pagination.add(currentPage)
-
-      if (currentPage != 0) {
-        pagination.add(currentPage - 1)
-      } else {
-        if (pagesCount > 2) {
-          pagination.add(currentPage + 2)
-        }
-      }
-
-      pagination.add(pagesCount - 1)
-
-      pagination = Array.from(pagination)
-      pagination = pagination.sort(function (a, b) {
-        return a - b
-      })
-
-      return pagination
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  "@id": "https://www.is-wireless.com/networks/services/#breadcrumb",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.is-wireless.com/",
     },
-  },
-
-  head() {
-    let tags = {
-      script: [],
-      meta: [],
-      link: [],
-      __dangerouslyDisableSanitizers: ['script'],
-    }
-
-    if (this.pageData) {
-      if (this.pageData.schema) {
-        tags.script.push({
-          vmid: 'ldjson-schema',
-          type: 'application/ld+json',
-          innerHTML: this.pageData.schema,
-        })
-      }
-
-      if (this.pageData.schema_basic) {
-        tags.title = this.pageData.schema_basic.title
-
-        tags.meta.push({
-          hid: 'description',
-          property: 'description',
-          content: this.pageData.schema_basic.description,
-        })
-
-        tags.meta.push({
-          hid: 'robots',
-          name: 'robots',
-          content: new Array(
-            this.pageData.schema_basic.robots.index,
-            this.pageData.schema_basic.robots.follow,
-            this.pageData.schema_basic.robots['max-snippet'],
-            this.pageData.schema_basic.robots['max-image-preview'],
-            this.pageData.schema_basic.robots['max-video-preview']
-          ).join(', '),
-        })
-
-        tags.meta.push({
-          hid: 'og_locale',
-          property: 'og_locale',
-          content: this.pageData.schema_basic.og_locale,
-        })
-
-        tags.meta.push({
-          hid: 'og_type',
-          property: 'og_type',
-          content: this.pageData.schema_basic.og_type,
-        })
-
-        tags.meta.push({
-          hid: 'og_title',
-          property: 'og_title',
-          content: this.pageData.schema_basic.og_title,
-        })
-
-        tags.meta.push({
-          hid: 'og_description',
-          property: 'og_description',
-          content: this.pageData.schema_basic.og_description,
-        })
-
-        tags.meta.push({
-          hid: 'og_url',
-          property: 'og_url',
-          content: this.pageData.schema_basic.og_url,
-        })
-
-        tags.meta.push({
-          hid: 'og_site_name',
-          property: 'og_site_name',
-          content: this.pageData.schema_basic.og_site_name,
-        })
-
-        tags.meta.push({
-          hid: 'article_modified_time',
-          property: 'article_modified_time',
-          content: this.pageData.schema_basic.article_modified_time,
-        })
-
-        tags.meta.push({
-          hid: 'twitter_card',
-          name: 'twitter_card',
-          content: this.pageData.schema_basic.twitter_card,
-        })
-
-        if (this.pageData.schema_basic.twitter_misc) {
-          let $i = 1
-          for (const [key, value] of Object.entries(
-            this.pageData.schema_basic.twitter_misc
-          )) {
-            tags.meta.push({
-              hid: 'twitter:label' + $i,
-              name: 'twitter:label' + $i,
-              content: key,
-            })
-            tags.meta.push({
-              hid: 'twitter:data' + $i,
-              name: 'twitter:data' + $i,
-              content: value,
-            })
-            $i++
-          }
-        }
-
-        tags.meta.push({
-          hid: 'og:url',
-          property: 'og:url',
-          content: this.pageData.link,
-        })
-
-        if (this.pageData.acf.sections[0].acf_fc_layout === 'section_header') {
-          tags.meta.push({
-            hid: 'og:image',
-            property: 'og:image',
-            content: this.pageData.acf.sections[0].background.url,
-          })
-        }
-      }
-    }
-    return tags
-  },
-
-  methods: {
-    getPermaLink: function (permalink) {
-      return permalink.replace('api.is-wireless.com', 'www.is-wireless.com')
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Search",
     },
+  ],
+};
+
+const { search } = useAlgoliaSearch('web_searchable_posts')
+
+const route = useRoute();
+
+const pagination = computed(() => {
+  if (!results.value || results.value.hits.length == 0) {
+    return;
+  }
+
+  let resultsCopy = results.value;
+  let pagination = new Set();
+  let currentPage = resultsCopy.page;
+  let pagesCount = resultsCopy.nbPages;
+
+  pagination.add(0);
+
+  if (currentPage != pagesCount - 1) {
+    pagination.add(currentPage + 1);
+  } else {
+    if (pagesCount > 2 && currentPage > 2) {
+      pagination.add(currentPage - 2);
+    }
+  }
+
+  pagination.add(currentPage);
+
+  if (currentPage != 0) {
+    pagination.add(currentPage - 1);
+  } else {
+    if (pagesCount > 2) {
+      pagination.add(currentPage + 2);
+    }
+  }
+
+  pagination.add(pagesCount - 1);
+
+  pagination = Array.from(pagination);
+  pagination = pagination.sort(function (a, b) {
+    return a - b;
+  });
+
+  return pagination;
+});
+
+const { pending } = await useAsyncData(
+  async () => {
+    const pageNr = route.query.p ? route.query.p : 0;
+    results.value = await search({
+      query: route.query.q,
+      requestOptions: {
+        page: pageNr
+      }
+    });
   },
+  {
+    server: false,
+    watch: [route],
+  }
+);
+
+function getPermaLink(permalink) {
+  return permalink.replace("api.is-wireless.com", "www.is-wireless.com");
 }
+
 </script>
+
 <style scoped lang="postcss">
-.search_wrapper >>> .gsc-control-cse {
+.search_wrapper :data(.gsc-control-cse) {
   @apply pt-[66px] tablet:pt-[96px] relative;
 }
 
-.search_wrapper >>> .gsc-above-wrapper-area {
+.search_wrapper :data(.gsc-above-wrapper-area) {
   @apply border-0 absolute top-7 left-[70px] tablet:top-11 tablet:left-[96px] z-10;
 }
 
-.search_wrapper >>> .gsc-webResult.gsc-result .gsc-thumbnail-inside a {
+.search_wrapper :data(.gsc-webResult.gsc-result .gsc-thumbnail-inside a) {
   @apply inline-block text-blue-main hover:text-blue-main-hover visited:text-blue-main-hover font-lato font-normal text-lg tablet:text-2xl mb-7 transition duration-200;
 }
 
-.search_wrapper >>> .gsc-webResult.gsc-result .gsc-thumbnail-inside a * {
+.search_wrapper :data(.gsc-webResult.gsc-result .gsc-thumbnail-inside a *) {
   @apply text-inherit font-normal font-lato text-lg tablet:text-2xl;
 }
 
-.search_wrapper
-  >>> .gsc-webResult.gsc-result
-  .gsc-thumbnail-inside
-  a:visited
-  * {
+.search_wrapper :data(.gsc-webResult.gsc-result .gsc-thumbnail-inside a:visited *) {
   @apply text-blue-main-hover;
 }
 
-.search_wrapper >>> .gs-webResult .gsc-table-result .gs-snippet,
-.search_wrapper >>> .gs-webResult .gsc-table-result .gs-snippet b,
-.search_wrapper >>> .gsc-above-wrapper-area .gsc-result-info {
+.search_wrapper :data(.gs-webResult .gsc-table-result .gs-snippet),
+.search_wrapper :data(.gs-webResult .gsc-table-result .gs-snippet b),
+.search_wrapper :data(.gsc-above-wrapper-area .gsc-result-info) {
   @apply text-base tablet:text-lg font-lato font-normal text-gray-dark;
 }
 
-.search_wrapper >>> .gs-webResult.gs-result {
+.search_wrapper :data(.gs-webResult.gs-result) {
   @apply py-[50px] border-0 border-b-2 border-solid border-gray-light;
 }
 
-.search_wrapper >>> .gsc-cursor {
+.search_wrapper :data(.gsc-cursor) {
   @apply flex gap-[15px] flex-wrap justify-center tablet-wide:justify-end py-14;
 }
 
-.search_wrapper >>> .gsc-cursor .gsc-cursor-page {
+.search_wrapper :data(.gsc-cursor .gsc-cursor-page) {
   @apply hidden justify-center items-center w-11 h-11 tablet:w-[55px] tablet:h-[55px] border border-solid rounded-full hover:no-underline  text-base tablet:text-lg font-lato;
 }
 
-.search_wrapper >>> .gsc-cursor .gsc-cursor-page.gsc-cursor-current-page {
+.search_wrapper :data(.gsc-cursor .gsc-cursor-page.gsc-cursor-current-page) {
   @apply flex border-blue-main bg-blue-main text-white;
 }
 
-.search_wrapper >>> .gsc-cursor-page:not(.gsc-cursor-current-page + div ~ div) {
+.search_wrapper :data(.gsc-cursor-page:not(.gsc-cursor-current-page + div ~ div)) {
   @apply flex border-gray-default transition duration-200 hover:border-blue-main text-gray-default;
 }
 
-.search_wrapper >>> .gsc-cursor .gsc-cursor-page:last-child {
+.search_wrapper :data(.gsc-cursor .gsc-cursor-page:last-child) {
   @apply flex border-gray-default transition duration-200 hover:border-blue-main text-gray-default;
 }
 
-.search_wrapper
-  >>> .gsc-cursor
-  .gsc-cursor-page.gsc-cursor-current-page
-  + div
-  + div:not(:last-child) {
+.search_wrapper :data(.gsc-cursor .gsc-cursor-page.gsc-cursor-current-page + div + div:not(:last-child)) {
   @apply text-[0px] pointer-events-none flex border-0 after:content-['...'] after:block after:text-2xl after:text-gray-default after:relative;
 }
 

@@ -8,9 +8,7 @@
       :videoSrc="data.default.video.link"
     />
 
-    <LazyHydrate when-idle>
-      <video-player :options="videoOptions" :placeholderImg="'video_ poster.jpg'" />
-    </LazyHydrate>
+      <video-player :options="videoOptions" :placeholderImg="'video_poster.jpg'" />
 
     <div
       v-if="data.default"
@@ -102,13 +100,11 @@
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
 import CustomLink from './custom-link.vue'
 
 export default {
   name: 'Banner',
   components: {
-    LazyHydrate,
     CustomLink,
     VideoPlayer: () => import('@/components/VideoPlayer.vue'),
   },
@@ -150,21 +146,21 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.swiper .swiper-slide picture >>> img {
+.swiper .swiper-slide picture :deep( img ){
   @apply min-w-full h-full object-cover;
 }
 
-.swiper >>> .swiper-pagination.swiper-pagination {
+.swiper :deep( .swiper-pagination.swiper-pagination ){
   @apply hidden w-auto z-20 static pointer-events-none tablet:flex flex-col justify-center items-center;
 }
 
-.swiper >>> .swiper-pagination .swiper-pagination-bullet {
+.swiper :deep( .swiper-pagination .swiper-pagination-bullet ){
   @apply w-3 h-3 mx-0 my-[5px]  bg-transparent border border-white border-solid transition duration-200 opacity-100 hover:bg-white/25;
 }
 
 .swiper
-  >>> .swiper-pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  :deep( .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active ){
   @apply bg-blue-main border-blue-main;
 }
 </style>

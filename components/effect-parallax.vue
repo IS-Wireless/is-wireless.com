@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { useElementBounding } from '@vueuse/core'
 import { computed, ref, toRef } from '@vue/composition-api'
 export default {
   name: 'EffectParallax',

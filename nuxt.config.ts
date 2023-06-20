@@ -182,10 +182,7 @@ export default defineNuxtConfig({
       description:
         "IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.",
     },
-    workbox: {
-      cleanupOutdatedCaches: true,
-      cacheId: appVersionCacheBuster,
-    },
+    workbox: false,
     icon: {
       fileName: "symbol.png",
     },

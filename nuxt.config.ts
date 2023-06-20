@@ -5,25 +5,32 @@ require("dotenv").config();
 const pkg = require("./package.json");
 var WPAPI = require("wpapi");
 
-let appVersionCacheBuster = process.env.CONTEXT === "production" ? process.env.CF_PAGES_COMMIT_SHA : pkg.version + "_" + Date.now();
+let appVersionCacheBuster =
+  process.env.CONTEXT === "production"
+    ? process.env.CF_PAGES_COMMIT_SHA
+    : pkg.version + "_" + Date.now();
 
-const HOSTNAME = process.env.CF_PAGES_URL ? process.env.CF_PAGES_URL : "http://localhost:3000/";
+const HOSTNAME = process.env.CF_PAGES_URL
+  ? process.env.CF_PAGES_URL
+  : "http://localhost:3000/";
 
 function getAll(request) {
   return request.then((response) => {
     if (!response._paging || !response._paging.next) {
       return response;
     }
-    return Promise.all([response, getAll(response._paging.next)]).then((responses) => {
-      return [].concat(...responses);
-    });
+    return Promise.all([response, getAll(response._paging.next)]).then(
+      (responses) => {
+        return [].concat(...responses);
+      }
+    );
   });
 }
 
-function getPosts(url:string):any[] {
+function getPosts(url: string): any[] {
   const wp = new WPAPI({ endpoint: url });
-  return getAll(wp.posts()).then(function (posts:any[]) {
-    let postsLinks:any[] = [];
+  return getAll(wp.posts()).then(function (posts: any[]) {
+    let postsLinks: any[] = [];
     posts.forEach((post) => {
       postsLinks.push("/news/" + post.slug);
     });
@@ -39,7 +46,7 @@ export default defineNuxtConfig({
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
-  runtimeConfig:{
+  runtimeConfig: {
     public: {
       baseURL: HOSTNAME,
       DOMAIN_URL: process.env.DOMAIN,
@@ -49,10 +56,17 @@ export default defineNuxtConfig({
       version: appVersionCacheBuster,
     },
     ipx: {
-      domains: ["is-wireless.com", "www.is-wireless.com", "api.is-wireless.com", "img.youtube.com", "i.ytimg.com", process.env.API_URL],
-    }
+      domains: [
+        "is-wireless.com",
+        "www.is-wireless.com",
+        "api.is-wireless.com",
+        "img.youtube.com",
+        "i.ytimg.com",
+        process.env.API_URL,
+      ],
+    },
   },
-  app:{
+  app: {
     head: {
       title: "IS-Wireless #5GMadeTogether",
       description: "4G and 5G Mobile Networks of the Future",
@@ -92,30 +106,31 @@ export default defineNuxtConfig({
 
   components: {
     global: true,
-    dirs: ['~/components']
+    dirs: ["~/components"],
   },
 
   css: ["@/assets/main.css", "@/assets/animation.css"],
 
   modules: [
-    '@pinia/nuxt',
-    '@nuxtjs/tailwindcss',
+    "@pinia/nuxt",
+    "@nuxtjs/tailwindcss",
     "@nuxt/image-edge",
     "@vite-pwa/nuxt",
     "@nuxtjs/algolia",
     "nuxt-simple-sitemap",
-    '@nuxt/devtools',
-    '@vueuse/nuxt',
-    '@nuxtjs/algolia',
-    ['nuxt-simple-robots',
-    {
-      UserAgent: "*",
-      disallow: "",
-      sitemap: "https://is-wireless.com/sitemap.xml",
+    "@nuxt/devtools",
+    "@vueuse/nuxt",
+    "@nuxtjs/algolia",
+    [
+      "nuxt-simple-robots",
+      {
+        UserAgent: "*",
+        disallow: "",
+        sitemap: "https://is-wireless.com/sitemap.xml",
       },
     ],
   ],
-  devtools: {enabled: false},
+  devtools: { enabled: false },
   image: {
     screens: {
       default: 320,
@@ -128,7 +143,14 @@ export default defineNuxtConfig({
       // xxl: 1600,
       "4k": 1921,
     },
-    domains: ["is-wireless.com", "www.is-wireless.com", "api.is-wireless.com", "img.youtube.com", "i.ytimg.com", process.env.API_URL],
+    domains: [
+      "is-wireless.com",
+      "www.is-wireless.com",
+      "api.is-wireless.com",
+      "img.youtube.com",
+      "i.ytimg.com",
+      process.env.API_URL,
+    ],
     alias: {
       app: "api.is-wireless.com",
       youtube: "https://img.youtube.com",
@@ -162,10 +184,7 @@ export default defineNuxtConfig({
     },
     workbox: {
       cleanupOutdatedCaches: true,
-      cacheOptions: {
-        cacheId: appVersionCacheBuster,
-        revision: appVersionCacheBuster,
-      },
+      cacheId: appVersionCacheBuster,
       offlineStrategy: "NetworkOnly",
       cacheAssets: false,
     },
@@ -224,9 +243,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     siteUrl: "https://www.is-wireless.com",
-    exclude: [
-      '/news/p/*'
-    ]
+    exclude: ["/news/p/*"],
   },
   build: {
     standalone: true,
@@ -238,7 +255,7 @@ export default defineNuxtConfig({
         autoprefixer: {},
       },
     },
-    transpile: [/^swiper($|\/)/,"vue-share-it", 'lodash'],
+    transpile: [/^swiper($|\/)/, "vue-share-it", "lodash"],
     extend(config) {
       config.externals = [
         {
@@ -268,5 +285,4 @@ export default defineNuxtConfig({
     name: "page",
     mode: "out-in",
   },
-
 });

@@ -115,7 +115,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxt/image-edge",
-    "@vite-pwa/nuxt",
     "@nuxtjs/algolia",
     "nuxt-simple-sitemap",
     "@nuxt/devtools",

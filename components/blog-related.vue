@@ -83,10 +83,10 @@
 </template>
 
 <script>
-import { Swiper, Navigation } from 'swiper'
+import { Swiper, Navigation } from "swiper";
 
 export default {
-  name: 'BlogRelatedPosts',
+  name: "BlogRelatedPosts",
   props: {
     data: {
       type: Array,
@@ -100,8 +100,8 @@ export default {
         slidesPerView: 2,
         spaceBetween: 20,
         navigation: {
-          nextEl: '[data-slide-next]',
-          prevEl: '[data-slide-prev]',
+          nextEl: "[data-slide-next]",
+          prevEl: "[data-slide-prev]",
         },
         breakpoints: {
           640: {
@@ -109,33 +109,36 @@ export default {
           },
         },
       },
-    }
+    };
   },
   computed: {
     routeStart() {
-      let route = this.$route.fullPath.slice(1, -1).split('/')
-      route.pop()
-      return route
+      let route = this.$route.fullPath.slice(1, -1);
+      if (route) {
+        route.split("/");
+        route.pop();
+      }
+      return route;
     },
   },
   mounted() {
     this.$data.swiper = new Swiper(
-      '#releated_news',
+      "#releated_news",
       this.$data.swiperOptionsObject
-    )
+    );
   },
   methods: {
     getFormattedDate(postDate) {
-      let date = new Date(postDate)
-      let dateComputed = date.toLocaleDateString('en', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-      return dateComputed
+      let date = new Date(postDate);
+      let dateComputed = date.toLocaleDateString("en", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      return dateComputed;
     },
   },
-}
+};
 </script>
 
 <style></style>

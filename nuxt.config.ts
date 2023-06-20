@@ -185,7 +185,6 @@ export default defineNuxtConfig({
     workbox: {
       cleanupOutdatedCaches: true,
       cacheId: appVersionCacheBuster,
-      cacheAssets: false,
     },
     icon: {
       fileName: "symbol.png",

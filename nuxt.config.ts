@@ -66,6 +66,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  experimental: {
+    payloadExtraction: false,
+  },
   app: {
     head: {
       title: "IS-Wireless #5GMadeTogether",

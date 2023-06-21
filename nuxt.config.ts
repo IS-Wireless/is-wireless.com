@@ -122,7 +122,6 @@ export default defineNuxtConfig({
     "nuxt-simple-sitemap",
     "@nuxt/devtools",
     "@vueuse/nuxt",
-    "@nuxtjs/algolia",
     [
       "nuxt-simple-robots",
       {

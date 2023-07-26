@@ -113,6 +113,7 @@ function generateAdminOptions(form, config, env) {
       phone: form.tel,
       message: form.message,
       acceptance: form.acceptance,
+      email: form.mail,
     }),
     'o:tag': 'www',
     'h:Reply-To': form.mail,
@@ -154,6 +155,7 @@ function generateUserOptions(form, config, env) {
       phone: form.tel,
       message: form.message,
       acceptance: form.acceptance,
+      email: form.mail,
     }),
 
     'o:tag': 'www',
@@ -254,7 +256,6 @@ export async function onRequestPost(context) {
 
   // Construct admin and user email and options
 
-  console.log(config)
   try {
     const admin_options = generateAdminOptions(form, config, env)
     const user_options = generateUserOptions(form, config, env)

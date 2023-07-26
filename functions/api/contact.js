@@ -99,6 +99,48 @@ function validateInput(form, config) {
   }
 }
 
+function generateAdminMediaAccountOptions(form, config, env) {
+  let admin_data = {
+    from: config.from,
+    to: 'media@is-wireless.com',
+    subject: `${form.company}: New message from ${form.name}`,
+    text: JSON.stringify(form),
+    template: env.MAILGUN_TEMPLATE || 'hello',
+    'h:X-Mailgun-Variables': JSON.stringify({
+      // be sure to stringify your payload
+      name: form.name,
+      company: form.company,
+      phone: form.tel,
+      message: form.message,
+      acceptance: form.acceptance,
+      email: form.mail,
+    }),
+    'o:tag': 'www',
+    'h:Reply-To': form.mail,
+    // attachments: [{
+    //     filename: 'mailgun.png',
+    //     data: Buffer.from(form.attachment, 'binary').toString('base64')
+    //   }],
+  }
+
+  let admin_options = {
+    method: 'POST',
+    headers: {
+      Authorization:
+        'Basic ' +
+        btoa(
+          'api:' + env.MAILGUN_API_KEY || 'key-398c9b563c4855e62deb4d9cd020ddc8'
+        ),
+      'Content-Type': 'application/x-www-form-urlencoded',
+      //"Content-Length": JSON.stringify(admin_data).length
+    },
+    inline: form.attachment,
+    body: urlfy(admin_data),
+  }
+
+  return admin_options
+}
+
 function generateAdminOptions(form, config, env) {
   let admin_data = {
     from: config.from,
@@ -258,9 +300,14 @@ export async function onRequestPost(context) {
 
   try {
     const admin_options = generateAdminOptions(form, config, env)
+    const admin_media_account_options = generateAdminMediaAccountOptions(
+      form,
+      config,
+      env
+    )
     const user_options = generateUserOptions(form, config, env)
     // Config to submit each email
-    const options = [admin_options, user_options]
+    const options = [admin_options, user_options, admin_media_account_options]
 
     // Send admin and user emails
     try {

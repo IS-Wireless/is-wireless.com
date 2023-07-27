@@ -131,7 +131,8 @@ export default {
     section_two_column_contact: () => import('~/components/block-form.vue'),
     section_video_yt: () => import('~/components/section-video-yt.vue'),
     section_public_found: () => import('~/components/section-public-fund.vue'),
-    section_circle: () => import('~/components/section-circle.vue')
+    section_circle: () => import('~/components/section-circle.vue'),
+    section_cta_person: () => import('~/components/cta-person.vue')
   },
   // async asyncData({ route, payload, store, $config }) {
   //   await store.getters['index/getPages']

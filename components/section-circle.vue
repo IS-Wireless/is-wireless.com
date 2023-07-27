@@ -1,7 +1,7 @@
 <template>
     <section class="relative py-10 pb-20 tablet-wide:pt-[100px] tablet-wide:pb-[150px] bg-white w-full text-gray-dark">
         <div class="relative z-10 flex flex-col items-center mx-auto max-w-lg mb-8">
-            <SectionHeader v-if="data.title" :title="data.title" :center="true" class="text-[#111]" />
+            <SectionHeader v-if="data.title" :title="data.title" :center="true" class="text-gray-darkest" />
             <div
             v-if="data.description"
             class="content-html text-inherit text-center text-gray-dark"
@@ -51,7 +51,7 @@
                 </svg>
                 <div class="absolute top-0 w-full h-full mx-auto">
                     <div class=" mx-auto h-full aspect-square flex items-center justify-center">
-                        <span v-if="data.circle_text" class="w-1/2 text-[#111] text-2xl tablet:text-3xl tablet-wide:text-4xl font-semibold text-center px-5">
+                        <span v-if="data.circle_text" class="w-1/2 text-gray-darkest text-2xl tablet:text-3xl tablet-wide:text-4xl font-semibold text-center px-5">
                             {{ data.circle_text }}
                         </span>
                     </div>

@@ -1,5 +1,5 @@
 <template>
-    <section class="relative py-10 pb-20 tablet-wide:py-[100px] tablet-wide:pt-16 bg-white w-full text-gray-dark">
+    <section class="relative py-10 pb-20 tablet-wide:pt-[100px] tablet-wide:pb-[150px] bg-white w-full text-gray-dark">
         <div class="relative z-10 flex flex-col items-center mx-auto max-w-lg mb-8">
             <SectionHeader v-if="data.title" :title="data.title" :center="true" class="text-[#111]" />
             <div
@@ -16,7 +16,7 @@
                     <h4 v-if="item.title" class="text-xl tablet:text-2xl my-5">
                         {{ item.title }}
                     </h4>
-                    <div class="mb-[30px] h-[5px] w-56 bg-blue-main"></div>
+                    <div class="mb-[30px] h-[5px] w-32 bg-blue-main"></div>
                     <div v-if="item.content" class="text-gray-dark text-sm tablet:text-base" v-html="item.content"></div>
                 </li>
             </ul>

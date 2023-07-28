@@ -232,7 +232,7 @@ export default {
         ) {
           if (
             data.acf.sections.some(
-              (section) => section.acf_fc_layout == 'section_block_subpages'
+              (section) => section.acf_fc_layout == 'section_block_subpages' || section.acf_fc_layout == 'section_research_slider'
             )
           ) {
             await store.dispatch('getPages')

@@ -261,7 +261,7 @@ export default {
     fallback: '404.html',
     interval: 1000,
     routes() {
-      return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
+      return [...getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`),'/5g-6g-open-ran-testbed']
     },
     // routes(){
     //   return getAll(axios('https://api.is-wireless.com/wp-json/wp/v2/posts/')

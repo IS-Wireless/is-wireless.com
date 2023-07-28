@@ -1,6 +1,6 @@
 <template>
-    <section class="relative py-10 tablet-wide:pb-[250px] tablet-wide:pt-[60px] bg-white w-full text-gray-dark">
-        <div class="relative z-10 flex flex-col items-center mx-auto max-w-lg mb-8 tablet:mb-12">
+    <section class="relative py-10 tablet-wide:pb-[270px] tablet-wide:pt-[60px] bg-white w-full text-gray-dark">
+        <div class="relative z-10 flex flex-col items-center mx-auto max-w-lg mb-10 tablet:mb-20">
             <SectionHeader v-if="data.title" :title="data.title" :center="true" class="text-gray-darkest" />
             <div
             v-if="data.description"

@@ -11,9 +11,10 @@
           ? data.image.title
           : ''
       "
+      fit="cover"
       :title="data.image.title ? data.image.title : ''"
       :src="data.image.url"
-      class="rounded-[5px] overflow-hidden mb-4"
+      class="rounded-[5px] overflow-hidden mb-4 aspect-[87/100]"
     />
     <h3 v-if="data.name" class="text-gray-dark text-xl tablet:text-2xl">
       {{ data.name }}

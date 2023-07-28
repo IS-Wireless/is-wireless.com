@@ -134,6 +134,7 @@ export default {
     section_circle: () => import('~/components/section-circle.vue'),
     section_cta_person: () => import('~/components/cta-person.vue'),
     section_research_slider: () => import('~/components/research-slider.vue'),
+    section_details: () => import('~/components/section-details.vue'),
   },
   // async asyncData({ route, payload, store, $config }) {
   //   await store.getters['index/getPages']

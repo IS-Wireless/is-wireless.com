@@ -59,7 +59,7 @@
             class="w-full h-full flex"
             :imgAttrs="{'class': 'w-full h-full object-cover'}"/>
 
-            <div v-if="data.person.name" class="p-5 py-4 bg-white absolute left-5 tablet:left-[-30px] -bottom-9 w-full">
+            <div v-if="data.person.name" class="p-5 py-4 bg-white absolute left-5 tablet-small:left-[-30px] -bottom-9 w-full">
                 <p class="text-blue-main text-xl tablet:text-2xl mb-2">
                     {{ data.person.name }}
                 </p>

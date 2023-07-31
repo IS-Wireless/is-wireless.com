@@ -114,7 +114,7 @@ export default {
         breakpoints: {
           1248: {
             slidesPerView: 4,
-            spaceBetween: 60,
+            spaceBetween: 50,
             enabled: false,
           },
         },

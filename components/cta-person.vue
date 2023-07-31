@@ -1,6 +1,6 @@
 <template>
     <div class="relative z-10 inset-x-[-12.5%] tablet-wide:inset-x-0 w-[125%] tablet-wide:w-full mb-20 tablet-wide:mb-0 tablet-wide:mt-0 tablet-wide:-translate-y-1/2 bg-blue-main flex flex-col tablet-small:flex-row justify-between items-stretch tablet-wide:gap-6 desktop:gap-14 tablet-wide:rounded-[5px] shadow-2xl shadow-gray-dark/20 tablet:pr-5 desktop:pr-20">
-        <div class="relative flex flex-col tablet-wide:flex-row tablet-wide:gap-6 desktop:gap-14 tablet:pl-10">
+        <div class="relative flex flex-col tablet-wide:flex-row tablet-wide:items-center tablet-wide:gap-6 desktop:gap-14 tablet:pl-10">
             <div class="relative z-20 px-[10%] tablet:px-0 py-5 tablet:py-10">
                 <h3 v-if="data.title" class="mb-5 tablet:mb-8 text-white text-2xl tablet:text-3xl">
                     {{ data.title }}
@@ -87,7 +87,7 @@ export default {
 
 .content-html >>> p,
 .content-html >>> a{
-    @apply text-xl tablet:text-2xl 
+    @apply text-xl tablet:text-2xl text-white
 }
 .content-html >>> a{
     @apply underline text-white transition duration-200 hover:text-gray-default

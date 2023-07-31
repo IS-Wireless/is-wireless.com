@@ -7,17 +7,41 @@
             </h4>
         </div>
         <div class="w-[75px] h-0.5 bg-gray-default mb-5 tablet:mb-8"></div>
+        <div v-if="data.content_expandable"  class=" mb-4 inline">
+          <div class="inline content-html text-gray-dark [&_p]:!inline" v-html="textExpanded ? data.content_expandable : extandableCropped"></div>
+          <span v-if="extandableCropped"  class="text-blue-main underline inline cursor-pointer hover:text-blue-main-hover transition" @click="toggleCollapse()">{{ textExpanded ? ' Read less' : ' ... Read more'}}</span>
+        </div>
         <div v-if="data.content" class="content-html text-gray-dark" v-html="data.content"></div>
 
     </div>
 </template>
 <script>
 export default {
+  data(){
+    return{
+      textExpanded: false
+    }
+  },
     props:{
       data: {
         type: Object,
         required: false,
       },
+    },
+    computed:{
+      extandableCropped(){
+        let limit = 323
+        if (this.data.content_expandable  && this.data.content_expandable.length > limit) {
+          return this.data.content_expandable.slice(0,limit)
+        }else{
+          return false
+        }
+      }
+    },
+    methods:{
+      toggleCollapse(){
+        this.textExpanded = !this.textExpanded
+      }
     }
 }
 </script>

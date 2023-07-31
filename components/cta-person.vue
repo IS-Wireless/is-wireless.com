@@ -1,13 +1,13 @@
 <template>
-    <div class="relative z-10 w-full mb-20 tablet-wide:mb-0 mt-10 tablet-wide:mt-0 tablet-wide:-translate-y-1/2 bg-blue-main flex flex-col tablet-small:flex-row justify-between items-stretch tablet-wide:gap-6 desktop:gap-14 rounded-[5px] shadow-2xl shadow-gray-dark/20 tablet:pr-5 desktop:pr-20">
+    <div class="relative z-10 inset-x-[-12.5%] tablet-wide:inset-x-0 w-[125%] tablet-wide:w-full mb-20 tablet-wide:mb-0 tablet-wide:mt-0 tablet-wide:-translate-y-1/2 bg-blue-main flex flex-col tablet-small:flex-row justify-between items-stretch tablet-wide:gap-6 desktop:gap-14 tablet-wide:rounded-[5px] shadow-2xl shadow-gray-dark/20 tablet:pr-5 desktop:pr-20">
         <div class="relative flex flex-col tablet-wide:flex-row tablet-wide:gap-6 desktop:gap-14 tablet:pl-10">
-            <div class="relative z-20 px-5 tablet:px-0 py-5 tablet:py-10">
+            <div class="relative z-20 px-[10%] tablet:px-0 py-5 tablet:py-10">
                 <h3 v-if="data.title" class="mb-5 tablet:mb-8 text-white text-2xl tablet:text-3xl">
                     {{ data.title }}
                 </h3>
                 <div class=" h-[5px] w-32 bg-white"></div>
             </div>
-            <div class="relative z-20 px-5 tablet:px-0 pb-5 tablet:py-10">
+            <div class="relative z-20 px-[10%] tablet:px-0 pb-5 tablet:py-10">
                 <div v-if="data.content" v-html="data.content" class="content-html mb-5 tablet:mb-10 text-white">
                 
                 </div>
@@ -59,7 +59,7 @@
             class="w-full h-full flex"
             :imgAttrs="{'class': 'w-full h-full object-cover'}"/>
 
-            <div v-if="data.person.name" class="p-5 py-4 bg-white absolute left-5 tablet-small:left-[-30px] -bottom-9 w-full">
+            <div v-if="data.person.name" class="p-5 py-4 bg-white absolute left-5 tablet-small:left-[-30px] right-0 -bottom-9 tablet-wide:w-full">
                 <p class="text-blue-main text-xl tablet:text-2xl mb-2">
                     {{ data.person.name }}
                 </p>

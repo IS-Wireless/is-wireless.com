@@ -18,8 +18,8 @@
       ></div>
     </div>
     <div class="w-auto desktop:w-full mr-[-12.5%] desktop:mr-0">
-      <div v-if="data.list" id="teamSwiper" class="swiper relative z-10">
-        <div class="swiper-wrapper">
+      <div v-if="data.list" id="teamSwiper" class="swiper relative z-10 overflow-hidden">
+        <div class="swiper-wrapper flex">
           <PersonTile
             v-for="(item, index) in data.list"
             :key="index"

@@ -33,6 +33,7 @@ function getPosts(url) {
       console.log(post.slug)
       postsLinks.push('/news/' + post.slug)
     })
+    postsLinks.push('/5g-6g-open-ran-testbed/') //TEMP force page generation  
     return postsLinks
   })
 }
@@ -261,7 +262,7 @@ export default {
     fallback: '404.html',
     interval: 1000,
     routes() {
-      return [...getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`),'/5g-6g-open-ran-testbed']
+      return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
     },
     // routes(){
     //   return getAll(axios('https://api.is-wireless.com/wp-json/wp/v2/posts/')

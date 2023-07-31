@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col shrink-0 grow-0 basis-60 desktop:basis-auto">
     <nuxt-picture
       v-if="data.image && data.image.url"
       width="300"
@@ -14,6 +14,7 @@
       fit="cover"
       :title="data.image.title ? data.image.title : ''"
       :src="data.image.url"
+      :imgAttrs="{class: 'w-full h-full object-cover'}"
       class="rounded-[5px] overflow-hidden mb-4 aspect-[87/100]"
     />
     <h3 v-if="data.name" class="text-gray-dark text-xl tablet:text-2xl">

@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col p-5 tablet:p-[30px] tablet:min-h-[380px] rounded-[5px] border border-solid border-gray-light">
+    <div class="flex flex-col py-5 px-[7%] mx-[-7%] tablet:mx-0 tablet:p-[30px] tablet:min-h-[380px] rounded-[5px] border border-solid border-gray-light">
         <div class="flex gap-5 items-center mb-5 tablet:mb-8">
-            <ListIcon v-if="data.icon" :name="data.icon" class="text-blue-main" />
+            <ListIcon v-if="data.icon" :name="data.icon" class="text-blue-main !h-auto" />
             <h4 v-if="data.title" class="text-xl tablet:text-2xl">
                 {{ data.title }}
             </h4>

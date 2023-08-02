@@ -30,7 +30,7 @@ export default {
     },
     computed:{
       extandableCropped(){
-        let limit = 323
+        let limit = 314
         if (this.data.content_expandable  && this.data.content_expandable.length > limit) {
           return this.data.content_expandable.slice(0,limit)
         }else{

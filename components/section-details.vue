@@ -2,7 +2,7 @@
     <section class="relative py-10 tablet-wide:pb-[100px] tablet-wide:pt-[60px] bg-white w-full text-gray-dark">
         <div class="absolute z-0 top-0 inset-x-[-12.5%] border-0 border-t border-solid border-gray-light">
         </div>
-        <div class="relative z-10 flex flex-col items-center mx-auto max-w-lg mb-8 tablet:mb-12">
+        <div class="relative z-10 flex flex-col items-center mx-auto max-w-xl mb-8 tablet:mb-12">
             <SectionHeader v-if="data.title" :title="data.title" :center="true" class="text-gray-darkest" />
             <div
             v-if="data.description"

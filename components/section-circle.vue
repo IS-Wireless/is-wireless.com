@@ -1,5 +1,5 @@
 <template>
-    <section class="relative py-10 pb-20 tablet-wide:pt-[100px] tablet-wide:pb-[150px] bg-white w-full text-gray-dark">
+    <section class="relative py-10 pb-20 tablet-wide:pt-[100px] tablet-wide:pb-[200px] bg-white w-full text-gray-dark">
         <div class="relative z-10 flex flex-col items-center mx-auto max-w-lg mb-8">
             <SectionHeader v-if="data.title" :title="data.title" :center="true" class="text-gray-darkest" />
             <div

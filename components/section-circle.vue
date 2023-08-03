@@ -20,7 +20,6 @@
                     <div v-if="item.content" class="text-gray-dark text-sm tablet:text-base" v-html="item.content"></div>
                 </li>
             </ul>
-
             <div class="hidden tablet-wide:block absolute z-10 tablet:inset-0">
                 <svg class="w-auto h-full aspect-square mx-auto" width="650" height="650" viewBox="0 0 650 650" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="325" cy="316" r="249.5" stroke="white"/>
@@ -56,7 +55,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="absolute z-0 inset-y-0 inset-x-[-12.5%] bg-gray-light">
         </div>

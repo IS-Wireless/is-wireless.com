@@ -60,7 +60,6 @@
         </div>
 
         <div class="absolute z-0 inset-y-0 inset-x-[-12.5%] bg-gray-light">
-
         </div>
     </section>
   </template>

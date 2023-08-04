@@ -18,7 +18,7 @@
   
       <div class="tablet:w-4/5 mx-auto py-10 tablet:container">
         <div
-          v-if="Object.values(pageData.acf).length"
+          v-if="pageData.acf && Object.values(pageData.acf).length"
           class="flex"
           :class="
             pageData.acf.sidebar_right && pageData.acf.sidebar
@@ -100,7 +100,7 @@
     const { data: pageData } = await useAsyncData( (app) => {
         const config = useRuntimeConfig()
         let slugs = withoutTrailingSlash(route.fullPath).split('/')
-
+      
       return app.$wp
         .pages()
         .slug(slugs[slugs.length - 1])

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <BannerVideo v-if="homepageData.sections[0] && homepageData.sections[0].banner" :data="homepageData.sections[0]" />
+    <!-- <BannerVideo v-if="homepageData.sections[0] && homepageData.sections[0].banner" :data="homepageData.sections[0]" />
 
     <Organisations v-if="homepageData.sections[1] && homepageData.sections[1].logo" :data="homepageData.sections[1]" />
 
@@ -22,7 +22,7 @@
       }"
     />
 
-    <CtaJob :data="homepageData.sections[5]" />
+    <CtaJob :data="homepageData.sections[5]" /> -->
   </div>
 </template>
 
@@ -158,7 +158,7 @@ function generateHead(data) {
       tags.meta.push({
         hid: "og:url",
         property: "og:url",
-        content: data.link,
+        content: data.schema_basic.og_url,
       });
 
       if (data.acf.sections[0].acf_fc_layout === "section_header") {

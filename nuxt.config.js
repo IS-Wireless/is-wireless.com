@@ -27,10 +27,10 @@ function getAll(request) {
   });
 }
 
-function getPosts(url: string): any[] {
+function getPosts(url) {
   const wp = new WPAPI({ endpoint: url });
-  return getAll(wp.posts()).then(function (posts: any[]) {
-    let postsLinks: any[] = [];
+  return getAll(wp.posts()).then(function (posts) {
+    let postsLinks = [];
     posts.forEach((post) => {
       postsLinks.push("/news/" + post.slug);
     });

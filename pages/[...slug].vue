@@ -28,7 +28,7 @@
         >
           <div
             class="w-4/5 tablet:w-full mx-auto mb-10"
-            :class="pageData.acf.sidebar ? 'tablet:w-2/3 has-sidebar' : 'w-full'"
+            :class="pageData.acf.sidebar ? 'tablet:w-2/3 has-sidebar' : ''"
           >
             <div v-for="(component, index) in pageData.acf.sections" :key="index">
               <div v-if="component.acf_fc_layout">

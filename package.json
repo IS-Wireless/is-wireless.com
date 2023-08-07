@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@abbo/nuxt-google-analytics": "^2.5.0",
-    "@nuxt/image-edge": "^1.0.0-rc.1-28180077.d51e794",
+    "@nuxt/image": "rc",
     "@nuxtjs/algolia": "^1.8.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",

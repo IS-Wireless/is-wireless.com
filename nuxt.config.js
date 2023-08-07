@@ -117,10 +117,9 @@ export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
-    "@nuxt/image-edge",
+    "@nuxt/image",
     "@nuxtjs/algolia",
     "nuxt-simple-sitemap",
-    "@nuxt/devtools",
     "@vueuse/nuxt",
     [
       "nuxt-simple-robots",
@@ -131,7 +130,6 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  devtools: { enabled: false },
   image: {
     screens: {
       default: 320,

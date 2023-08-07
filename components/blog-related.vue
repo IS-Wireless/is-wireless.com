@@ -114,7 +114,7 @@ export default {
   computed: {
     routeStart() {
       let route = this.$route.fullPath.slice(1, -1);
-      if (route) {
+      if (route && Array.isArray(route)) {
         route.split("/");
         route.pop();
       }

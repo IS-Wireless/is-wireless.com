@@ -70,6 +70,14 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
   app: {
+    layoutTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
     head: {
       title: "IS-Wireless #5GMadeTogether",
       description: "4G and 5G Mobile Networks of the Future",
@@ -276,9 +284,5 @@ export default defineNuxtConfig({
     fallback: "404.html",
     interval: 1000,
     routes: getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`),
-  },
-  layoutTransition: {
-    name: "page",
-    mode: "out-in",
   },
 });

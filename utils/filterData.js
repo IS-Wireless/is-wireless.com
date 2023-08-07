@@ -1,4 +1,4 @@
-import  isEmpty from 'lodash/isEmpty'
+import isEmpty from 'lodash.isempty';
 const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
 
 const filterData = (obj) => {

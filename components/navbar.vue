@@ -130,7 +130,7 @@
             <li
               class="navbar-item z-50 tablet-wide:z-0 flex p-4 justify-center items-center h-full text-base text-inherit hover:text-inherit relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition tablet:hover:after:-translate-y-1"
               :class="{ 'btn-active': expanded }"
-              @click="toggleExpanded"
+              @click.native="toggleExpanded"
             >
               <div
                 class="h-[21px] w-[25px] flex flex-col justify-between items-center"

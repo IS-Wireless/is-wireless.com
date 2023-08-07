@@ -155,6 +155,8 @@ export default defineNuxtConfig({
       youtube: "https://img.youtube.com",
       vimeo: "https://i.vimeocdn.com",
     },
+    format:['webp'],
+    quality: 70
   },
   pwa: {
     meta: {

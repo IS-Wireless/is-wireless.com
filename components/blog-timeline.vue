@@ -86,6 +86,7 @@
 <script>
 import BlogPost from './blog-post.vue'
 import { groupBy as _groupBy } from 'lodash'
+import { useGeneralStore } from '~/store/general'
 
 
 export default {
@@ -130,7 +131,7 @@ export default {
 
   computed:{
     posts(){
-      return this.groupPosts({posts: this.$store.getters['general/getPostsData']}) 
+      return this.groupPosts({posts: useGeneralStore().getPostsData}) 
     }
   },
 

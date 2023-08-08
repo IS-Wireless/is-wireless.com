@@ -222,7 +222,6 @@ export default {
     },
 
     scrollToPost(slug){
-      console.log(slug);
     if(slug.length > 0){
         let prevPost = document.querySelector(`[data-post-slug="${slug}"]`)
         const offset = 100

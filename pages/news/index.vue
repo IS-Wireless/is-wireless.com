@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="w-4/5 mx-auto container pt-8">
-      <!-- <KeepAlive> -->
-        <BlogTimeline keep-alive :postPageCount="pagesCount" :isFetching="pending || error" :prevLink="lastPageSlug" />
-      <!-- </KeepAlive> -->
+      <KeepAlive>
+        <BlogTimeline :postPageCount="pagesCount" :isFetching="pending || error" :prevLink="lastPageSlug" />
+      </KeepAlive>
     </div>
 
     <!-- FOR CRAWLER -->

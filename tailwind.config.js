@@ -32,6 +32,9 @@ module.exports = {
           darkest: '#111111',
         },
       },
+      height: {
+        screen: ['100vh /* fallback for Opera, IE and etc. */', '100dvh'],
+      },
       fontFamily: {
         lato: ['Lato', 'sans-serif'],
       },

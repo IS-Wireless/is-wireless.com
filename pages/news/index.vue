@@ -30,7 +30,7 @@ definePageMeta({
     keepalive: true
 })
 
-const { pending, data: pageData, error } = await useAsyncData((app) => {
+const { pending, data: pageData, error } = await useAsyncData(async (app) => {
     return app.$wp
       .namespace('wp/v2')
       .posts()
@@ -99,10 +99,8 @@ const { pending, data: pageData, error } = await useAsyncData((app) => {
   onBeforeRouteLeave(to => {
     if (to.params.slug && to.fullPath.startsWith('/news/')) {
       lastPageSlug.value = to.params.slug[0]
-      console.log(lastPageSlug.value);
     }else{
       lastPageSlug.value = ''
-      console.log(lastPageSlug.value);
     }
   })
 

@@ -46,13 +46,11 @@ export const useGeneralStore = defineStore('general',{
     },
   
     postsPrepend(data) {
-  
       let postsSet = new Set([ ...data, ...this.posts ])
       Object.assign(this.posts, Array.from(postsSet) )
     },
   
     postsAdd(data) {
-  
       let postsCombined = [...this.posts, ...data]
       let postsUnique = [...new Map(postsCombined.map(item =>
         [item['id'], item])).values()]
@@ -69,7 +67,7 @@ export const useGeneralStore = defineStore('general',{
     pagesInit(data) {
       this.pageAdd(data.pages)
     },
-    postsInit(posts= {}, prepend= false ) {
+    postsInit(posts= [], prepend= false ) {
       if (prepend) {
         this.postsPrepend(posts)      
       }else{

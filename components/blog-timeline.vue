@@ -51,7 +51,7 @@
                 :key="index"
                 class="w-full tablet-wide:shrink-0 tablet-wide:max-w-[400px] tablet-wide:even:mt-20"
               >
-                <BlogPost :data="post" :data-post-slug="post.slug"/>
+                <BlogPost v-if="post" :data="post" :data-post-slug="post.slug"/>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
 
 <script>
 import BlogPost from './blog-post.vue'
-import { groupBy as _groupBy } from 'lodash'
+import groupBy from 'lodash.groupby'
 import { useGeneralStore } from '~/store/general'
 
 
@@ -138,7 +138,7 @@ export default {
   watch:{
     posts: {
       handler(){
-        Vue.nextTick(()=>{
+        nextTick(()=>{
           this.setFullHeight()
         })
       },
@@ -163,7 +163,7 @@ export default {
         'December',
       ]
 
-      var groupedPosts = _groupBy(data.posts, (post) => {
+      var groupedPosts = groupBy(data.posts, (post) => {
         return new Date(post.date).getFullYear()
       })
 
@@ -172,7 +172,7 @@ export default {
         .reverse()
 
       Object.keys(groupedPosts).forEach((item) => {
-        groupedPosts[item].posts = _groupBy(
+        groupedPosts[item].posts = groupBy(
           groupedPosts[item].posts,
           (post) => {
             return new Date(post.date).getMonth()
@@ -222,6 +222,7 @@ export default {
     },
 
     scrollToPost(slug){
+      console.log(slug);
     if(slug.length > 0){
         let prevPost = document.querySelector(`[data-post-slug="${slug}"]`)
         const offset = 100

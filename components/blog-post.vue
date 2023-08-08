@@ -59,8 +59,9 @@ export default {
       return dateComputed
     },
     getLinkRewrite(link) {
+      const config = useRuntimeConfig()
       return link
-        .replace(this.$config.API_URL, '')
+        .replace(config.public.API_URL, '')
         .replace('https://www.is-wireless.com', '')
     },
   },

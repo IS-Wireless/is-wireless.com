@@ -35,7 +35,7 @@ const testBlogShare = reactive({
   ],
 });
 
-const { data: pageData } = useAsyncData((app) => {
+const { data: pageData } = await useAsyncData((app) => {
   return app.$wp
     .namespace("wp/v2")
     .posts()

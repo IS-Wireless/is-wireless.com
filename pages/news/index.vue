@@ -30,7 +30,7 @@ definePageMeta({
     keepalive: true
 })
 
-const { pending, data: pageData, error } = useAsyncData((app) => {
+const { pending, data: pageData, error } = await useAsyncData((app) => {
     return app.$wp
       .namespace('wp/v2')
       .posts()

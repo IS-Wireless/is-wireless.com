@@ -284,6 +284,7 @@ export default defineNuxtConfig({
     crawler: true,
     fallback: "404.html",
     interval: 1000,
-    routes: getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`),
+    // routes: getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`),
+    routes: ['/news/is-wireless-at-danish-engineering-society/'],
   },
 });

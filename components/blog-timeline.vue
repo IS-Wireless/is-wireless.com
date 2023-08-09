@@ -59,7 +59,7 @@
       </template>
       <div
         class="w-full text-center"
-        v-if="(postPageCount > currentPage) || isFetching"
+        v-if="((postPageCount > currentPage) || isFetching) && !showAll"
       >
         <div
           role="button"
@@ -106,7 +106,12 @@ export default {
     prevLink:{
       type: String,
       default: ''
-    }
+    },
+    showAll:{
+      type: Boolean,
+      default: false
+    },
+
   },
 
   setup(){
@@ -134,7 +139,7 @@ export default {
 
   computed:{
     posts(){
-      return this.groupPosts({posts: useGeneralStore().getPostsData.slice(0, this.currentPage * 10)}) 
+      return this.groupPosts({posts: useGeneralStore().getPostsData.slice(0, this.showAll ? this.postPageCount * 10 : this.currentPage * 10)}) 
     }
   },
 

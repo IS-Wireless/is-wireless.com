@@ -7,7 +7,7 @@
     </div>
 
     <!-- FOR CRAWLER -->
-    <nuxt-link :to="`/news?p=${pagesCount}/`" class="hidden"></nuxt-link>
+    <nuxt-link :to="'/news/all/'" class="hidden"></nuxt-link>
     <!-- /FOR CRAWLER -->
 
     <ScrollToTopBtn :mobileVisible="true" />

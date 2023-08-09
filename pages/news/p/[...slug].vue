@@ -18,7 +18,6 @@ import ScrollToTopBtn from '@/components/scroll-to-top.vue'
 const pagesCount = useState('pagesCount',() => 1 )
 const lastPageSlug = useState('lastPageSlug',()=>'')
 const route = useRoute()
-const generalStore = useGeneralStore()
 const routePageSlug = computed(()=>{
   return route.params.slug
 })
@@ -35,57 +34,7 @@ const { pending, data: pageData, error } = await useAsyncData(`news-${routePageS
       .page(routePageSlug.value ? parseInt(routePageSlug.value) : 1)
       .then(async function (data) {
         pagesCount.value = data._paging.totalPages
-        data.forEach(function (item, index) {
-          if (
-            item.yoast_head_json &&
-            Object.keys(item.yoast_head_json).length
-          ) {
-            data[index]['schema'] = JSON.stringify(item.yoast_head_json.schema)
 
-            for (
-              var i = 0;
-              i < item.yoast_head_json.schema['@graph'].length;
-              i++
-            ) {
-              if (
-                item.yoast_head_json.schema['@graph'][i]['@type'] ==
-                'BreadcrumbList'
-              ) {
-                data[index]['breadcrumb'] =
-                  item.yoast_head_json.schema['@graph'][i]
-              }
-            }
-
-            data[index]['schema_basic'] = {
-              title: item.yoast_head_json.title,
-              description: item.yoast_head_json.description,
-              robots: {
-                index: item.yoast_head_json.robots.index,
-                follow: item.yoast_head_json.robots.follow,
-                'max-snippet': item.yoast_head_json.robots['max-snippet'],
-                'max-image-preview':
-                  item.yoast_head_json.robots['max-image-preview'],
-                'max-video-preview':
-                  item.yoast_head_json.robots['max-video-preview'],
-              },
-              og_locale: item.yoast_head_json.og_locale,
-              og_type: item.yoast_head_json.og_type,
-              og_title: item.yoast_head_json.og_title,
-              og_description: item.yoast_head_json.og_description,
-              og_url: item.yoast_head_json.og_url,
-              og_site_name: item.yoast_head_json.og_site_name,
-              article_modified_time: item.yoast_head_json.article_modified_time,
-              twitter_card: item.yoast_head_json.twitter_card,
-              twitter_misc: item.yoast_head_json.twitter_misc,
-            }
-          }
-          if (item.content && item.content.rendered) {
-            let tmp = item.content.rendered
-            item.content.rendered = tmp.replace(/srcset="[\s\S]*?"/, '')
-          }
-        })
-
-        generalStore.postsInit(data, false)
         return data
       })
 

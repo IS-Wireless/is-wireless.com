@@ -20,12 +20,12 @@ import ScrollToTopBtn from '@/components/scroll-to-top.vue'
 
 
 const pagesCount = useState('pagesCount',() => 1 )
+const currentPage = useState('currentPage',() => 1 )
 const lastPageSlug = useState('lastPageSlug',()=>'')
 const route = useRoute()
 const routePaging = computed(()=>{
   return route.query.p
 })
-const generalStore = useGeneralStore()
 
 definePageMeta({
     keepalive: true
@@ -39,6 +39,9 @@ const { pending, data: pageData, error } = await useAsyncData(`news-${routePagin
       .page(routePaging.value ? parseInt(routePaging.value) : 1)
       .then(async function (data) {
         pagesCount.value = data._paging.totalPages
+        if (currentPage.value < routePaging.value) {
+          currentPage.value = routePaging.value
+        }
         data.forEach(function (item, index) {
           if (
             item.yoast_head_json &&
@@ -88,8 +91,6 @@ const { pending, data: pageData, error } = await useAsyncData(`news-${routePagin
             item.content.rendered = tmp.replace(/srcset="[\s\S]*?"/, '')
           }
         })
-
-        generalStore.postsInit(data, false)
         return data
       })
 

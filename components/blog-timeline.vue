@@ -59,7 +59,7 @@
       </template>
       <div
         class="w-full text-center"
-        v-if="(postPageCount > postPageNr) || isFetching"
+        v-if="(postPageCount > currentPage) || isFetching"
       >
         <div
           role="button"
@@ -108,6 +108,15 @@ export default {
       default: ''
     }
   },
+
+  setup(){
+    const currentPage = useState('currentPage',() => 1 )
+
+    return {
+      currentPage
+    }
+  },
+
   mounted() {
     this.setFullHeight()
     window.addEventListener('resize', this.setFullHeight)
@@ -123,15 +132,9 @@ export default {
     window.removeEventListener('resize', this.setFullHeight)
   },
 
-  data() {
-    return {
-      postPageNr: this.$route.query.p ? parseInt(this.$route.query.p) : 1
-    }
-  },
-
   computed:{
     posts(){
-      return this.groupPosts({posts: useGeneralStore().getPostsData}) 
+      return this.groupPosts({posts: useGeneralStore().getPostsData.slice(0, this.currentPage * 10)}) 
     }
   },
 
@@ -236,8 +239,8 @@ export default {
     },
 
     setNextPage() {
-      this.postPageNr +=1
-      this.$router.push('/news?p=' + this.postPageNr)
+      this.currentPage +=1
+      this.$router.push('/news?p=' + this.currentPage)
     },
   },
 }

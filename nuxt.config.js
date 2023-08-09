@@ -46,14 +46,14 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
   app: {
-    layoutTransition: {
-      name: "page",
-      mode: "out-in",
-    },
-    pageTransition: {
-      name: "page",
-      mode: "out-in",
-    },
+    // layoutTransition: {
+    //   name: "page",
+    //   mode: "out-in",
+    // },
+    // pageTransition: {
+    //   name: "page",
+    //   mode: "out-in",
+    // },
     head: {
       title: "IS-Wireless #5GMadeTogether",
       description: "4G and 5G Mobile Networks of the Future",

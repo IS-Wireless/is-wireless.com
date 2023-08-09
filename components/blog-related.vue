@@ -10,7 +10,7 @@
           <nuxt-link
             v-if="post.slug"
             class="group flex flex-col"
-            :to="'/' + routeStart + '/' + post.slug + '/'"
+            :to="'/news/' + post.slug + '/'"
           >
             <nuxt-picture
               v-if="post.featured_image_src"
@@ -110,16 +110,6 @@ export default {
         },
       },
     };
-  },
-  computed: {
-    routeStart() {
-      let route = this.$route.fullPath.slice(1, -1);
-      if (route && Array.isArray(route)) {
-        route.split("/");
-        route.pop();
-      }
-      return route;
-    },
   },
   mounted() {
     this.$data.swiper = new Swiper(

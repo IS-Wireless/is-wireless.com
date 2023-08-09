@@ -100,7 +100,7 @@ export default {
       default: 1
     },
     isFetching:{
-      type: Boolean,
+      type: Boolean || Error,
       default: true
     },
     prevLink:{

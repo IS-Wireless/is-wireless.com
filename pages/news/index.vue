@@ -7,7 +7,7 @@
     </div>
 
     <!-- FOR CRAWLER -->
-    <nuxt-link v-for="(pagesCount, index) in pagesCount" :key="index" :to="`/news/p/${index + 1}/`" class="hidden"></nuxt-link>
+    <nuxt-link :to="`/news?p=${pagesCount}/`" class="hidden"></nuxt-link>
     <!-- /FOR CRAWLER -->
 
     <ScrollToTopBtn :mobileVisible="true" />

@@ -25,18 +25,19 @@ const route = useRoute()
 const routePaging = computed(()=>{
   return route.query.p
 })
+const generalStore = useGeneralStore()
 
 definePageMeta({
     keepalive: true
 })
 
 const { pending, data: pageData, error } = await useAsyncData(async (app) => {
-    return app.$wp
+    return await app.$wp
       .namespace('wp/v2')
       .posts()
       .perPage(10)
       .page(routePaging.value ? parseInt(routePaging.value) : 1)
-      .then(function (data) {
+      .then(async function (data) {
         pagesCount.value = data._paging.totalPages
         data.forEach(function (item, index) {
           if (
@@ -88,7 +89,7 @@ const { pending, data: pageData, error } = await useAsyncData(async (app) => {
           }
         })
 
-        useGeneralStore().postsInit(data, false)
+        generalStore.postsInit(data, false)
         return data
       })
 

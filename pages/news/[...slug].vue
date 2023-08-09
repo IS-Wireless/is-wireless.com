@@ -35,12 +35,12 @@ const testBlogShare = reactive({
   ],
 });
 
-const { data: pageData } = await useAsyncData((app) => {
-  return app.$wp
+const { data: pageData } = await useAsyncData( async (app) => {
+  return await app.$wp
     .namespace("wp/v2")
     .posts()
     .slug(route.params.slug)
-    .then(function (data) {
+    .then(async function (data) {
       data.forEach(function (item, index) {
         if (item.yoast_head_json && Object.keys(item.yoast_head_json).length) {
           data[index]["schema"] = JSON.stringify(item.yoast_head_json.schema);
@@ -85,6 +85,9 @@ const { data: pageData } = await useAsyncData((app) => {
 });
 
 const contentFiltered = computed(() => {
+  if (!pageData.value) {
+    return 
+  }
   const htmlFilter = new HtmlFilter();
   htmlFilter.allowedTags = {
     img: {
@@ -121,7 +124,7 @@ const contentFiltered = computed(() => {
     sup: null,
     sub: null,
   };
-  if (pageData.value.content.rendered) {
+  if (pageData.value.content && pageData.value.content.rendered) {
     let filteredContent = htmlFilter.filter(pageData.value.content.rendered);
     if (filteredContent.includes("data-orig-src")) {
       filteredContent = filteredContent.replace(/ src=/g, " data-test=");

@@ -14,30 +14,6 @@ const HOSTNAME = process.env.CF_PAGES_URL
   ? process.env.CF_PAGES_URL
   : "http://localhost:3000/";
 
-function getAll(request) {
-  return request.then((response) => {
-    if (!response._paging || !response._paging.next) {
-      return response;
-    }
-    return Promise.all([response, getAll(response._paging.next)]).then(
-      (responses) => {
-        return [].concat(...responses);
-      }
-    );
-  });
-}
-
-async function getPosts(url) {
-  const wp = new WPAPI({ endpoint: url });
-  return getAll(wp.posts()).then(function (posts) {
-    let postsLinks = [];
-    posts.forEach((post) => {
-      postsLinks.push("/news/" + post.slug);
-    });
-    return postsLinks;
-  });
-}
-
 export default defineNuxtConfig({
   env: {
     HOST: HOSTNAME,
@@ -278,13 +254,6 @@ export default defineNuxtConfig({
   render: {
     asyncScripts: false,
     resourceHints: false,
-  },
-  hooks: {
-    async 'nitro:config' (nitroConfig) {
-      if (nitroConfig.dev) { return }
-      let posts = await getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
-      nitroConfig.prerender.routes.push(...posts)
-    }
   },
   generate: {
     dir: "public",

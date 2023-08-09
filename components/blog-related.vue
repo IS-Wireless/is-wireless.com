@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full my-16">
+  <div class="relative w-full my-16">
     <div id="releated_news" class="swiper overflow-hidden">
       <div class="swiper-wrapper flex w-full">
         <div
@@ -141,4 +141,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.swiper-button-disabled{
+  @apply opacity-20 pointer-events-none
+}
+</style>

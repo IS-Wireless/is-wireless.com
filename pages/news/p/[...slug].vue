@@ -6,10 +6,6 @@
       </KeepAlive>
     </div>
 
-    <!-- FOR CRAWLER -->
-    <nuxt-link v-for="(pagesCount, index) in pagesCount" :key="index" :to="`/news/p/${index + 1}/`" class="hidden"></nuxt-link>
-    <!-- /FOR CRAWLER -->
-
     <ScrollToTopBtn :mobileVisible="true" />
   </div>
 </template>
@@ -22,21 +18,21 @@ import ScrollToTopBtn from '@/components/scroll-to-top.vue'
 const pagesCount = useState('pagesCount',() => 1 )
 const lastPageSlug = useState('lastPageSlug',()=>'')
 const route = useRoute()
-const routePaging = computed(()=>{
-  return route.query.p
-})
 const generalStore = useGeneralStore()
+const routePageSlug = computed(()=>{
+  return route.params.slug
+})
 
 definePageMeta({
     keepalive: true
 })
 
-const { pending, data: pageData, error } = await useAsyncData(`news-${routePaging.value ? parseInt(routePaging.value) : 1}`,async (app) => {
+const { pending, data: pageData, error } = await useAsyncData(`news-${routePageSlug.value ? parseInt(routePageSlug.value) : 1}`,async (app) => {
     return await app.$wp
       .namespace('wp/v2')
       .posts()
       .perPage(10)
-      .page(routePaging.value ? parseInt(routePaging.value) : 1)
+      .page(routePageSlug.value ? parseInt(routePageSlug.value) : 1)
       .then(async function (data) {
         pagesCount.value = data._paging.totalPages
         data.forEach(function (item, index) {
@@ -93,8 +89,6 @@ const { pending, data: pageData, error } = await useAsyncData(`news-${routePagin
         return data
       })
 
-    },{
-      watch: [routePaging]
     });
 
   onBeforeRouteLeave(to => {

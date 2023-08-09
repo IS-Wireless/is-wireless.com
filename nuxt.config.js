@@ -27,7 +27,7 @@ function getAll(request) {
   });
 }
 
-function getPosts(url) {
+async function getPosts(url) {
   const wp = new WPAPI({ endpoint: url });
   return getAll(wp.posts()).then(function (posts) {
     let postsLinks = [];
@@ -279,12 +279,17 @@ export default defineNuxtConfig({
     asyncScripts: false,
     resourceHints: false,
   },
+  hooks: {
+    async 'nitro:config' (nitroConfig) {
+      if (nitroConfig.dev) { return }
+      let posts = await getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
+      nitroConfig.prerender.routes.push(...posts)
+    }
+  },
   generate: {
     dir: "public",
     crawler: true,
     fallback: "404.html",
     interval: 1000,
-    // routes: getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`),
-    routes: ['/news/is-wireless-at-danish-engineering-society/'],
   },
 });

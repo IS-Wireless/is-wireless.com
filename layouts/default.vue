@@ -1,6 +1,5 @@
 <template>
   <div class="h-full flex flex-col">
-    <VitePwaManifest />
     <Navbar
       :critical="true"
       :main-menu="topMenuData"

@@ -102,7 +102,7 @@
       return app.$wp
         .pages()
         .slug(slugs[slugs.length - 1])
-        .then(async function (data) {
+        .then(function (data) {
           data.forEach(function (item, index) {
             let pageFullPath = item.link
               .replace(config.public.API_URL, '')

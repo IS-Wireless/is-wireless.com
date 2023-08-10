@@ -36,7 +36,7 @@
         .posts()
         .perPage(10)
         .page(routePaging.value ? parseInt(routePaging.value) : 1)
-        .then(async function (data) {
+        .then(function (data) {
           pagesCount.value = data._paging.totalPages
           if (currentPage.value < routePaging.value) {
             currentPage.value = routePaging.value

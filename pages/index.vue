@@ -48,7 +48,7 @@ const { data } = await useAsyncData((app) => {
       store.setHomepageData( data.acf );
       return data;
     });
-},{ lazy: true });
+});
 const { homepageData } = storeToRefs(store);
 useHead(generateHead(data.value));
 

@@ -104,7 +104,7 @@ export default defineNuxtConfig({
     "nuxt-simple-sitemap",
     "@vueuse/nuxt",
     '@nuxt/devtools',
-    // '@vite-pwa/nuxt',
+    '@vite-pwa/nuxt',
     [
       "nuxt-simple-robots",
       {
@@ -142,26 +142,26 @@ export default defineNuxtConfig({
     format:['webp'],
     quality: 70
   },
-  // pwa: {
-  //   registerType: 'autoUpdate',
-  //   manifest: {
-  //     lang: "en",
-  //     theme_color: "#00A2DF",
-  //     id: "/?standalone=true",
-  //     start_url: '/',
-  //     title: "IS-Wireless",
-  //     name: "IS-Wireless",
-  //     shortName: "IS-Wireless",
-  //     orientation: "any",
-  //     description: "IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.",
-  //     icons: [{
-  //       src: "symbol.png",
-  //       sizes: '512x512',
-  //       type: 'image/png',
-  //       purpose: "any maskable"
-  //     }]
-  //   },
-  // },
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      lang: "en",
+      theme_color: "#00A2DF",
+      id: "/?standalone=true",
+      start_url: '/',
+      title: "IS-Wireless",
+      name: "IS-Wireless",
+      shortName: "IS-Wireless",
+      orientation: "any",
+      description: "IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.",
+      icons: [{
+        src: "symbol.png",
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: "any maskable"
+      }]
+    },
+  },
   wp: {
     discover: true,
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,

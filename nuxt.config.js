@@ -106,6 +106,7 @@ export default defineNuxtConfig({
     "nuxt-simple-sitemap",
     "@vueuse/nuxt",
     '@nuxt/devtools',
+    '@vite-pwa/nuxt',
     [
       "nuxt-simple-robots",
       {
@@ -144,19 +145,7 @@ export default defineNuxtConfig({
     quality: 70
   },
   pwa: {
-    meta: {
-      name: "IS-Wireless",
-      theme_color: "#00A2DF",
-      ogTitle: false,
-      ogDescription: false,
-      ogType: false,
-      ogSiteName: "IS-Wireless",
-      ogHost: process.env.CF_PAGES_URL,
-      ogUrl: false,
-      twitterCard: "summary",
-      twitterSite: "@is_wireless",
-      twitterCreator: "Sławomir Pietrzyk",
-    },
+
     manifest: {
       lang: "en",
       theme_color: "#00A2DF",
@@ -167,10 +156,15 @@ export default defineNuxtConfig({
       orientation: "any",
       description:
         "IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.",
-    },
-    workbox: false,
-    icon: {
-      fileName: "symbol.png",
+        icons: [{
+          src: "symbol.png",
+          sizes: '512x512',
+          type: 'image/png'
+        }]
+      },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
     },
   },
   wp: {

@@ -175,7 +175,7 @@
           app.$filterData(data)
           return data
         })
-    },{ lazy: true })
+    })
 
 
     const contentFiltered = computed(()=>{

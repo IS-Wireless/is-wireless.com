@@ -178,6 +178,7 @@ export default defineNuxtConfig({
     ],
     sitemap: false,
   },
+  payloadExtraction: false,
   speedkit: {
     detection: {
       performance: true,

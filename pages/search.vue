@@ -207,7 +207,6 @@ const { pending } = await useAsyncData(
     });
   },
   {
-    server: false,
     watch: [route],
   }
 );

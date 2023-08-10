@@ -95,7 +95,6 @@
   
       },{
         watch: [routePaging],
-        lazy: true
       });
   
     onBeforeRouteLeave(to => {

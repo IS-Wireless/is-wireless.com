@@ -1,5 +1,6 @@
 <template>
   <div>
+    <VitePwaManifest />
     <div class="container">
       <h1 v-if="error.statusCode === 404">Page not found</h1>
       <h1 v-else>An error occurred</h1>

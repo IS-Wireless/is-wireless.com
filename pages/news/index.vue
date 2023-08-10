@@ -95,7 +95,8 @@ const { pending, data: pageData, error } = await useAsyncData(`news-${routePagin
       })
 
     },{
-      watch: [routePaging]
+      watch: [routePaging],
+      lazy: true
     });
 
   onBeforeRouteLeave(to => {

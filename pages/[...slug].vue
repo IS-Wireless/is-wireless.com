@@ -92,10 +92,8 @@
   <script setup>
   import { isSamePath, withoutTrailingSlash } from 'ufo'
   import HtmlFilter from 'html-filter'
-  import { useIndexStore } from '~/store'
   
     const route = useRoute()
-    const indexStore = useIndexStore()
 
     const { data: pageData } = await useAsyncData( (app) => {
         const config = useRuntimeConfig()
@@ -177,7 +175,8 @@
           app.$filterData(data)
           return data
         })
-    })
+    },{ lazy: true })
+
 
     const contentFiltered = computed(()=>{
         if (!pageData.content) {

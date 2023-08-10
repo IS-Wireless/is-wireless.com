@@ -42,9 +42,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-  experimental: {
-    payloadExtraction: false,
-  },
   app: {
     // layoutTransition: {
     //   name: "page",
@@ -160,12 +157,12 @@ export default defineNuxtConfig({
       icons: [{
         src: "symbol.png",
         sizes: '512x512',
-        type: 'image/png'
+        type: 'image/png',
+        purpose: "any maskable"
       }]
     },
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
     },
   },
   wp: {

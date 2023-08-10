@@ -488,14 +488,14 @@ export default {
 .menu-sub-col:hover > a {
   @apply text-blue-main;
 }
-.nuxt-link-active {
+.router-link-active {
   @apply text-blue-main;
 }
 
-.nuxt-link-exact-active {
+.router-link-exact-active {
   @apply text-blue-main hover:text-blue-main;
 }
-.nuxt-link-active {
+.router-link-active {
   @apply text-blue-main hover:text-blue-main;
 }
 

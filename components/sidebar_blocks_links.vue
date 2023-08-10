@@ -40,6 +40,7 @@
           v-if="item.link_url"
           class="menu-left-text overflow-hidden px-7 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main w-full border-0 border-b border-solid border-l-gray-light relative after:hidden tablet:after:block after:absolute after:h-1 after:w-full after:bg-blue-main after:-bottom-1 after:left-0 after:transition after:duration-200"
           :to="{ hash: item.link_url }"
+          :class="{ 'after:-translate-y-1' : item.link_url == $route.hash}"
           @click.native="switchMobileExpand"
         >
           <span
@@ -74,9 +75,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.menu-left-text.nuxt-link-active {
-  @apply after:-translate-y-1;
-}
-</style>

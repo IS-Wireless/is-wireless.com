@@ -36,7 +36,7 @@
     "lodash.isempty": "^4.4.0",
     "node-cache": "^5.1.2",
     "nuxt-magpie": "^0.0.17",
-    "nuxt-speedkit": "^2.0.17",
+    "nuxt-speedkit": "^3.0.0-next.17",
     "pinia": "^2.1.4",
     "sharer.npm.js": "^0.0.10",
     "superagent": "^8.0.0",

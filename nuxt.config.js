@@ -109,7 +109,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     '@nuxt/devtools',
     '@vite-pwa/nuxt',
-    'nuxt-speedkit',
+    // 'nuxt-speedkit',
     [
       "nuxt-simple-robots",
       {
@@ -189,36 +189,36 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
   },
-  speedkit: {
-    detection: {
-      performance: true,
-      browserSupport: true,
-    },
+  // speedkit: {
+  //   detection: {
+  //     performance: true,
+  //     browserSupport: true,
+  //   },
 
-    performanceMetrics: {
-      device: {
-        hardwareConcurrency: { min: 2, max: 48 },
-        deviceMemory: { min: 2 },
-      },
-      timing: {
-        fcp: 800,
-        dcl: 1200,
-      },
-    },
-    fonts: [],
-    targetFormats: ["webp", "avif", "jpg|jpeg|png|gif"],
-    componentAutoImport: false,
-    componentPrefix: undefined,
-    lazyOffset: {
-      component: "0%",
-      asset: "0%",
-    },
-    loader: {
-      dataUri: null,
-      size: "100px",
-      backgroundColor: "grey",
-    },
-  },
+  //   performanceMetrics: {
+  //     device: {
+  //       hardwareConcurrency: { min: 2, max: 48 },
+  //       deviceMemory: { min: 2 },
+  //     },
+  //     timing: {
+  //       fcp: 800,
+  //       dcl: 1200,
+  //     },
+  //   },
+  //   fonts: [],
+  //   targetFormats: ["webp", "avif", "jpg|jpeg|png|gif"],
+  //   componentAutoImport: false,
+  //   componentPrefix: undefined,
+  //   lazyOffset: {
+  //     component: "0%",
+  //     asset: "0%",
+  //   },
+  //   loader: {
+  //     dataUri: null,
+  //     size: "100px",
+  //     backgroundColor: "grey",
+  //   },
+  // },
 
   sitemap: {
     siteUrl: "https://www.is-wireless.com",

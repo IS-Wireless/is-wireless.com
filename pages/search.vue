@@ -159,6 +159,10 @@ const routeQuery = computed(()=>{
   return route.query.q
 })
 
+const routePage = computed(()=>{
+  return route.query.p
+})
+
 const pagination = computed(() => {
   if (!results.value || results.value.hits.length == 0) {
     return;
@@ -210,7 +214,7 @@ const { pending } = await useLazyAsyncData(
     });
   },
   {
-    watch: [routeQuery],
+    watch: [routeQuery,routePage],
   }
 );
 

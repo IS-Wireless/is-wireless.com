@@ -38,9 +38,9 @@
       >
         <nuxt-link
           v-if="item.link_url"
-          class="menu-left-text overflow-hidden px-7 py-[18px] tablet:px-0 text-basis block text-gray-dark hover:text-blue-main w-full border-0 border-b border-solid border-l-gray-light relative after:hidden tablet:after:block after:absolute after:h-1 after:w-full after:bg-blue-main after:-bottom-1 after:left-0 after:transition after:duration-200"
+          class="menu-left-text overflow-hidden px-7 py-[18px] tablet:px-0 text-basis block transition duration-200 text-gray-dark hover:text-blue-main w-full border-0 border-b border-solid border-l-gray-light relative after:hidden tablet:after:block after:absolute after:h-1 after:w-full after:bg-blue-main after:-bottom-1 after:left-0 after:transition after:duration-200"
           :to="{ hash: item.link_url }"
-          :class="{ 'after:-translate-y-1' : item.link_url == $route.hash}"
+          :class="{ 'after:-translate-y-1 !text-blue-main' : item.link_url == activeHash}"
           @click.native="switchMobileExpand"
         >
           <span
@@ -57,6 +57,12 @@
 <script>
 export default {
   name: 'sidebar_blocks_links',
+  setup() {
+    const { x, y } = useWindowScroll()
+    const router = useRouter();
+
+    return { y,router }
+  },
   props: {
     data: {
       type: Object,
@@ -66,6 +72,35 @@ export default {
   data() {
     return {
       mobileExpanded: false,
+      activeHash: ''
+    }
+  },
+  watch:{
+    y: function(){
+      if (this.data.links) {
+        let links = this.data.links
+        const linksUpper = links.filter((link) => {
+          let el = document.getElementById(`${link.link_url}`)
+          if(el){
+            return el.getBoundingClientRect().top <= 0
+          }else{
+            el = document.getElementById(`${link.link_url.replace('#','')}`)
+            if (el) {
+              return el.getBoundingClientRect().top <= 0              
+            }else{
+              return false
+            }
+          }
+        }) 
+        if (linksUpper.length > 0) {
+          let lastLink = linksUpper[linksUpper.length - 1]
+          if (lastLink.link_url != this.activeHash) {
+            this.activeHash = lastLink.link_url
+          }
+        }else{
+          this.activeHash = ''
+        }
+      }
     }
   },
   methods: {

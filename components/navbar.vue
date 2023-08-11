@@ -488,14 +488,14 @@ export default {
 .menu-sub-col:hover > a {
   @apply text-blue-main;
 }
-.router-link-active {
+nav .router-link-active {
   @apply text-blue-main;
 }
 
-.router-link-exact-active {
+nav .router-link-exact-active {
   @apply text-blue-main hover:text-blue-main;
 }
-.router-link-active {
+nav .router-link-active {
   @apply text-blue-main hover:text-blue-main;
 }
 

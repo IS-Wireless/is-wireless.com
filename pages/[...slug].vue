@@ -54,7 +54,7 @@
           </div>
           <div
             v-if="pageData.acf.sidebar"
-            class="tablet:w-1/3 sticky top-0 tablet:static"
+            class="tablet:w-1/3 sticky top-0 tablet:static z-20"
             :class="pageData.acf.sidebar_right ? 'tablet:ml-5' : 'tablet:mr-5'"
           >
             <div

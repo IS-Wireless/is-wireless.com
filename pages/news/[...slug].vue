@@ -9,10 +9,10 @@
             class="postContent img-no-click"
           />
           <BlogShare :data="testBlogShare" />
-          <BlogRelated
-            v-if="postsRelated && postsRelated.length"
-            :data="postsRelated"
-          />
+            <BlogRelated
+              v-if="postsRelated && postsRelated.length"
+              :data="postsRelated"
+            />
         </div>
       </div>
   </div>

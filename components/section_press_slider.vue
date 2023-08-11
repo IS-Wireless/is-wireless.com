@@ -16,15 +16,24 @@
         :url="data.link"
         class="block mt-5 tablet:mt-0 w-full flex-grow-0 overflow-hidden"
       >
-        <div id="pressSwiper" class="swiper swiper-container overflow-hidden">
-          <div
-            class="swiper-wrapper select-none flex w-full h-full items-center"
+          <Swiper class="overflow-hidden [&_.swiper-wrapper]:select-none [&_.swiper-wrapper]:flex [&_.swiper-wrapper]:w-full [&_.swiper-wrapper]:h-full [&_.swiper-wrapper]:items-center"
+            :modules="[SwiperNavigation, SwiperAutoplay]"
+            :slides-per-view="'auto'"
+            :space-between="0"
+            :speed="600"
+            :loop="true"
+            :autoplay="{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }"
+            :breakpoints="{
+             1248:{
+                loopedSlides: 3,
+              }
+            }"
           >
-            <div
-              v-for="(image, index) in logos"
-              :key="index"
-              class="swiper-slide swiper-duplicate-load-fix h-full px-7 basis-full phone:basis-1/2 tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0 flex-shrink-0"
-            >
+            <SwiperSlide v-for="(image, index) in logos" :key="index" class="swiper-duplicate-load-fix h-full px-7 basis-full phone:basis-1/2 tablet-small:basis-1/2 desktop:basis-1/4 flex-grow-0 flex-shrink-0">
               <nuxt-picture
                 v-if="image.url"
                 fit="outside"
@@ -47,16 +56,14 @@
                 }"
                 @load="imageAnimateLoad($event)"
               />
-            </div>
-          </div>
-        </div>
+            </SwiperSlide>
+          </Swiper>
       </CustomLink>
     </div>
   </section>
 </template>
 
 <script>
-import { Swiper, Navigation, Autoplay } from 'swiper'
 import { useGeneralStore } from '~/store/general'
 
 export default {
@@ -70,29 +77,6 @@ export default {
   data() {
     return {
       url: '/about-us/in-the-media',
-      swiperOptionsObject: {
-        modules: [Navigation, Autoplay],
-        slidesPerView: 'auto',
-        spaceBetween: 0,
-        direction: 'horizontal',
-        speed: 600,
-        loop: true,
-        loopedSlides: 5,
-        autoplay: {
-          delay: 3000,
-          pauseOnMouseEnter: true,
-          disableOnInteraction: false,
-        },
-        breakpoints:{
-          1248:{
-            loopedSlides: 3,
-          }
-        }
-        // lazy: {
-        //   loadOnTransitionStart: true,
-        //   loadPrevNext: true,
-        // },
-      },
     }
   },
   computed: {
@@ -111,15 +95,6 @@ export default {
       }
       return logosSwiper
     },
-  },
-  mounted() {
-    let logos = this.logos
-    if (logos.length > 0) {
-      this.$data.swiper = new Swiper(
-        '#pressSwiper',
-        this.$data.swiperOptionsObject
-      )
-    }
   },
   methods: {
     getPressData() {

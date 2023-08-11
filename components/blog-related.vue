@@ -1,13 +1,25 @@
 <template>
   <div class="relative w-full my-16">
-    <div id="releated_news" class="swiper overflow-hidden">
-      <div class="swiper-wrapper flex w-full">
-        <div
-          v-for="post in data"
+      <Swiper class="swiper overflow-hidden [&_.swiper-wrapper]:flex [&_.swiper-wrapper]:w-full "
+        :modules="[SwiperNavigation]"
+        :slides-per-view="2"
+        :space-between="20"
+        :navigation="{
+          nextEl: '[data-slide-next]',
+          prevEl: '[data-slide-prev]'
+        }"
+        :breakpoints="{
+          640:{
+            slidesPerView: 3,
+          }
+        }"
+      >
+        <SwiperSlide
+        v-for="post in data"
           :key="post.id"
-          class="swiper-slide flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
+          class="flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
         >
-          <nuxt-link
+        <nuxt-link
             v-if="post.slug"
             class="group flex flex-col"
             :to="'/news/' + post.slug + '/'"
@@ -34,8 +46,9 @@
               getFormattedDate(post.date)
             }}</span>
           </nuxt-link>
-        </div>
-      </div>
+        </SwiperSlide>
+      </Swiper>
+
       <div
         tabindex="0"
         class="absolute focus:outline-none group top-1/2 left-0 px-4 py-2 -mt-2 text-white bg-black bg-opacity-40 hover:bg-opacity-50 transition z-20"
@@ -78,12 +91,10 @@
           />
         </svg>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
-import { Swiper, Navigation } from "swiper";
 
 export default {
   name: "BlogRelatedPosts",
@@ -95,27 +106,27 @@ export default {
   },
   data() {
     return {
-      swiperOptionsObject: {
-        modules: [Navigation],
-        slidesPerView: 2,
-        spaceBetween: 20,
-        navigation: {
-          nextEl: "[data-slide-next]",
-          prevEl: "[data-slide-prev]",
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 3,
-          },
-        },
-      },
+      // swiperOptionsObject: {
+      //   modules: [Navigation],
+      //   slidesPerView: 2,
+      //   spaceBetween: 20,
+        // navigation: {
+        //   nextEl: "[data-slide-next]",
+        //   prevEl: "[data-slide-prev]",
+        // },
+      //   breakpoints: {
+      //     640: {
+      //       slidesPerView: 3,
+      //     },
+      //   },
+      // },
     };
   },
   mounted() {
-    this.$data.swiper = new Swiper(
-      "#releated_news",
-      this.$data.swiperOptionsObject
-    );
+    // this.$data.swiper = new Swiper(
+    //   "#releated_news",
+    //   this.$data.swiperOptionsObject
+    // );
   },
   methods: {
     getFormattedDate(postDate) {

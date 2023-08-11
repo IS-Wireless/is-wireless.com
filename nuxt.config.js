@@ -109,6 +109,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     '@nuxt/devtools',
     '@vite-pwa/nuxt',
+    'nuxt-swiper',
     // 'nuxt-speedkit',
     [
       "nuxt-simple-robots",
@@ -234,7 +235,7 @@ export default defineNuxtConfig({
         autoprefixer: {},
       },
     },
-    transpile: [/^swiper($|\/)/, "vue-share-it", "lodash"],
+    transpile: ["lodash"],
     extend(config) {
       config.externals = [
         {

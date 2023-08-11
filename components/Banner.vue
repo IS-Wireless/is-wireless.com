@@ -130,9 +130,9 @@
 
 <script>
 import EffectAppear from './effect-appear.vue'
-import { Swiper, Pagination, Autoplay } from 'swiper'
+// import { Swiper, Pagination, Autoplay } from 'swiper'
 
-import 'swiper/swiper-bundle.min.css'
+// import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',
@@ -153,47 +153,47 @@ export default {
       swiper: null,
       swiperIndex: 0,
       swiperCount: 0,
-      swiperOptionsObject: {
-        modules: [Pagination, Autoplay],
-        virtual: false,
-        preventClicksPropagation: false,
-        slidesperview: 1,
-        spaceBetween: 0,
-        direction: 'horizontal',
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: false,
-        },
-        watchOverflow: true,
-        navigation: {
-          nextEl: '[data-slide-next]',
-          prevEl: '[data-slide-prev]',
-        },
-        speed: 500,
-        loopedSlides: 1,
-        loop: this.data.banner
-          ? this.data.banner.length > 1
-            ? true
-            : false
-          : false,
-        keyboard: {
-          enabled: true,
-          onlyInViewport: true,
-        },
-        autoplay: {
-          delay: 6000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true,
-        },
-      },
+      // swiperOptionsObject: {
+      //   modules: [Pagination, Autoplay],
+      //   virtual: false,
+      //   preventClicksPropagation: false,
+      //   slidesperview: 1,
+      //   spaceBetween: 0,
+      //   direction: 'horizontal',
+      //   effect: 'fade',
+      //   fadeEffect: {
+      //     crossFade: false,
+      //   },
+      //   watchOverflow: true,
+      //   navigation: {
+      //     nextEl: '[data-slide-next]',
+      //     prevEl: '[data-slide-prev]',
+      //   },
+      //   speed: 500,
+      //   loopedSlides: 1,
+      //   loop: this.data.banner
+      //     ? this.data.banner.length > 1
+      //       ? true
+      //       : false
+      //     : false,
+      //   keyboard: {
+      //     enabled: true,
+      //     onlyInViewport: true,
+      //   },
+      //   autoplay: {
+      //     delay: 6000,
+      //     disableOnInteraction: false,
+      //   },
+      //   pagination: {
+      //     el: '.swiper-pagination',
+      //     type: 'bullets',
+      //     clickable: true,
+      //   },
+      // },
     }
   },
   mounted() {
-    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
+    // this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
   },
   methods: {
     togglePopup() {

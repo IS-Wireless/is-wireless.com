@@ -155,6 +155,9 @@ const breadcrumb = {
 const { search } = useAlgoliaSearch('web_searchable_posts')
 
 const route = useRoute();
+const routeQuery = computed(()=>{
+  return route.query.q
+})
 
 const pagination = computed(() => {
   if (!results.value || results.value.hits.length == 0) {
@@ -196,18 +199,18 @@ const pagination = computed(() => {
   return pagination;
 });
 
-const { pending } = await useAsyncData(
+const { pending } = await useLazyAsyncData(
   async () => {
     const pageNr = route.query.p ? route.query.p : 0;
     results.value = await search({
-      query: route.query.q,
+      query: routeQuery.value,
       requestOptions: {
         page: pageNr
       }
     });
   },
   {
-    watch: [route],
+    watch: [routeQuery],
   }
 );
 

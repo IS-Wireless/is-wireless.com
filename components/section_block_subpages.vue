@@ -13,7 +13,7 @@ const props = defineProps({
   data: Object,
 })
 
-const { data: sectionData } = await useAsyncData((app) => {
+const { data: sectionData } = await useLazyAsyncData((app) => {
   return Promise.all(props.data?.selected?.map(async (item) => {
     return app.$wp.pages().id(item.ID)
   })) 

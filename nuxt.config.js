@@ -43,14 +43,14 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    // layoutTransition: {
-    //   name: "page",
-    //   mode: "out-in",
-    // },
-    // pageTransition: {
-    //   name: "page",
-    //   mode: "out-in",
-    // },
+    layoutTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
     head: {
       title: "IS-Wireless #5GMadeTogether",
       description: "4G and 5G Mobile Networks of the Future",
@@ -158,12 +158,13 @@ export default defineNuxtConfig({
         src: "symbol.png",
         sizes: '512x512',
         type: 'image/png',
-        type: 'image/png',
         purpose: "any maskable"
       }]
     },
+    strategies: 'generateSW',
     workbox: {
-      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      navigateFallback: null,
     },
   },
   wp: {

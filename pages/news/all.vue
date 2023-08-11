@@ -30,7 +30,7 @@
       keepalive: true
   })
   
-  const { pending, data: pageData, error } = await useAsyncData(`news-${pagesCount.value ? parseInt(routePaging.value) : 1}`,async (app) => {
+  const { pending, data: pageData, error } = await useLazyAsyncData(`news-${pagesCount.value ? parseInt(routePaging.value) : 1}`,async (app) => {
       return await app.$wp
         .namespace('wp/v2')
         .posts()

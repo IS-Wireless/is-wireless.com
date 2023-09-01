@@ -8,11 +8,11 @@
     "dev:external": "dotenv -- cross-var nuxt --hostname %IP_LAN% --port 8000",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "export NODE_OPTIONS=--openssl-legacy-provider; nuxt generate --modern",
+    "generate": "export NODE_OPTIONS=--openssl-legacy-provider && nuxt generate --modern",
     "lint:js": "eslint --ext js --ignore-path \".gitignore\" --ignore-pattern \"**/package/**\" .",
     "lint:vue": "eslint --ext vue --ignore-path \".gitignore\" --ignore-pattern \"**/package/**\" .",
     "lint": "npm run lint:js && npm run lint:vue",
-    "deploy": "export NODE_OPTIONS=--openssl-legacy-provider; nuxt generate --modern"
+    "deploy": "export NODE_OPTIONS=--openssl-legacy-provider && nuxt generate --modern"
   },
   "engines": {
     "node": ">= 16.14.2"

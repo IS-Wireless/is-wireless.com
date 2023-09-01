@@ -11,7 +11,8 @@
           <div class="inline content-html text-gray-dark [&_p]:!inline" v-html="textExpanded ? data.content_expandable : extandableCropped"></div>
           <span v-if="extandableCropped"  class="text-blue-main underline inline cursor-pointer hover:text-blue-main-hover transition" @click="toggleCollapse()">{{ textExpanded ? ' Read less' : ' Read more'}}</span>
         </div>
-        <div v-if="data.content" class="content-html text-gray-dark" v-html="data.content"></div>
+        <div v-if="data.content" class="content-html text-gray-dark" v-html="data.content">
+        </div>
     </div>
 </template>
 <script>

@@ -6,7 +6,7 @@
       class="absolute z-0 top-0 inset-x-[-12.5%] border-0 border-t border-solid border-gray-light"
     ></div>
     <div
-      class="relative z-10 flex flex-col items-center mx-auto max-w-[52rem] mb-8 tablet:mb-12"
+      class="relative z-10 flex flex-col items-center mx-auto max-w-xl mb-8 tablet:mb-12"
     >
       <SectionHeader
         v-if="data.title"

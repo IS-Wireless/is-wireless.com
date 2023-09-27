@@ -28,17 +28,23 @@
     </LazyHydrate>
 
     <LazyHydrate when-visible>
-      <section_two_column_bg
-        :staticClass="'container mx-auto w-4/5'"
-        :textClr="'text-white'"
-        :parallaxActive="false"
+      <ReviewsSlider
         :data="frontPageData.homepageData.sections[3]"
       />
     </LazyHydrate>
 
     <LazyHydrate when-visible>
-      <section_two_column_home
+      <section_two_column_bg
+        :staticClass="'container mx-auto w-4/5'"
+        :textClr="'text-white'"
+        :parallaxActive="false"
         :data="frontPageData.homepageData.sections[4]"
+      />
+    </LazyHydrate>
+
+    <LazyHydrate when-visible>
+      <section_two_column_home
+        :data="frontPageData.homepageData.sections[5]"
         :fullImg="true"
       />
     </LazyHydrate>
@@ -53,7 +59,7 @@
     </LazyHydrate>
 
     <LazyHydrate when-visible>
-      <CtaJob :data="frontPageData.homepageData.sections[5]" />
+      <CtaJob :data="frontPageData.homepageData.sections[6]" />
     </LazyHydrate>
   </div>
 </template>
@@ -72,6 +78,7 @@ export default {
       import('~/components/content-section-home.vue'),
     PressSlider: () => import('~/components/press-slider.vue'),
     CtaJob: () => import('~/components/cta-job.vue'),
+    ReviewsSlider: () => import('~/components/reviews-slider.vue'),
   },
   async asyncData({ app, store, $filterData }) {
     return app.$wp

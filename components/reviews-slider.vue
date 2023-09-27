@@ -4,18 +4,18 @@
       <div
         v-if="data.reviews"
         id="swiper-reviews"
-        class="swiper z-20 !pt-16 !pb-24 tablet:!pt-32 tablet:!pb-44"
+        class="swiper z-20 !py-16 tablet:!py-[100px]"
       >
         <div class="swiper-wrapper flex">
           <div
             v-for="item in data.reviews"
-            class="swiper-slide !w-full px-16 desktop:[150px]"
+            class="swiper-slide !w-full px-16 desktop:px-[100px]"
           >
-            <div class="mx-auto max-w-[800px] text-center">
+            <div class="mx-auto max-w-[900px] text-center">
               <div
                 v-if="item.content"
                 v-html="item.content"
-                class="w-full mb-5 tablet:mb-[50px] [&_p]:text-2xl tablet:[&_p]:text-3xl text-gray-dark italic text-center font-normal"
+                class="w-full mb-5 tablet:mb-[50px] [&_p]:text-xl tablet:[&_p]:text-2xl text-gray-dark italic text-center font-normal"
               ></div>
               <p
                 v-if="item.author"
@@ -32,41 +32,46 @@
             </div>
           </div>
         </div>
-        <div class="swiper-pagination !bottom-10 tablet:!bottom-20"></div>
+        <div class="swiper-pagination !bottom-3 tablet:!bottom-[30px]"></div>
 
-        <div
-          class="swiper-nav swiper-reviews-button-prev left-2.5 tablet:left-0"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="21"
-            height="20"
-            viewBox="0 0 21 20"
-            fill="none"
+        <div class="absolute inset-0 pointer-events-none">
+          <div class="w-full max-w-[1320px] mx-auto">
+
+          </div>
+          <div
+            class="swiper-nav swiper-reviews-button-prev left-2.5 tablet:left-0"
           >
-            <path
-              d="M1 10L8.5 18M1 10L8.5 2M1 10L21 10"
-              stroke-width="2"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
-        <div
-          class="swiper-nav swiper-reviews-button-next right-2.5 tablet:right-0"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="21"
-            height="20"
-            viewBox="0 0 21 20"
-            fill="none"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="20"
+              viewBox="0 0 21 20"
+              fill="none"
+            >
+              <path
+                d="M1 10L8.5 18M1 10L8.5 2M1 10L21 10"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div
+            class="swiper-nav swiper-reviews-button-next right-2.5 tablet:right-0"
           >
-            <path
-              d="M20 10L12.5 18M20 10L12.5 2M20 10L-3.49691e-07 10"
-              stroke-width="2"
-              stroke-linejoin="round"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="20"
+              viewBox="0 0 21 20"
+              fill="none"
+            >
+              <path
+                d="M20 10L12.5 18M20 10L12.5 2M20 10L-3.49691e-07 10"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -230,7 +235,6 @@ export default {
         modules: [Navigation, Pagination],
         slidesPerView: 1,
         spaceBetween: 0,
-        autoHeight: true,
         direction: 'horizontal',
         speed: 600,
         navigation: {
@@ -255,7 +259,7 @@ export default {
 </script>
 <style scoped>
 #swiper-reviews >>> .swiper-nav {
-  @apply absolute top-1/2 z-30 p-3 tablet:p-5 rounded-full border border-solid border-gray-default transition duration-300 cursor-pointer;
+  @apply absolute top-1/2 z-30 p-3 tablet:p-5 rounded-full border border-solid border-gray-default transition duration-300 cursor-pointer pointer-events-auto;
 }
 #swiper-reviews >>> .swiper-nav:hover {
   @apply border-blue-main bg-blue-main;
@@ -268,7 +272,7 @@ export default {
   @apply stroke-white;
 }
 #swiper-reviews >>> .swiper-nav.swiper-button-disabled {
-  @apply border-gray-default pointer-events-none;
+  @apply border-gray-default !pointer-events-none;
 }
 #swiper-reviews >>> .swiper-nav.swiper-button-disabled svg {
   @apply !stroke-gray-default;

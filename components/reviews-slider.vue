@@ -6,16 +6,16 @@
         id="swiper-reviews"
         class="swiper z-20 !py-16 tablet:!py-[100px]"
       >
-        <div class="swiper-wrapper flex">
+        <div class="swiper-wrapper flex items-center">
           <div
             v-for="item in data.reviews"
-            class="swiper-slide !w-full px-16 desktop:px-[100px]"
+            class="swiper-slide shrink-0 !w-full px-14 desktop:px-[100px]"
           >
             <div class="mx-auto max-w-[900px] text-center">
               <div
                 v-if="item.content"
                 v-html="item.content"
-                class="w-full mb-5 tablet:mb-[50px] [&_p]:text-xl tablet:[&_p]:text-2xl text-gray-dark italic text-center font-normal"
+                class="w-full mb-5 tablet:mb-[50px] [&_p]:text-lg tablet:[&_p]:text-2xl text-gray-dark italic text-center font-normal"
               ></div>
               <p
                 v-if="item.author"

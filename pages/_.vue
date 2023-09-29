@@ -266,7 +266,6 @@ export default {
         if (Array.isArray(data) && data.length) {
           data = data[0]
         }
-        console.log(data)
         return { pageData: data }
       })
   },

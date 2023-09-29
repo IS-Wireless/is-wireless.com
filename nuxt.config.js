@@ -30,10 +30,10 @@ function getPosts(url) {
   return getAll(wp.namespace('wp/v2').posts()).then(function (posts) {
     let postsLinks = []
     posts.forEach((post) => {
-      console.log(post.slug)
+      // console.log(post.slug)
       postsLinks.push('/news/' + post.slug)
     })
-    postsLinks.push('/5g-6g-open-ran-testbed/') //TEMP force page generation  
+    postsLinks.push('/5g-6g-open-ran-testbed/') //TEMP force page generation
     return postsLinks
   })
 }
@@ -224,7 +224,7 @@ export default {
         autoprefixer: {},
       },
     },
-    transpile: ['vue-share-it',/^gmap-vue($|\/)/],
+    transpile: ['vue-share-it', /^gmap-vue($|\/)/],
     extend(config) {
       config.externals = [
         {
@@ -260,7 +260,7 @@ export default {
     dir: 'public',
     crawler: true,
     fallback: '404.html',
-    interval: 1000,
+    interval: 2000,
     routes() {
       return getPosts(`${process.env.API_URL}${process.env.API_AFFIX}`)
     },

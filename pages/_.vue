@@ -6,16 +6,20 @@
           pageData.acf && pageData.acf.sections && pageData.acf.sections.length
         "
       >
-          <StaticBanner
-            v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
-            :title="pageData.acf.sections[0].title"
-            :background-url="pageData.acf.sections[0].background.url"
-          />
-          <StaticBannerDescription v-else-if="pageData.acf.sections[0].acf_fc_layout === 'section_header_description'"
-            :title="pageData.acf.sections[0].title"
-            :background-url="pageData.acf.sections[0].background.url"
-            :description="pageData.acf.sections[0].description"
-          />
+        <StaticBanner
+          v-if="pageData.acf.sections[0].acf_fc_layout === 'section_header'"
+          :title="pageData.acf.sections[0].title"
+          :background-url="pageData.acf.sections[0].background.url"
+        />
+        <StaticBannerDescription
+          v-else-if="
+            pageData.acf.sections[0].acf_fc_layout ===
+            'section_header_description'
+          "
+          :title="pageData.acf.sections[0].title"
+          :background-url="pageData.acf.sections[0].background.url"
+          :description="pageData.acf.sections[0].description"
+        />
       </div>
     </div>
 
@@ -25,13 +29,14 @@
 
     <div class="tablet:w-4/5 mx-auto tablet:container">
       <div
-        v-if="Object.values(pageData.acf).length"
+        v-if="Object.values(pageData.acf || {}).length"
         class="flex"
-        :class="
-          [pageData.acf.sidebar_right && pageData.acf.sidebar
+        :class="[
+          pageData.acf.sidebar_right && pageData.acf.sidebar
             ? 'flex-col tablet:flex-row'
-            : 'flex-col-reverse tablet:flex-row-reverse',pageData.breadcrumb ? 'py-10' : 'pb-10']
-        "
+            : 'flex-col-reverse tablet:flex-row-reverse',
+          pageData.breadcrumb ? 'py-10' : 'pb-10',
+        ]"
       >
         <div
           class="w-4/5 tablet:w-full mx-auto mb-10"
@@ -52,7 +57,10 @@
                 "
               ></component>
               <component
-                v-else-if="component.acf_fc_layout !== 'section_header' && component.acf_fc_layout !== 'section_header_description'"
+                v-else-if="
+                  component.acf_fc_layout !== 'section_header' &&
+                  component.acf_fc_layout !== 'section_header_description'
+                "
                 :is="component.acf_fc_layout"
                 :data="component"
               ></component>
@@ -104,7 +112,8 @@ export default {
   components: {
     LazyHydrate,
     SectionHeader: () => import('~/components/section-header.vue'),
-    StaticBannerDescription: () => import('~/components/static-banner-description.vue'),
+    StaticBannerDescription: () =>
+      import('~/components/static-banner-description.vue'),
     Breadcrumb: () => import('~/components/breadcrumb.vue'),
     section_content: () => import('~/components/content-static.vue'),
     section_two_column: () => import('~/components/content-section.vue'),
@@ -234,7 +243,9 @@ export default {
         ) {
           if (
             data.acf.sections.some(
-              (section) => section.acf_fc_layout == 'section_block_subpages' || section.acf_fc_layout == 'section_research_slider'
+              (section) =>
+                section.acf_fc_layout == 'section_block_subpages' ||
+                section.acf_fc_layout == 'section_research_slider'
             )
           ) {
             await store.dispatch('getPages')
@@ -244,7 +255,7 @@ export default {
             data.acf.sections.some(
               (section) => section.acf_fc_layout == 'section_header_description'
             )
-          ){
+          ) {
             data.breadcrumb = false
           }
 
@@ -252,6 +263,10 @@ export default {
         }
 
         $filterData(data)
+        if (Array.isArray(data) && data.length) {
+          data = data[0]
+        }
+        console.log(data)
         return { pageData: data }
       })
   },

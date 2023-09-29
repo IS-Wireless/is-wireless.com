@@ -33,6 +33,7 @@ function getPosts(url) {
       // console.log(post.slug)
       postsLinks.push('/news/' + post.slug)
     })
+    postsLinks.push('/5g-6g-open-ran-testbed/')
     return postsLinks
   })
 }

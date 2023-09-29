@@ -170,7 +170,7 @@ export default {
   //   }
   //   return { pageData: {} }
   // },
-  async asyncData({ app, store, route, $filterData, $config }) {
+  asyncData({ app, store, route, $filterData, $config }) {
     let slugs = withoutTrailingSlash(route.fullPath).split('/')
 
     return app.$wp
@@ -420,15 +420,18 @@ export default {
         a: { href: 1, rel: 1, 'data-rel': 1, 'aria-label': 1 },
         div: null,
       }
-      let filteredContent = htmlFilter.filter(this.pageData.content.rendered)
-      if (filteredContent.includes('data-orig-src')) {
-        filteredContent = filteredContent.replace(/ src=/g, ' data-test=')
-        filteredContent = filteredContent.replace(
-          / data-orig-/g,
-          ' ref="imageFix" '
-        )
+      if (this.pageData) {
+        let filteredContent = htmlFilter.filter(this.pageData.content.rendered)
+        if (filteredContent.includes('data-orig-src')) {
+          filteredContent = filteredContent.replace(/ src=/g, ' data-test=')
+          filteredContent = filteredContent.replace(
+            / data-orig-/g,
+            ' ref="imageFix" '
+          )
+        }
+        return filteredContent
       }
-      return filteredContent
+      return ''
     },
   },
 }

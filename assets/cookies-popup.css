@@ -194,17 +194,17 @@
   transition: 200ms;
 }
 
-.cf_modal input[type="checkbox"]:hover{
+.cf_modal .cf_consent-element__checkbox-wrapper input:hover{
   background: #eee;
 }
-.cf_modal input[type="checkbox"]:checked{
+.cf_modal .cf_consent-element__checkbox-wrapper input:checked{
   background: #00A2E0 !important;
 }
-.cf_modal input[type="checkbox"]:checked:hover{
+.cf_modal .cf_consent-element__checkbox-wrapper input:checked:hover{
   background: #027FAE !important;
   border: 2.5px solid #027FAE;
 }
-.cf_modal input[type="checkbox"]:checked::after{
+.cf_modal .cf_consent-element__checkbox-wrapper input:checked::after{
   position: absolute;
   content: '';
   width: 14px;

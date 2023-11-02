@@ -14,37 +14,25 @@
 
     <div
       v-if="data.default"
-      class="absolute inset-0 flex justify-center items-start flex-col text-5xl bg-black/50 z-10 pb-10 tablet:pb-20"
+      class="absolute inset-0 flex justify-between items-start flex-col text-5xl bg-black/50 z-10 tablet:pb-20"
     >
+      <div class="tablet:h-10 desktop:h-16">
+      </div>
       <div
         class="flex justify-between items-center w-4/5 container mx-auto relative"
       >
         <div class="tablet-wide:basis-1/2">
-          <img
-            v-if="data.default.image"
-            ref="content1"
-            width="550"
-            height="160"
-            class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
-            :src="data.default.image.url ? data.default.image.url : ''"
-            :alt="data.default.image.alt ? data.default.image.alt : ''"
-            :title="data.default.image.title ? data.default.image.title : ''"
-            loading="eager"
-            :critical="true"
-            preload
-          />
-
-          <p
+          <h1
             v-if="data.default && data.default.content"
-            ref="content2"
-            class="duration-300 text-xl tablet:text-2xl text-white mb-10 tablet-wide:mb-[70px] pr-10 tablet:pr-0"
+            ref="content1"
+            class="duration-300 text-3xl tablet:text-4xl desktop:text-5xl text-white mb-8 tablet-wide:mb-14 pr-10 tablet:pr-0"
           >
             {{ data.default.content }}
-          </p>
+          </h1>
 
           <div
             v-if="data.default.links"
-            ref="content3"
+            ref="content2"
             class="duration-300 flex flex-col tablet:flex-row pr-5 tablet:pr-0"
           >
             <CustomLink
@@ -96,6 +84,21 @@
             </span>
           </div>
         </div>
+      </div>
+      <div class="w-4/5 container mx-auto">
+        <img
+              v-if="data.default.image"
+              ref="content3"
+              width="550"
+              height="160"
+              class="duration-300 mb-5 w-2/5 tablet:w-1/3 max-w-md ml-auto"
+              :src="data.default.image.url ? data.default.image.url : ''"
+              :alt="data.default.image.alt ? data.default.image.alt : ''"
+              :title="data.default.image.title ? data.default.image.title : ''"
+              loading="eager"
+              :critical="true"
+              preload
+            />
       </div>
     </div>
   </section>

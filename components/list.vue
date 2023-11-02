@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:w-[80vw] relative"
+    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:w-[80vw] relative full-hd:container"
   >
     <li
       v-for="(item, index) in data"

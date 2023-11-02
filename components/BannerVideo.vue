@@ -25,10 +25,11 @@
           <h1
             v-if="data.default && data.default.content"
             ref="content1"
-            class="duration-300 text-3xl tablet:text-4xl desktop:text-5xl text-white mb-8 tablet-wide:mb-14 pr-10 tablet:pr-0"
+            class="duration-300 text-3xl tablet:text-4xl desktop:text-5xl text-white mb-9 tablet:mb-10 pr-10 tablet:pr-0 after:block after:content-[''] after:w-[100px] after:h-1 after:bg-blue-main after:mt-5"
           >
             {{ data.default.content }}
           </h1>
+          
 
           <div
             v-if="data.default.links"
@@ -91,7 +92,7 @@
               ref="content3"
               width="550"
               height="160"
-              class="duration-300 mb-5 w-2/5 tablet:w-1/3 max-w-md ml-auto"
+              class="duration-300 mb-5 w-1/2 tablet:w-1/3 max-w-[280px] ml-auto"
               :src="data.default.image.url ? data.default.image.url : ''"
               :alt="data.default.image.alt ? data.default.image.alt : ''"
               :title="data.default.image.title ? data.default.image.title : ''"

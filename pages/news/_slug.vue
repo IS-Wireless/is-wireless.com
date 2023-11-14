@@ -24,21 +24,6 @@ import BlogShare from '~/components/blog-share.vue'
 import BlogPostContent from '~/components/blog-post-content.vue'
 import BlogRelated from '~/components/blog-related.vue'
 
-import { isSamePath } from 'ufo'
-
-const getRelatedPosts = function (pagesData, thisRoute, $config) {
-  const postRelatedData = []
-  Object.values(pagesData.slice(0, 10)).forEach((post) => {
-    let postFullPath = post.link
-      .replace($config.API_URL, '')
-      .replace('https://www.is-wireless.com', '')
-    if (!isSamePath(postFullPath, thisRoute)) {
-      postRelatedData.push(post)
-    }
-  })
-  return postRelatedData
-}
-
 export default {
   name: 'BlogPost',
   components: {
@@ -49,13 +34,12 @@ export default {
   },
   async fetch() {
     let route = this.$route
-    let config = this.$config
     let dataRaw = await this.$wp
       .namespace('wp/v2')
       .posts()
       .slug(route.params.slug)
-      .then(function (data) {
-        data.forEach(function (item, index) {
+      .then(async (data) => {
+        data.forEach((item, index) => {
           if (
             item.yoast_head_json &&
             Object.keys(item.yoast_head_json).length
@@ -105,9 +89,14 @@ export default {
           }
         })
 
+        let postsRelated = []
+        if (data[0].acf?.posts_related) {
+          postsRelated = await this.getRelatedPosts(data[0].acf.posts_related)
+        }
+
         return {
           pageData: data[0],
-          postsRelated: getRelatedPosts(data, route.path, config),
+          postsRelated: postsRelated,
         }
       })
     this.pageData = dataRaw.pageData
@@ -307,6 +296,15 @@ export default {
     refresh() {
       this.$fetch()
     },
+    async getRelatedPosts(postsIds) {
+      const postsRequests = postsIds.map(id => {
+        return this.$wp
+          .namespace('wp/v2')
+          .posts()
+          .id(id)
+      })
+      return Promise.all(postsRequests)
+    }
   },
 }
 </script>

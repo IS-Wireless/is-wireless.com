@@ -10,7 +10,7 @@
         />
         <BlogShare :data="testBlogShare" />
         <BlogRelated
-          v-if="postsRelated && postsRelated.length"
+          v-if="postsRelated && postsRelated.list.length"
           :data="postsRelated"
         />
       </div>
@@ -89,9 +89,15 @@ export default {
           }
         })
 
-        let postsRelated = []
+        let postsRelated = {
+          text:'',
+          list:[]
+        }
         if (data[0].acf?.posts_related) {
-          postsRelated = await this.getRelatedPosts(data[0].acf.posts_related)
+          postsRelated = {
+            list: await this.getRelatedPosts(data[0].acf.posts_related.list),
+            text: data[0].acf.posts_related.text,
+          }
         }
 
         return {

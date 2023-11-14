@@ -1,9 +1,12 @@
 <template>
   <div class="w-full my-16">
+    <h4 class="text-2xl tablet:text-3xl text-gray-darkest mb-5">
+      {{ data.text }}
+    </h4>
     <div id="releated_news" class="swiper overflow-hidden">
       <div class="swiper-wrapper flex w-full">
         <div
-          v-for="post in data"
+          v-for="post in data.list"
           :key="post.id"
           class="swiper-slide flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
         >
@@ -25,11 +28,11 @@
                 )
               "
             />
-            <h4
+            <h5
               v-if="post.title"
               class="mb-2 text-blue-main group-hover:text-blue-main-hover transition text-xs tablet:text-sm whitespace-nowrap overflow-hidden overflow-ellipsis"
               v-html="post.title.rendered ? post.title.rendered : ''"
-            ></h4>
+            ></h5>
             <span v-if="post.date" class="mb-2 text-sm">{{
               getFormattedDate(post.date)
             }}</span>
@@ -89,7 +92,7 @@ export default {
   name: 'BlogRelatedPosts',
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

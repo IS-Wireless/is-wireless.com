@@ -8,7 +8,7 @@
           :data="contentFiltered"
           class="postContent img-no-click"
         />
-        <BlogShare :data="testBlogShare" />
+        <BlogShare :data="blogShareData" />
         <BlogRelated
           v-if="postsRelated && postsRelated.list.length"
           :data="postsRelated"
@@ -112,7 +112,7 @@ export default {
     return {
       postsRelated: false,
       pageData: false,
-      testBlogShare: {
+      blogShareData: {
         text: 'Share This Story, Choose Your Platform!',
         socials: [
           { type: 'facebook', link: '/' },

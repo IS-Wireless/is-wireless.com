@@ -1,9 +1,6 @@
-import { defineNuxtConfig } from "nuxt/config";
-import path from "path";
 
 require("dotenv").config();
 const pkg = require("./package.json");
-var WPAPI = require("wpapi");
 
 let appVersionCacheBuster =
   process.env.CONTEXT === "production"
@@ -125,7 +122,7 @@ export default defineNuxtConfig({
     screens: {
       default: 320,
       // xxs: 480,
-      // xs: 576,
+      xs: 576,
       // sm: 768,
       md: 996,
       lg: 1200,

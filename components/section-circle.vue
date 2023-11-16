@@ -134,7 +134,7 @@ export default {
 </script>
 
 <style scoped>
-.content-html >>> p {
+.content-html :deep(p){
   @apply text-xl tablet:text-2xl;
 }
 </style>

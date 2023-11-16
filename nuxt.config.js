@@ -107,7 +107,7 @@ export default defineNuxtConfig({
     "@nuxtjs/algolia",
     "nuxt-simple-sitemap",
     "@vueuse/nuxt",
-    '@nuxt/devtools',
+    // '@nuxt/devtools',
     '@vite-pwa/nuxt',
     'nuxt-swiper',
     // 'nuxt-speedkit',
@@ -120,6 +120,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  
   image: {
     screens: {
       default: 320,

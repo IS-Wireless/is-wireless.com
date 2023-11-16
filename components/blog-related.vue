@@ -1,5 +1,8 @@
 <template>
-  <div class="relative w-full my-16">
+  <div class="relative w-full my-16" v-if="data && data.list">
+      <h4 v-if="data.text" class="text-2xl tablet:text-3xl text-gray-darkest mb-5">
+        {{ data.text }}
+      </h4>
       <Swiper class="swiper overflow-hidden [&_.swiper-wrapper]:flex [&_.swiper-wrapper]:w-full "
         :modules="[SwiperNavigation]"
         :slides-per-view="2"
@@ -15,7 +18,7 @@
         }"
       >
         <SwiperSlide
-        v-for="post in data"
+        v-for="post in data.list"
           :key="post.id"
           class="flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
         >
@@ -37,11 +40,11 @@
                 )
               "
             />
-            <h4
+            <h5
               v-if="post.title"
               class="mb-2 text-blue-main group-hover:text-blue-main-hover transition text-xs tablet:text-sm whitespace-nowrap overflow-hidden overflow-ellipsis"
               v-html="post.title.rendered ? post.title.rendered : ''"
-            ></h4>
+            ></h5>
             <span v-if="post.date" class="mb-2 text-sm">{{
               getFormattedDate(post.date)
             }}</span>
@@ -100,33 +103,9 @@ export default {
   name: "BlogRelatedPosts",
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      // swiperOptionsObject: {
-      //   modules: [Navigation],
-      //   slidesPerView: 2,
-      //   spaceBetween: 20,
-        // navigation: {
-        //   nextEl: "[data-slide-next]",
-        //   prevEl: "[data-slide-prev]",
-        // },
-      //   breakpoints: {
-      //     640: {
-      //       slidesPerView: 3,
-      //     },
-      //   },
-      // },
-    };
-  },
-  mounted() {
-    // this.$data.swiper = new Swiper(
-    //   "#releated_news",
-    //   this.$data.swiperOptionsObject
-    // );
   },
   methods: {
     getFormattedDate(postDate) {

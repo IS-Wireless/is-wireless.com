@@ -10,7 +10,7 @@
           />
           <BlogShare :data="testBlogShare" />
             <BlogRelated
-              v-if="postsRelated && postsRelated.length"
+              v-if="postsRelated && postsRelated.list.length"
               :data="postsRelated"
             />
         </div>
@@ -25,7 +25,6 @@ import { useGeneralStore } from '~/store/general'
 
 const config = useRuntimeConfig();
 const route = useRoute();
-const postsRelated = useState("postsRelated", () => false);
 const testBlogShare = reactive({
   text: "Share This Story, Choose Your Platform!",
   socials: [
@@ -37,26 +36,27 @@ const testBlogShare = reactive({
 });
 const generalStore = useGeneralStore()
 
-const getRelatedPosts = function (pagesData, thisRoute) {
-  const postRelatedData = [];
-  Object.values(pagesData.slice(0, 10)).forEach((post) => {
-    let postFullPath = post.link.replace(config.public.API_URL, "").replace("https://www.is-wireless.com", "");
-    if (!isSamePath(postFullPath, thisRoute)) {
-      postRelatedData.push(post);
-    }
-  });
-  return postRelatedData;
-};
-
 const pageData = computed(()=>{
   if (generalStore.posts.length > 0) {
     const data = generalStore.posts.find(({slug}) => slug == route.params.slug[0])
-
     if (data) {
-      postsRelated.value = getRelatedPosts(generalStore.posts, route.path);
       return data
     }
   }
+})
+
+const postsRelated = computed(()=>{
+  if (pageData.value && pageData.value.acf && pageData.value.acf.posts_related) {
+    return {
+      text: pageData.value.acf.posts_related.text,
+      list: pageData.value.acf.posts_related.list.map(id => {
+        return generalStore.posts.find(post => post.id == id)
+      })
+    } 
+  }
+  // return generalStore.posts[12699]
+  // return pageData.value.acf.posts_related
+  return false
 })
 
 const contentFiltered = computed(() => {

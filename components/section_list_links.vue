@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div v-if="!data.hide_section" class="w-full">
     <ul v-if="data.block" class="flex flex-col">
       <li v-for="(item, index) in data.block" :key="index" class="mb-4 group">
         <CustomLink

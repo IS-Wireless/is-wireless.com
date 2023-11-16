@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-full">
+  <div class="relative z-0 w-full h-full">
     <video
       v-if="isMounted"
       playsinline

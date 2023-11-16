@@ -130,9 +130,6 @@
 
 <script>
 import EffectAppear from './effect-appear.vue'
-// import { Swiper, Pagination, Autoplay } from 'swiper'
-
-// import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',

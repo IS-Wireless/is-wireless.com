@@ -6,14 +6,18 @@
 
     <section_two_column_home :data="homepageData.sections[2]" :globeImg="true" />
 
+    <ReviewsSlider
+        :data="homepageData.sections[3]"
+      />
+
     <section_two_column_bg
       :staticClass="'container mx-auto w-4/5'"
       :textClr="'text-white'"
       :parallaxActive="false"
-      :data="homepageData.sections[3]"
+      :data="homepageData.sections[4]"
     />
 
-    <section_two_column_home :data="homepageData.sections[4]" :fullImg="true" />
+    <section_two_column_home :data="homepageData.sections[5]" :fullImg="true" />
 
     <section_press_slider
       :data="{
@@ -22,7 +26,7 @@
       }"
     />
 
-    <CtaJob :data="homepageData.sections[5]" />
+    <CtaJob :data="homepageData.sections[6]" />
   </div>
 </template>
 

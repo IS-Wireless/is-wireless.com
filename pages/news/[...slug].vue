@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { isSamePath } from "ufo";
 import HtmlFilter from 'html-filter'
 import { useGeneralStore } from '~/store/general'
 

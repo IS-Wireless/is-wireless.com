@@ -1,4 +1,3 @@
-
 require("dotenv").config();
 const pkg = require("./package.json");
 
@@ -19,6 +18,7 @@ export default defineNuxtConfig({
     API_URL: process.env.API_URL,
     API_AFFIX: process.env.API_AFFIX,
   },
+
   runtimeConfig: {
     public: {
       baseURL: HOSTNAME,
@@ -43,6 +43,7 @@ export default defineNuxtConfig({
       }
     },
   },
+
   app: {
     layoutTransition: {
       name: "page",
@@ -104,10 +105,8 @@ export default defineNuxtConfig({
     "@nuxtjs/algolia",
     "nuxt-simple-sitemap",
     "@vueuse/nuxt",
-    // '@nuxt/devtools',
     '@vite-pwa/nuxt',
     'nuxt-swiper',
-    // 'nuxt-speedkit',
     [
       "nuxt-simple-robots",
       {
@@ -117,17 +116,14 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  
+
   image: {
+    densities: [1, 2],
     screens: {
       default: 320,
-      // xxs: 480,
       xs: 576,
-      // sm: 768,
       md: 996,
       lg: 1200,
-      // xl: 1367,
-      // xxl: 1600,
       "4k": 1921,
     },
     domains: [
@@ -146,6 +142,7 @@ export default defineNuxtConfig({
     format:['webp'],
     quality: 70
   },
+
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
@@ -171,6 +168,7 @@ export default defineNuxtConfig({
       navigateFallback: null,
     },
   },
+
   wp: {
     discover: true,
     endpoint: `${process.env.API_URL}${process.env.API_AFFIX}`,
@@ -184,45 +182,11 @@ export default defineNuxtConfig({
     ],
     sitemap: false,
   },
-  // payloadExtraction: false,
-  experimental: {
-    payloadExtraction: false,
-  },
-  // speedkit: {
-  //   detection: {
-  //     performance: true,
-  //     browserSupport: true,
-  //   },
-
-  //   performanceMetrics: {
-  //     device: {
-  //       hardwareConcurrency: { min: 2, max: 48 },
-  //       deviceMemory: { min: 2 },
-  //     },
-  //     timing: {
-  //       fcp: 800,
-  //       dcl: 1200,
-  //     },
-  //   },
-  //   fonts: [],
-  //   targetFormats: ["webp", "avif", "jpg|jpeg|png|gif"],
-  //   componentAutoImport: false,
-  //   componentPrefix: undefined,
-  //   lazyOffset: {
-  //     component: "0%",
-  //     asset: "0%",
-  //   },
-  //   loader: {
-  //     dataUri: null,
-  //     size: "100px",
-  //     backgroundColor: "grey",
-  //   },
-  // },
 
   sitemap: {
     siteUrl: "https://www.is-wireless.com",
-    exclude: ["/news/p/*"],
   },
+
   build: {
     standalone: true,
     postcss: {
@@ -248,14 +212,20 @@ export default defineNuxtConfig({
       });
     },
   },
+
   render: {
     asyncScripts: false,
     resourceHints: false,
   },
+
   generate: {
     dir: "public",
     crawler: true,
     fallback: "404.html",
     interval: 1000,
+  },
+
+  devtools: {
+    enabled: true,
   },
 });

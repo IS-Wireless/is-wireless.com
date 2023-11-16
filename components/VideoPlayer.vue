@@ -29,7 +29,7 @@
       alt="Poster"
       width="1920px"
       height="768px"
-      class="h-full absolute inset-0"
+      class="h-full absolute inset-0 pointer-events-none transition duration-300"
       :imgAttrs="{ class: 'h-full object-cover' }"
       loading="eager"
       preload
@@ -74,7 +74,7 @@ export default {
   methods: {
     playerReady() {
       if (this.placeholderImg) {
-        this.$refs['videoPlayerPoster'].$el.classList.add('invisible')
+        this.$refs['videoPlayerPoster'].$el.classList.add('opacity-0')
       }
     },
   },

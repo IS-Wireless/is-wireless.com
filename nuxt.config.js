@@ -143,6 +143,10 @@ export default defineNuxtConfig({
     quality: 70
   },
 
+  tailwindcss:{
+    cssPath: '~/assets/main.css'
+  },
+
   pwa: {
     registerType: 'autoUpdate',
     manifest: {

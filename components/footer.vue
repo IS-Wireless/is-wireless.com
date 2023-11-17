@@ -13,7 +13,7 @@
             <nuxt-picture
               class="block h-auto w-full max-w-[200px]"
               :src="
-                imageUrl.replace('www.is-wireless.com', 'api.is-wireless.com')
+                imageUrl.replace('www.is-wireless.com', 'api.is-wireless.com').replace('https://api.is-wireless.com/','/app/')
               "
               :alt="'test alt'"
               width="200"

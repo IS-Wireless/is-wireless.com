@@ -3,11 +3,11 @@
     class="relative overflow-x-hiddenbg-[center_top] h-[500px] desktop:h-[700px] w-full max-w-[1920px] mx-auto mb-[200px]"
   >
     <nuxt-picture
-      v-if="data.image"
+      v-if="data && data.image"
       class="block absolute w-full h-full inset-0 -z-20"
       :src="
         data.image.url
-          ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com')
+          ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com').replace('https://api.is-wireless.com/','/app/')
           : ''
       "
       :title="data.image.title ? data.image.title : ''"

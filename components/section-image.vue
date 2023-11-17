@@ -8,7 +8,7 @@
         :class="{
           'group-hover:scale-110 group-hover:opacity-80': imageDecoration,
         }"
-        :src="url.replace('www.is-wireless.com', 'api.is-wireless.com')"
+        :src="url.replace('www.is-wireless.com', 'api.is-wireless.com').replace('https://api.is-wireless.com/','/app/')"
         :alt="alt"
         :title="title"
         sizes="sm:320px md:552px lg:552px"

@@ -13,7 +13,7 @@
             data.featured_image_src.replace(
               'www.is-wireless.com',
               'api.is-wireless.com'
-            )
+            ).replace('https://api.is-wireless.com/','/app/')
           "
         />
         <div v-if="data.title" class="p-5 pb-1">

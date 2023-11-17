@@ -13,7 +13,7 @@
       "
       fit="cover"
       :title="data.image.title ? data.image.title : ''"
-      :src="data.image.url"
+      :src="data.image.url.replace('https://api.is-wireless.com/','/app/')"
       :imgAttrs="{class: 'w-full h-full object-cover rounded-[5px] overflow-hidden'}"
       class="mb-4 aspect-[87/100]"
     />

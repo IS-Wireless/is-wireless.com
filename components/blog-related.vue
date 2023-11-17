@@ -37,7 +37,7 @@
                 post.featured_image_src.replace(
                   'www.is-wireless.com',
                   'api.is-wireless.com'
-                )
+                ).replace('https://api.is-wireless.com/','/app/')
               "
             />
             <h5

@@ -85,18 +85,18 @@
         </div>
       </div>
       <div class="w-4/5 container mx-auto">
-        <img
+        <nuxt-img
               v-if="data.default.image"
               ref="content3"
               width="550"
               height="160"
-              class="duration-300 mb-5 w-1/2 tablet:w-1/3 max-w-[280px] ml-auto"
+              class="duration-300 block mb-5 w-1/2 tablet:w-1/3 max-w-[280px] ml-auto"
               :src="data.default.image.url ? data.default.image.url : ''"
               :alt="data.default.image.alt ? data.default.image.alt : ''"
               :title="data.default.image.title ? data.default.image.title : ''"
               loading="eager"
               :critical="true"
-              preload
+              
             />
       </div>
     </div>
@@ -130,12 +130,12 @@ export default {
         fill: true,
         sources: [
           {
-            src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background_Trim.mp4',
-            type: 'video/mp4',
-          },
-          {
             src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background-poprawione.webm',
             type: 'video/webm',
+          },
+          {
+            src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background_Trim.mp4',
+            type: 'video/mp4',
           },
         ],
       },

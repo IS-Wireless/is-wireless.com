@@ -7,7 +7,7 @@
             data.person_image.url.replace(
               'www.is-wireless.com',
               'api.is-wireless.com'
-            )
+            ).replace('https://api.is-wireless.com/','/app/')
           "
           :title="data.person_image.title ? data.person_image.title : ''"
           :alt="data.person_image.alt ? data.person_image.alt : ''"

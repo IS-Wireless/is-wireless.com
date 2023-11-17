@@ -41,7 +41,7 @@
                       ? item.image.url.replace(
                           'www.is-wireless.com',
                           'api.is-wireless.com'
-                        )
+                        ).replace('https://api.is-wireless.com/','/app/')
                       : ''
                   "
                   class="h-full"
@@ -216,7 +216,7 @@
           class="relative z-20 py-5 px-4 desktop:px-10 h-full flex items-center"
         >
           <a class="block h-full" :href="linkFilter(item.link)">
-            <nuxt-picture
+            <nuxt-img
               v-if="item.image"
               loading="eager"
               class="h-full img-h-full"
@@ -227,7 +227,7 @@
                   ? item.image.url.replace(
                       'www.is-wireless.com',
                       'api.is-wireless.com'
-                    )
+                    ).replace('https://api.is-wireless.com/','/app/')
                   : ''
               "
               :alt="item.image.alt ? item.image.alt : ''"

@@ -42,7 +42,7 @@
                     ? image.url.replace(
                         'www.is-wireless.com',
                         'api.is-wireless.com'
-                      )
+                      ).replace('https://api.is-wireless.com/','/app/')
                     : ''
                 "
                 class="h-full flex justify-center"

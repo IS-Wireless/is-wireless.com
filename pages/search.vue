@@ -129,11 +129,6 @@
 
 <script setup>
 
-const results = ref({
-  nbHits: 0,
-  hits: [],
-});
-
 const breadcrumb = {
   "@type": "BreadcrumbList",
   "@id": "https://www.is-wireless.com/networks/services/#breadcrumb",
@@ -203,10 +198,9 @@ const pagination = computed(() => {
   return pagination;
 });
 
-const { pending } = await useLazyAsyncData(
-  async () => {
+const { data:results ,pending } = await useLazyAsyncData(() => {
     const pageNr = route.query.p ? route.query.p : 0;
-    results.value = await search({
+    return search({
       query: routeQuery.value,
       requestOptions: {
         page: pageNr
@@ -214,6 +208,7 @@ const { pending } = await useLazyAsyncData(
     });
   },
   {
+    server: false,
     watch: [routeQuery,routePage],
   }
 );

@@ -223,7 +223,6 @@ export default defineNuxtConfig({
   },
 
   generate: {
-    dir: "public",
     crawler: true,
     fallback: "404.html",
     interval: 1000,

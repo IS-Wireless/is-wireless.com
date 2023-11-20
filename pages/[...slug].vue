@@ -11,19 +11,29 @@
               :title="pageData.acf.sections[0].title"
               :background-url="pageData.acf.sections[0].background.url"
             />
+            <StaticBannerDescription
+              v-else-if="
+                pageData.acf.sections[0].acf_fc_layout ===
+                'section_header_description'
+              "
+              :title="pageData.acf.sections[0].title"
+              :background-url="pageData.acf.sections[0].background.url"
+              :description="pageData.acf.sections[0].description"
+            />
         </div>
       </div>
   
-        <Breadcrumb :data="pageData.breadcrumb" />
+        <Breadcrumb v-if="pageData.breadcrumb" :data="pageData.breadcrumb" />
   
-      <div class="tablet:w-4/5 mx-auto py-10 tablet:container">
+      <div class="tablet:w-4/5 mx-auto tablet:container">
         <div
           v-if="pageData.acf && Object.values(pageData.acf).length"
           class="flex"
           :class="
-            pageData.acf.sidebar_right && pageData.acf.sidebar
+            [pageData.acf.sidebar_right && pageData.acf.sidebar
               ? 'flex-col tablet:flex-row'
-              : 'flex-col-reverse tablet:flex-row-reverse'
+              : 'flex-col-reverse tablet:flex-row-reverse',
+              pageData.breadcrumb ? 'py-10' : 'pb-10']
           "
         >
           <div
@@ -45,7 +55,10 @@
                   "
                 ></component>
                 <component
-                  v-else-if="component.acf_fc_layout !== 'section_header'"
+                  v-else-if="
+                    component.acf_fc_layout !== 'section_header' &&
+                    component.acf_fc_layout !== 'section_header_description'
+                    "
                   :is="resolveCompName(component.acf_fc_layout)"
                   :data="component"
                 ></component>
@@ -175,9 +188,9 @@
             data.acf.sections &&
             Object.keys(data.acf.sections).length
           ) {
-              // if(data.acf.sections.some(section => section.acf_fc_layout == 'section_block_subpages')){
-              //   await indexStore.getPages()
-              // }
+              if(data.acf.sections.some(section => section.acf_fc_layout == 'section_header_description')){
+                data.breadcrumb = false
+              }
   
             data.content = ''
           }

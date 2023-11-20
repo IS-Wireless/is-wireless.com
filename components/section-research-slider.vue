@@ -63,12 +63,12 @@
       }
     })
     
-    const { data: subPagesData } = await useAsyncData(dataKey,(app) => {
+    const { data: subPagesData } = await useAsyncData(dataKey.value,(app) => {
       const { data: cachedData } = useNuxtData(dataKey.value)
       if (cachedData.value) {
         return cachedData.value
       }
-      
+
       return Promise.all(props.data?.selected?.map(async (item) => {
         return app.$wp.pages().id(item.ID)
       })) 

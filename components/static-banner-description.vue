@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  name: 'StaticBannerDescription',
   props: {
     title: {
       type: String,

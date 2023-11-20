@@ -1,5 +1,5 @@
 <template>
-  <section
+  <section v-if="data"
     class="relative overflow-x-hiddenbg-[center_top] h-[500px] desktop:h-[700px] w-full max-w-[1920px] mx-auto mb-[200px]"
   >
     <nuxt-picture

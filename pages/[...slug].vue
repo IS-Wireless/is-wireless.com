@@ -100,7 +100,6 @@
     })
 
     const { data: pageData } = await useAsyncData(slugFormatted.value,(app) => {
-
       const {data: cachedData} = useNuxtData(slugFormatted.value)
       if (cachedData.value) {
         return cachedData.value
@@ -186,7 +185,6 @@
           return data
         })
     })
-
 
     const contentFiltered = computed(()=>{
         if (!pageData.content) {

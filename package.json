@@ -32,6 +32,7 @@
     "lodash": "^4.17.21",
     "lodash.groupby": "^4.6.0",
     "lodash.isempty": "^4.4.0",
+    "nuxt-speedkit": "^3.0.0-next.38",
     "nuxt-swiper": "^1.2.0",
     "pinia": "^2.1.4",
     "sharer.npm.js": "^0.0.10",

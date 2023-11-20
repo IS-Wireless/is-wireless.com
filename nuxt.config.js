@@ -107,6 +107,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     '@vite-pwa/nuxt',
     'nuxt-swiper',
+    'nuxt-speedkit',
     [
       "nuxt-simple-robots",
       {
@@ -116,6 +117,36 @@ export default defineNuxtConfig({
       },
     ],
   ],
+
+  speedkit: {
+
+    detection: {
+      performance: true,
+      browserSupport: true
+    },
+
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: { min: 2, max: 48 },
+        deviceMemory: { min: 2 }
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200
+      }
+    },
+
+    targetFormats: ['webp', 'webm', 'jpg|jpeg|png|gif'],
+
+    componentAutoImport: false,
+    componentPrefix: undefined,
+
+    lazyOffset: {
+      component: '0%',
+      asset: '0%'
+    }
+    
+  },
 
   image: {
     densities: [1, 2],

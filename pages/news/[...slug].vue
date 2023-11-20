@@ -58,7 +58,6 @@ const postsRelated = computed(()=>{
 
 onMounted(()=>{
   const lastPageSlug = useState('lastPageSlug')
-  console.log(lastPageSlug,route);
   lastPageSlug.value = route.params.slug[0]
 })
 

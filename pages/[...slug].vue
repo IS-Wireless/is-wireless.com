@@ -94,14 +94,18 @@
   import HtmlFilter from 'html-filter'
   
     const route = useRoute()
+    const slugFormatted = computed(()=>{
+      let cleanRoute = route.fullPath.split('#')[0].split('?')[0]
+      return withoutTrailingSlash(cleanRoute)
+    })
 
-    const { data: pageData } = await useAsyncData((app) => {
+    const { data: pageData } = await useAsyncData(slugFormatted.value,(app) => {
         const config = useRuntimeConfig()
-        let slugs = withoutTrailingSlash(route.fullPath).split('/')
+        let slugSplit = slugFormatted.value.split('/')
       
       return app.$wp
         .pages()
-        .slug(slugs[slugs.length - 1])
+        .slug(slugSplit[slugSplit.length - 1])
         .then(function (data) {
           data.forEach(function (item, index) {
             let pageFullPath = item.link

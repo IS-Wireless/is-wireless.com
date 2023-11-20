@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div itemscope itemtype="https://schema.org/Person">
     <div class="w-full flex flex-col tablet-wide:flex-row my-10">
       <div class="tablet-wide:basis-1/3" v-if="data.person_image">
         <nuxt-picture
@@ -9,6 +9,7 @@
               'api.is-wireless.com'
             ).replace('https://api.is-wireless.com/','/app/')
           "
+          :imgAttrs="{itemprop: 'image'}"
           :title="data.person_image.title ? data.person_image.title : ''"
           :alt="data.person_image.alt ? data.person_image.alt : ''"
         />
@@ -16,13 +17,14 @@
       <div
         class="tablet-wide:basis-2/3 text-base block mt-5 tablet-wide:mt-0 tablet-wide:ml-6 mb-6"
       >
-        <h3 class="text-2xl" v-if="data.person_name">
+        <h3 class="text-2xl" v-if="data.person_name" itemprop="name">
           {{ data.person_name }}
         </h3>
         <div
           class="content-html"
           v-if="data.person_description"
           v-html="data.person_description"
+          itemprop="description"
         ></div>
       </div>
     </div>

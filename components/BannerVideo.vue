@@ -130,12 +130,12 @@ export default {
         fill: true,
         sources: [
           {
-            src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background-poprawione.webm',
-            type: 'video/webm',
-          },
-          {
             src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background_Trim.mp4',
             type: 'video/mp4',
+          },
+          {
+            src: 'https://api.is-wireless.com/wp-content/uploads/2022/10/IS-Wireless-video-background-poprawione.webm',
+            type: 'video/webm',
           },
         ],
       },

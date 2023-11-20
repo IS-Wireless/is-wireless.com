@@ -7,6 +7,7 @@
           (data.higlight ? ' bg-gray-light ' : '')
         : 'rounded-md ' + (data.higlight ? ' bg-gray-light ' : '')
     "
+    itemscope itemtype="https://schema.org/Person"
   >
     <div
       v-if="isOverflow"
@@ -53,6 +54,7 @@
       :imgAttrs="{
         class:
           'h-[300px] phone-wide:h-[600px] tablet:h-[350px] w-full tablet:w-[300px] object-cover',
+        itemprop: 'image'
       }"
       :src="
         data.image.url
@@ -99,16 +101,19 @@
             v-if="data.name"
             class="text-2xl mb-2 tablet:mb-0 desktop:mb-1"
             v-html="data.name"
+            itemprop="name"
           ></h3>
           <p
             v-if="data.position"
             class="text-blue-main text-lg mb-5"
             v-html="data.position"
+            temprop="jobTitle"
           ></p>
           <div v-if="data.linkedin" class="flex">
             <a
               class="block h-[30px] w-[30px] p-0.5 bg-[#D4D9DF] hover:bg-[#0077b5] rounded-md transition"
               :href="data.linkedin"
+              itemprop="url"
             >
               <svg
                 width="26"
@@ -129,6 +134,7 @@
           v-if="data.description"
           class="inline-block mb-5 w-full text-justify"
           v-html="data.description"
+          itemprop="description"
         ></div>
       </div>
     </div>

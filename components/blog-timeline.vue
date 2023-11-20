@@ -59,7 +59,7 @@
       </template>
       <div
         class="w-full text-center"
-        v-if="((postPageCount > currentPage) || isFetching) && !showAll"
+        v-if="isButtonShown"
       >
         <div
           role="button"
@@ -95,17 +95,13 @@ export default {
     BlogPost,
   },
   props: {
-    postPageCount: {
+    postPageCount:{
       type: Number,
-      default: 1
+      default:1
     },
     isFetching:{
       type: Boolean || Error,
       default: true
-    },
-    prevLink:{
-      type: String,
-      default: ''
     },
     showAll:{
       type: Boolean,
@@ -115,10 +111,12 @@ export default {
   },
 
   setup(){
-    const currentPage = useState('currentPage',() => 1 )
+    const currentPage = useState('currentPage')
+    const prevLink = useState('lastPageSlug',() => '')
 
     return {
-      currentPage
+      currentPage,
+      prevLink
     }
   },
 
@@ -139,7 +137,15 @@ export default {
 
   computed:{
     posts(){
-      return this.groupPosts({posts: useGeneralStore().getPostsData.slice(0, this.showAll ? this.postPageCount * 10 : this.currentPage * 10)}) 
+      if(this.showAll){
+        return this.groupPosts({posts: useGeneralStore().getPostsData}) 
+      }else{
+        return this.groupPosts({posts: useGeneralStore().getPostsData.slice(0, this.currentPage * 10)}) 
+      }
+    },
+
+    isButtonShown(){
+      return ((this.postPageCount > this.currentPage) || this.isFetching) && !this.showAll
     }
   },
 

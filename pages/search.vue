@@ -198,7 +198,7 @@ const pagination = computed(() => {
   return pagination;
 });
 
-const { data:results ,pending } = await useLazyAsyncData(() => {
+const { data:results ,pending } = await useAsyncData(() => {
     const pageNr = route.query.p ? route.query.p : 0;
     return search({
       query: routeQuery.value,

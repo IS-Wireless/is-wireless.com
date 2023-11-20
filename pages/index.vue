@@ -35,7 +35,7 @@ import { useHomepageStore } from "~/store/homepage";
 import { storeToRefs } from "pinia";
 
 const store = useHomepageStore();
-const { data } = await useLazyAsyncData((app) => {
+const { data } = await useAsyncData((app) => {
   return app.$wp
     .pages()
     .id(2)

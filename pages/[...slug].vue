@@ -95,7 +95,7 @@
   
     const route = useRoute()
 
-    const { data: pageData } = await useLazyAsyncData((app) => {
+    const { data: pageData } = await useAsyncData((app) => {
         const config = useRuntimeConfig()
         let slugs = withoutTrailingSlash(route.fullPath).split('/')
       

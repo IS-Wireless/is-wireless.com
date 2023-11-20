@@ -57,7 +57,7 @@
       data: Object
     })
     
-    const { data: subPagesData } = await useLazyAsyncData((app) => {
+    const { data: subPagesData } = await useAsyncData((app) => {
       return Promise.all(props.data?.selected?.map(async (item) => {
         return app.$wp.pages().id(item.ID)
       })) 

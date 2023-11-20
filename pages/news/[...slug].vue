@@ -22,7 +22,6 @@
 import HtmlFilter from 'html-filter'
 import { useGeneralStore } from '~/store/general'
 
-const config = useRuntimeConfig();
 const route = useRoute();
 const testBlogShare = reactive({
   text: "Share This Story, Choose Your Platform!",
@@ -53,9 +52,14 @@ const postsRelated = computed(()=>{
       })
     } 
   }
-  // return generalStore.posts[12699]
-  // return pageData.value.acf.posts_related
+
   return false
+})
+
+onMounted(()=>{
+  const lastPageSlug = useState('lastPageSlug')
+  console.log(lastPageSlug,route);
+  lastPageSlug.value = route.params.slug[0]
 })
 
 const contentFiltered = computed(() => {

@@ -100,8 +100,14 @@
     })
 
     const { data: pageData } = await useAsyncData(slugFormatted.value,(app) => {
-        const config = useRuntimeConfig()
-        let slugSplit = slugFormatted.value.split('/')
+
+      const {data: cachedData} = useNuxtData(slugFormatted.value)
+      if (cachedData.value) {
+        return cachedData.value
+      }
+
+      const config = useRuntimeConfig()
+      let slugSplit = slugFormatted.value.split('/')
       
       return app.$wp
         .pages()

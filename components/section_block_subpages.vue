@@ -13,7 +13,18 @@ const props = defineProps({
   data: Object,
 })
 
-const { data: sectionData } = await useAsyncData((app) => {
+const dataKey = computed(()=>{
+  if (props.data?.selected) {
+    return props.data.selected.map(item => item.ID).join(',')
+  }
+})
+
+const { data: sectionData } = await useAsyncData(dataKey.value, (app) => {
+  const { data: cachedData } = useNuxtData(dataKey.value)
+  if (cachedData.value) {
+    return cachedData.value
+  }
+
   return Promise.all(props.data?.selected?.map(async (item) => {
     return app.$wp.pages().id(item.ID)
   })) 

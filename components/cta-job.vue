@@ -18,7 +18,7 @@
       }"
     />
     <div
-      v-else
+      v-else-if="data && data.background_color"
       class="block absolute w-full h-full inset-0 -z-30"
       :style="
         data.background_color ? 'background: ' + data.background_color : ''

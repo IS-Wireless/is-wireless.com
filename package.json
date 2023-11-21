@@ -6,10 +6,10 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt build && nuxt generate",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "nuxt generate"
+    "deploy": "npm run build && npm run generate"
   },
   "dependencies": {
     "@abbo/nuxt-google-analytics": "^2.5.0",

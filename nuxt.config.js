@@ -150,9 +150,9 @@ export default defineNuxtConfig({
     
   },
 
-  nitro: {
-    compressPublicAssets: true,
-  },
+  // nitro: {
+  //   compressPublicAssets: true,
+  // },
 
   image: {
     densities: [1, 2],

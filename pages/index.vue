@@ -39,6 +39,7 @@ const { data } = await useAsyncData('homepageData',(app) => {
 
   const { data: cachedData } = useNuxtData('homepageData')
   if (cachedData.value) {
+    store.setHomepageData( cachedData.value.acf )
     return cachedData.value
   }
 

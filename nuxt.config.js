@@ -136,16 +136,22 @@ export default defineNuxtConfig({
       }
     },
 
-    targetFormats: ['webp', 'webm', 'jpg|jpeg|png|gif'],
+    targetFormats: ['webp', 'webm|mp4', 'jpg|jpeg|png|gif'],
 
     componentAutoImport: false,
     componentPrefix: undefined,
+
+    disableNuxtFontaine: true,
 
     lazyOffset: {
       component: '0%',
       asset: '0%'
     }
     
+  },
+
+  nitro: {
+    compressPublicAssets: true,
   },
 
   image: {

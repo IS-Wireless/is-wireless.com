@@ -39,7 +39,6 @@ const { data } = await useAsyncData('homepageData',(app) => {
 
   const { data: cachedData } = useNuxtData('homepageData')
   if (cachedData.value) {
-    store.setHomepageData( cachedData.value.acf )
     return cachedData.value
   }
 
@@ -56,12 +55,15 @@ const { data } = await useAsyncData('homepageData',(app) => {
       if (data.acf && data.acf.section) {
         data.content = "";
       }
-      store.setHomepageData( data.acf );
       return data;
     });
 });
 
-const { homepageData } = storeToRefs(store);
+const homepageData = computed(()=>{
+  if (data.value && data.value.acf) {
+    return data.value.acf
+  }
+})
 
 useHead(generateHead(data.value));
 

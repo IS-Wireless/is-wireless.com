@@ -31,10 +31,7 @@
 </template>
 
 <script setup>
-import { useHomepageStore } from "~/store/homepage";
-import { storeToRefs } from "pinia";
 
-const store = useHomepageStore();
 const { data } = await useAsyncData('homepageData',(app) => {
 
   const { data: cachedData } = useNuxtData('homepageData')

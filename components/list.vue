@@ -25,9 +25,9 @@
           </div>
 
           <div class="mb-[30px] tablet:mb-10">
-            <h4 v-if="item.title" class="text-xl tablet:text-2xl text-inherit">
+            <h3 v-if="item.title" class="text-xl tablet:text-2xl text-inherit">
               {{ item.title }}
-            </h4>
+            </h3>
             <div
               v-if="item.text_highlight"
               class="flex flex-nowrap gap-x-3 desktop:gap-x-6 gap-y-1"

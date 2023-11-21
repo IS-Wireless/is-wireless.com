@@ -215,9 +215,8 @@
           :key="index"
           class="relative z-20 py-5 px-4 desktop:px-10 h-full flex items-center"
         >
-          <a class="block h-full" :href="linkFilter(item.link)">
+          <a v-if="item.image" class="block h-full" :href="linkFilter(item.link)" aria-label="Organisation">
             <nuxt-img
-              v-if="item.image"
               loading="eager"
               class="h-full img-h-full"
               width="200"
@@ -230,7 +229,7 @@
                     ).replace('https://api.is-wireless.com/','/app/')
                   : ''
               "
-              :alt="item.image.alt ? item.image.alt : ''"
+              :alt="item.image.alt ?? item.image.title ?? ''"
               :title="item.image.title ? item.image.title : ''"
             />
           </a>

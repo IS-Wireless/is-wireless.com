@@ -5,7 +5,7 @@
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
       <div class="mx-auto w-4/5 container flex justify-between h-[80px]">
-        <nuxt-link to="/" @click="expanded ? toggleExpanded() : null">
+        <nuxt-link to="/" @click="expanded ? toggleExpanded() : null" aria-label="Homepage">
           <svg
             width="100%"
             height="100%"
@@ -176,7 +176,7 @@
                 @submit.prevent="goToSearch()"
               >
                 <button
-                  class="px-5 flex justify-center items-center text-white hover:text-blue-main"
+                  class="px-5 flex justify-center items-center text-white hover:text-blue-main" aria-label="Search"
                 >
                   <svg
                     class="fill-current transition"
@@ -198,6 +198,7 @@
                   name="q"
                   placeholder="Search here..."
                   class="w-full px-5 bg-gray-darkest text-base text-white focus-visible:outline-none"
+                  aria-label="search"
                 />
                 <div
                   class="px-5 h-full flex justify-center items-center cursor-pointer text-white hover:text-white/70"
@@ -293,10 +294,12 @@
                 name="q"
                 placeholder="Search..."
                 class="grow h-full text-white bg-gray-darkest focus-visible:outline-none placeholder:text-[#BFBFBF] placeholder:italic focus:outline-none font-lato appearance-none"
+                aria-label="search"
               />
               <button
                 type="submit"
                 class="flex items-center justify-center w-[50px] h-[48px] text-[#BFBFBF] hover:text-blue-main"
+                aria-label="Search"
               >
                 <svg
                   class="fill-current transition"
@@ -348,6 +351,7 @@
                     rel="external nofollow"
                     :isExternal="item.object == 'custom' ? true : false"
                     class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md bg-[#BFBFBF]"
+                    :aria-label="item.object_slug ?? 'social link'"
                   >
                     <svg
                       v-if="item.object_slug === 'facebook'"

@@ -119,8 +119,12 @@ function generateHead(data) {
     script: [],
     meta: [],
     link: [],
+    htmlAttrs: [],
     __dangerouslyDisableSanitizers: ['script'],
   }
+  tags.htmlAttrs.push({
+    lang: 'en'
+  })
   if (data) {
     if (data.schema) {
       tags.script.push({

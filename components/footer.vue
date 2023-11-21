@@ -31,6 +31,7 @@
           <div class="w-full phablet:w-auto relative border-none h-12">
             <select
               class="bg-gray-light focus-visible:outline-none text-gray-400 appearance-none border-none inline-block py-3 pl-4 pr-10 rounded leading-tight w-full h-12 cursor-pointer hover:bg-gray-200 focus:bg-gray-200 transition"
+              aria-label="Language"
             >
               <option v-for="title in languages" :key="title">
                 {{ title }}
@@ -70,6 +71,7 @@
                 rel="external nofollow"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
+                :aria-label="itemSocial.object_slug ?? 'social link'"
               >
                 <template #default>
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -88,6 +90,7 @@
                 rel="external nofollow"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
+                :aria-label="itemSocial.object_slug ?? 'social link'"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -104,6 +107,7 @@
                 rel="external nofollow"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
+                :aria-label="itemSocial.object_slug ?? 'social link'"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path

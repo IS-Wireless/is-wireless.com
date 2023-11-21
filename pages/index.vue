@@ -56,13 +56,14 @@ const { data } = await useAsyncData('homepageData',(app) => {
     });
 });
 
+useHead(generateHead(data.value));
+
 const homepageData = computed(()=>{
   if (data.value && data.value.acf) {
     return data.value.acf
   }
 })
 
-useHead(generateHead(data.value));
 
 function generateHead(data) {
   let tags = {

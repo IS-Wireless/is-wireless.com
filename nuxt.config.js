@@ -151,6 +151,7 @@ export default defineNuxtConfig({
   },
 
   // nitro: {
+  //   preset: 'cloudflare_pages'
   //   compressPublicAssets: true,
   // },
 
@@ -230,14 +231,14 @@ export default defineNuxtConfig({
 
   build: {
     standalone: true,
-    postcss: {
-      plugins: {
-        "postcss-import": {},
-        "tailwindcss/nesting": "postcss-nesting",
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    },
+    // postcss: {
+    //   plugins: {
+    //     "postcss-import": {},
+    //     "tailwindcss/nesting": "postcss-nesting",
+    //     tailwindcss: {},
+    //     autoprefixer: {},
+    //   },
+    // },
     transpile: ["lodash"],
     extend(config) {
       config.externals = [

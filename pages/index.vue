@@ -36,6 +36,12 @@ import { storeToRefs } from "pinia";
 
 const store = useHomepageStore();
 const { data } = await useAsyncData('homepageData',(app) => {
+
+  const { data: cachedData } = useNuxtData('homepageData')
+  if (cachedData.value) {
+    return cachedData.value
+  }
+
   return app.$wp
     .pages()
     .id(2)

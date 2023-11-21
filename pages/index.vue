@@ -60,7 +60,9 @@ const { data } = await useAsyncData('homepageData',(app) => {
       return data;
     });
 });
+
 const { homepageData } = storeToRefs(store);
+
 useHead(generateHead(data.value));
 
 function generateHead(data) {

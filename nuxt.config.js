@@ -154,6 +154,8 @@ export default defineNuxtConfig({
   //   compressPublicAssets: true,
   // },
 
+  routeRules: { '/api/contact': { prerender: true },
+
   image: {
     densities: [1, 2],
     screens: {

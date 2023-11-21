@@ -153,7 +153,7 @@ export default defineNuxtConfig({
   // nitro: {
   //   compressPublicAssets: true,
   // },
-  routeRules: { '/api/fetchSomething': { prerender: true }},
+  routeRules: { '/api/contact': { prerender: true }},
 
   image: {
     densities: [1, 2],

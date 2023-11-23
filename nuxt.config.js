@@ -257,7 +257,7 @@ export default {
     //   compressor: { threshold: 9, level: 9 },
   },
   generate: {
-    dir: 'public',
+    dir: 'dist',
     crawler: true,
     fallback: '404.html',
     interval: 1000,

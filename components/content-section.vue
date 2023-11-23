@@ -34,7 +34,7 @@
       </div>
       <div
         class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2"
-        :class="{'tablet-wide:ml-8' :!fullImg || data.fullImg}"
+        :class="{'mb-5 tablet-wide:ml-8' :!fullImg || data.fullImg}"
       >
         <Globe v-if="globeImg" />
         <CustomLink
@@ -109,7 +109,7 @@ export default {
         'bg-white relative w-full text-gray-dark' +
         ' ' +
         this.staticClass + ' ' +
-        + this.fullImg || data.fullImg ? ' ' : 'pb-8 tablet-wide:pb-14 pt-10 tablet-wide:pt-16 '
+        (this.fullImg || this.data?.fullImg ? ' ' : 'pb-5 tablet-wide:pb-1')
       )
     },
   },
@@ -168,6 +168,7 @@ export default {
   @apply list-disc ml-5;
 }
 
+.content-html >>> ol,
 .content-html >>> ul {
   @apply mb-5;
 }

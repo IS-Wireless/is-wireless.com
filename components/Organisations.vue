@@ -41,7 +41,7 @@
                       ? item.image.url.replace(
                           'www.is-wireless.com',
                           'api.is-wireless.com'
-                        ).replace('https://api.is-wireless.com/','/app/')
+                        ).replace($config.public.API_URL,'/app')
                       : ''
                   "
                   class="h-full"
@@ -226,7 +226,7 @@
                   ? item.image.url.replace(
                       'www.is-wireless.com',
                       'api.is-wireless.com'
-                    ).replace('https://api.is-wireless.com/','/app/')
+                    ).replace($config.public.API_URL,'/app')
                   : ''
               "
               :alt="item.image.alt ?? item.image.title ?? ''"

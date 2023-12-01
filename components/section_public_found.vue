@@ -18,7 +18,7 @@
         <div v-if="data.table_side_logos" class="grow flex flex-wrap items-center gap-5 phablet:gap-8 tablet:gap-10">
             <div v-for="image,index in data.table_side_logos" :key="index">
                 <nuxt-picture v-if="image.logo && image.logo.url"
-                    :src="image.logo.url.replace('https://api.is-wireless.com/','/app/')"
+                    :src="image.logo.url.replace($config.public.API_URL,'/app')"
                     class="block max-w-[120px] tablet:max-w-[150px] "
                     :imgAttrs="{ class: 'w-full object-contain' }"
                 />
@@ -29,7 +29,7 @@
     </div>
     <div v-if="data.footer_logos_image">
         <nuxt-picture v-if="data.footer_logos_image.url"
-                :src="data.footer_logos_image.url.replace('https://api.is-wireless.com/','/app/')"
+                :src="data.footer_logos_image.url.replace($config.public.API_URL,'/app')"
                 :imgAttrs="{ class: 'max-h-[75px] object-contain' }"
             />
     </div>

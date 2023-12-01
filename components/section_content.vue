@@ -25,7 +25,7 @@
           class="mb-5"
           :src="
             item.url
-              ? item.url.replace('www.is-wireless.com', 'api.is-wireless.com').replace('https://api.is-wireless.com/','/app/')
+              ? item.url.replace('www.is-wireless.com',$config.public.API_DOMAIN).replace($config.public.API_URL,'/app')
               : ''
           "
           :title="item.title ? item.title : ''"

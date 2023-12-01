@@ -21,7 +21,7 @@
               image.img_url.url.replace(
                 'www.is-wireless.com',
                 'api.is-wireless.com'
-              ).replace('https://api.is-wireless.com/','/app/')
+              ).replace($config.public.API_URL,'/app')
             "
             :title="image.img_url.title ? image.img_url.title : ''"
             :alt="image.img_url.alt ? image.img_url.alt : ''"
@@ -36,8 +36,8 @@
           :src="
             image.img_url.url.replace(
               'www.is-wireless.com',
-              'api.is-wireless.com'
-            ).replace('https://api.is-wireless.com/','/app/')
+              $config.public.API_DOMAIN
+            ).replace($config.public.API_URL,'/app')
           "
           :title="image.img_url.title ? image.img_url.title : ''"
           :alt="image.img_url.alt ? image.img_url.alt : ''"

@@ -32,7 +32,7 @@
               :src="item.acf.page_icon.replace(
                       'www.is-wireless.com',
                       'api.is-wireless.com'
-                    ).replace('https://api.is-wireless.com/','/app/')
+                    ).replace($config.public.API_URL,'/app')
               "
               class="h-full flex justify-center"
               :title="item.acf.page_title ? item.acf.page_title : ''"

@@ -18,7 +18,7 @@
           <nuxt-picture
             v-if="item.image"
             v-bind="picCompute(item.image)"
-            :src="item.image.url ? item.image.url.replace('https://api.is-wireless.com/','/app/') : ''"
+            :src="item.image.url ? item.image.url.replace($config.public.API_URL,'/app') : ''"
             :alt="item.image.alt ? item.image.alt : ''"
             :title="item.image.title ? item.image.title : ''"
             width="1920px"
@@ -46,7 +46,7 @@
                 width="550"
                 height="160"
                 class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
-                :src="data.default.image.url ? data.default.image.url.replace('https://api.is-wireless.com/','/app/') : ''"
+                :src="data.default.image.url ? data.default.image.url.replace($config.public.API_URL,'/app') : ''"
                 :alt="data.default.image.alt ? data.default.image.alt : ''"
                 :title="
                   data.default.image.title ? data.default.image.title : ''

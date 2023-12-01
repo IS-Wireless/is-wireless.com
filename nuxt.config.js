@@ -24,6 +24,7 @@ export default defineNuxtConfig({
       baseURL: HOSTNAME,
       DOMAIN_URL: process.env.DOMAIN,
       API_URL: process.env.API_URL,
+      API_DOMAIN: process.env.API_DOMAIN,
       API_AFFIX: process.env.API_AFFIX,
       GMAP_KEY: process.env.API_GMAPS,
       version: appVersionCacheBuster,
@@ -32,10 +33,10 @@ export default defineNuxtConfig({
       domains: [
         "is-wireless.com",
         "www.is-wireless.com",
-        "api.is-wireless.com",
         "img.youtube.com",
         "i.ytimg.com",
         process.env.API_URL,
+        process.env.API_DOMAIN
       ],
       modifiers: {
         quality: '70',
@@ -166,14 +167,14 @@ export default defineNuxtConfig({
     },
     domains: [
       "is-wireless.com",
-      "api.is-wireless.com",
       "www.is-wireless.com",
       "img.youtube.com",
       "i.ytimg.com",
       process.env.API_URL,
+      process.env.API_DOMAIN
     ],
     alias: {
-      app: "https://api.is-wireless.com/",
+      app: process.env.API_URL,
       youtube: "https://img.youtube.com",
       vimeo: "https://i.vimeocdn.com",
     },

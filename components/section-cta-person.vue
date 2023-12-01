@@ -54,7 +54,7 @@
             <nuxt-picture v-if="data.person.image && data.person.image.url" 
             width="250"
             height="327"
-            :src="data.person.image.url.replace('https://api.is-wireless.com/','/app/')"
+            :src="data.person.image.url.replace($config.public.API_URL,'/app')"
             :alt="data.person.image.title" 
             class="w-full h-full flex"
             :imgAttrs="{'class': 'w-full h-full object-cover',itemprop: 'image'}"/>

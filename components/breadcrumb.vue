@@ -11,7 +11,7 @@
             <nuxt-link
               :to="
                 route.item
-                  .replace('https://api.is-wireless.com', '')
+                  .replace($config.public.API_URL, '')
                   .replace('https://www.is-wireless.com', '')
                   .replace('/category', '')
               "

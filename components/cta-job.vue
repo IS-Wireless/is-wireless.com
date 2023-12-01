@@ -7,7 +7,7 @@
       class="block absolute w-full h-full inset-0 -z-20"
       :src="
         data.image.url
-          ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com').replace('https://api.is-wireless.com/','/app/')
+          ? data.image.url.replace('www.is-wireless.com',$config.public.API_DOMAIN).replace($config.public.API_URL,'/app')
           : ''
       "
       :title="data.image.title ? data.image.title : ''"

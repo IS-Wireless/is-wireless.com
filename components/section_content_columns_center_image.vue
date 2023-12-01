@@ -37,7 +37,7 @@
                   ? data.image.url.replace(
                       'www.is-wireless.com',
                       'api.is-wireless.com'
-                    ).replace('https://api.is-wireless.com/','/app/')
+                    ).replace($config.public.API_URL,'/app')
                   : ''
               "
               :title="data.image.title ? data.image.title : ''"
@@ -56,7 +56,7 @@
                 ? data.image.url.replace(
                     'www.is-wireless.com',
                     'api.is-wireless.com'
-                  ).replace('https://api.is-wireless.com/','/app/')
+                  ).replace($config.public.API_URL,'/app')
                 : ''
             "
             :title="data.image.title ? data.image.title : ''"

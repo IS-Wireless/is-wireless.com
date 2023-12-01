@@ -6,8 +6,8 @@
           :src="
             data.person_image.url.replace(
               'www.is-wireless.com',
-              'api.is-wireless.com'
-            ).replace('https://api.is-wireless.com/','/app/')
+              $config.public.API_DOMAIN
+            ).replace($config.public.API_URL,'/app')
           "
           :imgAttrs="{itemprop: 'image'}"
           :title="data.person_image.title ? data.person_image.title : ''"

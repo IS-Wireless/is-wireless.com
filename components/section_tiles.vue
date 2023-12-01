@@ -27,7 +27,7 @@
                 class="block h-20 tablet:h-[50px] max-w-[200px] mb-5 tablet:mb-7"
                 :src="
                   item.image.url
-                    ? item.image.url.replace('www.is-wireless.com', 'api.is-wireless.com').replace('https://api.is-wireless.com/','/app/')
+                    ? item.image.url.replace('www.is-wireless.com',$config.public.API_DOMAIN).replace($config.public.API_URL,'/app')
                     : ''
                 "
                 :title="item.image.title ? item.image.title : ''"

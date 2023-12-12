@@ -34,6 +34,7 @@ function getPosts(url) {
       postsLinks.push('/news/' + post.slug)
     })
     postsLinks.push('/5g-6g-open-ran-testbed/')
+    postsLinks.push('/networks/hardware/du-cu/')
     return postsLinks
   })
 }

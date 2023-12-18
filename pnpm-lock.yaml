@@ -9,13 +9,13 @@ dependencies:
     specifier: ^2.5.0
     version: 2.5.0(vue@3.3.12)
   '@nuxtjs/algolia':
-    specifier: ^1.10.1
+    specifier: ^1.8.0
     version: 1.10.1(rollup@2.79.1)(vue@3.3.12)
   '@nuxtjs/axios':
     specifier: ^5.13.6
     version: 5.13.6
   '@nuxtjs/dotenv':
-    specifier: ^1.4.2
+    specifier: ^1.4.1
     version: 1.4.2
   '@nuxtjs/sitemap':
     specifier: ^2.4.0
@@ -24,16 +24,16 @@ dependencies:
     specifier: ^0.5.1
     version: 0.5.1(rollup@2.79.1)(typescript@4.9.5)(vue@3.3.12)
   '@types/lodash':
-    specifier: ^4.14.202
+    specifier: ^4.14.196
     version: 4.14.202
   '@vueuse/nuxt':
-    specifier: ^10.7.0
+    specifier: ^10.1.2
     version: 10.7.0(nuxt@3.8.2)(rollup@2.79.1)(vue@3.3.12)
   axios:
-    specifier: ^1.6.2
+    specifier: ^1.3.4
     version: 1.6.2
   core-js:
-    specifier: ^3.34.0
+    specifier: ^3.32.2
     version: 3.34.0
   cross-var:
     specifier: ^1.1.0
@@ -48,7 +48,7 @@ dependencies:
     specifier: ^0.2.1
     version: 0.2.1(eslint@7.32.0)
   file-system-cache:
-    specifier: ^2.4.4
+    specifier: ^2.0.0
     version: 2.4.4
   html-filter:
     specifier: ^4.3.3
@@ -63,10 +63,10 @@ dependencies:
     specifier: ^4.4.0
     version: 4.4.0
   nuxt-speedkit:
-    specifier: 3.0.0-next.44
+    specifier: ^3.0.0-next.38
     version: 3.0.0-next.44(browserslist@4.22.2)(rollup@2.79.1)(vue@3.3.12)
   nuxt-swiper:
-    specifier: ^1.2.2
+    specifier: ^1.2.0
     version: 1.2.2(rollup@2.79.1)
   pinia:
     specifier: ^2.1.7
@@ -75,19 +75,19 @@ dependencies:
     specifier: ^0.0.10
     version: 0.0.10
   swiper:
-    specifier: ^10.3.1
+    specifier: ^10.1.0
     version: 10.3.1
   typescript:
-    specifier: ^4.9.5
+    specifier: ^4.4.4
     version: 4.9.5
   video.js:
-    specifier: ^7.21.5
+    specifier: ^7.20.3
     version: 7.21.5
   vitest:
-    specifier: ^0.31.4
+    specifier: ^0.31.0
     version: 0.31.4
   vue-share-it:
-    specifier: ^1.1.8
+    specifier: ^1.1.6
     version: 1.1.8(vue@3.3.12)
   vue3-google-map:
     specifier: ^0.15.0
@@ -107,7 +107,7 @@ devDependencies:
     specifier: ^1.1.3
     version: 1.1.3(webpack@5.89.0)
   '@nuxt/types':
-    specifier: ^2.17.2
+    specifier: ^2.15.3
     version: 2.17.2
   '@nuxt/typescript-build':
     specifier: ^2.1.0
@@ -116,34 +116,34 @@ devDependencies:
     specifier: ^2.4.0
     version: 2.4.0
   '@nuxtjs/tailwindcss':
-    specifier: ^6.10.1
+    specifier: ^6.7.2
     version: 6.10.1(rollup@2.79.1)
   '@types/node':
-    specifier: ^18.19.3
+    specifier: ^18
     version: 18.19.3
   '@vite-pwa/nuxt':
     specifier: ^0.2.3
     version: 0.2.3(@nuxt/kit@3.8.2)(vite-plugin-pwa@0.17.4)
   '@vue/test-utils':
-    specifier: ^1.3.6
+    specifier: ^1.1.3
     version: 1.3.6(vue-template-compiler@2.7.15)(vue@3.3.12)
   autoprefixer:
-    specifier: ^10.4.16
+    specifier: ^10.4.2
     version: 10.4.16(postcss@8.4.32)
   eslint:
-    specifier: ^7.32.0
+    specifier: ^7.22.0
     version: 7.32.0
   eslint-config-prettier:
-    specifier: ^8.10.0
+    specifier: ^8.1.0
     version: 8.10.0(eslint@7.32.0)
   eslint-plugin-nuxt:
     specifier: ^2.0.0
     version: 2.0.0(eslint@7.32.0)
   eslint-plugin-prettier:
-    specifier: ^3.4.1
+    specifier: ^3.3.1
     version: 3.4.1(eslint-config-prettier@8.10.0)(eslint@7.32.0)(prettier@2.8.8)
   eslint-plugin-vue:
-    specifier: ^7.20.0
+    specifier: ^7.7.0
     version: 7.20.0(eslint@7.32.0)
   nuxt:
     specifier: ^3.8.2
@@ -152,19 +152,19 @@ devDependencies:
     specifier: ^2.3.0
     version: 2.3.0(rollup@2.79.1)
   nuxt-simple-sitemap:
-    specifier: ^2.7.0
+    specifier: ^2.6.2
     version: 2.7.0(rollup@2.79.1)
   postcss:
-    specifier: ^8.4.32
+    specifier: ^8.4.8
     version: 8.4.32
   postcss-nesting:
-    specifier: ^10.2.0
+    specifier: ^10.1.9
     version: 10.2.0(postcss@8.4.32)
   prettier:
-    specifier: ^2.8.8
+    specifier: ^2.2.1
     version: 2.8.8
   tailwindcss:
-    specifier: ^3.3.6
+    specifier: ^3.1
     version: 3.3.6
 
 packages:
@@ -2779,6 +2779,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     bundledDependencies:
       - napi-wasm
 
@@ -9035,6 +9036,9 @@ packages:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     requiresBuild: true
     optional: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}

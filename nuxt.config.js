@@ -1,6 +1,8 @@
 require("dotenv").config();
 const pkg = require("./package.json");
 
+// TEST Deploy
+
 let appVersionCacheBuster =
   process.env.CONTEXT === "production"
     ? process.env.CF_PAGES_COMMIT_SHA
@@ -147,7 +149,7 @@ export default defineNuxtConfig({
       component: '0%',
       asset: '0%'
     }
-    
+
   },
 
   // nitro: {

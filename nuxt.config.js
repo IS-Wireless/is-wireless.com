@@ -169,6 +169,7 @@ export default defineNuxtConfig({
       "img.youtube.com",
       "i.ytimg.com",
       process.env.API_URL,
+      process.env.API_DOMAIN,
     ],
     alias: {
       app: process.env.API_URL,
@@ -265,7 +266,6 @@ export default defineNuxtConfig({
   generate: {
     crawler: true,
     fallback: "404.html",
-    interval: 1000,
   },
 
   devtools: {

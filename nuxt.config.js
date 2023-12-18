@@ -266,7 +266,7 @@ export default defineNuxtConfig({
   generate: {
     crawler: true,
     fallback: "404.html",
-    interval: 500,
+    interval: 600,
   },
 
   devtools: {

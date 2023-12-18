@@ -173,6 +173,7 @@ export default defineNuxtConfig({
     alias: {
       app: process.env.API_URL,
       youtube: "https://img.youtube.com",
+      ytimg: "https://i.ytimg.com/vi",
       vimeo: "https://i.vimeocdn.com",
     },
     format: ["webp"],

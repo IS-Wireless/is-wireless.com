@@ -48,11 +48,11 @@ export default defineNuxtConfig({
   app: {
     layoutTransition: {
       name: "page",
-      mode: "out-in",
+      mode: "in-out",
     },
     pageTransition: {
       name: "page",
-      mode: "out-in",
+      mode: "in-out",
     },
     head: {
       title: "IS-Wireless #5GMadeTogether",

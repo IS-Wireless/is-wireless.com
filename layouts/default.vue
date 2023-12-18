@@ -7,9 +7,7 @@
       :side-menu="sideMenuData"
       :socials="socialMenuData"
     />
-    <div>
-      <slot />
-    </div>
+    <slot></slot>
     <ScrollToTop />
     <!-- <PopupCookies /> -->
     <Footer

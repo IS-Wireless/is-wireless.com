@@ -21,7 +21,6 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      baseURL: HOSTNAME,
       DOMAIN_URL: process.env.DOMAIN,
       API_URL: process.env.API_URL,
       API_DOMAIN: process.env.API_DOMAIN,

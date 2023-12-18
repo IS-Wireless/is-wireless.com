@@ -1,8 +1,6 @@
 require("dotenv").config();
 const pkg = require("./package.json");
 
-// Test deploy
-
 let appVersionCacheBuster =
   process.env.CONTEXT === "production"
     ? process.env.CF_PAGES_COMMIT_SHA
@@ -38,12 +36,12 @@ export default defineNuxtConfig({
         "img.youtube.com",
         "i.ytimg.com",
         process.env.API_URL,
-        process.env.API_DOMAIN
+        process.env.API_DOMAIN,
       ],
       modifiers: {
-        quality: '70',
-        format: 'webp',
-      }
+        quality: "70",
+        format: "webp",
+      },
     },
   },
 
@@ -108,9 +106,9 @@ export default defineNuxtConfig({
     "@nuxtjs/algolia",
     "nuxt-simple-sitemap",
     "@vueuse/nuxt",
-    '@vite-pwa/nuxt',
-    'nuxt-swiper',
-    'nuxt-speedkit',
+    "@vite-pwa/nuxt",
+    "nuxt-swiper",
+    "nuxt-speedkit",
     [
       "nuxt-simple-robots",
       {
@@ -122,24 +120,23 @@ export default defineNuxtConfig({
   ],
 
   speedkit: {
-
     detection: {
       performance: true,
-      browserSupport: true
+      browserSupport: true,
     },
 
     performanceMetrics: {
       device: {
         hardwareConcurrency: { min: 2, max: 48 },
-        deviceMemory: { min: 2 }
+        deviceMemory: { min: 2 },
       },
       timing: {
         fcp: 800,
-        dcl: 1200
-      }
+        dcl: 1200,
+      },
     },
 
-    targetFormats: ['webp', 'webm|mp4', 'jpg|jpeg|png|gif'],
+    targetFormats: ["webp", "webm|mp4", "jpg|jpeg|png|gif"],
 
     componentAutoImport: false,
     componentPrefix: undefined,
@@ -147,10 +144,9 @@ export default defineNuxtConfig({
     disableNuxtFontaine: true,
 
     lazyOffset: {
-      component: '0%',
-      asset: '0%'
-    }
-
+      component: "0%",
+      asset: "0%",
+    },
   },
 
   // nitro: {
@@ -173,43 +169,45 @@ export default defineNuxtConfig({
       "img.youtube.com",
       "i.ytimg.com",
       process.env.API_URL,
-      process.env.API_DOMAIN
     ],
     alias: {
       app: process.env.API_URL,
       youtube: "https://img.youtube.com",
       vimeo: "https://i.vimeocdn.com",
     },
-    format:['webp'],
-    quality: 70
+    format: ["webp"],
+    quality: 70,
   },
 
-  tailwindcss:{
-    cssPath: '~/assets/main.css'
+  tailwindcss: {
+    cssPath: "~/assets/main.css",
   },
 
   pwa: {
-    registerType: 'autoUpdate',
+    registerType: "autoUpdate",
     manifest: {
       lang: "en",
       theme_color: "#00A2DF",
       id: "/?standalone=true",
-      start_url: '/',
+      start_url: "/",
       title: "IS-Wireless",
       name: "IS-Wireless",
       shortName: "IS-Wireless",
       orientation: "any",
-      description: "IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.",
-      icons: [{
-        src: "symbol.png",
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: "any maskable"
-      }]
+      description:
+        "IS-Wireless is an advanced wireless communications company. We are developing protocols, simulators and IP algorithms. We also deliver 4G and 5G courses.",
+      icons: [
+        {
+          src: "symbol.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
     },
-    strategies: 'generateSW',
+    strategies: "generateSW",
     workbox: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
       navigateFallback: null,
     },
   },

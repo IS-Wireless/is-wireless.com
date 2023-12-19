@@ -1,8 +1,6 @@
 require("dotenv").config();
 const pkg = require("./package.json");
 
-// Test deploy
-
 let appVersionCacheBuster =
   process.env.CONTEXT === "production"
     ? process.env.CF_PAGES_COMMIT_SHA
@@ -49,11 +47,11 @@ export default defineNuxtConfig({
   app: {
     layoutTransition: {
       name: "page",
-      mode: "in-out",
+      mode: "out-in",
     },
     pageTransition: {
       name: "page",
-      mode: "in-out",
+      mode: "out-in",
     },
     head: {
       title: "IS-Wireless #5GMadeTogether",

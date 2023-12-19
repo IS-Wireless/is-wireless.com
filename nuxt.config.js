@@ -91,6 +91,10 @@ export default defineNuxtConfig({
     },
   },
 
+  experimental: {
+    payloadExtraction: true
+  },
+
   components: {
     global: true,
     dirs: ["~/components"],

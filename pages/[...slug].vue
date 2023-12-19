@@ -107,17 +107,13 @@
   import HtmlFilter from 'html-filter'
   
     const route = useRoute()
+    const nuxtApp = useNuxtApp()
     const slugFormatted = computed(()=>{
       let cleanRoute = route.fullPath.split('#')[0].split('?')[0]
       return withoutTrailingSlash(cleanRoute)
     })
 
     const { data: pageData } = await useAsyncData(slugFormatted.value,(app) => {
-      const {data: cachedData} = useNuxtData(slugFormatted.value)
-      if (cachedData.value) {
-        return cachedData.value
-      }
-
       const config = useRuntimeConfig()
       let slugSplit = slugFormatted.value.split('/')
       
@@ -197,6 +193,10 @@
           app.$filterData(data)
           return data
         })
+    },{
+      getCachedData(key){
+        return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+      }
     })
 
     const contentFiltered = computed(()=>{

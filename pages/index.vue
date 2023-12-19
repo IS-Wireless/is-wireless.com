@@ -32,12 +32,9 @@
 
 <script setup>
 
-const { data } = await useAsyncData('homepageData',(app) => {
+const nuxtApp = useNuxtApp()
 
-  const { data: cachedData } = useNuxtData('homepageData')
-  if (cachedData.value) {
-    return cachedData.value
-  }
+const { data } = await useAsyncData('homepageData',(app) => {
 
   return app.$wp
     .pages()
@@ -54,6 +51,10 @@ const { data } = await useAsyncData('homepageData',(app) => {
       }
       return data;
     });
+},{
+  getCachedData(key){
+    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+  }
 });
 
 useHead(generateHead(data.value));

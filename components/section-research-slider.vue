@@ -57,6 +57,8 @@
       data: Object
     })
 
+    const nuxtApp = useNuxtApp()
+
     const dataKey = computed(()=>{
       if (props.data?.selected) {
         return props.data.selected.map(item => item.ID).join(',')
@@ -64,14 +66,13 @@
     })
     
     const { data: subPagesData } = await useAsyncData(dataKey.value,(app) => {
-      const { data: cachedData } = useNuxtData(dataKey.value)
-      if (cachedData.value) {
-        return cachedData.value
-      }
-
       return Promise.all(props.data?.selected?.map(async (item) => {
         return app.$wp.pages().id(item.ID)
       })) 
+    },{
+      getCachedData(key){
+        return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+      }
     });
 
     const selectedPages = computed(()=>{

@@ -113,10 +113,10 @@
     })
 
     const { data: pageData } = await useAsyncData(slugFormatted.value,(app) => {
-      // const {data: cachedData} = useNuxtData(slugFormatted.value)
-      // if (cachedData.value) {
-      //   return cachedData.value
-      // }
+      const {data: cachedData} = useNuxtData(slugFormatted.value)
+      if (cachedData.value) {
+        return cachedData.value
+      }
 
       const config = useRuntimeConfig()
       let slugSplit = slugFormatted.value.split('/')

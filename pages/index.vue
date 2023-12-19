@@ -34,10 +34,10 @@
 
 const { data } = await useAsyncData('homepageData',(app) => {
 
-  // const { data: cachedData } = useNuxtData('homepageData')
-  // if (cachedData.value) {
-  //   return cachedData.value
-  // }
+  const { data: cachedData } = useNuxtData('homepageData')
+  if (cachedData.value) {
+    return cachedData.value
+  }
 
   return app.$wp
     .pages()

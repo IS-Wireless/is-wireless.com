@@ -1,6 +1,8 @@
 require("dotenv").config();
 const pkg = require("./package.json");
 
+// Test deploy
+
 let appVersionCacheBuster =
   process.env.CONTEXT === "production"
     ? process.env.CF_PAGES_COMMIT_SHA

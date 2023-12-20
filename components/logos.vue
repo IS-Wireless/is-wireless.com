@@ -13,10 +13,7 @@
           class="block w-full p-1 h-full"
         >
           <nuxt-img
-            class="w-full img-full"
-            :imgAttrs="{
-              class: '!h-full object-contain',
-            }"
+            class="w-full h-full object-contain"
             :src="
               image.img_url.url.replace(
                 'www.is-wireless.com',
@@ -29,10 +26,7 @@
         </CustomLink>
         <nuxt-img
           v-else-if="image.img_url"
-          class="w-full h-full img-full p-1"
-          :imgAttrs="{
-            class: '!h-full object-contain',
-          }"
+          class="w-full h-full object-contain p-1"
           :src="
             image.img_url.url.replace(
               'www.is-wireless.com',

@@ -108,6 +108,7 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
     "nuxt-swiper",
     "nuxt-speedkit",
+    "nuxt-full-static",
     [
       "nuxt-simple-robots",
       {

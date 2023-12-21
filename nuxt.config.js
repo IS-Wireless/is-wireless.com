@@ -262,11 +262,14 @@ export default defineNuxtConfig({
     resourceHints: false,
   },
 
+  routeRules:{
+    '/5g-6g-open-ran-testbed' : {redirect: '/academy/5g-6g-open-ran-testbed'}
+  },
+
   generate: {
     crawler: true,
     fallback: "404.html",
     interval: 600,
-    routes: '/5g-6g-open-ran-testbed/'
   },
 
   devtools: {

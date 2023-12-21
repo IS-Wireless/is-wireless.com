@@ -263,7 +263,8 @@ export default defineNuxtConfig({
   },
 
   routeRules:{
-    '/5g-6g-open-ran-testbed' : {redirect: '/academy/5g-6g-open-ran-testbed'}
+    '/5g-6g-open-ran-testbed' : {redirect: '/academy/5g-6g-open-ran-testbed'},
+    '/5g-6g-open-ran-testbed/' : {redirect: '/academy/5g-6g-open-ran-testbed'},
   },
 
   generate: {

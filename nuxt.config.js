@@ -266,6 +266,7 @@ export default defineNuxtConfig({
     crawler: true,
     fallback: "404.html",
     interval: 600,
+    routes: '/5g-6g-open-ran-testbed/'
   },
 
   devtools: {

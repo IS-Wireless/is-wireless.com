@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="w-4/5 mx-auto container pt-8">
-      <!-- <KeepAlive>
+      <KeepAlive>
         <BlogTimeline :postPageCount="pagesCount" :isFetching="false" />
-      </KeepAlive> -->
+      </KeepAlive>
     </div>
 
     <!-- FOR CRAWLER -->

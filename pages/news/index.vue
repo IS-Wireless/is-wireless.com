@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="w-4/5 mx-auto container pt-8">
-      <KeepAlive>
+      <!-- <KeepAlive>
         <BlogTimeline :postPageCount="pagesCount" :isFetching="false" />
-      </KeepAlive>
+      </KeepAlive> -->
     </div>
 
     <!-- FOR CRAWLER -->
-    <nuxt-link v-for="page in pagesCount" :to="`/news?p=${page}`" class="hidden"></nuxt-link>
+    <!-- <nuxt-link v-for="page in pagesCount" :to="`/news?p=${page}`" class="hidden"></nuxt-link> -->
     <!-- /FOR CRAWLER -->
 
     <ScrollToTopBtn :mobileVisible="true" />

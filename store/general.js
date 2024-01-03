@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useGeneralStore = defineStore('general',{
+export const useGeneralStore = defineStore('generalStore',{
   state: () => ({
     menu: {},
     menu_locations: {},
@@ -18,8 +18,8 @@ export const useGeneralStore = defineStore('general',{
     getOptionsData: (state) => {
       return state.options.acf
     },
-    getPagesData: (state) => {
-      return state.pages
+    getPageData: (state) => {
+      return (slug) => state.pages[slug]
     },
     getPostsData: (state) => {
       return state.posts
@@ -38,9 +38,9 @@ export const useGeneralStore = defineStore('general',{
   
       Object.assign(this.menu, { ...this.menu, ...obj })
     },
-    pageAdd(data) {
+    pageAdd(slug,data) {
       var obj = {
-        [data.id.toString()]: data,
+        [slug]: data,
       }
       this.pages = { ...this.pages, ...obj }
     },

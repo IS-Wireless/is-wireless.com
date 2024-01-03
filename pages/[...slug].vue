@@ -104,6 +104,7 @@
 
 <script setup>
 import { isSamePath, withoutTrailingSlash } from 'ufo'
+import { useGeneralStore } from '~/store/general' 
 import HtmlFilter from 'html-filter'
 
   const route = useRoute()
@@ -114,9 +115,12 @@ import HtmlFilter from 'html-filter'
   })
 
   const config = useRuntimeConfig()
-  const pageData = useState(slugFormatted.value)
+  const generalStore = useGeneralStore()
+  const pageData = computed(() => generalStore.getPageData(slugFormatted.value))
 
   await callOnce(async ()=>{
+
+    console.log('feczuje',slugFormatted.value);
 
     let slugSplit = slugFormatted.value.split('/')
 
@@ -194,7 +198,8 @@ import HtmlFilter from 'html-filter'
       data.content = ''
     }
     app.$filterData(data)
-    pageData.value = data
+    generalStore.pageAdd(slugFormatted.value,data)
+    // pageData.value = data
   })
 
 

@@ -257,11 +257,6 @@ export default defineNuxtConfig({
     },
   },
 
-  render: {
-    asyncScripts: false,
-    resourceHints: false,
-  },
-
   routeRules:{
     '/5g-6g-open-ran-testbed' : {redirect: '/academy/5g-6g-open-ran-testbed'},
     '/5g-6g-open-ran-testbed/' : {redirect: '/academy/5g-6g-open-ran-testbed'},

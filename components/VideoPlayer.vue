@@ -1,29 +1,18 @@
 <template>
   <div class="relative z-0 w-full h-full">
-    <component v-if="$isServer" :is="'noscript'">
-      <video
-      playsinline
-      autoplay
-      loop
-      muted
-      loading="lazy"
-      preload="none"
-      class="relative z-10 block align-top bg-transparent object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
-    >
-        <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
-      </video>
-    </component>
     <video
-      v-else
+      autoplay
       playsinline
       loop
       muted
-      loading="lazy"
-      preload="none"
+      loading="eager"
+      preload
       ref="videoPlayer" 
       :poster="placeholderImgFormatted"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
-    ></video>
+      >
+      <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
+    </video>
 
     <nuxt-picture v-if="placeholderImg"
       :src="placeholderImg"
@@ -41,7 +30,7 @@
 </template>
 
 <script>
-import videojs from 'video.js/core.es.js'
+// import videojs from 'video.js/core.es.js'
 
 export default {
   name: 'VideoPlayer',
@@ -63,16 +52,16 @@ export default {
   },
   setup(props){
     const img = useImage() 
-    const placeholderImgFormatted = img(props.placeholderImg,{ format:'webp', quality: 5})
+    const placeholderImgFormatted = img(props.placeholderImg,{ width:400, height:400, format:'webp', quality: 5})
     
     return { placeholderImgFormatted }
   },
   mounted() {
     this.$nextTick(()=>{
-      this.player = videojs(
-        this.$refs.videoPlayer,
-        this.options
-        ).play()
+      // this.player = videojs(
+      //   this.$refs.videoPlayer,
+      //   this.options
+      //   ).play()
       this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
         this.playerReady()
       },{

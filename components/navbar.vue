@@ -174,6 +174,7 @@
                 action="/search/"
                 :class="{ 'translate-x-full': !mainSearch }"
                 @submit.prevent="goToSearch()"
+                v-on-click-outside="handleSearchCollapse"
               >
                 <button
                   class="px-5 flex justify-center items-center text-white hover:text-blue-main" aria-label="Search"
@@ -416,11 +417,10 @@
     <div v-if="expanded" class="h-[80px] tablet-wide:hidden"></div>
   </div>
 </template>
+<script setup>
+  import { vOnClickOutside } from '@vueuse/components'
 
-<script>
-export default {
-  name: 'Navbar',
-  props: {
+  const props = defineProps({
     mainMenu: {
       type: Array,
       required: true,
@@ -433,53 +433,59 @@ export default {
       type: Array,
       required: false,
     },
-  },
-  data() {
-    return {
-      expanded: false,
-      mainSearch: false,
-      searchInput: ''
+  })
+
+  const expanded = ref(false);
+  const mainSearch = ref(false);
+  const searchInput = ref('');
+  const searchContainer = ref(null)
+  const { focused } = useFocus(searchContainer, { initialValue: false })
+  const router = useRouter()
+
+  function toggleExpanded() {
+    expanded.value = !expanded.value
+  }
+
+  function toggleMainSearch() {
+    mainSearch.value = !mainSearch.value
+    if (mainSearch.value) {
+      setTimeout(
+        function () {
+          focused.value = true
+        },
+        501
+      )
+    } else {
+      focused.value = false
     }
-  },
-  setup() {
-    const searchContainer = ref()
-    const { focused } = useFocus(searchContainer, { initialValue: false })
-    return { searchContainer, focused }
-  },
+  }
+
+  function handleSearchCollapse() {
+    if(useRoute().path.startsWith('/search')) return
+    if(mainSearch.value) toggleMainSearch()
+  }
+
+  function checkMain(url) {
+    return props.mainMenu.some((item) => {
+      return item.url === url
+    })
+  }
+
+  function goToSearch(){
+    let query = searchInput.value 
+    if (query.length>0) {
+      router.push(`/search/?${searchContainer.value.name}=${searchInput.value}` )
+      if (expanded.value){
+        toggleExpanded()
+      }
+    }
+  }
+
+
+</script>
+<script>
+export default {
   methods: {
-    toggleExpanded() {
-      this.expanded = !this.expanded
-    },
-
-    toggleMainSearch() {
-      this.mainSearch = !this.mainSearch
-      if (this.mainSearch) {
-        setTimeout(
-          function () {
-            this.focused = true
-          }.bind(this),
-          501
-        )
-      } else {
-        this.focused = false
-      }
-    },
-
-    checkMain(url) {
-      return this.mainMenu.some((item) => {
-        return item.url === url
-      })
-    },
-
-    goToSearch(){
-      let query = this.searchInput 
-      if (query.length>0) {
-        this.$router.push(`/search/?${this.searchContainer.name}=${this.searchInput}` )
-        if (this.expanded){
-          this.toggleExpanded()
-        }
-      }
-    }
   },
 }
 </script>

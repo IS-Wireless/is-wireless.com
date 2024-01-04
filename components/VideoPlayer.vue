@@ -63,19 +63,21 @@ export default {
   },
   setup(props){
     const img = useImage() 
-    const placeholderImgFormatted = img(props.placeholderImg,{ width: 500, height: 500, format:'webp', quality: 20})
+    const placeholderImgFormatted = img(props.placeholderImg,{ format:'webp', quality: 5})
     
     return { placeholderImgFormatted }
   },
   mounted() {
-    this.player = videojs(
-      this.$refs.videoPlayer,
-      this.options
-      ).play()
-    this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
-      this.playerReady()
-    },{
-      once: true
+    this.$nextTick(()=>{
+      this.player = videojs(
+        this.$refs.videoPlayer,
+        this.options
+        ).play()
+      this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
+        this.playerReady()
+      },{
+        once: true
+      })
     })
   },
   methods: {

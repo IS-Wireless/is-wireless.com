@@ -130,6 +130,10 @@ export default {
         fill: true,
         sources: [
           {
+            src: `${useRuntimeConfig().public.API_URL}/wp-content/uploads/2024/01/IS-Wireless-video-background_Trim.webm`,
+            type: 'video/webm',
+          },
+          {
             src: `${useRuntimeConfig().public.API_URL}/wp-content/uploads/2022/10/IS-Wireless-video-background_Trim.mp4`,
             type: 'video/mp4',
           },

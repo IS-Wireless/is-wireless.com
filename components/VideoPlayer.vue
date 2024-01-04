@@ -7,7 +7,7 @@
       muted
       loading="lazy"
       preload="none"
-      ref="videoPlayer"
+      ref="videoPlayer" 
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
     ></video>
     <component v-if="$isServer" :is="'noscript'">
@@ -66,15 +66,20 @@ export default {
     this.$nextTick(() => {
       this.player = videojs(
         this.$refs.videoPlayer,
-        this.options,
-        this.playerReady
-      ).play()
+        this.options
+        ).play()
+      this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
+        this.playerReady()
+      },{
+        once: true
+      })
     })
+
   },
   methods: {
     playerReady() {
       if (this.placeholderImg) {
-        this.$refs['videoPlayerPoster'].$el.classList.add('opacity-0')
+        this.$refs['videoPlayerPoster']?.$el.classList.add('opacity-0')
       }
     },
   },

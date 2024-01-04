@@ -61,17 +61,21 @@ export default {
       player: null,
     }
   },
-  mounted() {
-    this.isMounted = true
-    this.$nextTick(() => {
-      this.player = videojs(
-        this.$refs.videoPlayer,
-        this.options
-        ).play()
-      this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
-        this.playerReady()
-      },{
-        once: true
+  beforeMount() {
+    window.addEventListener('load',()=>{
+      console.log('loaded')
+      this.isMounted = true
+      this.$nextTick(()=>{
+        this.player = videojs(
+          this.$refs.videoPlayer,
+          this.options
+          ).play()
+        this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
+          this.playerReady()
+        },
+        {
+            once: true
+        })
       })
     })
 

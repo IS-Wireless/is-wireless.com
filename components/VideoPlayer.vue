@@ -1,19 +1,8 @@
 <template>
   <div class="relative z-0 w-full h-full">
-    <video
-      v-if="isMounted"
-      playsinline
-      loop
-      muted
-      loading="lazy"
-      preload="none"
-      ref="videoPlayer" 
-      class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
-    ></video>
     <component v-if="$isServer" :is="'noscript'">
       <video
       autoplay
-      playsinline
       loop
       muted
       loading="lazy"
@@ -23,6 +12,16 @@
         <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
       </video>
     </component>
+    <video
+      v-else
+      loop
+      muted
+      loading="lazy"
+      preload="none"
+      ref="videoPlayer" 
+      :poster="placeholderImgFormatted"
+      class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
+    ></video>
 
     <nuxt-picture v-if="placeholderImg"
       :src="placeholderImg"
@@ -57,27 +56,34 @@ export default {
   },
   data() {
     return {
-      isMounted: false,
       player: null,
     }
   },
-  beforeMount() {
-    window.addEventListener('load',()=>{
-      console.log('loaded')
-      this.isMounted = true
-      this.$nextTick(()=>{
-        this.player = videojs(
-          this.$refs.videoPlayer,
-          this.options
-          ).play()
-        this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
-          this.playerReady()
-        },
-        {
-            once: true
-        })
+  computed: {
+    placeholderImgFormatted(){
+      if (this.placeholderImg) {
+        const img = useImage() 
+        return img(this.placeholderImg,{ width: 500, height: 500, format:'webp', quality: 20})
+      }
+    }
+  },
+  mounted() {
+      new PerformanceObserver((entryList) => {
+    for (const entry of entryList.getEntries()) {
+      console.log('LCP candidate:', entry.startTime, entry);
+    }
+  }).observe({type: 'largest-contentful-paint', buffered: true});
+
+
+      this.player = videojs(
+        this.$refs.videoPlayer,
+        this.options
+        ).play()
+      this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
+        this.playerReady()
+      },{
+        once: true
       })
-    })
 
   },
   methods: {
@@ -96,6 +102,7 @@ export default {
 </script>
 
 <style>
+.vjs-poster,
 .vjs-hidden,
 .vjs-text-track-display,
 .vjs-control-bar,

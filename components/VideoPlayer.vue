@@ -2,6 +2,7 @@
   <div class="relative z-0 w-full h-full">
     <component v-if="$isServer" :is="'noscript'">
       <video
+      playsinline
       autoplay
       loop
       muted
@@ -14,6 +15,7 @@
     </component>
     <video
       v-else
+      playsinline
       loop
       muted
       loading="lazy"
@@ -59,13 +61,11 @@ export default {
       player: null,
     }
   },
-  computed: {
-    placeholderImgFormatted(){
-      if (this.placeholderImg) {
-        const img = useImage() 
-        return img(this.placeholderImg,{ width: 500, height: 500, format:'webp', quality: 20})
-      }
-    }
+  setup(props){
+    const img = useImage() 
+    const placeholderImgFormatted = img(props.placeholderImg,{ width: 500, height: 500, format:'webp', quality: 20})
+    
+    return { placeholderImgFormatted }
   },
   mounted() {
     this.player = videojs(

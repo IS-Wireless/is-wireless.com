@@ -1,26 +1,15 @@
 <template>
   <div class="h-full flex flex-col">
     <VitePwaManifest />
-    <Navbar
-      :critical="true"
-      :main-menu="topMenuData"
-      :side-menu="sideMenuData"
-      :socials="socialMenuData"
-    />
+    <Navbar :critical="true" :main-menu="topMenuData" :side-menu="sideMenuData" :socials="socialMenuData" />
     <main>
       <slot></slot>
     </main>
     <ScrollToTop />
     <!-- <PopupCookies /> -->
-    <Footer
-      :image-url="footerData.image"
-      :copyright="footerData.copyright"
-      :menu="{
-        ...footerMenuData,
-      }"
-      :socials="socialMenuData"
-      :languages="footerData.language"
-    />
+    <Footer :image-url="footerData.image" :copyright="footerData.copyright" :menu="{
+      ...footerMenuData,
+    }" :socials="socialMenuData" :languages="footerData.language" />
   </div>
 </template>
 
@@ -104,7 +93,7 @@ export default {
       return {
         image:
           "https://www.is-wireless.com/wp-content/uploads/2016/04/logo-500px.png",
-        copyright: "©2022 IS-Wireless and/or its affiliated companies.",
+        copyright: `©${new Date().getFullYear()} IS-Wireless and/or its affiliated companies.`,
         menu: {
           menu_left: {
             0: {

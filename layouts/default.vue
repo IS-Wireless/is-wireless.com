@@ -117,7 +117,7 @@ export default {
       return {
         image:
           'https://www.is-wireless.com/wp-content/uploads/2016/04/logo-500px.png',
-        copyright: '©2022 IS-Wireless and/or its affiliated companies.',
+        copyright: `©${new Date().getFullYear()} IS-Wireless and/or its affiliated companies.`,
         menu: {
           menu_left: {
             0: {

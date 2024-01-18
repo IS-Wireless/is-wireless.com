@@ -221,7 +221,7 @@ export default {
     copyright: {
       type: String,
       required: true,
-      default: '©2022 IS-Wireless and/or its affiliated companies.',
+      copyright: `©${new Date().getFullYear()} IS-Wireless and/or its affiliated companies.`,
     },
     menu: {
       type: Object,

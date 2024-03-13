@@ -92,6 +92,13 @@
     @apply appearance-none w-4 h-4 border border-solid border-blue-main rounded-[3px] relative checked:bg-blue-main hover:border-blue-main-hover checked:hover:bg-blue-main-hover after:content-[''] after:absolute after:h-1 after:w-0 checked:after:w-2 after:border-l after:border-b after:border-white after:border-solid after:-rotate-45 after:left-[3px] after:top-1 transition duration-200 after:transition-all after:duration-300
   }
 
+  .vjs-text-track-display,
+  .vjs-loading-spinner,
+  .vjs-big-play-button,
+  .vjs-control-bar{
+    @apply !hidden
+  }
+
   @media (max-width: 768px) {
     .content-html .wp-caption-text {
       max-width: 100% !important;

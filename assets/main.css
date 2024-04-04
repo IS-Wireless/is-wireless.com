@@ -149,11 +149,16 @@
     opacity: 0;
   }
 }
+}
+
+
+
+
+/* Do not purge */
 
 .vjs-text-track-display,
 .vjs-loading-spinner,
 .vjs-big-play-button,
 .vjs-control-bar{
   @apply !hidden
-}
 }

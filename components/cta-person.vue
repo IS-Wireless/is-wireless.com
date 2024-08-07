@@ -1,5 +1,5 @@
 <template>
-    <div class="relative z-10 inset-x-[-12.5%] tablet-wide:inset-x-0 w-[125%] tablet-wide:w-full mb-20 tablet-wide:mb-0 tablet-wide:mt-0 tablet-wide:-translate-y-1/2 bg-blue-main flex flex-col tablet-small:flex-row justify-between items-stretch tablet-wide:gap-6 desktop:gap-14 tablet-wide:rounded-[5px] shadow-2xl shadow-gray-dark/20 tablet:pr-5 desktop-wide:pr-20">
+    <div class="relative z-10 inset-x-[-12.5%] tablet-wide:inset-x-0 w-[125%] tablet-wide:w-full my-20 bg-blue-main flex flex-col tablet-small:flex-row justify-between items-stretch tablet-wide:gap-6 desktop:gap-14 tablet-wide:rounded-[5px] shadow-2xl shadow-gray-dark/20 tablet:pr-5 desktop-wide:pr-20">
         <div class="relative flex flex-col desktop-wide:flex-row desktop-wide:items-center desktop-wide:gap-14 desktop-wide:pl-10 basis-full">
             <div class="relative z-20 px-[10%] desktop-wide:px-0 py-5 tablet-wide:py-10">
                 <h3 v-if="data.title" class="mb-5 tablet:mb-8 text-white text-2xl tablet:text-3xl">

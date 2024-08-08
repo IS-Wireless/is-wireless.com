@@ -35,6 +35,7 @@ function getPosts(url) {
     })
     postsLinks.push('/5g-6g-open-ran-testbed/')
     postsLinks.push('/networks/hardware/du-cu/')
+    postsLinks.push('/academy/5g-6g-open-ran-testbed-v2/')
     return postsLinks
   })
 }

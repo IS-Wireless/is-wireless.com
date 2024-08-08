@@ -1,10 +1,10 @@
 <template>
-  <div class="section-content w-full tablet:max-w-[75%] mb-10">
+  <div class="section-content w-full mb-10" :class="[data.styles_full ? '[&_img]:min-w-full' : 'tablet:max-w-[75%]' ]">
     <span v-if="data.title" class="inline-block text-gray-dark mt-10">
-      <SectionHeader :title="data.title" />
+      <SectionHeader :title="data.title" :class="{'text-gray-darkest':data.header_dark}" />
     </span>
 
-    <div class="content-html" v-if="data.content" v-html="data.content"></div>
+    <div class="content-html" v-if="data.content" v-html="data.content" :class="{'[&_h2]:text-gray-darkest':data.header_dark}" ></div>
     <div v-if="data.text" class="w-full">
       <p
         v-for="item in data.text"

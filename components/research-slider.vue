@@ -1,7 +1,7 @@
 <template>
     <div class="w-full mb-16 tablet:mb-[100px]">
         <div class="flex flex-col tablet:flex-row gap-5 mb-10 tablet-wide:mb-24">
-            <SectionHeader v-if="data.title" :title="data.title" class="text-gray-darkest [&_h2]:!mt-0 max-w-[420px] shrink-0"/>
+            <SectionHeader v-if="data.title" :title="data.title" class="text-gray-darkest [&_h2]:!mt-0 max-w-[520px] shrink-0"/>
             <div v-if="data.content" v-html="data.content" class="text-gray-dark [&_p]:text-xl tablet:[&_p]:text-2xl mb-5 max-w-2xl tablet:mx-auto">
             </div>
         </div>

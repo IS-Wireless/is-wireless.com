@@ -11,7 +11,7 @@
       :class="{ 'tablet-wide:flex-row-reverse': !(data.title || data.content) }"
     >
       <div class="tablet-wide:flex-[1_1_50%] tablet-wide:mr-8">
-        <SectionHeader v-if="data.title" :title="data.title" />
+        <SectionHeader v-if="data.title" :title="data.title" :class="{'text-gray-darkest':data.header_dark}" />
         <div
           v-if="data.content"
           class="content-html text-inherit"

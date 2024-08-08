@@ -50,7 +50,7 @@
                 </svg>
             </div>
         </div>
-        <div v-if="data.person" class="relative z-20 basis-[250px] shrink-0 grow-0">
+        <div v-if="data.person && data.person.image" class="relative z-20 basis-[250px] shrink-0 grow-0">
             <nuxt-picture v-if="data.person.image && data.person.image.url" 
             width="250"
             height="327"

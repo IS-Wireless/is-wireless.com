@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div id="contact-form"
     class="text-inherit relative z-10 flex flex-col tablet-wide:flex-row w-full"
   >
     <div class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:mr-8">

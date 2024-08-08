@@ -12,19 +12,21 @@
       ></h1>
       <div class="w-[124px] h-[5px] bg-blue-main mb-10 tablet:mb-20"></div>
       <p v-if="description" class="max-w-3xl mb-10 tablet:mb-20 text-xl tablet:text-2xl text-center text-white" v-html="description"></p>
-      <button class="block w-fit p-1 group cursor-pointer" @click="scrollDown()">
-        <svg width="34" height="54" viewBox="0 0 34 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path class="group-hover:translate-y-1 transition duration-300" d="M17 40L11 34M17 40L23 34M17 40V29.5M17 24V26.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect class="stroke-white group-hover:stroke-blue-main transition duration-300" x="1" y="1" width="32" height="52" rx="16" stroke-width="2"/>
-        </svg>
-      </button>
+      <a v-if="button && button.title && button.url"
+        class="flex items-center w-fit text-sm tablet:text-base !text-white hover:text-white font-medium uppercase mt-5 tablet:mt-11 px-6 tablet:px-8 py-4 rounded-full duration-300 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1 hover:bg-white/25 border border-solid border-white"
+        :href="button.url"
+      >{{ button.title }}</a>
     </div>
   </div>
 </template>
 
 <script>
+import CustomLink from './custom-link.vue';
 export default {
   name: 'StaticBannerDescription',
+  components:{
+    CustomLink
+  },
   props: {
     title: {
       type: String,
@@ -41,13 +43,10 @@ export default {
       required: true,
       default: '',
     },
+    button: {
+      type: Object,
+    },
   },
-  methods:{
-    scrollDown(){
-      const offset = this.$refs['baner_container'].clientHeight
-      window.scrollTo(0,offset)
-    }
-  }
 }
 </script>
 

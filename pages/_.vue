@@ -19,6 +19,7 @@
           :title="pageData.acf.sections[0].title"
           :background-url="pageData.acf.sections[0].background.url"
           :description="pageData.acf.sections[0].description"
+          :button="pageData.acf.sections[0].button"
         />
       </div>
     </div>
@@ -111,6 +112,7 @@ import { isSamePath, withoutTrailingSlash } from 'ufo'
 export default {
   components: {
     LazyHydrate,
+    logos_swiper: () => import('~/components/logos-swiper.vue'),
     SectionHeader: () => import('~/components/section-header.vue'),
     StaticBannerDescription: () =>
       import('~/components/static-banner-description.vue'),

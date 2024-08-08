@@ -30,7 +30,7 @@
               class="w-full"
               :imgAttrs="{
                 class:
-                  'w-full max-w-[75%] tablet:max-w-[50%] tablet:max-h-[200px] object-contain',
+                  'w-full max-w-[75%] tablet:max-w-[50%] tablet:max-h-[200px] object-contain' + (data.image_margin ? ' tablet:ml-12' : ''),
               }"
               :src="
                 data.image.url
@@ -49,7 +49,7 @@
             class="w-full"
             :imgAttrs="{
               class:
-                'w-full max-w-[75%] tablet:max-w-[50%] tablet:max-h-[200px] object-contain',
+                'w-full max-w-[75%] tablet:max-w-[50%] tablet:max-h-[200px] object-contain' + (data.image_margin ? ' tablet:ml-12' : ''),
             }"
             :src="
               data.image.url

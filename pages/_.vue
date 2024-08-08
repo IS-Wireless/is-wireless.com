@@ -112,6 +112,7 @@ import { isSamePath, withoutTrailingSlash } from 'ufo'
 export default {
   components: {
     LazyHydrate,
+    section_two_column_gallery2: () => import('~/components/content-section-gallery.vue'),
     logos_swiper: () => import('~/components/logos-swiper.vue'),
     SectionHeader: () => import('~/components/section-header.vue'),
     StaticBannerDescription: () =>

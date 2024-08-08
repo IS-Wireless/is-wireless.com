@@ -7,7 +7,7 @@
         class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:mr-8"
         :class="{'pb-10 tablet:py-10 tablet-wide:py-[100px]':fullImg || data.fullImg}"
       >
-        <SectionHeader v-if="data.title" :title="data.title" class="relative z-20" :class="{ 'max-w-sm text-gray-darkest':fullImg || data.fullImg}" />
+        <SectionHeader v-if="data.title" :title="data.title.replace('-', '‑')" class="relative z-20" :class="{ 'max-w-sm text-gray-darkest':fullImg || data.fullImg}" />
         <div class="relative z-20" :class="{'tablet:p-[50px]':fullImg || data.fullImg}">
           <div
             v-if="data.content"

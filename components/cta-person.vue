@@ -12,7 +12,7 @@
                 
                 </div>
                 <CustomLink v-if="data.button && data.button.title && data.button.url"
-                    class="flex items-center w-fit text-sm tablet:text-base text-white hover:text-white font-medium uppercase mt-5 tablet:mt-11 px-6 tablet:px-8 py-4 rounded-full duration-300 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1 hover:bg-white/25 border border-solid border-white"
+                    class="flex items-center w-fit text-sm tablet:text-base !text-white hover:text-white font-medium uppercase mt-5 tablet:mt-11 px-6 tablet:px-8 py-4 rounded-full duration-300 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1 hover:bg-white/25 border border-solid border-white"
                     :title="data.button.title"
                     :url="data.button.url"
                 />

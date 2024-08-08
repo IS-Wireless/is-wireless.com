@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative py-10 pb-20 tablet-wide:py-20 bg-white w-full text-gray-dark"
+    class="relative pb-5 bg-white w-full text-gray-dark"
   >
     <div
       class="relative z-10 flex flex-col items-center mx-auto max-w-[52rem] mb-8"
@@ -9,7 +9,7 @@
         v-if="data.title"
         :title="data.title"
         :center="true"
-        class="text-gray-darkest"
+        class="text-gray-darkest !mb-7"
       />
       <div
         v-if="data.description"
@@ -24,13 +24,13 @@
         <li
           v-for="(item, index) in data.list"
           :key="index"
-          class="mb-10 tablet-wide:mb-[100px] shrink-0 grow-0 basis-full tablet:basis-1/3 tablet-wide:basis-1/4 flex flex-col"
+          class="mb-10 tablet-wide:mb-20 shrink-0 grow-0 basis-full tablet:basis-1/3 flex flex-col"
         >
           <ListIcon v-if="item.icon" :name="item.icon" class="text-blue-main" />
-          <h4 v-if="item.title" class="text-xl tablet:text-2xl my-5">
+          <h4 v-if="item.title" class="text-xl tablet:text-2xl my-3">
             {{ item.title }}
           </h4>
-          <div class="mb-[30px] h-[5px] w-32 bg-blue-main"></div>
+          <div class="mb-6 h-1 w-32 bg-blue-main"></div>
           <div
             v-if="item.content"
             class="text-gray-dark text-sm tablet:text-base"

@@ -4,7 +4,7 @@
       <SectionHeader :title="data.title" :class="{'text-gray-darkest':data.header_dark}" />
     </span>
 
-    <div class="content-html" v-if="data.content" v-html="data.content" :class="{'[&_h2]:text-gray-darkest h2-decor':data.header_dark}" ></div>
+    <div class="content-html" v-if="data.content" v-html="data.content" :class="{'[&_h2]:text-gray-darkest [&_h3]:text-gray-darkest [&_h4]:text-gray-darkest h-decor':data.header_dark}" ></div>
     <div v-if="data.text" class="w-full">
       <p
         v-for="item in data.text"
@@ -66,8 +66,14 @@ export default {
   max-width: 100% !important;
 }
 
-.content-html.h2-decor >>> h2::after{
+.content-html.h-decor >>> h2::after,
+.content-html.h-decor >>> h3::after,
+.content-html.h-decor >>> h4::after{
   @apply content-[''] block w-32 h-1 bg-blue-main mt-4
+}
+
+.content-html.h-decor >>> [style="text-align: center;"]::after{
+  @apply mx-auto
 }
 
 .content-html >>> .wp-caption-text {

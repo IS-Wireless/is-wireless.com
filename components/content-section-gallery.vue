@@ -34,12 +34,12 @@
         <div
           class="tablet-wide:flex-[1_1_50%] tablet-wide:w-1/2 tablet-wide:ml-8"
         >
-        <SectionHeader v-if="data.title2" :title="data.title2.replace('-', '‑')" class="relative z-20 text-gray-darkest" />
-            <div v-if="data.gallery" class="flex flex-wrap gap-y-5 tablet:gap-x-10 mb-10">
+        <SectionHeader v-if="data.title2" :title="data.title2.replace('-', '‑')" class="relative z-20 text-gray-darkest [&_h2]:!text-2xl [&_h2]:tablet:!text-3xl [&_hr]:!hidden" />
+            <div v-if="data.gallery" class="flex flex-wrap gap-5 tablet:gap-x-10 mb-10">
                 <div
                     v-for="(image, index) in data.gallery"
                     :key="index"
-                    class="flex justify-center items-center h-16 tablet-wide:h-[100px] max-w-[200px]"
+                    class="flex justify-center items-center h-16 tablet-wide:h-[90px] max-w-[180px]"
                 >
                     <nuxt-picture
                         v-if="image.url"

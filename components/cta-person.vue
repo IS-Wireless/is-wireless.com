@@ -11,11 +11,13 @@
                 <div v-if="data.content" v-html="data.content" class="content-html mb-5 tablet:mb-10 text-white">
                 
                 </div>
-                <CustomLink v-if="data.button && data.button.title && data.button.url"
+                <CustomLink v-if="data.button && data.button.title && data.button.url && !data.button.url.includes('#')"
                     class="flex items-center w-fit text-sm tablet:text-base !text-white hover:text-white font-medium uppercase mt-5 tablet:mt-11 px-6 tablet:px-8 py-4 rounded-full duration-300 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1 hover:bg-white/25 border border-solid border-white"
                     :title="data.button.title"
                     :url="data.button.url"
                 />
+                <a v-else-if="data.button && data.button.title && data.button.url" class="flex items-center w-fit text-sm tablet:text-base !text-white hover:text-white font-medium uppercase mt-5 tablet:mt-11 px-6 tablet:px-8 py-4 rounded-full duration-300 after:content-[''] after:block after:w-[25px] after:h-0.5 after:bg-white after:ml-5 after:transition after:duration-300 hover:after:translate-x-1 hover:bg-white/25 border border-solid border-white"
+                :href="data.button.url.replace(this.$config.API_URL, '').replace('https://www.is-wireless.com', '')">{{ data.button.title }}</a>
             </div>
             <div class="absolute z-0 left-0 bottom-0 max-w-full tablet:rounded-[5px] tablet:overflow-hidden">
                 <svg class="max-w-full" width="828" height="108" viewBox="0 0 828 108" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +81,7 @@ export default {
             type: Object,
             required: true
         }
-    }
+    },
 }
 </script>
 

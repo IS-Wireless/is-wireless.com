@@ -73,38 +73,31 @@ export async function onRequestPost(context) {
 
   const form = JSON.parse(JSON.stringify(Object.fromEntries(formData)))
 
-    // Initialization of fetch API
-    const url = "https://api.emaillabs.net.pl/api/sendmail_templates";
-    // Setting App Key
-    const appkey = env.EMAIL_LABS_APP_KEY;
-    // Setting Secret Key
-    const secret = env.EMAIL_LABS_APP_SECRET;
-
     let vars = {
       name: form.name,
       company: form.company,
       phone: form.tel,
       message: form.message,
       acceptance: form.acceptance,
-      email: formData.mail || context.env.EMAIL_FROM,
+      email: formData.mail,
       subject: `Thank you for contact ${form.name}`
     };
 
     let dataObject = {
       smtp_account: '1.isw.smtp',
       subject: "{{subject}}",
-      from: 'info@mailing.is-wireless.com',
+      from: context.env.EMAIL_FROM,
       template_id: 'ead743f2',
-      reply_to: formData.mail || context.env.EMAIL_FROM,
+      reply_to: context.env.EMAIL_FROM,
       multi_bcc: 1
     };
 
-    let to = vars.email;
-    fetch(url, {
+    let to = context.env.EMAIL_TO;
+    fetch(env.EMAIL_LABS_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + btoa(`${appkey}:${secret}`)
+        'Authorization': 'Basic ' + btoa(`${env.EMAIL_LABS_APP_KEY}:${env.EMAIL_LABS_APP_SECRET}`)
       },
       subject: decodeURIComponent(vars.subject),
       body: new URLSearchParams(dataObject).toString() +

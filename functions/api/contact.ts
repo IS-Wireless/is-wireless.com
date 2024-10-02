@@ -73,7 +73,7 @@ export const onRequest = (context) => {
             "&to" + new URLSearchParams("["+to+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][subject]="+decodeURIComponent(vars.subject)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString() +
-            "&bcc" + new URLSearchParams("media@is-wireless.com")
+            "&bcc" + new URLSearchParams("info@is-wireless.com")
 
         }).then(result => new Response(
          'Message has been sent',{

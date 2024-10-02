@@ -58,6 +58,8 @@ export const onRequest = (context) => {
           from_name: "IS-Wireless"
         };
 
+        let to = vars.email;
+
         return fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {

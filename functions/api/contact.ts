@@ -28,9 +28,9 @@ const JSONResponse = (message, status = 200) => {
 }
 
 
-export const onRequestPost = (context) => [
+export const onRequestPost = async (context) => [
   staticFormsPlugin({
-    respondWith: ({ formData, name }) => {
+    respondWith: async ({ formData, name }) => {
 
         let vars = {
           name: (formData.get("name") || "").toString(),
@@ -52,7 +52,7 @@ export const onRequestPost = (context) => [
         };
 
         let to = context.env.EMAIL_TO;
-        fetch(context.env.EMAIL_LABS_URL, {
+        return fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -69,8 +69,7 @@ export const onRequestPost = (context) => [
             "&to" + new URLSearchParams("["+to+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString() +
             "&bcc" + new URLSearchParams("[" + "media@is-wireless.com" + "]")
 
-        })
-        .then(result => new Response(
+        }).then(result => new Response(
          'Message has been sent',
         ))
         .catch(error => new Response(

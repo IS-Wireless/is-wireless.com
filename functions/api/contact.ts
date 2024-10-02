@@ -81,7 +81,7 @@ export const onRequest = (context) => {
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][phone]="+decodeURIComponent(vars.phone)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][message]="+decodeURIComponent(vars.message)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
-            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][subject]="+decodeURIComponent(vars.subject)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][subject]="+decodeURIComponent("WWW | Contact from : " + vars.name)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString()
 
         }).then(result => new Response(

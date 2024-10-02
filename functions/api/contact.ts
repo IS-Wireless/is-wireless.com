@@ -27,10 +27,9 @@ const JSONResponse = (message, status = 200) => {
   return new Response(JSON.stringify(response), headers)
 }
 
-
-export default (context) => [
-  staticFormsPlugin({
-    respondWith: ({ formData, name }) => {
+export const onRequest = (context) => {
+  return staticFormsPlugin({
+    respondWith: async ({ formData }) => {
 
         let vars = {
           name: (formData.get("name") || "").toString(),
@@ -53,7 +52,7 @@ export default (context) => [
 
         let to = context.env.EMAIL_TO;
 
-        return fetch(context.env.EMAIL_LABS_URL, {
+        return await fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -82,4 +81,4 @@ export default (context) => [
          )
     },
   })(context)
-]
+}

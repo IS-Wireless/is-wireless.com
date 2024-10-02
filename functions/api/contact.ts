@@ -53,7 +53,8 @@ export const onRequest = (context) => {
           subject: "{{subject}}",
           from: context.env.EMAIL_FROM,
           template_id: 'ead743f2',
-          reply_to: context.env.EMAIL_REPLY_TO
+          reply_to: context.env.EMAIL_REPLY_TO,
+          from_nameoptional: "IS-Wireless"
         };
 
         let to = vars.email;
@@ -73,7 +74,14 @@ export const onRequest = (context) => {
             "&to" + new URLSearchParams("["+to+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][subject]="+decodeURIComponent(vars.subject)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString() +
-            "&bcc" + new URLSearchParams("info@is-wireless.com")
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"]").toString()+
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][name]="+decodeURIComponent(vars.name)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][company]="+decodeURIComponent(vars.company)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][phone]="+decodeURIComponent(vars.phone)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][message]="+decodeURIComponent(vars.message)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][subject]="+decodeURIComponent(vars.subject)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString()
 
         }).then(result => new Response(
          'Message has been sent',{

@@ -31,6 +31,13 @@ export const onRequest = (context) => {
   return staticFormsPlugin({
     respondWith: async ({ formData }) => {
 
+          // Change this to what you want for CORS
+    const corsHeaders = {
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "POST",
+      // "Access-Control-Allow-Headers": 'Content-Type'
+    };
+
         let vars = {
           name: (formData.get("name") || "").toString(),
           company: (formData.get("company") || "").toString(),
@@ -46,13 +53,12 @@ export const onRequest = (context) => {
           subject: "{{subject}}",
           from: context.env.EMAIL_FROM,
           template_id: 'ead743f2',
-          reply_to: context.env.EMAIL_FROM,
-          multi_bcc: "1"
+          reply_to: context.env.EMAIL_FROM
         };
 
-        let to = context.env.EMAIL_TO;
+        let to = vars.email;
 
-        return await fetch(context.env.EMAIL_LABS_URL, {
+        return fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -70,15 +76,15 @@ export const onRequest = (context) => {
             "&bcc" + new URLSearchParams("[" + "media@is-wireless.com" + "]")
 
         }).then(result => new Response(
-         'Message has been sent',
+         'Message has been sent',{
+            headers: {...corsHeaders}
+          }
         ))
         .catch(error => new Response(
-          'Failed to send email, please contact website administrator ',
+          'Failed to send email, please contact website administrator ',{
+            headers: {...corsHeaders}
+          }
         ));
-
-        new Response(
-          'Message has been sent',
-         )
     },
   })(context)
 }

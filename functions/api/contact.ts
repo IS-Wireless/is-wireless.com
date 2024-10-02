@@ -54,7 +54,7 @@ export const onRequest = (context) => {
           from: context.env.EMAIL_FROM,
           template_id: 'ead743f2',
           reply_to: context.env.EMAIL_REPLY_TO,
-          from_nameoptional: "IS-Wireless"
+          from_name: "IS-Wireless"
         };
 
         let to = vars.email;
@@ -67,7 +67,7 @@ export const onRequest = (context) => {
           },
           body: new URLSearchParams(dataObject).toString() +
             "&to" + new URLSearchParams("["+to+"]").toString()+
-            "&to" + new URLSearchParams("["+to+"][message_id]="+md5()).toString() +
+            "&to" + new URLSearchParams("["+to+"][message_id]="+md5(to)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][name]="+decodeURIComponent(vars.name)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][company]="+decodeURIComponent(vars.company)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][phone]="+decodeURIComponent(vars.phone)).toString() +

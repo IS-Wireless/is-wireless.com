@@ -53,7 +53,7 @@ export const onRequest = (context) => {
           subject: "{{subject}}",
           from: context.env.EMAIL_FROM,
           template_id: 'ead743f2',
-          reply_to: context.env.EMAIL_FROM
+          reply_to: context.env.EMAIL_REPLY_TO
         };
 
         let to = vars.email;
@@ -73,7 +73,7 @@ export const onRequest = (context) => {
             "&to" + new URLSearchParams("["+to+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][subject]="+decodeURIComponent(vars.subject)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString() +
-            "&bcc" + new URLSearchParams("[" + "media@is-wireless.com" + "]")
+            "&bcc" + new URLSearchParams("media@is-wireless.com")
 
         }).then(result => new Response(
          'Message has been sent',{

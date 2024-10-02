@@ -52,7 +52,7 @@ export const onRequestPost = async (context) => [
         };
 
         let to = context.env.EMAIL_TO;
-        return fetch(context.env.EMAIL_LABS_URL, {
+        return await fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

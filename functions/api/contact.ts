@@ -33,9 +33,9 @@ export const onRequest = (context) => {
 
           // Change this to what you want for CORS
     const corsHeaders = {
-      // "Access-Control-Allow-Origin": "*",
-      // "Access-Control-Allow-Methods": "POST",
-      // "Access-Control-Allow-Headers": 'Content-Type'
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST",
+      "Access-Control-Allow-Headers": 'Content-Type'
     };
 
         let vars = {

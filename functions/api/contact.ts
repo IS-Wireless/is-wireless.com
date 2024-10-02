@@ -28,9 +28,9 @@ const JSONResponse = (message, status = 200) => {
 }
 
 
-export const onRequestPost = async (context) => [
+export const onRequestPost = (context) => [
   staticFormsPlugin({
-    respondWith: async ({ formData, name }) => {
+    respondWith: ({ formData, name }) => {
 
         let vars = {
           name: (formData.get("name") || "").toString(),
@@ -52,7 +52,7 @@ export const onRequestPost = async (context) => [
         };
 
         let to = context.env.EMAIL_TO;
-        return await fetch(context.env.EMAIL_LABS_URL, {
+        return fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

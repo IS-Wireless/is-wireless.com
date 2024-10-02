@@ -31,12 +31,13 @@ export const onRequest = (context) => {
   return staticFormsPlugin({
     respondWith: async ({ formData }) => {
 
-          // Change this to what you want for CORS
-    const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST",
-      "Access-Control-Allow-Headers": 'Content-Type'
-    };
+        let email_copy = "media@is-wireless.com";
+              // Change this to what you want for CORS
+        const corsHeaders = {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Headers": 'Content-Type'
+        };
 
         let vars = {
           name: (formData.get("name") || "").toString(),
@@ -56,8 +57,6 @@ export const onRequest = (context) => {
           reply_to: context.env.EMAIL_REPLY_TO,
           from_name: "IS-Wireless"
         };
-
-        let to = vars.email;
 
         return fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
@@ -82,7 +81,15 @@ export const onRequest = (context) => {
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][message]="+decodeURIComponent(vars.message)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][subject]="+decodeURIComponent("WWW | Contact from : " + vars.name)).toString() +
-            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString()
+            "&to" + new URLSearchParams("["+context.env.EMAIL_REPLY_TO+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"]").toString()+
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][name]="+decodeURIComponent(vars.name)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][company]="+decodeURIComponent(vars.company)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][phone]="+decodeURIComponent(vars.phone)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][message]="+decodeURIComponent(vars.message)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][subject]="+decodeURIComponent("WWW | Contact from : " + vars.name)).toString() +
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString()
 
         }).then(result => new Response(
          'Message has been sent',{

@@ -30,8 +30,10 @@ const JSONResponse = (message, status = 200) => {
 
 export const onRequestPost = async (context) => [
   staticFormsPlugin({
-    respondWith: ({ formData, name }) => {
-
+    respondWith: async ({ formData, name }) => {
+return         new Response(
+  'Message has been sent',
+ );
         let vars = {
           name: (formData.get("name") || "").toString(),
           company: (formData.get("company") || "").toString(),
@@ -52,6 +54,7 @@ export const onRequestPost = async (context) => [
         };
 
         let to = context.env.EMAIL_TO;
+
         return fetch(context.env.EMAIL_LABS_URL, {
           method: 'POST',
           headers: {
@@ -75,6 +78,10 @@ export const onRequestPost = async (context) => [
         .catch(error => new Response(
           'Failed to send email, please contact website administrator ',
         ));
+
+        new Response(
+          'Message has been sent',
+         )
     },
   })(context)
 ]

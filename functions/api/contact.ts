@@ -28,12 +28,10 @@ const JSONResponse = (message, status = 200) => {
 }
 
 
-export const onRequestPost = async (context) => [
+export default (context) => [
   staticFormsPlugin({
-    respondWith: async ({ formData, name }) => {
-return         new Response(
-  'Message has been sent',
- );
+    respondWith: ({ formData, name }) => {
+
         let vars = {
           name: (formData.get("name") || "").toString(),
           company: (formData.get("company") || "").toString(),

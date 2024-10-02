@@ -67,6 +67,7 @@ export const onRequest = (context) => {
           },
           body: new URLSearchParams(dataObject).toString() +
             "&to" + new URLSearchParams("["+to+"]").toString()+
+            "&to" + new URLSearchParams("["+to+"][message_id]="+md5()).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][name]="+decodeURIComponent(vars.name)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][company]="+decodeURIComponent(vars.company)).toString() +
             "&to" + new URLSearchParams("["+to+"][vars][phone]="+decodeURIComponent(vars.phone)).toString() +

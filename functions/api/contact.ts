@@ -91,8 +91,7 @@ export const onRequest = (context) => {
             "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][message]="+decodeURIComponent(vars.message)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][email]="+decodeURIComponent(vars.email)).toString() +
             "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][subject]="+decodeURIComponent("WWW | Contact from : " + vars.name)).toString() +
-            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString() +
-
+            "&to" + new URLSearchParams("["+context.env.EMAIL_COPY+"][vars][acceptance]="+decodeURIComponent(vars.acceptance)).toString()
         }).then(result => new Response(
          'Message has been sent',{
             headers: {...corsHeaders}

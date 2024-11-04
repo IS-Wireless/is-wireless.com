@@ -26,7 +26,7 @@
           :key="index"
           class="mb-10 tablet-wide:mb-[100px] shrink-0 grow-0 basis-full tablet:basis-1/3 tablet-wide:basis-1/4 flex flex-col"
         >
-          <ListIcon v-if="item.icon" :name="item.icon" class="text-blue-main" />
+          <ListIcon v-if="item.icon" :name="item.icon" class="!text-blue-main" />
           <h4 v-if="item.title" class="text-xl tablet:text-2xl my-5">
             {{ item.title }}
           </h4>

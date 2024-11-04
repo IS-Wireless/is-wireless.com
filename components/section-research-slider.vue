@@ -83,8 +83,7 @@
     })
 
     function imageAnimateLoad(e) {
-      // console.log(e.currentTarget);
-      e.currentTarget.classList.remove('opacity-0')
+      e.currentTarget?.classList.remove('opacity-0')
     }
   </script>
   

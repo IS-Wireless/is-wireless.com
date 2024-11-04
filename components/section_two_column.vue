@@ -174,7 +174,7 @@ export default {
 }
 .content-html :deep(ul li::before) {
   background-size: contain;
-  background-image: url("~/assets/list-icon.svg");  
+  background-image: url("/list-icon.svg");  
   @apply content-[''] shrink-0 grow-0 w-6 h-6 tablet:w-10 tablet:h-10 bg-no-repeat inline-block relative mr-2 tablet:mr-5 tablet:-top-1
 }
 .content-html :deep(ul li) {

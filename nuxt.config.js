@@ -103,22 +103,16 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
     "@nuxtjs/algolia",
-    "nuxt-simple-sitemap",
     "@vueuse/nuxt",
     "@vite-pwa/nuxt",
     "nuxt-swiper",
-    "nuxt-speedkit",
-    [
-      "nuxt-simple-robots",
-      {
-        UserAgent: "*",
-        disallow: "",
-        sitemap: "https://is-wireless.com/sitemap.xml",
-      },
-    ],
+    "nuxt-booster",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/robots",
+    "@nuxtjs/fontaine"
   ],
 
-  speedkit: {
+  booster: {
     detection: {
       performance: true,
       browserSupport: true,
@@ -139,8 +133,6 @@ export default defineNuxtConfig({
 
     componentAutoImport: false,
     componentPrefix: undefined,
-
-    disableNuxtFontaine: true,
 
     lazyOffset: {
       component: "0%",
@@ -209,6 +201,7 @@ export default defineNuxtConfig({
     strategies: "generateSW",
     workbox: {
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      maximumFileSizeToCacheInBytes: 4000000,
       navigateFallback: null,
     },
   },
@@ -227,8 +220,8 @@ export default defineNuxtConfig({
     sitemap: false,
   },
 
-  sitemap: {
-    siteUrl: "https://www.is-wireless.com",
+  site: {
+    url: "https://www.is-wireless.com",
   },
 
   build: {
@@ -271,4 +264,6 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+
+  compatibilityDate: "2024-11-04",
 });

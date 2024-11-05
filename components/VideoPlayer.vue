@@ -5,7 +5,7 @@
       playsinline
       loop
       muted
-      loading="eager"
+      loading="lazy"
       ref="videoPlayer" 
       :poster="placeholderImgFormatted"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
@@ -25,54 +25,43 @@
         class="h-full w-full "
         :imgAttrs="{ class: 'h-full object-cover' }"
         loading="eager"
-        preload
         critical="true"
       />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 
-export default {
-  name: 'VideoPlayer',
-  props: {
-    placeholderImg: {
-      type: String
-    },
-    options: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
+const props = defineProps({
+  placeholderImg: {
+    type: String
   },
-  data() {
-    return {
-      player: null,
-    }
-  },
-  setup(props){
-    const img = useImage() 
-    const placeholderImgFormatted = img(props.placeholderImg,{ width:400, height:400, format:'webp', quality: 5})
-    
-    return { placeholderImgFormatted }
-  },
-  mounted() {    
-    this.$refs.videoPlayer.addEventListener('timeupdate',()=>{
-      this.playerReady()
-    },{
-      once: true
-    })
-  },
-  methods: {
-    playerReady() {
-      if (this.placeholderImg) {
-        this.$refs.videoPlayerPoster.classList.add('opacity-0')
-      }
-    },
-  },
+  options: {
+    type: Object,
+    default: () => ({})
+  }
+})
+
+const img = useImage()
+const placeholderImgFormatted = computed(() => 
+  img(props.placeholderImg, { width: 400, height: 400, format: 'webp', quality: 5 })
+)
+
+const videoPlayer = ref(null)
+const videoPlayerPoster = ref(null)
+
+function playerReady() {
+  if (props.placeholderImg) {
+    videoPlayerPoster.value.classList.add('opacity-0')
+  }
 }
+
+onMounted(() => {
+  videoPlayer.value.addEventListener('timeupdate', () => {
+    playerReady()
+  }, { once: true })
+})
 </script>
 
 <style>

@@ -32,34 +32,80 @@
 
 <script setup>
 
-const nuxtApp = useNuxtApp()
+const app = useNuxtApp()
+const config = useRuntimeConfig()
 
-const { data } = await useAsyncData('homepageData',(app) => {
-
+const { data } = await useAsyncData('homepageData', (app) => {
   return app.$wp
     .pages()
     .id(2)
-    .then(function (data) {
-      let tmp = "";
-      if (data && data.yoast_head_json && data.yoast_head_json.schema) {
-        tmp = JSON.stringify(data.yoast_head_json.schema);
+}, {
+  transform(data) {
+    if (data.yoast_head_json && Object.keys(data.yoast_head_json).length) {
+      data['schema'] = JSON.stringify(data.yoast_head_json.schema)
+      for (
+        var i = 0;
+        i < data.yoast_head_json.schema['@graph'].length;
+        i++
+      ) {
+        if (
+          data.yoast_head_json.schema['@graph'][i]['@type'] ==
+          'BreadcrumbList'
+        ) {
+          data['breadcrumb'] = data.yoast_head_json.schema['@graph'][i]
+        }
       }
-      app.$filterData(data);
-      data.schema = tmp;
-      if (data.acf && data.acf.section) {
-        data.content = "";
+      data['schema_basic'] = {
+        title: data.yoast_head_json.title,
+        robots: {
+          index: data.yoast_head_json.robots.index,
+          follow: data.yoast_head_json.robots.follow,
+          'max-snippet': data.yoast_head_json.robots['max-snippet'],
+          'max-image-preview':
+            data.yoast_head_json.robots['max-image-preview'],
+          'max-video-preview':
+            data.yoast_head_json.robots['max-video-preview'],
+        },
+        og_locale: data.yoast_head_json.og_locale,
+        og_type: data.yoast_head_json.og_type,
+        og_title: data.yoast_head_json.og_title,
+        og_description: data.yoast_head_json.og_description,
+        og_url: data.yoast_head_json.og_url.replace(
+          config.public.API_URL,
+          'https://www.is-wireless.com'
+        ),
+        og_site_name: data.yoast_head_json.og_site_name,
+        twitter_card: data.yoast_head_json.twitter_card,
       }
-      return data;
-    });
-},{
-  getCachedData(key){
+      if (data.yoast_head_json.description) {
+        data['schema_basic']['description'] =
+          data.yoast_head_json.description
+      }
+      if (data.yoast_head_json.twitter_misc) {
+        data['schema_basic']['twitter_misc'] =
+          data.yoast_head_json.twitter_misc
+      }
+      if (data.yoast_head_json.article_modified_time) {
+        data['schema_basic']['article_modified_time'] =
+          data.yoast_head_json.article_modified_time
+      }
+    }
+    if (data.acf && data.acf.section) {
+      data.content = "";
+    }
+    app.$filterData(data);
+    return data;
+  }
+}, {
+  getCachedData(key, nuxtApp) {
     return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
   }
 });
 
-useHead(generateHead(data.value));
+const headData = generateHead(data.value)
+useHead(headData);
 
-const homepageData = computed(()=>{
+const homepageData = computed(() => {
   if (data.value && data.value.acf) {
     return data.value.acf
   }
@@ -183,6 +229,12 @@ function generateHead(data) {
           hid: "og:image",
           property: "og:image",
           content: data.acf.sections[0].background.url,
+        });
+      }else{
+        tags.meta.push({
+          hid: "og:image",
+          property: "og:image",
+          content: '/symbol.png',
         });
       }
     }

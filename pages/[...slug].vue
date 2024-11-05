@@ -194,9 +194,6 @@ import HtmlFilter from 'html-filter'
     }
   })
 
-  // await callOnce(async ()=>{
-  // })
-
 
   const contentFiltered = computed(()=>{
       if (!pageData.content) {

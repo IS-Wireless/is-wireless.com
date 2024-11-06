@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col">
+    
     <BannerVideo v-if="homepageData.sections[0] && homepageData.sections[0].banner" :data="homepageData.sections[0]" />
 
     <Organisations v-if="homepageData.sections[1] && homepageData.sections[1].logo" :data="homepageData.sections[1]" />

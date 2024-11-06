@@ -5,10 +5,10 @@
       playsinline
       loop
       muted
-      loading="lazy"
       ref="videoPlayer" 
       :poster="placeholderImgFormatted"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
+      loading="lazy"
       >
       <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
     </video>
@@ -20,10 +20,10 @@
       <nuxt-picture
         :src="placeholderImg"
         alt="Poster"
-        width="1920px"
-        height="768px"
+        width="1920"
+        height="768"
         class="h-full w-full "
-        :imgAttrs="{ class: 'h-full object-cover' }"
+        :imgAttrs="{ fetchpriority: 'high',class: 'h-full object-cover' }"
         loading="eager"
         critical="true"
       />

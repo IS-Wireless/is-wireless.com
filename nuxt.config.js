@@ -46,7 +46,15 @@ export default defineNuxtConfig({
 
   experimental:{
     payloadExtraction: true,
-    sharedPrerenderData: true
+    sharedPrerenderData: true,
+    defaults:{
+      nuxtLink:{
+        prefetchOn:{
+          visibility: false,
+          interaction: true
+        }
+      }
+    }
   },
 
   app: {
@@ -76,21 +84,6 @@ export default defineNuxtConfig({
           rel: "icon",
           type: "image/x-icon",
           href: "/favicon.ico?v=" + appVersionCacheBuster,
-        },
-        {
-          rel: "preconnect",
-          href: "https://fonts.gstatic.com",
-          crossorigin: true,
-        },
-        {
-          rel: "preconnect",
-          href: "https://is-wireless.com",
-          crossorigin: true,
-        },
-        {
-          rel: "preconnect",
-          href: "https://cdn.jsdelivr.net",
-          crossorigin: true,
         },
       ],
     },
@@ -146,15 +139,15 @@ export default defineNuxtConfig({
   },
 
   // nitro: {
-  //   preset: 'cloudflare_pages'
-  //   compressPublicAssets: true,
+  //  preset: 'cloudflare_pages'
+  //   compressPublicAssets: { gzip: true, brotli: true },
   // },
 
   image: {
     densities: [1, 2],
     screens: {
       default: 320,
-      // xs: 576,
+      xs: 576,
       md: 996,
       lg: 1200,
       "4k": 1921,

@@ -128,12 +128,14 @@ export default {
     createdFilters() {
       let filters = []
       let filtersData = []
-      this.downloadedData.forEach((item) => {
-        if (filters.indexOf(item.type.value) === -1) {
-          filters.push(item.type.value)
-          filtersData.push(item.type)
-        }
-      })
+      if(this.downloadedData){
+        this.downloadedData.forEach((item) => {
+          if (filters.indexOf(item.type.value) === -1) {
+            filters.push(item.type.value)
+            filtersData.push(item.type)
+          }
+        })
+      }
       return filtersData
     },
   },

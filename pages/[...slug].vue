@@ -191,9 +191,16 @@ import HtmlFilter from 'html-filter'
       }
       app.$filterData(data)
       return data
-    }
+    },
+    immediate: import.meta.dev || process.env.prerender
   })
 
+  if (!pageData.value || pageData.value.length === 0) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Page Not Found',
+    });
+  }
 
   const contentFiltered = computed(()=>{
       if (!pageData.content) {

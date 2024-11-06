@@ -44,6 +44,11 @@ export default defineNuxtConfig({
     },
   },
 
+  experimental:{
+    payloadExtraction: true,
+    sharedPrerenderData: true
+  },
+
   app: {
     layoutTransition: {
       name: "page",

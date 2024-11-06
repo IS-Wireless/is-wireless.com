@@ -43,6 +43,14 @@ const pageData = computed(()=>{
   }
 })
 
+if (!pageData.value || pageData.value.length === 0) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  });
+}
+
+
 const postsRelated = computed(()=>{
   if (pageData.value && pageData.value.acf && pageData.value.acf.posts_related) {
     return {

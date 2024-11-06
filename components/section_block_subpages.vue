@@ -21,9 +21,9 @@ const dataKey = computed(()=>{
   }
 })
 
-const { data: sectionData } = await useAsyncData(dataKey.value, (app) => {
+const { data: sectionData } = await useAsyncData(dataKey.value, () => {
   return Promise.all(props.data?.selected?.map(async (item) => {
-    return app.$wp.pages().id(item.ID)
+    return nuxtApp.$wp.pages().id(item.ID)
   })) 
 },{
   getCachedData(key){

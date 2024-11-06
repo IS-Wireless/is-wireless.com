@@ -35,7 +35,7 @@
 const app = useNuxtApp()
 const config = useRuntimeConfig()
 
-const { data } = await useAsyncData('homepageData', (app) => {
+const { data } = await useAsyncData('homepageData', () => {
   return app.$wp
     .pages()
     .id(2)

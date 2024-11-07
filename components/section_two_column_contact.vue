@@ -161,12 +161,11 @@ export default {
       ) {
         sendBtn?.setAttribute("disabled", "");
         this.formRequest(formData)
-          .then(async (result) => {
+          .then((result) => {
+            console.log(result)
             if (result.ok) {
               this.mailSent = true;
             }
-            let test = await result.json()
-            console.log(test);
             sendBtn?.removeAttribute("disabled");
           })
           .catch((error) => {

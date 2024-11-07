@@ -17,8 +17,10 @@
           method="post"
           enctype="multipart/form-data"
           class="flex flex-col"
+          data-static-form-name="contact"
           @submit.prevent="sendForm()"
         >
+        <input type="hidden" name="static-form-name" value="contact" />
           <ul class="flex flex-wrap gap-2.5 tablet:gap-5 justify-between mb-4">
             <li
               v-for="(item, index) in data.inputs"

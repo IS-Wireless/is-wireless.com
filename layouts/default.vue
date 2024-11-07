@@ -1,6 +1,5 @@
 <template>
   <div class="h-full flex flex-col">
-    <NuxtPwaManifest />
     <Navbar :critical="true" :main-menu="topMenuData" :side-menu="sideMenuData" :socials="socialMenuData" />
     <main>
       <slot></slot>

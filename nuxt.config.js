@@ -198,14 +198,6 @@ export default defineNuxtConfig({
     },
     strategies: "generateSW",
     workbox: {
-      cleanupOutdatedCaches: true,
-      //offlineStrategy: 'StaleWhileRevalidate',
-      cacheOptions: {
-        cacheId: appVersionCacheBuster,
-        revision: appVersionCacheBuster,
-      },
-      offlineStrategy: 'NetworkOnly',
-      cacheAssets: false,
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
       maximumFileSizeToCacheInBytes: 4000000,
       navigateFallback: null,

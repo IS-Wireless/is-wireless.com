@@ -3,12 +3,13 @@
     <slot> </slot>
   </div>
   <div v-else-if="!url && title" v-html="title"></div>
-  <nuxt-link v-else-if="!title && !isExternalCheck" :to="urlFormatted">
+  <nuxt-link v-else-if="!title && !isExternalCheck" :to="urlFormatted" :class="{'router-link-active':$route.fullPath.startsWith(urlFormatted)}">
     <slot></slot>
   </nuxt-link>
   <nuxt-link
     v-else-if="title && !isExternalCheck"
     :to="urlFormatted"
+    :class="{'router-link-active':$route.fullPath.startsWith(urlFormatted)}"
   >
     {{ title }}
   </nuxt-link>

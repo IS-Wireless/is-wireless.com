@@ -40,9 +40,8 @@
               :img-attrs="{
                 loading: 'lazy',
                 class:
-                  'w-auto h-full object-contain custom-filter duration-300 max-w-[200px] m-0 opacity-0 transition w-full',
+                  'w-auto h-full object-contain custom-filter duration-300 max-w-[200px] m-0 transition w-full',
               }"
-              @load="imageAnimateLoad($event)"
             />
           </CustomLink>
         </SwiperSlide>
@@ -82,9 +81,6 @@
       return []
     })
 
-    function imageAnimateLoad(e) {
-      e.currentTarget?.classList.remove('opacity-0')
-    }
   </script>
   
   <style lang="postcss" scoped>

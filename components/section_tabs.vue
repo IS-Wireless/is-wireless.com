@@ -21,9 +21,9 @@
         :key="index"
         class="w-full relative"
       >
-        <transition name="fade" mode="out-in">
+        <Transition name="fade" mode="out-in">
           <div
-            v-if="index === selected || !rctvTabletWide.value"
+            v-show="index === selected || !rctvTabletWide.value"
             class="overflow-hidden transition-all duration-300"
             :class="index === selected ? 'tablet:block' : 'tablet:hidden'"
             data-mobile-collapsed="false"
@@ -58,7 +58,7 @@
               </div>
             </div>
           </div>
-        </transition>
+        </Transition>
       </div>
     </div>
   </div>
@@ -146,14 +146,11 @@ export default {
 <style lang="postcss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity .3s;
 }
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 [data-mobile-collapsed='false'] h4 {

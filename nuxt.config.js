@@ -218,7 +218,7 @@ export default defineNuxtConfig({
     strategies: "generateSW",
     workbox: {
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-      maximumFileSizeToCacheInBytes: 4000000,
+      maximumFileSizeToCacheInBytes: 4500000,
       navigateFallback: null,
     },
   },

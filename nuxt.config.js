@@ -107,8 +107,27 @@ export default defineNuxtConfig({
     "nuxt-booster",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    "@nuxtjs/fontaine"
+    "@nuxtjs/fontaine",
+    "@nuxtjs/google-fonts",
   ],
+
+  googleFonts: {
+    download: true,
+    inject: true,
+    // Options
+    //https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap
+    families: {
+      Lato: {
+        wght: [400, 700]
+      },
+    },
+    display: 'swap', // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
+    subsets: 'latin-ext',
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+    useStylesheet: true
+  },
 
   booster: {
     detection: {

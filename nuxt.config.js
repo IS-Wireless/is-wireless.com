@@ -156,11 +156,15 @@ export default defineNuxtConfig({
       asset: "0%",
     },
   },
-
-  // nitro: {
-  //  preset: 'cloudflare_pages'
-  //   compressPublicAssets: { gzip: true, brotli: true },
-  // },
+  experimental: {
+    sharedPrerenderData: true,
+},
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      concurrency: 1,
+    },
+  },
 
   image: {
     densities: [1, 2],

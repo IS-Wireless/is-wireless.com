@@ -1,45 +1,63 @@
-# is-wireless.com
+# Nuxt 3 Minimal Starter
 
-Corporate website
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
----
+## Setup
 
-## Build Setup
+Make sure to install the dependencies:
 
 ```bash
-# install dependencies
-$ npm install
+# npm
+npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# pnpm
+pnpm install
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+# yarn
+yarn install
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Development Server
 
-## FAQ
-<details>
-  <summary>Found bug, what I can do?</summary>
-  
-  Thank you! 
-  Write a issue with descrition and we will be in touch with you :)
-</details>
+Start the development server on `http://localhost:3000`:
 
----
+```bash
+# npm
+npm run dev
 
-## License - dual
+# pnpm
+pnpm run dev
 
-Source Code:
+# yarn
+yarn dev
+```
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+## Production
 
-Other files:
+Build the application for production:
 
-Copyright 2021 © <a href="https://www.is-wireless.com/" target="_blank">IS-Wireless and/or its affiliated companies.</a>
+```bash
+# npm
+npm run build
 
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

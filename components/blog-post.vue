@@ -12,8 +12,8 @@
           :src="
             data.featured_image_src.replace(
               'www.is-wireless.com',
-              'api.is-wireless.com'
-            )
+              $config.public.API_DOMAIN
+            ).replace($config.public.API_URL,'/app')
           "
         />
         <div v-if="data.title" class="p-5 pb-1">
@@ -59,8 +59,9 @@ export default {
       return dateComputed
     },
     getLinkRewrite(link) {
+      const config = useRuntimeConfig()
       return link
-        .replace(this.$config.API_URL, '')
+        .replace(config.public.API_URL, '')
         .replace('https://www.is-wireless.com', '')
     },
   },

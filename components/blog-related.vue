@@ -1,16 +1,31 @@
 <template>
-  <div class="w-full my-16">
-    <div id="releated_news" class="swiper overflow-hidden">
-      <div class="swiper-wrapper flex w-full">
-        <div
-          v-for="post in data"
+  <div class="relative w-full my-16" v-if="data && data.list">
+      <h4 v-if="data.text" class="text-2xl tablet:text-3xl text-gray-darkest mb-5">
+        {{ data.text }}
+      </h4>
+      <Swiper class="swiper overflow-hidden [&_.swiper-wrapper]:flex [&_.swiper-wrapper]:w-full "
+        :modules="[SwiperNavigation]"
+        :slides-per-view="2"
+        :space-between="20"
+        :navigation="{
+          nextEl: '[data-slide-next]',
+          prevEl: '[data-slide-prev]'
+        }"
+        :breakpoints="{
+          640:{
+            slidesPerView: 3,
+          }
+        }"
+      >
+        <SwiperSlide
+        v-for="post in data.list"
           :key="post.id"
-          class="swiper-slide flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
+          class="flex flex-col max-w-[calc(50%-10px)] tablet-small:max-w-[calc(33.3%-13px)] mr-5"
         >
-          <nuxt-link
+        <nuxt-link
             v-if="post.slug"
             class="group flex flex-col"
-            :to="'/' + routeStart + '/' + post.slug + '/'"
+            :to="'/news/' + post.slug + '/'"
           >
             <nuxt-picture
               v-if="post.featured_image_src"
@@ -22,20 +37,21 @@
                 post.featured_image_src.replace(
                   'www.is-wireless.com',
                   'api.is-wireless.com'
-                )
+                ).replace($config.public.API_URL,'/app')
               "
             />
-            <h4
+            <h5
               v-if="post.title"
               class="mb-2 text-blue-main group-hover:text-blue-main-hover transition text-xs tablet:text-sm whitespace-nowrap overflow-hidden overflow-ellipsis"
               v-html="post.title.rendered ? post.title.rendered : ''"
-            ></h4>
+            ></h5>
             <span v-if="post.date" class="mb-2 text-sm">{{
               getFormattedDate(post.date)
             }}</span>
           </nuxt-link>
-        </div>
-      </div>
+        </SwiperSlide>
+      </Swiper>
+
       <div
         tabindex="0"
         class="absolute focus:outline-none group top-1/2 left-0 px-4 py-2 -mt-2 text-white bg-black bg-opacity-40 hover:bg-opacity-50 transition z-20"
@@ -78,64 +94,35 @@
           />
         </svg>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
-import { Swiper, Navigation } from 'swiper'
 
 export default {
-  name: 'BlogRelatedPosts',
+  name: "BlogRelatedPosts",
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
-  data() {
-    return {
-      swiperOptionsObject: {
-        modules: [Navigation],
-        slidesPerView: 2,
-        spaceBetween: 20,
-        navigation: {
-          nextEl: '[data-slide-next]',
-          prevEl: '[data-slide-prev]',
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 3,
-          },
-        },
-      },
-    }
-  },
-  computed: {
-    routeStart() {
-      let route = this.$route.fullPath.slice(1, -1).split('/')
-      route.pop()
-      return route
-    },
-  },
-  mounted() {
-    this.$data.swiper = new Swiper(
-      '#releated_news',
-      this.$data.swiperOptionsObject
-    )
-  },
   methods: {
     getFormattedDate(postDate) {
-      let date = new Date(postDate)
-      let dateComputed = date.toLocaleDateString('en', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-      return dateComputed
+      let date = new Date(postDate);
+      let dateComputed = date.toLocaleDateString("en", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      return dateComputed;
     },
   },
-}
+};
 </script>
 
-<style></style>
+<style scoped>
+.swiper-button-disabled{
+  @apply opacity-20 pointer-events-none
+}
+</style>

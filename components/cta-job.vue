@@ -1,13 +1,13 @@
 <template>
-  <section
+  <section v-if="data"
     class="relative overflow-x-hiddenbg-[center_top] h-[500px] desktop:h-[700px] w-full max-w-[1920px] mx-auto mb-[200px]"
   >
     <nuxt-picture
-      v-if="data.image"
+      v-if="data && data.image"
       class="block absolute w-full h-full inset-0 -z-20"
       :src="
         data.image.url
-          ? data.image.url.replace('www.is-wireless.com', 'api.is-wireless.com')
+          ? data.image.url.replace('www.is-wireless.com',$config.public.API_DOMAIN).replace($config.public.API_URL,'/app')
           : ''
       "
       :title="data.image.title ? data.image.title : ''"
@@ -18,7 +18,7 @@
       }"
     />
     <div
-      v-else
+      v-else-if="data && data.background_color"
       class="block absolute w-full h-full inset-0 -z-30"
       :style="
         data.background_color ? 'background: ' + data.background_color : ''

@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:!w-[80vw] relative full-hd:container"
+    class="flex flex-wrap w-full tablet-wide:w-[200%] desktop:flex-nowrap mb-14 desktop:w-[80vw] relative full-hd:container"
   >
     <li
       v-for="(item, index) in data"
@@ -25,9 +25,9 @@
           </div>
 
           <div class="mb-[30px] tablet:mb-10">
-            <h4 v-if="item.title" class="text-xl tablet:text-2xl text-inherit">
+            <h3 v-if="item.title" class="text-xl tablet:text-2xl text-inherit">
               {{ item.title }}
-            </h4>
+            </h3>
             <div
               v-if="item.text_highlight"
               class="flex flex-nowrap gap-x-3 desktop:gap-x-6 gap-y-1"
@@ -89,10 +89,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
->>> .custom-filter {
+:deep( .custom-filter ){
   filter: saturate(0);
 }
->>> .group:hover .custom-filter {
+:deep( .group:hover .custom-filter ){
   filter: saturate(1);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col shrink-0 grow-0 basis-60 desktop:basis-auto">
+  <div class="flex flex-col shrink-0 grow-0 basis-60 desktop:basis-auto" itemscope itemtype="https://schema.org/Person">
     <nuxt-picture
       v-if="data.image && data.image.url"
       width="300"
@@ -13,14 +13,14 @@
       "
       fit="cover"
       :title="data.image.title ? data.image.title : ''"
-      :src="data.image.url"
-      :imgAttrs="{class: 'w-full h-full object-cover'}"
-      class="rounded-[5px] overflow-hidden mb-4 aspect-[87/100]"
+      :src="data.image.url.replace($config.public.API_URL,'/app')"
+      :imgAttrs="{class: 'w-full h-full object-cover rounded-[5px] overflow-hidden',itemprop: 'image'}"
+      class="mb-4 aspect-[87/100]"
     />
-    <h3 v-if="data.name" class="text-gray-dark text-xl tablet:text-2xl">
+    <h3 v-if="data.name" class="text-gray-dark text-xl tablet:text-2xl" itemprop="name">
       {{ data.name }}
     </h3>
-    <p v-if="data.position" class="text-base tablet:text-lg text-blue-main mb-5">
+    <p v-if="data.position" class="text-base tablet:text-lg text-blue-main mb-5" itemprop="jobTitle">
       {{ data.position }}
     </p>
     <div v-if="data.description">
@@ -28,7 +28,7 @@
         class="overflow-hidden transition-all duration-500"
         :style="{ height: `${contentHeight}px` }"
       >
-        <div ref="contentContainer" v-html="data.description" class="pb-5"></div>
+        <div ref="contentContainer" v-html="data.description" class="pb-5" itemprop="description"></div>
       </div>
       <span class="group cursor-pointer block h-10 tablet:h-[52px] aspect-square bg-white rounded-full border border-gray-default relative hover:bg-blue-main hover:border-blue-main transition duration-300" @click="toggleExpandedHeight()"
       :class="{'!bg-blue-main !border-blue-main':!collapsed}">

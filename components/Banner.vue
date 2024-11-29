@@ -18,7 +18,7 @@
           <nuxt-picture
             v-if="item.image"
             v-bind="picCompute(item.image)"
-            :src="item.image.url ? item.image.url : ''"
+            :src="item.image.url ? item.image.url.replace($config.public.API_URL,'/app') : ''"
             :alt="item.image.alt ? item.image.alt : ''"
             :title="item.image.title ? item.image.title : ''"
             width="1920px"
@@ -46,7 +46,7 @@
                 width="550"
                 height="160"
                 class="duration-300 mb-10 w-4/5 phone-wide:w-3/5 tablet-wide:w-3/5 desktop:w-1/2 pr-5 tablet:pr-0"
-                :src="data.default.image.url ? data.default.image.url : ''"
+                :src="data.default.image.url ? data.default.image.url.replace($config.public.API_URL,'/app') : ''"
                 :alt="data.default.image.alt ? data.default.image.alt : ''"
                 :title="
                   data.default.image.title ? data.default.image.title : ''
@@ -130,9 +130,6 @@
 
 <script>
 import EffectAppear from './effect-appear.vue'
-import { Swiper, Pagination, Autoplay } from 'swiper'
-
-import 'swiper/swiper-bundle.min.css'
 import CustomLink from './custom-link.vue'
 export default {
   name: 'Banner',
@@ -153,47 +150,47 @@ export default {
       swiper: null,
       swiperIndex: 0,
       swiperCount: 0,
-      swiperOptionsObject: {
-        modules: [Pagination, Autoplay],
-        virtual: false,
-        preventClicksPropagation: false,
-        slidesperview: 1,
-        spaceBetween: 0,
-        direction: 'horizontal',
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: false,
-        },
-        watchOverflow: true,
-        navigation: {
-          nextEl: '[data-slide-next]',
-          prevEl: '[data-slide-prev]',
-        },
-        speed: 500,
-        loopedSlides: 1,
-        loop: this.data.banner
-          ? this.data.banner.length > 1
-            ? true
-            : false
-          : false,
-        keyboard: {
-          enabled: true,
-          onlyInViewport: true,
-        },
-        autoplay: {
-          delay: 6000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true,
-        },
-      },
+      // swiperOptionsObject: {
+      //   modules: [Pagination, Autoplay],
+      //   virtual: false,
+      //   preventClicksPropagation: false,
+      //   slidesperview: 1,
+      //   spaceBetween: 0,
+      //   direction: 'horizontal',
+      //   effect: 'fade',
+      //   fadeEffect: {
+      //     crossFade: false,
+      //   },
+      //   watchOverflow: true,
+      //   navigation: {
+      //     nextEl: '[data-slide-next]',
+      //     prevEl: '[data-slide-prev]',
+      //   },
+      //   speed: 500,
+      //   loopedSlides: 1,
+      //   loop: this.data.banner
+      //     ? this.data.banner.length > 1
+      //       ? true
+      //       : false
+      //     : false,
+      //   keyboard: {
+      //     enabled: true,
+      //     onlyInViewport: true,
+      //   },
+      //   autoplay: {
+      //     delay: 6000,
+      //     disableOnInteraction: false,
+      //   },
+      //   pagination: {
+      //     el: '.swiper-pagination',
+      //     type: 'bullets',
+      //     clickable: true,
+      //   },
+      // },
     }
   },
   mounted() {
-    this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
+    // this.$data.swiper = new Swiper('#banner', this.$data.swiperOptionsObject)
   },
   methods: {
     togglePopup() {
@@ -229,20 +226,20 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.swiper .swiper-slide picture >>> img {
+.swiper .swiper-slide picture :deep( img ){
   @apply min-w-full h-full object-cover;
 }
 
-.swiper >>> .swiper-pagination.swiper-pagination {
+.swiper :deep(.swiper-pagination.swiper-pagination){
   @apply hidden w-auto z-20 static pointer-events-none tablet:flex flex-col justify-center items-center;
 }
 
-.swiper >>> .swiper-pagination .swiper-pagination-bullet {
+.swiper :deep(.swiper-pagination .swiper-pagination-bullet){
   @apply w-3 h-3 mx-0 my-[5px]  bg-transparent border border-white border-solid transition duration-200 opacity-100 hover:bg-white/25;
 }
 
 .swiper
-  >>> .swiper-pagination
+  :deep(.swiper-pagination)
   .swiper-pagination-bullet.swiper-pagination-bullet-active {
   @apply bg-blue-main border-blue-main;
 }

@@ -20,7 +20,7 @@
       <div class="h-full w-1 bg-gray-light rounded-b-full mb-20" />
     </div>
     <div class="relative z-10 mb-32">
-      <template v-for="(yearData, yearIndex) in posts">
+      <template v-for="(yearData, yearIndex) in posts" :key="yearIndex">
         <div
           v-for="(monthData, monthIndex) in yearData.posts"
           :key="monthData.name + yearIndex"
@@ -51,7 +51,7 @@
                 :key="index"
                 class="w-full tablet-wide:shrink-0 tablet-wide:max-w-[400px] tablet-wide:even:mt-20"
               >
-                <BlogPost :data="post" :data-post-slug="post.slug"/>
+                <BlogPost v-if="post" :data="post" :data-post-slug="post.slug"/>
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
       </template>
       <div
         class="w-full text-center"
-        v-if="(postPageCount > postPageNr) || isFetching"
+        v-if="isButtonShown"
       >
         <div
           role="button"
@@ -84,9 +84,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import BlogPost from './blog-post.vue'
-import { groupBy as _groupBy } from 'lodash'
+import groupBy from 'lodash.groupby'
+import { useGeneralStore } from '~/store/general'
 
 
 export default {
@@ -95,23 +95,35 @@ export default {
     BlogPost,
   },
   props: {
-    postPageCount: {
+    postPageCount:{
       type: Number,
-      default: 1
+      default:1
     },
     isFetching:{
-      type: Boolean,
+      type: Boolean || Error,
       default: true
     },
-    prevLink:{
-      type: String,
-      default: ''
+    showAll:{
+      type: Boolean,
+      default: false
+    },
+
+  },
+
+  setup(){
+    const currentPage = useState('currentPage')
+    const prevLink = useState('lastPageSlug',() => '')
+
+    return {
+      currentPage,
+      prevLink
     }
   },
+
   mounted() {
     this.setFullHeight()
     window.addEventListener('resize', this.setFullHeight)
-    Vue.nextTick(()=>{
+    nextTick(()=>{
       this.setFullHeight()
       setTimeout(()=>{
         this.scrollToPost(this.prevLink)
@@ -123,22 +135,24 @@ export default {
     window.removeEventListener('resize', this.setFullHeight)
   },
 
-  data() {
-    return {
-      postPageNr: this.$route.query.p ? parseInt(this.$route.query.p) : 1
-    }
-  },
-
   computed:{
     posts(){
-      return this.groupPosts({posts: this.$store.getters['general/getPostsData']}) 
+      if(this.showAll){
+        return this.groupPosts({posts: useGeneralStore().getPostsData}) 
+      }else{
+        return this.groupPosts({posts: useGeneralStore().getPostsData.slice(0, this.currentPage * 10)}) 
+      }
+    },
+
+    isButtonShown(){
+      return ((this.postPageCount > this.currentPage) || this.isFetching) && !this.showAll
     }
   },
 
   watch:{
     posts: {
       handler(){
-        Vue.nextTick(()=>{
+        nextTick(()=>{
           this.setFullHeight()
         })
       },
@@ -163,7 +177,7 @@ export default {
         'December',
       ]
 
-      var groupedPosts = _groupBy(data.posts, (post) => {
+      var groupedPosts = groupBy(data.posts, (post) => {
         return new Date(post.date).getFullYear()
       })
 
@@ -172,7 +186,7 @@ export default {
         .reverse()
 
       Object.keys(groupedPosts).forEach((item) => {
-        groupedPosts[item].posts = _groupBy(
+        groupedPosts[item].posts = groupBy(
           groupedPosts[item].posts,
           (post) => {
             return new Date(post.date).getMonth()
@@ -236,8 +250,8 @@ export default {
     },
 
     setNextPage() {
-      this.postPageNr +=1
-      this.$router.push('/news?p=' + this.postPageNr)
+      this.currentPage +=1
+      this.$router.push('/news?p=' + this.currentPage)
     },
   },
 }

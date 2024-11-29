@@ -72,7 +72,6 @@
 
 <script>
 import { ref } from '@vue/composition-api'
-import { onClickOutside } from '@vueuse/core'
 export default {
   name: 'PopupVideo',
   setup() {

@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col py-5 px-[7%] mx-[-7%] tablet:mx-0 tablet:p-[30px] tablet:min-h-[380px] rounded-[5px] border border-solid border-gray-light">
         <div class="flex gap-5 items-center mb-5 tablet:mb-8">
-            <ListIcon v-if="data.icon" :name="data.icon" class="text-blue-main !h-auto" />
+            <ListIcon v-if="data.icon" :name="data.icon" class="!text-blue-main !h-auto" />
             <h4 v-if="data.title" class="text-xl tablet:text-2xl">
                 {{ data.title }}
             </h4>
@@ -47,89 +47,89 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.content-html >>> h1,
-.content-html >>> h2,
-.content-html >>> h3,
-.content-html >>> h4,
-.content-html >>> h5,
-.content-html >>> h6,
-.content-html >>> li,
-.content-html >>> b,
-.content-html >>> u,
-.content-html >>> *:not(p):not(iframe) {
+.content-html :deep(h1),
+.content-html :deep(h2),
+.content-html :deep(h3),
+.content-html :deep(h4),
+.content-html :deep(h5),
+.content-html :deep(h6),
+.content-html :deep(li),
+.content-html :deep(b),
+.content-html :deep(u),
+.content-html :deep(*:not(p):not(iframe)) {
   width: auto !important;
   max-width: 100% !important;
 }
 
-.content-html >>> .wp-caption-text {
+.content-html :deep(.wp-caption-text) {
   width: 100% !important;
 }
-.content-html >>> div,
-.content-html >>> code {
+.content-html :deep(div),
+.content-html :deep(code) {
   @apply text-gray-dark font-lato;
 }
-.content-html >>> h1 {
+.content-html :deep(h1) {
   @apply text-4xl tablet:text-[50px] mb-5;
 }
-.content-html >>> h2 {
+.content-html :deep(h2) {
   @apply text-3xl tablet:text-4xl mb-5;
 }
-.content-html >>> h3 {
+.content-html :deep(h3) {
   @apply text-2xl tablet:text-3xl mb-5;
 }
-.content-html >>> h4 {
+.content-html :deep(h4) {
   @apply text-xl tablet:text-2xl mb-5;
 }
-.content-html >>> h5 {
+.content-html :deep(h5) {
   @apply text-lg tablet:text-xl mb-5;
 }
-.content-html >>> h6 {
+.content-html :deep(h6) {
   @apply text-base tablet:text-lg mb-5;
 }
-.content-html >>> p {
+.content-html :deep(p) {
     @apply text-base inline-block mb-4 w-full;
 }
-.content-html >>> a {
+.content-html :deep(a) {
     @apply text-blue-main hover:text-blue-main-hover transition underline;
 }
-    
-.content-html >>> li {
+
+.content-html :deep(li) {
   @apply text-gray-dark;
 }
 
-.content-html >>> ol li {
+.content-html :deep(ol li) {
   @apply list-disc ml-5;
 }
 
-.content-html >>> ul {
+.content-html :deep(ul) {
   @apply mb-5;
 }
-.content-html >>> ul li {
+.content-html :deep(ul li) {
   @apply list-disc ml-5;
 }
-  
-.content-html >>> hr {
+
+.content-html :deep(hr) {
   @apply block mx-[10%] mt-5 mb-10;
 }
 
-.content-html >>> code {
+.content-html :deep(code) {
   @apply block whitespace-pre-wrap max-w-2xl bg-gray-light p-2.5 tablet:p-5 rounded-md mb-10;
 }
 
-.content-html >>> img {
+.content-html :deep(img) {
   @apply max-w-full w-auto h-auto;
 }
 
-.content-html >>> iframe {
+.content-html :deep(iframe) {
   @apply max-w-full h-auto;
 }
 
-.content-html >>> iframe[src*='www.youtu'] {
+.content-html :deep(iframe[src*='www.youtu']) {
   @apply w-full aspect-video;
 }
 
-.content-html >>> em,
-.content-html >>> .wp-caption-text {
+.content-html :deep(em),
+.content-html :deep(.wp-caption-text) {
   font-weight: 400;
   text-align: center;
   font-style: italic;

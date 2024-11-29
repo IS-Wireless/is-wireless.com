@@ -6,7 +6,7 @@
         height="640"
         class="block transform h-full w-full transition duration-[1000ms]"
         :imgAttrs="{ class: 'h-full w-full object-cover' }"
-        :src="url.replace('www.is-wireless.com', 'api.is-wireless.com')"
+        :src="url.replace('www.is-wireless.com',$config.public.API_DOMAIN).replace($config.public.API_URL,'/app')"
         :alt="alt"
         :title="title"
         sizes="sm:320px md:640px lg:720px"

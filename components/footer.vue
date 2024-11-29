@@ -13,7 +13,7 @@
             <nuxt-picture
               class="block h-auto w-full max-w-[200px]"
               :src="
-                imageUrl.replace('www.is-wireless.com', 'api.is-wireless.com')
+                imageUrl.replace('www.is-wireless.com',$config.public.API_DOMAIN).replace($config.public.API_URL,'/app')
               "
               :alt="'test alt'"
               width="200"
@@ -31,6 +31,7 @@
           <div class="w-full phablet:w-auto relative border-none h-12">
             <select
               class="bg-gray-light focus-visible:outline-none text-gray-400 appearance-none border-none inline-block py-3 pl-4 pr-10 rounded leading-tight w-full h-12 cursor-pointer hover:bg-gray-200 focus:bg-gray-200 transition"
+              aria-label="Language"
             >
               <option v-for="title in languages" :key="title">
                 {{ title }}
@@ -70,6 +71,7 @@
                 rel="external nofollow"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
+                :aria-label="itemSocial.object_slug ?? 'social link'"
               >
                 <template #default>
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -88,6 +90,7 @@
                 rel="external nofollow"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
+                :aria-label="itemSocial.object_slug ?? 'social link'"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -104,6 +107,7 @@
                 rel="external nofollow"
                 :isExternal="itemSocial.object == 'custom' ? true : false"
                 target="_blank"
+                :aria-label="itemSocial.object_slug ?? 'social link'"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -243,10 +247,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
->>> .custom-filter {
+:deep( .custom-filter ){
   filter: saturate(0);
 }
->>> .custom-filter:hover {
+:deep( .custom-filter:hover ){
   filter: saturate(1);
 }
 </style>

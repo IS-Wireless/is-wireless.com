@@ -1,4 +1,4 @@
-import { isEmpty as _isEmpty } from 'lodash'
+import isEmpty from 'lodash.isempty';
 const filterWords = ['head_tags', 'yoast_head', 'meta', '{}', '_links']
 
 const filterData = (obj) => {
@@ -11,7 +11,7 @@ const filterData = (obj) => {
     }
 
     if (
-      _isEmpty(key) ||
+      isEmpty(key) ||
       RegExp(filterWords.join('|')).test(key) ||
       obj[key] == null ||
       typeof obj[key] == 'undefined' ||

@@ -11,54 +11,58 @@
           {{ data.title }}
         </p>
       </div>
-      <div
-        id="organisations"
-        class="swiper swiper-container overflow-hidden basis-[100px] tablet-small:w-4/6 tablet-small:basis-4/6 w-full flex-grow-0 h-[100px]"
-      >
-        <div class="swiper-wrapper select-none flex w-full h-full items-center">
-          <div
-            v-for="(item, index) in logos.swiper"
-            :key="index"
-            class="swiper-slide swiper-duplicate-load-fix h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 desktop:basis-1/3 full-hd:basis-1/4"
-          >
-            <a
-              v-if="item.link"
-              class="py-5 px-5 h-full flex items-center tablet-small:pr-10"
-              :href="item.link"
-            >
-              <nuxt-picture
-                v-if="item.image"
-                width="200"
-                height="200"
-                fit="outside"
-                :src="
-                  item.image.url
-                    ? item.image.url.replace(
-                        'www.is-wireless.com',
-                        'api.is-wireless.com'
-                      )
-                    : ''
-                "
-                class="h-full"
-                :alt="item.image.alt ? item.image.alt : ''"
-                :title="item.image.title ? item.image.title : ''"
-                sizes="sm:180px lg:360px"
-                :img-attrs="{
-                  loading:
-                    index < loadEager
-                      ? 'eager'
-                      : index > loadEager - 1
-                      ? 'lazy'
-                      : 'auto',
-                  class:
-                    'w-full h-full object-contain custom-filter duration-300 opacity-0 transition',
-                }"
-                @load="imageAnimateLoad($event)"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
+      <Swiper
+      class="swiper-duplicate-load-fix overflow-hidden basis-[100px] tablet-small:w-4/6 tablet-small:basis-4/6 w-full flex-grow-0 h-[100px]"
+      :modules="[SwiperNavigation, SwiperAutoplay]"
+        :slides-per-view="'auto'"
+        :space-between="0"
+        :speed="600"
+        :loop="true"
+        :autoplay="{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }">
+          <SwiperSlide v-for="(item, index) in logos.swiper"
+              :key="index"
+              class="h-full flex justify-center shrink-0 basis-1/2 phablet:basis-1/3 tablet-small:basis-1/2 desktop:basis-1/3 full-hd:basis-1/4">
+              <a
+                v-if="item.link"
+                class="py-5 px-5 h-full flex items-center tablet-small:pr-10"
+                :href="item.link"
+              >
+                <nuxt-picture
+                  v-if="item.image"
+                  width="200"
+                  height="200"
+                  fit="outside"
+                  :src="
+                    item.image.url
+                      ? item.image.url.replace(
+                          'www.is-wireless.com',
+                          'api.is-wireless.com'
+                        ).replace($config.public.API_URL,'/app')
+                      : ''
+                  "
+                  class="h-full"
+                  :alt="item.image.alt ? item.image.alt : ''"
+                  :title="item.image.title ? item.image.title : ''"
+                  sizes="sm:180px lg:360px"
+                  :img-attrs="{
+                    loading:
+                      index < loadEager
+                        ? 'eager'
+                        : index > loadEager - 1
+                        ? 'lazy'
+                        : 'auto',
+                    class:
+                      'w-full h-full object-contain custom-filter duration-300 opacity-0 transition',
+                  }"
+                  @load="imageAnimateLoad($event)"
+                />
+              </a>
+          </SwiperSlide>
+      </Swiper>
       <div
         class="relative select-none tablet-small:w-[40%] tablet-wide:w-2/6 w-full basis-full tablet-small:basis-[40%] tablet-wide:basis-2/6 flex-grow-0 flex-shrink-0 flex items-center justify-center bg-blue-main h-[100px]"
       >
@@ -211,9 +215,8 @@
           :key="index"
           class="relative z-20 py-5 px-4 desktop:px-10 h-full flex items-center"
         >
-          <a class="block h-full" :href="linkFilter(item.link)">
-            <nuxt-picture
-              v-if="item.image"
+          <a v-if="item.image" class="block h-full" :href="linkFilter(item.link)" aria-label="Organisation">
+            <nuxt-img
               loading="eager"
               class="h-full img-h-full"
               width="200"
@@ -223,10 +226,10 @@
                   ? item.image.url.replace(
                       'www.is-wireless.com',
                       'api.is-wireless.com'
-                    )
+                    ).replace($config.public.API_URL,'/app')
                   : ''
               "
-              :alt="item.image.alt ? item.image.alt : ''"
+              :alt="item.image.alt ?? item.image.title ?? ''"
               :title="item.image.title ? item.image.title : ''"
             />
           </a>
@@ -237,7 +240,6 @@
 </template>
 
 <script>
-import { Swiper, Navigation, Autoplay } from 'swiper'
 
 export default {
   name: 'Organisations',
@@ -253,24 +255,6 @@ export default {
       iframeYoutubeSrc: '',
       liveURL: '',
       loadEager: 5,
-      swiperOptionsObject: {
-        modules: [Navigation, Autoplay],
-        slidesPerView: 'auto',
-        spaceBetween: 0,
-        direction: 'horizontal',
-        speed: 600,
-        loop: true,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
-        preloadImages: false,
-        lazy: {
-          loadOnTransitionStart: true,
-          loadPrevNext: true,
-        },
-      },
     }
   },
   computed: {
@@ -290,39 +274,31 @@ export default {
       return { swiper: logosSwiper, pinned: logosPinned }
     },
   },
-  mounted() {
-    var logos = this.logos
-    if (logos && logos.swiper && logos.swiper.length) {
-      this.$data.swiper = new Swiper(
-        '#organisations',
-        this.$data.swiperOptionsObject
-      )
-    }
-  },
   methods: {
     linkFilter(link) {
+      const config = useRuntimeConfig()
       return link
         .toString()
-        .replace(this.$config.API_URL, '')
-        .replace('https://www.is-wireless.com', '')
+        .replace(config.public.API_URL, '')
+        .replace(config.public.DOMAIN_URL, '')
     },
     imageAnimateLoad(e) {
-      e.currentTarget.classList.remove('opacity-0')
+      e.currentTarget?.classList.remove('opacity-0')
     },
   },
 }
 </script>
 
 <style lang="postcss" scoped>
->>> .custom-filter {
+:deep( .custom-filter ){
   filter: saturate(0);
 }
->>> .custom-filter:hover {
+:deep( .custom-filter:hover ){
   filter: saturate(1);
 }
 
-.swiper-duplicate-load-fix /deep/ .opacity-0[loading='eager'],
-.swiper-duplicate-load-fix.swiper-slide-duplicate /deep/ .opacity-0 {
+.swiper-duplicate-load-fix :deep( .opacity-0[loading='eager'] ),
+.swiper-duplicate-load-fix.swiper-slide-duplicate :deep( .opacity-0 ){
   opacity: 1;
 }
 </style>

@@ -3,14 +3,15 @@
     <slot> </slot>
   </div>
   <div v-else-if="!url && title" v-html="title"></div>
-  <nuxt-link v-else-if="!title && !isExternalCheck" :to="urlFormatted">
+  <nuxt-link v-else-if="!title && !isExternalCheck" :to="urlFormatted" :class="{'router-link-active':$route.fullPath.startsWith(urlFormatted)}">
     <slot></slot>
   </nuxt-link>
   <nuxt-link
     v-else-if="title && !isExternalCheck"
-    v-html="title"
     :to="urlFormatted"
+    :class="{'router-link-active':$route.fullPath.startsWith(urlFormatted)}"
   >
+    {{ title }}
   </nuxt-link>
 
   <a
@@ -48,9 +49,10 @@ export default {
       return !!this.$slots.default
     },
     urlFormatted() {
+      const config = useRuntimeConfig()
       let formattedUrl = this.url
-        .replace(this.$config.API_URL, '')
-        .replace('https://www.is-wireless.com', '')
+        .replace(config.public.API_URL, '')
+        .replace(config.public.DOMAIN_URL, '')
       return formattedUrl
     },
     isExternalCheck() {

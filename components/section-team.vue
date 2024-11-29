@@ -18,15 +18,32 @@
       ></div>
     </div>
     <div class="w-auto desktop:w-full mr-[-12.5%] desktop:mr-0">
-      <div v-if="data.list" id="teamSwiper" class="swiper relative z-10 overflow-hidden">
-        <div class="swiper-wrapper flex">
+      <Swiper v-if="data.list" class="relative z-10 overflow-hidden [&_.swiper-wrapper]:flex"
+        :slidesPerView="'auto'"
+        :modules="[SwiperNavigation]"
+        :spaceBetween="0"
+        :speed="600"
+        :enabled="true"
+        :navigation="{
+          nextEl: '[data-slide-next]',
+          prevEl: '[data-slide-prev]',
+        }"
+        :breakpoints="{
+          1248: {
+            slidesPerView: 4,
+            spaceBetween: 50,
+            enabled: false,
+          },
+        }"
+      >
+        <SwiperSlide v-for="(item, index) in data.list" :key="index"
+        class="flex flex-col shrink-0 grow-0 basis-60 desktop:basis-auto swiper-slide mr-[30px] tablet:mr-10 desktop:mr-0"
+        >
           <PersonTile
-            v-for="(item, index) in data.list"
-            :key="index"
             :data="item"
             class="swiper-slide mr-[30px] tablet:mr-10 desktop:mr-0"
           />
-        </div>
+        </SwiperSlide>
         <div
         data-slide-prev
           class=" cursor-pointer absolute left-2 top-[28%] z-10 group transition duration-200"
@@ -74,61 +91,26 @@
             ></path>
           </svg>
         </div>
-      </div>
+      </Swiper>
     </div>
     <div class="absolute z-0 inset-y-0 inset-x-[-12.5%] bg-gray-light"></div>
   </section>
 </template>
 
 <script>
-import { Swiper, Navigation } from 'swiper'
-import PersonTile from './person-tile.vue'
-import SectionHeader from './section-header.vue'
-
 export default {
   name: 'section_team',
-  components: {
-    SectionHeader,
-    PersonTile,
-  },
   props: {
     data: {
       type: Object,
       required: false,
     },
   },
-  data() {
-    return {
-      swiper: null,
-      swiperOptionsObject: {
-        slidesPerView: 'auto',
-        modules: [Navigation],
-        spaceBetween: 0,
-        direction: 'horizontal',
-        speed: 600,
-        enabled: true,
-        navigation: {
-          nextEl: '[data-slide-next]',
-          prevEl: '[data-slide-prev]',
-        },
-        breakpoints: {
-          1248: {
-            slidesPerView: 4,
-            spaceBetween: 50,
-            enabled: false,
-          },
-        },
-      },
-    }
-  },
-  mounted() {
-    this.swiper = new Swiper('#teamSwiper', this.swiperOptionsObject)
-  },
 }
 </script>
 
 <style scoped>
-.content-html >>> p {
+.content-html :deep( p ){
   @apply text-xl tablet:text-2xl;
 }
 

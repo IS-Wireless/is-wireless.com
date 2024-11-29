@@ -83,7 +83,7 @@
       <nuxt-picture
         class="absolute inset-0 w-full h-full z-10"
         :imgAttrs="{ class: 'w-full h-full object-cover' }"
-        :src="`https://i.ytimg.com/vi/${data.videoId}/maxresdefault.jpg`"
+        :src="`/ytimg/${data.videoId}/maxresdefault.jpg`"
       />
     </div>
   </div>

@@ -12,32 +12,26 @@
           :isExternal="true"
           class="block w-full p-1 h-full"
         >
-          <nuxt-picture
-            class="w-full img-full"
-            :imgAttrs="{
-              class: '!h-full object-contain',
-            }"
+          <nuxt-img
+            class="w-full h-full object-contain"
             :src="
               image.img_url.url.replace(
                 'www.is-wireless.com',
-                'api.is-wireless.com'
-              )
+                $config.public.API_DOMAIN
+              ).replace($config.public.API_URL,'/app')
             "
             :title="image.img_url.title ? image.img_url.title : ''"
             :alt="image.img_url.alt ? image.img_url.alt : ''"
           />
         </CustomLink>
-        <nuxt-picture
+        <nuxt-img
           v-else-if="image.img_url"
-          class="w-full h-full img-full p-1"
-          :imgAttrs="{
-            class: '!h-full object-contain',
-          }"
+          class="w-full h-full object-contain p-1"
           :src="
             image.img_url.url.replace(
               'www.is-wireless.com',
-              'api.is-wireless.com'
-            )
+              $config.public.API_DOMAIN
+            ).replace($config.public.API_URL,'/app')
           "
           :title="image.img_url.title ? image.img_url.title : ''"
           :alt="image.img_url.alt ? image.img_url.alt : ''"
@@ -48,12 +42,7 @@
 </template>
 
 <script>
-import CustomLink from '@/components/custom-link.vue'
 export default {
-  name: 'logo_static',
-  components: {
-    CustomLink,
-  },
   props: {
     data: {
       type: Object,

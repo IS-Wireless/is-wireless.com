@@ -11,12 +11,13 @@
             <nuxt-link
               :to="
                 route.item
-                  .replace('https://api.is-wireless.com', '')
+                  .replace($config.public.API_URL, '')
                   .replace('https://www.is-wireless.com', '')
                   .replace('/category', '')
               "
-              v-html="route.name"
-            />
+            >
+            {{ route.name }}
+            </nuxt-link>
           </div>
 
           <div
@@ -32,6 +33,7 @@
 
 <script>
 import { isSamePath } from 'ufo'
+import { useGeneralStore } from '~/store/general'
 
 export default {
   name: 'Breadcrumb',
@@ -60,21 +62,21 @@ export default {
     },
 
     routesNames() {
-      let routesNames = this.$route.path.slice(1, -1).split('/')
+      let routesNames = useRoute().path.slice(1, -1).split('/')
       routesNames.pop()
       return routesNames
     },
 
     currentRoute() {
-      return this.$route.path
+      return useRoute().path
     },
 
     pagesData() {
-      return this.$store.getters['general/getData'].pages
+      return useGeneralStore().data
     },
 
     postsData() {
-      return this.$store.getters['general/getData'].posts
+      return useGeneralStore().getPostsData
     },
   },
   methods: {

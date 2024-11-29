@@ -5,7 +5,7 @@
       :class="expanded ? 'fixed tablet-wide:relative' : 'relative'"
     >
       <div class="mx-auto w-4/5 container flex justify-between h-[80px]">
-        <nuxt-link to="/" @click.native="expanded ? toggleExpanded() : null">
+        <nuxt-link to="/" @click="expanded ? toggleExpanded() : null" aria-label="Homepage">
           <svg
             width="100%"
             height="100%"
@@ -130,7 +130,7 @@
             <li
               class="navbar-item z-50 tablet-wide:z-0 flex p-4 justify-center items-center h-full text-base text-inherit hover:text-inherit relative after:bg-blue-main after:content-[''] after:absolute after:block after:left-0 after:-bottom-1 after:h-1 after:w-full after:transform after:transition tablet:hover:after:-translate-y-1"
               :class="{ 'btn-active': expanded }"
-              @click="toggleExpanded"
+              @click.native="toggleExpanded"
             >
               <div
                 class="h-[21px] w-[25px] flex flex-col justify-between items-center"
@@ -174,9 +174,10 @@
                 action="/search/"
                 :class="{ 'translate-x-full': !mainSearch }"
                 @submit.prevent="goToSearch()"
+                v-on-click-outside="handleSearchCollapse"
               >
                 <button
-                  class="px-5 flex justify-center items-center text-white hover:text-blue-main"
+                  class="px-5 flex justify-center items-center text-white hover:text-blue-main" aria-label="Search"
                 >
                   <svg
                     class="fill-current transition"
@@ -198,6 +199,7 @@
                   name="q"
                   placeholder="Search here..."
                   class="w-full px-5 bg-gray-darkest text-base text-white focus-visible:outline-none"
+                  aria-label="search"
                 />
                 <div
                   class="px-5 h-full flex justify-center items-center cursor-pointer text-white hover:text-white/70"
@@ -293,10 +295,12 @@
                 name="q"
                 placeholder="Search..."
                 class="grow h-full text-white bg-gray-darkest focus-visible:outline-none placeholder:text-[#BFBFBF] placeholder:italic focus:outline-none font-lato appearance-none"
+                aria-label="search"
               />
               <button
                 type="submit"
                 class="flex items-center justify-center w-[50px] h-[48px] text-[#BFBFBF] hover:text-blue-main"
+                aria-label="Search"
               >
                 <svg
                   class="fill-current transition"
@@ -328,7 +332,7 @@
                   :url="item.url ? item.url : ''"
                   :title="item.title ? item.title : ''"
                   :isExternal="item.object == 'custom' ? true : false"
-                  @click.native="toggleExpanded()"
+                  @click="toggleExpanded()"
                 ></CustomLink>
               </li>
             </ul>
@@ -348,6 +352,7 @@
                     rel="external nofollow"
                     :isExternal="item.object == 'custom' ? true : false"
                     class="flex justify-center items-center w-8 h-8 hover:bg-opacity-70 transition rounded-md bg-[#BFBFBF]"
+                    :aria-label="item.object_slug ?? 'social link'"
                   >
                     <svg
                       v-if="item.object_slug === 'facebook'"
@@ -412,18 +417,10 @@
     <div v-if="expanded" class="h-[80px] tablet-wide:hidden"></div>
   </div>
 </template>
+<script setup>
+  import { vOnClickOutside } from '@vueuse/components'
 
-<script>
-import CustomLink from './custom-link.vue'
-
-import { useFocus } from '@vueuse/core'
-import { ref } from '@vue/composition-api'
-export default {
-  name: 'Navbar',
-  components: {
-    CustomLink,
-  },
-  props: {
+  const props = defineProps({
     mainMenu: {
       type: Array,
       required: true,
@@ -436,53 +433,59 @@ export default {
       type: Array,
       required: false,
     },
-  },
-  data() {
-    return {
-      expanded: false,
-      mainSearch: false,
-      searchInput: ''
+  })
+
+  const expanded = ref(false);
+  const mainSearch = ref(false);
+  const searchInput = ref('');
+  const searchContainer = ref(null)
+  const { focused } = useFocus(searchContainer, { initialValue: false })
+  const router = useRouter()
+
+  function toggleExpanded() {
+    expanded.value = !expanded.value
+  }
+
+  function toggleMainSearch() {
+    mainSearch.value = !mainSearch.value
+    if (mainSearch.value) {
+      setTimeout(
+        function () {
+          focused.value = true
+        },
+        501
+      )
+    } else {
+      focused.value = false
     }
-  },
-  setup() {
-    const searchContainer = ref()
-    const { focused } = useFocus(searchContainer, { initialValue: false })
-    return { searchContainer, focused }
-  },
+  }
+
+  function handleSearchCollapse() {
+    if(useRoute().path.startsWith('/search')) return
+    if(mainSearch.value) toggleMainSearch()
+  }
+
+  function checkMain(url) {
+    return props.mainMenu.some((item) => {
+      return item.url === url
+    })
+  }
+
+  function goToSearch(){
+    let query = searchInput.value 
+    if (query.length>0) {
+      router.push(`/search/?${searchContainer.value.name}=${searchInput.value}` )
+      if (expanded.value){
+        toggleExpanded()
+      }
+    }
+  }
+
+
+</script>
+<script>
+export default {
   methods: {
-    toggleExpanded() {
-      this.expanded = !this.expanded
-    },
-
-    toggleMainSearch() {
-      this.mainSearch = !this.mainSearch
-      if (this.mainSearch) {
-        setTimeout(
-          function () {
-            this.focused = true
-          }.bind(this),
-          501
-        )
-      } else {
-        this.focused = false
-      }
-    },
-
-    checkMain(url) {
-      return this.mainMenu.some((item) => {
-        return item.url === url
-      })
-    },
-
-    goToSearch(){
-      let query = this.searchInput 
-      if (query.length>0) {
-        this.$router.push(`/search/?${this.searchContainer.name}=${this.searchInput}` )
-        if (this.expanded){
-          this.toggleExpanded()
-        }
-      }
-    }
   },
 }
 </script>
@@ -495,14 +498,14 @@ export default {
 .menu-sub-col:hover > a {
   @apply text-blue-main;
 }
-.nuxt-link-active {
+nav .router-link-active {
   @apply text-blue-main;
 }
 
-.nuxt-link-exact-active {
+nav .router-link-exact-active {
   @apply text-blue-main hover:text-blue-main;
 }
-.nuxt-link-active {
+nav .router-link-active {
   @apply text-blue-main hover:text-blue-main;
 }
 

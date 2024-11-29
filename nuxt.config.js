@@ -162,7 +162,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      concurrency: 1,
+      concurrency: 2,
     },
   },
 

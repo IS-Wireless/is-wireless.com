@@ -222,6 +222,9 @@ export default defineNuxtConfig({
       navigateFallback: null,
     },
   },
+  workbox: {
+    maximumFileSizeToCacheInBytes: 4500000
+  },
 
   wp: {
     discover: true,

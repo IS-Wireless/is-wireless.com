@@ -52,7 +52,7 @@ if (!pageData.value || pageData.value.length === 0) {
 
 
 const postsRelated = computed(()=>{
-  if (pageData.value && pageData.value.acf && pageData.value.acf.posts_related) {
+  if (pageData.value && pageData.value.acf && pageData.value.acf.posts_related && pageData.value.acf.posts_related.list) {
     return {
       text: pageData.value.acf.posts_related.text,
       list: pageData.value.acf.posts_related.list.map(id => {

@@ -149,7 +149,7 @@ code {
 }
 
 .content-html :deep( hr ){
-  @apply block mx-[10%] mt-5 mb-10;
+  @apply block mt-5 mb-10;
 }
 
 .content-html :deep( code ){

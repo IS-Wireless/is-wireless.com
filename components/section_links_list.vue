@@ -10,7 +10,7 @@
       }"
     >
       <div
-        class="mx-auto tablet:mx-0 max-w-[75vw] tablet:max-w-full w-full tablet:w-96 tablet-wide:w-full flex flex-wrap items-center justify-between tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start"
+        class="tablet:relative mx-auto tablet:mx-0 max-w-[75vw] tablet:max-w-full w-full tablet:w-96 tablet-wide:w-full flex flex-wrap items-center justify-between tablet-wide:flex-col tablet-wide:justify-start tablet-wide:items-start"
       >
         <span class="inline-block text-gray-dark mb-2">Filter by: </span>
         <div
@@ -40,7 +40,7 @@
           </div>
         </div>
         <ul
-          class="custom-scrollbar flex flex-col tablet-wide:flex-row items-center absolute top-full right-0 tablet:right-[-180px] tablet-wide:right-0 tablet-wide:relative w-full tablet:w-[350px] tablet-wide:w-full px-5 tablet-wide:px-0 tablet:rounded-md tablet-wide:rounded-none overflow-y-scroll tablet-wide:max-h-[none] bg-[#F6F6F6] tablet-wide:bg-transparent mt-0.5 tablet-wide:mt-0 duration-300 transition-all z-20"
+          class="custom-scrollbar tablet-wide:overflow-y-hidden flex flex-col tablet-wide:flex-row items-center absolute top-full right-0 tablet-wide:relative w-full tablet:w-[350px] tablet-wide:w-full px-5 tablet:px-0 tablet:rounded-md tablet-wide:rounded-none overflow-y-scroll tablet-wide:max-h-[none] bg-[#F6F6F6] tablet-wide:bg-transparent mt-0.5 tablet-wide:mt-0 duration-300 transition-all z-20"
           :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
         >
           <li

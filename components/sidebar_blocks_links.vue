@@ -28,7 +28,7 @@
       </div>
     </div>
     <ul
-      class="flex flex-col items-center tablet:items-start absolute top-[61px] tablet:top-0 left-0 tablet:relative custom-scrollbar w-full tablet:max-w-[350px] bg-gray-light tablet:bg-transparent duration-300 transition-all z-20 tablet:max-h-full overflow-y-scroll"
+      class="flex flex-col items-center tablet:items-start absolute top-[61px] tablet:top-0 left-0 tablet:relative custom-scrollbar overflow-y-scroll tablet:overflow-y-hidden tablet:pr-4 w-full tablet:max-w-[350px] bg-gray-light tablet:bg-transparent duration-300 transition-all z-20 tablet:max-h-full"
       :class="{ 'max-h-80': mobileExpanded, 'max-h-0': !mobileExpanded }"
     >
       <li

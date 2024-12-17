@@ -8,7 +8,7 @@
       ref="videoPlayer" 
       :poster="placeholderImgFormatted"
       class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
-      loading="lazy"
+      loading="eager"
       >
       <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
     </video>

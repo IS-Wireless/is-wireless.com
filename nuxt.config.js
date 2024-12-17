@@ -104,7 +104,8 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@vite-pwa/nuxt",
     "nuxt-swiper",
-    "nuxt-booster",
+    // "nuxt-booster",
+    "nuxt-vitalizer",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
     "@nuxtjs/fontaine",
@@ -122,17 +123,13 @@ export default defineNuxtConfig({
       },
     },
     display: 'swap', // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
-    subsets: 'latin-ext',
-    prefetch: true,
-    preconnect: true,
-    preload: true,
-    useStylesheet: true
   },
 
   booster: {
     detection: {
       performance: true,
       browserSupport: true,
+      battery: false
     },
 
     performanceMetrics: {
@@ -156,9 +153,20 @@ export default defineNuxtConfig({
       asset: "0%",
     },
   },
+  vitalizer: {
+    disablePrefetchLinks: true,
+    disablePreloadLinks: true,
+    disableStylesheets: 'entry',
+  },
   experimental: {
     sharedPrerenderData: true,
-},
+    payloadExtraction: true,
+  },
+  vite: {
+    build: {
+      modulePreload: false,
+    }
+  },
   nitro: {
     prerender: {
       crawlLinks: true,

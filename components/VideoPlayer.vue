@@ -1,17 +1,19 @@
 <template>
   <div class="relative z-0 w-full h-full">
-    <video
-      autoplay
-      playsinline
-      loop
-      muted
-      ref="videoPlayer" 
-      :poster="placeholderImgFormatted"
-      class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
-      loading="eager"
-      >
-      <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
-    </video>
+    <ClientOnly>
+      <video
+        autoplay
+        playsinline
+        loop
+        muted
+        ref="videoPlayer" 
+        :poster="placeholderImgFormatted"
+        class="block align-top bg-black object-cover w-full [&>*]:w-full [&>*]:h-full [&>*]:object-none desktop:[&>*]:object-cover h-full"
+        loading="lazy"
+        >
+        <source v-for="source,index in options.sources" :key="index" :src="source.src" :type="source.type" >
+      </video>
+    </ClientOnly>
 
     <div v-if="placeholderImg" 
       class="h-full absolute inset-0 pointer-events-none transition duration-300"
@@ -26,6 +28,7 @@
         :imgAttrs="{ fetchpriority: 'high',class: 'h-full object-cover' }"
         loading="eager"
         critical="true"
+        fetchpriority=""
       />
     </div>
   </div>

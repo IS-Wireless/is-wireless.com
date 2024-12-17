@@ -48,13 +48,8 @@
                   :alt="item.image.alt ? item.image.alt : ''"
                   :title="item.image.title ? item.image.title : ''"
                   sizes="sm:180px lg:360px"
+                  loading="lazy"
                   :img-attrs="{
-                    loading:
-                      index < loadEager
-                        ? 'eager'
-                        : index > loadEager - 1
-                        ? 'lazy'
-                        : 'auto',
                     class:
                       'w-full h-full object-contain custom-filter duration-300 opacity-0 transition',
                   }"

@@ -44,19 +44,6 @@ export default defineNuxtConfig({
     },
   },
 
-  experimental:{
-    payloadExtraction: true,
-    sharedPrerenderData: true,
-    defaults:{
-      nuxtLink:{
-        prefetchOn:{
-          visibility: false,
-          interaction: true
-        }
-      }
-    }
-  },
-
   app: {
     layoutTransition: {
       name: "page",
@@ -158,9 +145,17 @@ export default defineNuxtConfig({
     disablePreloadLinks: true,
     disableStylesheets: 'entry',
   },
-  experimental: {
-    sharedPrerenderData: true,
+  experimental:{
     payloadExtraction: true,
+    sharedPrerenderData: true,
+    defaults:{
+      nuxtLink:{
+        prefetchOn:{
+          visibility: false,
+          interaction: true
+        }
+      }
+    }
   },
   vite: {
     build: {

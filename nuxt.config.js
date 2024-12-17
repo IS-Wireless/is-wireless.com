@@ -148,14 +148,6 @@ export default defineNuxtConfig({
   experimental:{
     payloadExtraction: true,
     sharedPrerenderData: true,
-    // defaults:{
-    //   nuxtLink:{
-    //     prefetchOn:{
-    //       visibility: false,
-    //       interaction: true
-    //     }
-    //   }
-    // }
   },
   vite: {
     build: {

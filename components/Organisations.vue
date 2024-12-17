@@ -51,9 +51,8 @@
                   loading="lazy"
                   :img-attrs="{
                     class:
-                      'w-full h-full object-contain custom-filter duration-300 opacity-0 transition',
+                      'w-full h-full object-contain custom-filter',
                   }"
-                  @load="imageAnimateLoad($event)"
                 />
               </a>
           </SwiperSlide>
@@ -276,9 +275,6 @@ export default {
         .toString()
         .replace(config.public.API_URL, '')
         .replace(config.public.DOMAIN_URL, '')
-    },
-    imageAnimateLoad(e) {
-      e.currentTarget?.classList.remove('opacity-0')
     },
   },
 }

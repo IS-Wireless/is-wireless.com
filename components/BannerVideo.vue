@@ -102,14 +102,6 @@ const videoOptions = {
       src: `${runtimeConfig.public.API_URL}/wp-content/uploads/2024/11/IS-Wireless-video-background_cropped.webm`,
       type: 'video/webm',
     },
-    {
-      src: `${runtimeConfig.public.API_URL}/wp-content/uploads/2024/11/IS-Wireless-video-background_cropped.mp4`,
-      type: 'video/mp4',
-    },
-    {
-      src: `${runtimeConfig.public.API_URL}/wp-content/uploads/2022/10/IS-Wireless-video-background-poprawione.webm`,
-      type: 'video/webm',
-    },
   ],
 }
 

@@ -61,9 +61,11 @@ function playerReady() {
 }
 
 onMounted(() => {
-  videoPlayer.value.addEventListener('timeupdate', () => {
-    playerReady()
-  }, { once: true })
+  nextTick(()=>{
+    videoPlayer.value?.addEventListener('timeupdate', () => {
+      playerReady()
+    }, { once: true })
+  })
 })
 </script>
 
